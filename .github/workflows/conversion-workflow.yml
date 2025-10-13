@@ -1,0 +1,60 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Python-Fundamentals
+        uses: actions/checkout@v4
+      
+      - name: Checkout parchmentIQ repository  
+        uses: actions/checkout@v4
+        with:
+          repository: ScryptIQ-ai/parchmentIQ
+          ref: main
+          path: parchmentiq-repo
+          token: ${{ secrets.PARCHMENTIQ_PAT }}
+      
+      - name: Copy assets folder from parchmentIQ
+        run: |
+          cp -r parchmentiq-repo/assets .
+      
+      - name: Commit updated assets
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add assets/
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update assets from parchmentIQ [skip ci]"
+            git push
+          fi
+        
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+          
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
