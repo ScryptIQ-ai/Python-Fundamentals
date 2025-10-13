@@ -1,0 +1,34 @@
+/* L2D Azure AI Theme - Color Palette */
+:root {
+    /* Primary Brand Colours */
+    --primary: #f02698;
+    --primary-dark:  #4d0c2e;
+    --secondary: #e07a5f;
+    --secondary-dark: #a85441;   
+    --third-light: #7f84aa;
+    --third: #3d405b;
+    --third-dark: #2a2d3f;  
+  
+    --accent: #00b7c3;
+
+    /* Background Colours */
+    --background: #f3f0ddff;
+    --card-bg: #ffffff;
+    --border: #e2e8f0;
+
+    /* Text Colours */
+    --text-primary: #1d232d;
+    --text-secondary: #4a5568;
+    --text-light: #718096;
+    --text-on-dark: #ffffff;
+
+    /* Semantic Colours */
+    --success: #48bb78;
+    --warning: #e60000;
+    --error: #f56565;
+
+    /* L2D Specific Colours */
+    --l2d-one: #6e6ca9;
+    --l2d-two: #ec619f;
+    --l2d-three: #3abff0;
+}
