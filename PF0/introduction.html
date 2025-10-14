@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Pyodide and CodeMirror -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/pastel-on-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/python/python.min.js"></script>
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="../assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../assets/android-chrome-512x512.png">
+    
+    <!-- Core Stylesheets -->
+    <link rel="stylesheet" href="../assets/colours.css">
+    <link rel="stylesheet" href="../assets/shared-styles.css">
+    <link rel="stylesheet" href="../assets/nav-bar.css">
+    <link rel="stylesheet" href="../assets/module_card.css">
+    <link rel="stylesheet" href="../assets/learning_outcomes.css">
+    <link rel="stylesheet" href="../assets/learning_lists.css">
+    <link rel="stylesheet" href="../assets/box_styles.css">
+    <link rel="stylesheet" href="../assets/code_styles.css">
+
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L2D - PF0 - Introduction</title>
+    
+    <!-- File URLs for this lesson -->
+    <script>
+        window.LESSON_FILES = [
+            {url: "https://raw.githubusercontent.com/ScryptIQ-ai/lesson-data/refs/heads/main/PF0/scryptIQ-logo.svg", filename: "scryptIQ-logo.svg"}
+        ];
+    </script>
+        
+</head>
+<body>
+    
+    <!-- Sidebar Navigation -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+        </div>
+        
+        <h3>Content</h3>
+        <ul>
+            <li><a href="./introduction.html" class="active">Introduction</a></li><li><a href="./about-python.html">About Python</a></li><li><a href="./installing-python.html">Installing Python</a></li><li><a href="./essential-tools.html">Essential Tools</a></li><li><a href="./basic-git.html">Basic Git</a></li><li><a href="./course-setup.html">Course setup</a></li><li><a href="./feedback.html">Feedback</a></li>
+        </ul>
+
+        <h3 class="collapsible-header collapsed">
+            Resources
+            <span class="collapse-icon">►</span>
+        </h3>
+        <div class="collapsible-content collapsed">
+            <ul>
+                <li><a href="./glossary.html">Glossary</a></li>
+                <li><a href="./downloads.html">Downloads</a></li>
+            </ul>
+        </div>
+
+        <h3>
+            <li><a href="./report-issue.html">Report an Issue</a></li>
+        </h3>
+    </div>
+    
+    <!-- Sidebar Toggle Button -->
+    <button id="sidebar-toggle" class="sidebar-toggle">❮</button>
+    
+    <!-- Main Content Area -->
+    <div id="main-content" class="main-content">
+        <!-- Top Navigation Bar -->
+        <div class="top-navbar">
+            <h1 class="page-title">Python Orientation</h1>
+            <div class="nav-actions">
+            </div>
+        </div>
+
+        
+            <div class="module-card" id="introduction">
+                <div class="module-header">
+                    Introduction <span class="module-tag">PF0</span>
+                </div>
+                <div class="module-body">
+                    <p>Welcome to the L2D Python Fundamentals course. Starting out in coding can be quite daunting for newcomers, as they don&#x27;t know where to start. This begins even before you start to code, in the setup, terminology, and myriad of tools out there. and usually its not about the code, but the setup and surrounding terminologly. With this pre-course resource we hope to provide some details about Python and its related programmes, to help focus your understanding and prepare you for the non-coding aspects of Python.</p><p>You don&#x27;t need to know everything here off by heart or read it all in one go. Although, it is our hope that this should be a good point of reference for many of the surrounding questions in Python.</p>
+                </div>
+            </div>
+            
+            <div class="module-card" id="what-s-in-store">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>What's in store</h3>
+                        <p>Hopefully by the end of just the first two modules (<em>Python Fundamentals</em> and <em>Data Handling</em>) you will be able to read and replicate the code below to make your own plots.</p><p>Although for now, you&#x27;ll just have to enjoy the aesthetics of ours.<br><br><em>Click <strong>Show code</strong> to reveal the magic behind the plot.</em></p>
+        <div class="code-area hidden-code" style="display: none;">
+            <div class="code-container">
+                <textarea id="code-cell-1">from svgpathtools import svg2paths
+
+import numpy as np
+import plotly.graph_objects as go</textarea>
+            </div>
+            <div id="code-cell-1-output" class="output" style="display: none;"></div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-2">COLLAPSABLE
+
+paths, attributes = svg2paths(&#x27;./data/scryptIQ-logo.svg&#x27;)
+
+main_coords_list_x = []
+main_coords_list_y = []
+
+small_coords_list_x = []
+small_coords_list_y = []
+
+sep_coords_list_x = []
+sep_coords_list_y = []
+
+# id of each ring
+main = [11, 10, 9, 8, 7, 6, 5]
+small = [12, 1, 2, 3, 4]
+sep = [13]
+
+# Process each path
+for i, path in enumerate(paths):
+
+    # Take a selection of points along the svg path
+    num_points = 5000
+    points = [path.point(t) for t in np.linspace(0, 1, num_points)]
+    
+    # Extract x and y coordinates (complex number -&gt; real and imaginary parts)
+    x_coords = np.array([p.real for p in points])
+    y_coords = np.array([-p.imag for p in points]) # Flip y-axis
+
+    jumps = abs(np.diff(x_coords)) &gt; 4 
+
+    # If any big changes, cut the path off there
+    if jumps.any():
+        first_jump_idx = np.argmax(jumps) 
+        x_coords = x_coords[:first_jump_idx + 1] 
+        y_coords = y_coords[:first_jump_idx + 1]
+
+    # Assign the paths to their colour grouping
+    if i+1 in main:
+        main_coords_list_x.append(x_coords)
+        main_coords_list_y.append(y_coords)
+
+    if i+1 in small:
+        small_coords_list_x.append(x_coords)
+        small_coords_list_y.append(y_coords)
+
+    if i+1 in sep:
+        sep_coords_list_x.append(x_coords)
+        sep_coords_list_y.append(y_coords)
+
+fig = go.Figure()
+
+# Loop through each list of paths
+for i, (x, y) in enumerate(zip(main_coords_list_x, main_coords_list_y)):
+
+    # Add trace for this path
+    fig.add_trace(go.Scatter(
+        x=x,
+        y=y,
+        mode=&#x27;lines&#x27;,
+        name=f&#x27;main {i+1}&#x27;,
+        showlegend=False,
+        line=dict(
+            color=&#x27;rgb(245,241,221)&#x27;) 
+    ))
+
+for i, (x, y) in enumerate(zip(small_coords_list_x, small_coords_list_y)):
+
+    fig.add_trace(go.Scatter(
+        x=x,
+        y=y,
+        mode=&#x27;lines&#x27;,
+        name=f&#x27;small {i+1}&#x27;,
+        showlegend=False,
+        line=dict(
+            color = &#x27;rgb(224,122,95)&#x27;)   
+        ))
+
+for i, (x, y) in enumerate(zip(sep_coords_list_x, sep_coords_list_y)):
+
+    fig.add_trace(go.Scatter(
+        x=x,
+        y=y,
+        mode=&#x27;lines&#x27;,
+        name=f&#x27;sep {i+1}&#x27;,
+        showlegend=False,
+        line=dict(
+            color = &#x27;rgb(255,37,117)&#x27;,
+            width = 4)  
+        ))
+
+# Format our layout
+fig.update_layout(
+    title=&#x27;scryptIQ&#x27;,
+    xaxis_title=&#x27;X&#x27;,
+    yaxis_title=&#x27;Y&#x27;,
+    yaxis=dict(
+        scaleanchor=&quot;x&quot;, 
+        scaleratio=1,
+        showgrid=False,
+        zeroline=False
+    ),
+    xaxis=dict(
+        showgrid=False,
+        zeroline=False
+    ),
+    plot_bgcolor=&#x27;#2a2d3f&#x27;,
+    paper_bgcolor=&#x27;#2a2d3f&#x27;,
+    font=dict(color=&#x27;white&#x27;)
+)
+# Convert to html code
+fig.to_html(include_plotlyjs=&#x27;cdn&#x27;)</textarea>
+            </div>
+            <div id="code-cell-2-output" class="output"></div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+        
+        <div class="page-navigation"><div></div>
+            <a href="./about-python.html" class="nav-button next">
+                Next
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                </svg>
+            </a></div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div>© All materials are copyright scryptIQ 2025</div>
+            <div>Powered by Pyodide</div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../assets/main.js"></script>
+    
+    <!-- Pyodide Initialisation Script -->
+    <script src="../assets/pyodide.js"></script>
+</body>
+</html>
+        
