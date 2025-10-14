@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Pyodide and CodeMirror -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/pastel-on-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/python/python.min.js"></script>
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="../assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../assets/android-chrome-512x512.png">
+    
+    <!-- Core Stylesheets -->
+    <link rel="stylesheet" href="../assets/colours.css">
+    <link rel="stylesheet" href="../assets/shared-styles.css">
+    <link rel="stylesheet" href="../assets/nav-bar.css">
+    <link rel="stylesheet" href="../assets/module_card.css">
+    <link rel="stylesheet" href="../assets/learning_outcomes.css">
+    <link rel="stylesheet" href="../assets/learning_lists.css">
+    <link rel="stylesheet" href="../assets/box_styles.css">
+    <link rel="stylesheet" href="../assets/code_styles.css">
+
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L2D - PF1 - Assignment</title>
+    
+    <!-- File URLs for this lesson -->
+    <script>window.LESSON_FILES = [];</script>
+        
+</head>
+<body>
+    
+    <!-- Sidebar Navigation -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+        </div>
+        
+        <h3>Content</h3>
+        <ul>
+            <li><a href="./introduction.html" class="">Introduction</a></li><li><a href="./input-output-operations.html">Input/Output Operations</a></li><li><a href="./logical-operations-and-conditional-statements.html">Logical Operations and Conditional Statements</a></li><li><a href="./errors-in-python.html">Errors in Python</a></li><li><a href="./assignment.html">Assignment</a></li><li><a href="./feedback.html">Feedback</a></li>
+        </ul>
+
+        <h3 class="collapsible-header collapsed">
+            Resources
+            <span class="collapse-icon">►</span>
+        </h3>
+        <div class="collapsible-content collapsed">
+            <ul>
+                <li><a href="./glossary.html">Glossary</a></li>
+                <li><a href="./downloads.html">Downloads</a></li>
+            </ul>
+        </div>
+
+        <h3 class="collapsible-header collapsed">
+            Previous Modules
+            <span class="collapse-icon">►</span>
+        </h3>
+        <div class="collapsible-content collapsed">
+            <ul>
+            <li><a href="/PF0/introduction.html">PF0</a></li>
+        </ul>
+        </div>
+
+        <h3>
+            <li><a href="./report-issue.html">Report an Issue</a></li>
+        </h3>
+    </div>
+    
+    <!-- Sidebar Toggle Button -->
+    <button id="sidebar-toggle" class="sidebar-toggle">❮</button>
+    
+    <!-- Main Content Area -->
+    <div id="main-content" class="main-content">
+        <!-- Top Navigation Bar -->
+        <div class="top-navbar">
+            <h1 class="page-title">Python Fundamentals 1</h1>
+            <div class="nav-actions">
+            </div>
+        </div>
+
+        <div class="module-card" id="assignment-header">
+                <div class="module-header">
+                    Assignment <span class="module-tag">PF1</span>
+                </div>
+            </div>
+            <div class="module-card" id="assignment-background">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Assignment Background:</h3>
+                        <p>You have sent off for some sequencing data. You have received the information, but it&#x27;s not formatted how you want it:<br><br><pre class="markdown-code-block"><code>seq1 = &quot;SEQ001_ATCGATCGTAGCTAGCTAGCTA&quot;
+seq2 = &quot;ATCG_CGTAGCTAG_CTAGCTA&quot;
+
+sequences = [
+    &quot;SEQ002_GCTAGCTAGCTAGCTAGCTAGT&quot;,
+    &quot;SEQ003_TAGCTAGCTAGCTAGCTAGCTA&quot;,
+    &quot;SEQ004_CTAGCTAGCTAGCTAGCTAGCT&quot;,
+    &quot;SEQ005_ATCGATCGATCGATCGATCGAT&quot;
+]</code></pre><br><br>Later you receive a list of patient blood types for your clinical trial:<br><br><pre class="markdown-code-block"><code>group_a_blood_types = [&#x27;A+&#x27;, &#x27;B+&#x27;, &#x27;O-&#x27;, &#x27;A+&#x27;, &#x27;AB+&#x27;, &#x27;O-&#x27;, &#x27;B+&#x27;, &#x27;A+&#x27;, &#x27;O+&#x27;]
+group_b_blood_types = [&#x27;O+&#x27;, &#x27;A-&#x27;, &#x27;B+&#x27;, &#x27;O+&#x27;, &#x27;A+&#x27;, &#x27;AB-&#x27;, &#x27;O-&#x27;, &#x27;A-&#x27;]</code></pre></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="assignment-questions">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Assignment Questions:</h3>
+                        <h4>Strings</h4><p><ol class="nested-list"><li>You have been given two sequences that should be 1, however there was an error when it was returned to you. You need to clean the data and join them together.</li><ul class="nested-list"><li>Remove the sequence ID from <code>seq1</code>, the characters before and including the <code>_</code></li><br><li><code>seq2</code> is missing some information, replace the underscores with <code>G</code></li><br><li>Join the two sequences together, with <code>seq1</code> first</li></ul></li><br><li>Count how often <code>AG</code> appears in the string you created</li></ol></p><h4>Lists and Tuples</h4><p><ol class="nested-list"><li>Convert your sequence to a list</li><ul class="nested-list"><li>Isolate and print the 5th item in the list</li><br><li>Isolate and print the 3rd to last item in the list</li></ul></li><br><li>Count how many times &quot;G&quot; appears in the list you created in <strong>1</strong></li><br><li>Add <code>seq1</code> to the start of the list called <code>sequences</code>.</li><ul class="nested-list"><li>You only need the first 4 items in the list, create a slice that achieves this</li><br><li>You decide you want to remove the last item instead, achieve this through a list method</li></ul></li><br><li>Convert one of the new lists you created into a Tuple</li><ul class="nested-list"><li>Use indexing to access the 2nd sequence</li><br><li>Repeat the actions in question 1 of strings, i.e.:</li><ul class="nested-list"><li>Remove the sequence ID from the string, the characters before and including the <code>_</code></li><br><li>Add the given string to the end string; &quot;AGTCGG&quot;</li></ul></li><br><li>Print the tuple to demonstrate the changes</li></ul></ol></p><h4>Sets</h4><p><ol class="nested-list"><li>Create sets called unique_group_a and unique_group_b to identify how many different blood types are present in each group.</li><ul class="nested-list"><li>Find all blood types present across both groups</li><br><li>Find blood types common to both groups</li><br><li>Find blood types that appear in only one group, not both (symmetric difference)</li></ul></ol></p>
+                    </div>
+                </div>
+            </div>
+            
+        
+        <div class="page-navigation">
+            <a href="./errors-in-python.html" class="nav-button prev">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
+                Previous
+            </a>
+            <a href="./feedback.html" class="nav-button next">
+                Next
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                </svg>
+            </a>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div>© All materials are copyright scryptIQ 2025</div>
+            <div>Powered by Pyodide</div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../assets/main.js"></script>
+    
+    <!-- Pyodide Initialisation Script -->
+    <script src="../assets/pyodide.js"></script>
+</body>
+</html>
+        
