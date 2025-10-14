@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Sidebar header HTML
     const sidebarHeaderHTML = `
         <div class="sidebar-header">
-            <a href="../homepage/main.html" style="text-decoration: none; display: inline-block;">
+            <a href="./introduction.html" style="text-decoration: none; display: inline-block;">
                 <img src="../assets/scryptIQ_logo_dark.png" alt="scryptIQ Logo" class="sidebar-logo">
             </a>
         </div>
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Nav actions HTML
     const navActionsHTML = `
         <div class="nav-actions">
-            <a href="https://learntodiscover.ai/" class="text-button" title="Find out more about us">
+            <a href="https://learntodiscover.ai/my-cohorts/" class="text-button" title="Find out more about us">
                 Learn to Discover
             </a>
         </div>
