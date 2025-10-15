@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Configuration - Update this with your Google Apps Script URL
     // const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwJEECyqGyYKDQzJUiYJ5VYCKS3G_GtZppVCGTxP-FM48UHRuW1RaOXSSCiSlF-zCNa/exec';
-    const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyjc3IYkBiU_OpHOt_dxm0xuAjMQHyQL7EhehN3mQKOZ_Zuve1N1paNpNHv9oR0rvkK/exec';
+    // const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyjc3IYkBiU_OpHOt_dxm0xuAjMQHyQL7EhehN3mQKOZ_Zuve1N1paNpNHv9oR0rvkK/exec';
     // Quiz functionality
     const quizQuestions = document.querySelectorAll('.quiz-question');
     const quizOptions = document.querySelectorAll('.quiz-option');

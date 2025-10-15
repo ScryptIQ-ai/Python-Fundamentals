@@ -160,3 +160,29 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// Toggle code collapse/expand
+function toggleCodeCollapse(codeId) {
+    const container = document.getElementById(codeId + '-container');
+    const header = container.previousElementSibling;
+    const icon = header.querySelector('.code-collapse-icon');
+    const label = header.querySelector('.code-collapse-label');
+    
+    if (container.classList.contains('code-collapsed')) {
+        container.classList.remove('code-collapsed');
+        icon.classList.add('expanded');
+        label.textContent = 'Hide code';
+        
+        // Refresh CodeMirror after making it visible
+        setTimeout(() => {
+            const codeMirror = container.querySelector('.CodeMirror');
+            if (codeMirror && codeMirror.CodeMirror) {
+                codeMirror.CodeMirror.refresh();
+            }
+        }, 0);
+    } else {
+        container.classList.add('code-collapsed');
+        icon.classList.remove('expanded');
+        label.textContent = 'Show code';
+    }
+}

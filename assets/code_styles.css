@@ -64,7 +64,7 @@ Additional styles for enhanced pyodide functionality
     border-left: 4px solid var(--primary);
     overflow-x: auto;
     min-height: 20px;
-    max-height: 300px;
+    /* max-height: 300px; */
     overflow-y: auto;
     margin-bottom: 20px;  /* Add this */
 }
@@ -119,4 +119,35 @@ Additional styles for enhanced pyodide functionality
     font-family: inherit;
     border: none;
     border-radius: 0;
+}
+
+/* Collapsible code styles */
+.code-collapse-header {
+    background-color: #2a2d3f;
+    color: var(--background);
+    padding: 8px 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 4px 4px 0 0;
+    user-select: none;
+    transition: background-color 0.2s;
+}
+
+.code-collapse-header:hover {
+    background-color: #353849;
+}
+
+.code-collapse-icon {
+    transition: transform 0.2s;
+    font-size: 12px;
+}
+
+.code-collapse-icon.expanded {
+    transform: rotate(90deg);
+}
+
+.code-container.code-collapsed {
+    display: none !important;
 }
