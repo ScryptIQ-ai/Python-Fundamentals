@@ -76,6 +76,7 @@ body {
 .footer {
     margin-top: 60px;
     padding-top: 20px;
+    padding: 20px 20px;
     border-top: 1px solid var(--border);
     display: flex;
     justify-content: space-between;
