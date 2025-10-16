@@ -63,13 +63,14 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add ${{ steps.convert.outputs.module_code }}/
+          git config --local user.name "GitHub Action"
+          git add assets/ about-us.html homepage.html
           if git diff --staged --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "Update assets, about-us.html, and generate homepage from parchmentIQ [skip ci]"
-            git push origin main
-          fi
+              echo "No changes to commit"
+            else
+              git commit -m "Update assets, about-us.html, and generate homepage from parchmentIQ [skip ci]"
+              git push origin main
+            fi
 
   deploy:
     needs: create-homepage
