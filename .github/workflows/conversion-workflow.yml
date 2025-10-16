@@ -14,10 +14,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  create-homepage:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Python-Fundamentals
@@ -66,24 +63,25 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add assets/ about-us.html homepage.html
+          git add ${{ steps.convert.outputs.module_code }}/
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            # Fetch latest changes
-            git fetch origin main
-            
-            # Try to rebase, if it fails, reset and try again
-            if ! git rebase origin/main; then
-              echo "Rebase failed, resetting and trying again..."
-              git rebase --abort
-              git reset --hard origin/main
-              git add assets/ about-us.html homepage.html
-            fi
-            
             git commit -m "Update assets, about-us.html, and generate homepage from parchmentIQ [skip ci]"
             git push origin main
           fi
+
+  deploy:
+    needs: create-homepage
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
         
       - name: Setup Pages
         uses: actions/configure-pages@v5
