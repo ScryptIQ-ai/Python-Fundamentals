@@ -1,0 +1,227 @@
+/* L2D Information Callout Boxes */
+
+/* Base Box Styling */
+.info-box {
+    margin: 30px 0;
+    border-radius: 8px;
+    padding: 18px 20px;
+    border-left: 5px solid;
+    background-color: var(--card-bg);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    font-family: "Segoe UI", "Open Sans", sans-serif;
+}
+
+.info-box .box-title {
+    font-weight: 700;
+    font-size: 16px;
+    margin: 0 0 12px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.info-box .box-content {
+    margin: 0;
+    line-height: 1.6;
+    color: var(--text-primary);
+}
+
+.info-box .box-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* Icon styling */
+.info-box .box-icon {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+/* KEY TERMS BOX - Purple theme */
+.key-terms-box {
+    border-left-color: var(--l2d-one);
+    background: linear-gradient(135deg, #f8f7ff 0%, #ffffff 100%);
+}
+
+.key-terms-box .box-title {
+    color: var(--l2d-one);
+}
+
+.key-terms-box .box-icon {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236e6ca9'%3E%3Cpath d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'/%3E%3C/svg%3E") no-repeat center;
+    background-size: contain;
+}
+
+/* NOTE BOX - Blue theme */
+.note-box {
+    border-left-color: var(--accent);
+    background: linear-gradient(135deg, #f0fcfd 0%, #ffffff 100%);
+}
+
+.note-box .box-title {
+    color: var(--accent);
+}
+
+.note-box .box-icon {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300b7c3'%3E%3Cpath d='M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'/%3E%3C/svg%3E") no-repeat center;
+    background-size: contain;
+}
+
+/* REMEMBER BOX - Pink theme */
+.remember-box {
+    border-left-color: var(--l2d-two);
+    background: linear-gradient(135deg, #fef7fb 0%, #ffffff 100%);
+}
+
+.remember-box .box-title {
+    color: var(--l2d-two);
+}
+
+.remember-box .box-icon {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ec619f'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'/%3E%3C/svg%3E") no-repeat center;
+    background-size: contain;
+}
+
+/* FACT BOX - Green theme */
+.fact-box {
+    border-left-color: var(--success);
+    background: linear-gradient(135deg, #f0fff4 0%, #ffffff 100%);
+}
+
+.fact-box .box-title {
+    color: var(--success);
+}
+
+.fact-box .box-icon {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2348bb78'%3E%3Cpath d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3E%3C/svg%3E") no-repeat center;
+    background-size: contain;
+}
+
+/* HISTORY BOX - Dark blue theme */
+.history-box {
+    border-left-color: var(--third);
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+}
+
+.history-box .box-title {
+    color: var(--third);
+}
+
+.history-box .box-icon {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233d405b'%3E%3Cpath d='M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z'/%3E%3C/svg%3E") no-repeat center;
+    background-size: contain;
+}
+
+/* TIP BOX - Light blue theme */
+.tip-box {
+    border-left-color: var(--l2d-three);
+    background: linear-gradient(135deg, #f0fcff 0%, #ffffff 100%);
+}
+
+.tip-box .box-title {
+    color: var(--l2d-three);
+}
+
+.tip-box .box-icon {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233abff0'%3E%3Cpath d='M9.5 16a3.5 3.5 0 003.5-3.5c0-.8-.3-1.5-.8-2.1L9 7.2 5.8 10.4c-.5.6-.8 1.3-.8 2.1A3.5 3.5 0 009.5 16zm.9-5.2c.1.2.1.4.1.7a1.5 1.5 0 01-3 0c0-.3 0-.5.1-.7L9 9.4l1.4 1.4zm8.1 2.7c-.3-.9-1.1-1.5-2-1.5h-1.4c-.4 0-.7.3-.7.7s.3.7.7.7h1.4c.3 0 .6.2.7.5.1.3 0 .6-.2.8l-1.4 1.4c-.5.5-.5 1.2 0 1.7s1.2.5 1.7 0l1.4-1.4c.9-.9 1.1-2.2.5-3.4z'/%3E%3C/svg%3E") no-repeat center;
+    background-size: contain;
+}
+
+/* WARNING BOX - Orange/yellow theme */
+.warning-box {
+    border-left-color: var(--warning);
+    background: linear-gradient(135deg, #fffbf0 0%, #ffffff 100%);
+}
+
+.warning-box .box-title {
+    color: #e60000;
+}
+
+.warning-box .box-icon {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e69500'%3E%3Cpath d='M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z'/%3E%3C/svg%3E") no-repeat center;
+    background-size: contain;
+}
+
+/* PRACTICE EXERCISE BOX - Notebook/Lined Paper Style */
+.practice-exercise-box {
+    border-left-color: var(--secondary);
+    background: #ffffff;
+    border: 4px solid var(--secondary);
+    border-radius: 8px;
+    position: relative;
+    background-image: 
+        linear-gradient(to right, transparent 0px, transparent 39px, var(--border) 40px, var(--border) 41px, transparent 42px),
+        linear-gradient(to bottom, transparent 0px, transparent 24px, #f8f9fa 25px);
+    background-size: 100% 25px;
+    padding-left: 60px;
+}
+
+.practice-exercise-box::before {
+    content: '';
+    position: absolute;
+    left: 45px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--secondary);
+    opacity: 0.3;
+}
+
+.practice-exercise-box .box-title {
+    color: var(--secondary);
+    font-weight: 900;
+    font-family: 'Courier New', monospace;
+    position: relative;
+}
+
+.practice-exercise-box .box-icon {
+    position: absolute;
+    left: -48px;
+    top: 0px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e07a5f'%3E%3Cpath d='M14.06 9.02l.92.92L5.92 19H5v-.92l9.06-9.06M17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29zm-3.6 3.19L3 17.25V21h3.75L17.81 9.94l-3.75-3.75z'/%3E%3C/svg%3E") no-repeat center;
+    background-size: contain;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .info-box {
+        margin: 16px 0;
+        padding: 14px 16px;
+    }
+    
+    .info-box .box-title {
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+    
+    .info-box .box-icon {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* Print styles */
+@media print {
+    .info-box {
+        box-shadow: none;
+        border: 1px solid #ccc;
+        page-break-inside: avoid;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .info-box {
+        border-width: 2px;
+        border-style: solid;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .info-box {
+        transition: none;
+    }
+}

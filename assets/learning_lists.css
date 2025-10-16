@@ -1,0 +1,95 @@
+
+/* Learning Outcomes Styling */
+.learning-lists {
+    background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 25px;
+    margin-top: 25px;
+    position: relative;
+    overflow: hidden;
+}
+
+.learning-lists::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--primary) 100%);
+}
+
+.learning-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.learning-list li {
+    position: relative;
+    padding: 12px 0 12px 35px;
+    color: var(--text-primary);
+    line-height: 1.6;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+    transition: all 0.3s ease;
+}
+
+.learning-list li:last-child {
+    border-bottom: none;
+}
+
+.learning-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(135deg, var(--success) 0%, #20a139 100%);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 12px;
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+    transition: all 0.3s ease;
+}
+
+.learning-list li:hover {
+    padding-left: 40px;
+    color: black;
+}
+
+.learning-list li:hover::before {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .learning-lists {
+        padding: 20px;
+    }
+}
+
+/* Nested list styling */
+ul.nested-list {
+    list-style-type: circle;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: 1.5em;
+}
+
+ul.nested-list ul.nested-list {
+    list-style-type: square;
+}
+
+ol.nested-list {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: 1.5em;
+}
