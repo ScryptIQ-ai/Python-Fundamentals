@@ -1,5 +1,9 @@
 /* L2D Azure AI Theme - Shared Styles */
 /* Base Styles */
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: "Segoe UI", "Open Sans", sans-serif;
     background-color: var(--background);
