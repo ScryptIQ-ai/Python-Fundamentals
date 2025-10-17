@@ -198,18 +198,17 @@
             border-color: var(--third-dark);
             background-color: var(--background);
         }
-        
 
         .hero-module-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--background);
-            display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 32px;
-            flex-shrink: 0;
+        }
+
+
+        .hero-module-icon img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
         }
 
         .hero-module-content {
@@ -334,6 +333,11 @@
                 font-size: 28px;
             }
 
+            .hero-module-icon img {
+                width: 30px;
+                height: 30px;
+            }
+
             .hero-arrow {
                 display: none;
             }
@@ -351,7 +355,7 @@
 <body>
     <!-- Navigation -->
     <nav class="navigation">
-        <a href="./main.html" class="logo">
+        <a href="./homepage.html" class="logo">
             <div class="logo-icon"><img src="./assets/scryptIQ_logo_light.png" alt="scryptIQ Logo"></div>
         </a>
         <ul class="nav-links">
@@ -489,7 +493,7 @@
                         <div class="modules-list">
                 <!-- Student Handbook -->
                 <a href="./HB/introduction.html" class="hero-module-card">
-                    <div class="hero-module-icon">📚</div>
+                    <div class="hero-module-icon"><img src="./assets/homepage/handbook-icon.png" alt="Student Handbook icon" /></div>
                     <div class="hero-module-content">
                         <h3>Student Handbook <span class="hero-module-code">HB</span></h3>
                     </div>
@@ -498,9 +502,18 @@
 
                 <!-- Python Orientation -->
                 <a href="./PF0/introduction.html" class="hero-module-card">
-                    <div class="hero-module-icon">🐍</div>
+                    <div class="hero-module-icon"><img src="./assets/homepage/pf0-icon.png" alt="Python Orientation icon" /></div>
                     <div class="hero-module-content">
                         <h3>Python Orientation <span class="hero-module-code">PF0</span></h3>
+                    </div>
+                    <div class="hero-arrow">→</div>
+                </a>
+
+                <!-- Python Fundamentals 1 -->
+                <a href="./PF1/introduction.html" class="hero-module-card">
+                    <div class="hero-module-icon"><img src="./assets/homepage/one-icon.png" alt="Python Fundamentals 1 icon" /></div>
+                    <div class="hero-module-content">
+                        <h3>Python Fundamentals 1 <span class="hero-module-code">PF1</span></h3>
                     </div>
                     <div class="hero-arrow">→</div>
                 </a>
@@ -523,7 +536,7 @@
             scryptIQ is an innovative education provider dedicated to addressing a persisting skills gap for research scientists: bridging their deep domain expertise with the latest advances in computational technology, data science, machine learning and AI. It is actively developing training programmes of its own, and collaborates with other providers to deliver bespoke, research science-adjacent computational education.            </p>
             </p>         
             <p>
-            Originally developed at University College London, scryptIQ is an active collaborator with BBI Ltd., developing and delivering the Learn to Discover (L2D) course. L2D is a fully-supported training programme and platform dedicated to upskilling researchers in the biosciences, healthcare and medicine in Python programming, data science, machine learning and AI. Its primary focus is the application of these to real-world bioscientific data. If you want to learn more about how to powerfully incorporate and customise the concepts you learn in this course from scratch in Python, we invite you to take a look at the available L2D training.            </p>
+            Originally developed at University College London, scryptIQ is an active collaborator with BBI Ltd., developing and delivering the Learn to Discover (L2D) course. L2D is a fully-supported training programme and platform dedicated to upskilling researchers in the biosciences, healthcare and medicine in Python programming, data science, machine learning and AI. Its primary focus is the application of these to real-world bioscientific data.</p>
             </p>
         </div>
     </section>
