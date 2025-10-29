@@ -29,7 +29,11 @@
     <!-- Meta Tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L2D - PF1 - Feedback</title>
+    <title>L2D - PF1 - Assignment: Python Fundamentals 1
+
+This short assignment contains 6 questions that build upon and incorporate methods, techniques and concepts taught and demonstrated in the lesson materials.
+
+All questions aim to consider biological context. Timely submission will result in your assignment being returned within 14 days of the submission deadline. Marked Jupyter Notebook manuscripts will be returned with comments from your marker If you receive a pass or distinction, your marker will attach the model solutions for this assignment *via* the open pull request on your lesson's GitHub repository.</title>
     
     <!-- File URLs for this lesson -->
     <script>window.LESSON_FILES = []; window.LESSON_PACKAGES = [];</script>
@@ -44,11 +48,19 @@
         
         <h3>Content</h3>
         <ul>
-            <li><a href="./introduction.html" class="">Introduction</a></li><li><a href="./input-output-operations.html">Input/Output Operations</a></li><li><a href="./logical-operations-and-conditional-statements.html">Logical Operations and Conditional Statements</a></li><li><a href="./errors-in-python.html">Errors in Python</a></li><li><a href="./Assignment.html">Assignment: Python Fundamentals 1
+            <li><a href="./introduction.html" class="">Introduction</a></li><li><a href="./input-output-operations.html">Input/Output Operations</a></li><li><a href="./logical-operations-and-conditional-statements.html">Logical Operations and Conditional Statements</a></li><li><a href="./errors-in-python.html">Errors in Python</a></li>
+            <li>
+                <div class="nav-toggle active" data-target="expandable-section-4">
+                    Assignment: Python Fundamentals 1
 
 This short assignment contains 6 questions that build upon and incorporate methods, techniques and concepts taught and demonstrated in the lesson materials.
 
-All questions aim to consider biological context. Timely submission will result in your assignment being returned within 14 days of the submission deadline. Marked Jupyter Notebook manuscripts will be returned with comments from your marker If you receive a pass or distinction, your marker will attach the model solutions for this assignment *via* the open pull request on your lesson's GitHub repository.</a></li><li><a href="./assignment.html">Assignment</a></li><li><a href="./feedback.html">Feedback</a></li>
+All questions aim to consider biological context. Timely submission will result in your assignment being returned within 14 days of the submission deadline. Marked Jupyter Notebook manuscripts will be returned with comments from your marker If you receive a pass or distinction, your marker will attach the model solutions for this assignment *via* the open pull request on your lesson's GitHub repository.
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <ul class="nested-nav expanded" id="expandable-section-4">
+                </ul>
+            </li><li><a href="./assignment.html">Assignment</a></li><li><a href="./feedback.html">Feedback</a></li>
         </ul>
 
         <h3 class="collapsible-header collapsed">
@@ -88,37 +100,183 @@ All questions aim to consider biological context. Timely submission will result 
             </div>
         </div>
 
-        <div class="module-card" id="feedback">
-                <div class="module-header">
-                    Feedback <span class="module-tag">PF1</span>
-                </div>
+        
+            <div class="module-card" id="card">
                 <div class="module-body">
-                    <p>We're always looking to improve our materials, so if you found anything lacking in any areas, let us know. If there's nothing, then just let us know how great the course is.</p>
-                    
-                    <div style="margin: 20px 0;">
-                        <iframe 
-                            src="https://docs.google.com/forms/d/1NmmvwfAub8DruzrREASqrfJ0avhuVcab8M8gV8PjqUQ/viewform?embedded=true" 
-                            width="100%"
-                            height="1000"
-                            frameborder="0" 
-                            marginheight="0" 
-                            marginwidth="0"
-                            style="border: none;">
-                            Loading…
-                        </iframe>
+                    <div class="module-section">
+                        <h3>None</h3>
+                        <h4>Question 1
+
+Given the sample IDs `SMP001`, `SMP002`, and `SMP003`, print output that reads:
+
+**Samples:&lt;br&gt;&lt;br&gt;
+SMP001&lt;br&gt;
+SMP002&lt;br&gt;
+SMP003**
+
+*TIP: You must write this in a single, economical and neat line of code.*</h4>
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-68">sample1 = 
+sample2 = 
+sample3 = </textarea>
+            </div>
+            <button id="run-code-cell-68" class="run-button">Run Code</button>
+            <div id="code-cell-68-output" class="output"></div>
+        </div>
+        <h4>Question 2
+
+Using the `input()` function, ask the user for a patient&#x27;s temperature in Celsius, converting the captured input to data type `float`, and classify this as one of the following three categories, using conditional statements.
+
+
+- `&lt; 35.0`: **Possible hypothermia**
+- `35.0–37.9`: **Normal range**
+- `&gt;= 38.0`: **Fever**
+
+Your code should print the category to which the input is assigned. 
+
+You must include basic error handling so that a helpful message is printed when non-numeric data is entered.
+
+*HINT: Write your own exception for errors, and use f-strings in any print statements.*</h4>
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-69"></textarea>
+            </div>
+            <button id="run-code-cell-69" class="run-button">Run Code</button>
+            <div id="code-cell-69-output" class="output"></div>
+        </div>
+        <h4>Question 3
+
+You have the following short nucleotide sequence:
+
+seq = &quot;ATGCCGTAAXN&quot;
+
+Some of the letters (X and N) are meaningless characters that should be ignored when calculating the GC content (the percentage of bases that are either G or C).
+
+Using only what you’ve learned so far, manually count and assign the following to variables:
+
+- The total number of valid bases (A, T, G, C)
+- The number of G and C bases
+
+Then, using mathematical operations in Python, calculate the GC content as a percentage of the total bases in the sequence.
+
+Print your result in the following format:
+
+`GC content: 55.6% of 9 valid bases`</h4>
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-70">seq = &quot;ATGCCGXXCGTAAXN&quot;
+
+total = 
+gc = </textarea>
+            </div>
+            <button id="run-code-cell-70" class="run-button">Run Code</button>
+            <div id="code-cell-70-output" class="output"></div>
+        </div>
+        <h4>Question 4
+
+A clinical trial requires participants to be **18 or over**, **not currently on antibiotics**, and **reporting a cough or fever**.
+
+Write a block of code that uses the `input()` function to collect a patient&#x27;s age, and determines their eligibility to participate in the trial. 
+
+A participant is **eligible** if:
+
+- They are **18 or over**
+- They are **not** currently **on antibiotics**
+- They report either a **cough *or* a fever**
+
+Your code should print `Eligible` or `Not eligible`, determining this using logical operators and conditional statements.
+
+*HINT: You may have to typecast the input collected with `input()` from a string to an integer.*</h4>
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-71">age = 
+
+on_antibiotics = False
+has_cough = True
+has_fever = False</textarea>
+            </div>
+            <button id="run-code-cell-71" class="run-button">Run Code</button>
+            <div id="code-cell-71-output" class="output"></div>
+        </div>
+        <h4>Question 5
+
+A field team has taken a grab sample from the River Wandle and counted microplastic particles using a light microscope. For this exercise, we will use the following simple thresholds that a lab devised for quick screening:
+
+- **Negligible:** fewer than 5 particles per litre  
+- **Caution:** 5 to 50 particles per litre  
+- **Dangerous:** more than 50 particles per litre  
+
+Dangerous levels matter because filter feeders and small invertebrates ingest large numbers of particles which can transfer up the food chain and affect fish condition.
+
+Write a short program that:
+1. Asks the user to type the measured concentration as text, in **particles per litre**  
+2. Converts the text to a number  
+3. If the entry is not a valid number (or is a negative value), treat the value as missing and print a helpful message  
+4. Otherwise classify the sample into one of the categories above and print a clear one-line report
+
+*HINT: use variables, `try`/`except`, `if`, `else` and `elif`, and f-strings.*</h4>
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-72"></textarea>
+            </div>
+            <button id="run-code-cell-72" class="run-button">Run Code</button>
+            <div id="code-cell-72-output" class="output"></div>
+        </div>
+        <h4>Question 6
+Doctors often record fasting blood glucose values in **mmol/L** to assess diabetes risk.
+
+These three categories can be assigned based on the following blood glucose values:
+
+- `&lt; 3.9`: **Low**  
+- `3.9–5.5`: **Normal**  
+- `&gt; 5.5`: **High**
+
+Write a Python script that does the following:
+
+1. Asks the user to enter their fasting blood glucose level in mmol/L 
+
+2. Converts the captured input to a float
+
+3. Use conditional statements to classify the value into *Low*, *Normal* or *High* categories (as specified, above)
+
+4. Calculate the **glucose ratio** relative to the midpoint of the normal range (4.7 mmol/L):  
+
+   - Compute the ratio as `(value / 4.7)`  
+   - Multiply the ratio by 100 to get a percentage  
+   - Round it down to the nearest integer (tip: use the right dividing operator to do this)
+
+5. Print a message showing both the category and how far the value is from the midpoint using `abs()`  
+
+If the user enters text instead of a number, print a helpful error message.
+
+The end format should be given as two messages:
+
+&gt; Fasting blood glucose: value mmol/L &lt;br&gt;
+
+&gt; This value is approximately x.y% of the normal midpoint value, differing by abc mmol/L
+
+*HINT: you can use simple arithmetic (via mathematical operators) and f-strings to combine and display your results neatly.*</h4>
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-73"></textarea>
+            </div>
+            <button id="run-code-cell-73" class="run-button">Run Code</button>
+            <div id="code-cell-73-output" class="output"></div>
+        </div>
+        
                     </div>
                 </div>
             </div>
+            
         
         <div class="page-navigation">
-            <a href="./assignment.html" class="nav-button prev">
+            <a href="./errors-in-python.html" class="nav-button prev">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
                 </svg>
                 Previous
-            </a>
-            <div></div>
-        </div>
+            </a></div>
         
         <!-- Footer -->
         <div class="footer">
