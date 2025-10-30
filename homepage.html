@@ -93,7 +93,7 @@
         .nav-links a:hover {
             color: var(--third);
             transform: translateY(-1px);
-            text-decoration: none;        
+            text-decoration: none;
         }
 
         /* Hero Section */
@@ -155,6 +155,14 @@
             max-width: 600px;
         }
 
+        .main-title {
+            color: var(--background);
+            font-size: 72px;
+            font-weight: 700;
+            margin: 0 0 40px 0;
+            text-align: center;
+        }
+
         .modules-title {
             color: var(--background);
             font-size: 48px;
@@ -169,6 +177,14 @@
             margin: 0 0 20px 0;
             text-align: center;
             opacity: 0.95;
+        }
+
+        .section-divider {
+            color: var(--background);
+            font-size: 48px;
+            font-weight: 700;
+            margin: 40px 0 20px 0;
+            text-align: center;
         }
 
         .modules-list {
@@ -203,7 +219,6 @@
             align-items: center;
             justify-content: center;
         }
-
 
         .hero-module-icon img {
             width: 50px;
@@ -246,6 +261,94 @@
         }
 
         .hero-module-card:hover h3 {
+            color: var(--third);
+        }
+
+        /* Support Submenu Styles */
+        .support-wrapper {
+            position: relative;
+        }
+
+        .support-main-button {
+            cursor: pointer;
+        }
+
+        .support-submenu {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 8px;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.5s ease, opacity 0.5s ease, margin-top 0.5s ease;
+        }
+
+        .support-submenu.active {
+            max-height: 300px;
+            opacity: 1;
+            margin-top: 8px;
+        }
+
+        .support-submenu-button {
+            background-color: var(--third);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 10px 25px;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--third-dark);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            transform: translateX(-20px);
+            opacity: 0;
+        }
+
+        .support-submenu.active .support-submenu-button {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .support-submenu.active .support-submenu-button:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+
+        .support-submenu.active .support-submenu-button:nth-child(2) {
+            transition-delay: 0.2s;
+        }
+
+        .support-submenu.active .support-submenu-button:nth-child(3) {
+            transition-delay: 0.3s;
+        }
+
+        .support-submenu-button:hover {
+            transform: translateY(-4px) translateX(0);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+            border-color: var(--third-dark);
+            background-color: var(--background);
+        }
+
+        .support-submenu-button .hero-module-icon img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .support-submenu-button h4 {
+            color: var(--background);
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .support-submenu-button:hover h4 {
+            color: var(--third);
+        }
+
+        .support-submenu-button:hover .hero-arrow {
+            transform: translateX(6px);
             color: var(--third);
         }
 
@@ -313,12 +416,20 @@
                 gap: 20px;
             }
 
+            .main-title {
+                font-size: 48px;
+            }
+
             .modules-title {
                 font-size: 36px;
             }
 
             .modules-subtitle {
                 font-size: 18px;
+            }
+
+            .section-divider {
+                font-size: 36px;
             }
 
             .hero-module-card {
@@ -348,6 +459,12 @@
 
             .about-us-section p {
                 font-size: 16px;
+            }
+
+            .support-submenu-button {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px 20px;
             }
         }
     </style>
@@ -487,12 +604,13 @@
 
         <!-- Module Cards Container -->
         <div class="hero-modules-container">
-            <h1 class="modules-title">Home</h1>
-            <p class="modules-subtitle">Click below for resources and lesson materials:</p>
+            <h1 class="main-title">Home</h1>
+            <h2 class="modules-title">Resources & Support</h2>
+            <p class="modules-subtitle">Useful course resources and support calls.</p>
             
-                        <div class="modules-list">
+            <div class="modules-list">
                             
-                <!-- Course Handbook -->
+                <!-- Student Handbook -->
                 <a href="./HB/introduction.html" class="hero-module-card">
                     <div class="hero-module-icon"><img src="./assets/homepage/handbook-icon.png" alt="Student Handbook icon" /></div>
                     <div class="hero-module-content">
@@ -510,6 +628,47 @@
                     <div class="hero-arrow">→</div>
                 </a>
 
+                <!-- 1-to-1 Support with Submenu -->
+                <div class="support-wrapper">
+                    <div class="hero-module-card support-main-button" onclick="toggleSupportMenu()">
+                        <div class="hero-module-icon"><img src="./assets/homepage/1-to-1-icon.png" alt="1-to-1 Support icon" /></div>
+                        <div class="hero-module-content">
+                            <h3>1-to-1 Support</h3>
+                        </div>
+                        <div class="hero-arrow">→</div>
+                    </div>
+
+                    <!-- Support Submenu -->
+                    <div class="support-submenu" id="supportSubmenu">
+                        <!-- Matt Salinger -->
+                        <a href="https://www.google.com" class="support-submenu-button">
+                            <div class="hero-module-icon"><img src="./assets/homepage/video-call-icon.png" alt="Video call icon" /></div>
+                            <div class="hero-module-content">
+                                <h4>Matt Salinger</h4>
+                            </div>
+                            <div class="hero-arrow">→</div>
+                        </a>
+
+                        <!-- Emily Deniszczyc -->
+                        <a href="https://cal.com/emily-deniszczyc-oj1awz/20-min-support-call?user=emily-deniszczyc-oj1awz&month=2025-11" class="support-submenu-button">
+                            <div class="hero-module-icon"><img src="./assets/homepage/video-call-icon.png" alt="Video call icon" /></div>
+                            <div class="hero-module-content">
+                                <h4>Emily Deniszczyc</h4>
+                            </div>
+                            <div class="hero-arrow">→</div>
+                        </a>
+
+                        <!-- Winnie Lei -->
+                        <a href="https://www.google.com" class="support-submenu-button">
+                            <div class="hero-module-icon"><img src="./assets/homepage/video-call-icon.png" alt="Video call icon" /></div>
+                            <div class="hero-module-content">
+                                <h4>Winnie Lei</h4>
+                            </div>
+                            <div class="hero-arrow">→</div>
+                        </a>
+                    </div>
+                </div>
+
                 <!-- Python Orientation -->
                 <a href="./PF0/introduction.html" class="hero-module-card">
                     <div class="hero-module-icon"><img src="./assets/homepage/pf0-icon.png" alt="Python Orientation icon" /></div>
@@ -518,7 +677,12 @@
                     </div>
                     <div class="hero-arrow">→</div>
                 </a>
+            </div>
 
+            <h2 class="section-divider">Lesson Materials</h2>
+            <p class="modules-subtitle">Lesson materials and topics in this module.</p>
+
+            <div class="modules-list">
                 <!-- Python Fundamentals 1 -->
                 <a href="./PF1/introduction.html" class="hero-module-card">
                     <div class="hero-module-icon"><img src="./assets/homepage/pf1-icon.png" alt="Python Fundamentals 1 icon" /></div>
@@ -544,7 +708,7 @@
             <h2>About scryptIQ</h2>
             <p>
             scryptIQ is an innovative education provider dedicated to addressing a persisting skills gap for research scientists: bridging their deep domain expertise with the latest advances in computational technology, data science, machine learning and AI. It is actively developing training programmes of its own, and collaborates with other providers to deliver bespoke, research science-adjacent computational education.            </p>
-            </p>         
+            </p>
             <p>
             Originally developed at University College London, scryptIQ is an active collaborator with BBI Ltd., developing and delivering the Learn to Discover (L2D) course. L2D is a fully-supported training programme and platform dedicated to upskilling researchers in the biosciences, healthcare and medicine in Python programming, data science, machine learning and AI. Its primary focus is the application of these to real-world bioscientific data.</p>
             </p>
@@ -555,6 +719,20 @@
     <div class="footer">
     </div>
 
+    <script>
+        function toggleSupportMenu() {
+            const submenu = document.getElementById('supportSubmenu');
+            submenu.classList.toggle('active');
+        }
+
+        // Close submenu when clicking outside
+        document.addEventListener('click', function(event) {
+            const supportWrapper = document.querySelector('.support-wrapper');
+            if (!supportWrapper.contains(event.target)) {
+                document.getElementById('supportSubmenu').classList.remove('active');
+            }
+        });
+    </script>
     <script src="./assets/main.js"></script>
 </body>
 </html>
