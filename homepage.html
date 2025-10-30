@@ -152,7 +152,8 @@
         .hero-modules-container {
             position: relative;
             z-index: 5;
-            max-width: 600px;
+            max-width: 1200px;
+            width: 90%;
         }
 
         .main-title {
@@ -163,11 +164,24 @@
             text-align: center;
         }
 
+        /* Two Column Layout */
+        .modules-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .modules-column {
+            display: flex;
+            flex-direction: column;
+        }
+
         .modules-title {
             color: var(--background);
             font-size: 48px;
             font-weight: 700;
-            margin: 0 0 0 0;
+            margin: 0 0 10px 0;
             text-align: center;
         }
 
@@ -177,14 +191,6 @@
             margin: 0 0 20px 0;
             text-align: center;
             opacity: 0.95;
-        }
-
-        .section-divider {
-            color: var(--background);
-            font-size: 48px;
-            font-weight: 700;
-            margin: 40px 0 20px 0;
-            text-align: center;
         }
 
         .modules-list {
@@ -407,6 +413,13 @@
         }
 
         /* Responsive */
+        @media (max-width: 1024px) {
+            .modules-columns {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
         @media (max-width: 768px) {
             .navigation {
                 padding: 20px 30px;
@@ -426,10 +439,6 @@
 
             .modules-subtitle {
                 font-size: 18px;
-            }
-
-            .section-divider {
-                font-size: 36px;
             }
 
             .hero-module-card {
@@ -605,92 +614,101 @@
         <!-- Module Cards Container -->
         <div class="hero-modules-container">
             <h1 class="main-title">Home</h1>
-            <h2 class="modules-title">Resources & Support</h2>
-            <p class="modules-subtitle">Useful course resources and support calls.</p>
             
-            <div class="modules-list">
-                            
-                <!-- Student Handbook -->
-                <a href="./HB/introduction.html" class="hero-module-card">
-                    <div class="hero-module-icon"><img src="./assets/homepage/handbook-icon.png" alt="Student Handbook icon" /></div>
-                    <div class="hero-module-content">
-                        <h3>Student Handbook</h3>
-                    </div>
-                    <div class="hero-arrow">→</div>
-                </a>
+            <!-- Two Column Layout -->
+            <div class="modules-columns">
+                <!-- Left Column: Resources & Support -->
+                <div class="modules-column">
+                    <h2 class="modules-title">Resources & Support</h2>
+                    <p class="modules-subtitle">Useful course resources and support calls.</p>
+                    
+                    <div class="modules-list">
+                        <!-- Student Handbook -->
+                        <a href="./HB/introduction.html" class="hero-module-card">
+                            <div class="hero-module-icon"><img src="./assets/homepage/handbook-icon.png" alt="Student Handbook icon" /></div>
+                            <div class="hero-module-content">
+                                <h3>Student Handbook</h3>
+                            </div>
+                            <div class="hero-arrow">→</div>
+                        </a>
 
-                <!-- Course Calendar -->
-                <a href="https://drive.google.com/file/d/1j4I3KqgTgxafOyxuG2rRqI1uEj_1VWW8/view?usp=sharing" class="hero-module-card">
-                    <div class="hero-module-icon"><img src="./assets/homepage/calendar-icon.png" alt="Course calendar icon" /></div>
-                    <div class="hero-module-content">
-                        <h3>Course Calendar</h3>
-                    </div>
-                    <div class="hero-arrow">→</div>
-                </a>
+                        <!-- Course Calendar -->
+                        <a href="https://drive.google.com/file/d/1j4I3KqgTgxafOyxuG2rRqI1uEj_1VWW8/view?usp=sharing" class="hero-module-card">
+                            <div class="hero-module-icon"><img src="./assets/homepage/calendar-icon.png" alt="Course calendar icon" /></div>
+                            <div class="hero-module-content">
+                                <h3>Course Calendar</h3>
+                            </div>
+                            <div class="hero-arrow">→</div>
+                        </a>
 
-                <!-- 1-to-1 Support with Submenu -->
-                <div class="support-wrapper">
-                    <div class="hero-module-card support-main-button" onclick="toggleSupportMenu()">
-                        <div class="hero-module-icon"><img src="./assets/homepage/1-to-1-icon.png" alt="1-to-1 Support icon" /></div>
-                        <div class="hero-module-content">
-                            <h3>1-to-1 Support</h3>
+                        <!-- 1-to-1 Support with Submenu -->
+                        <div class="support-wrapper">
+                            <div class="hero-module-card support-main-button" onclick="toggleSupportMenu()">
+                                <div class="hero-module-icon"><img src="./assets/homepage/1-to-1-icon.png" alt="1-to-1 Support icon" /></div>
+                                <div class="hero-module-content">
+                                    <h3>1-to-1 Support</h3>
+                                </div>
+                                <div class="hero-arrow">→</div>
+                            </div>
+
+                            <!-- Support Submenu -->
+                            <div class="support-submenu" id="supportSubmenu">
+                                <!-- Matt Salinger -->
+                                <a href="https://www.google.com" class="support-submenu-button">
+                                    <div class="hero-module-icon"><img src="./assets/homepage/video-call-icon.png" alt="Video call icon" /></div>
+                                    <div class="hero-module-content">
+                                        <h4>Matt Salinger</h4>
+                                    </div>
+                                    <div class="hero-arrow">→</div>
+                                </a>
+
+                                <!-- Emily Deniszczyc -->
+                                <a href="https://cal.com/emily-deniszczyc-oj1awz/20-min-support-call?user=emily-deniszczyc-oj1awz&month=2025-11" class="support-submenu-button">
+                                    <div class="hero-module-icon"><img src="./assets/homepage/video-call-icon.png" alt="Video call icon" /></div>
+                                    <div class="hero-module-content">
+                                        <h4>Emily Deniszczyc</h4>
+                                    </div>
+                                    <div class="hero-arrow">→</div>
+                                </a>
+
+                                <!-- Winnie Lei -->
+                                <a href="https://www.google.com" class="support-submenu-button">
+                                    <div class="hero-module-icon"><img src="./assets/homepage/video-call-icon.png" alt="Video call icon" /></div>
+                                    <div class="hero-module-content">
+                                        <h4>Winnie Lei</h4>
+                                    </div>
+                                    <div class="hero-arrow">→</div>
+                                </a>
+                            </div>
                         </div>
-                        <div class="hero-arrow">→</div>
-                    </div>
 
-                    <!-- Support Submenu -->
-                    <div class="support-submenu" id="supportSubmenu">
-                        <!-- Matt Salinger -->
-                        <a href="https://www.google.com" class="support-submenu-button">
-                            <div class="hero-module-icon"><img src="./assets/homepage/video-call-icon.png" alt="Video call icon" /></div>
+                        <!-- Python Orientation -->
+                        <a href="./PF0/introduction.html" class="hero-module-card">
+                            <div class="hero-module-icon"><img src="./assets/homepage/pf0-icon.png" alt="Python Orientation icon" /></div>
                             <div class="hero-module-content">
-                                <h4>Matt Salinger</h4>
-                            </div>
-                            <div class="hero-arrow">→</div>
-                        </a>
-
-                        <!-- Emily Deniszczyc -->
-                        <a href="https://cal.com/emily-deniszczyc-oj1awz/20-min-support-call?user=emily-deniszczyc-oj1awz&month=2025-11" class="support-submenu-button">
-                            <div class="hero-module-icon"><img src="./assets/homepage/video-call-icon.png" alt="Video call icon" /></div>
-                            <div class="hero-module-content">
-                                <h4>Emily Deniszczyc</h4>
-                            </div>
-                            <div class="hero-arrow">→</div>
-                        </a>
-
-                        <!-- Winnie Lei -->
-                        <a href="https://www.google.com" class="support-submenu-button">
-                            <div class="hero-module-icon"><img src="./assets/homepage/video-call-icon.png" alt="Video call icon" /></div>
-                            <div class="hero-module-content">
-                                <h4>Winnie Lei</h4>
+                                <h3>Python Orientation</h3>
                             </div>
                             <div class="hero-arrow">→</div>
                         </a>
                     </div>
                 </div>
 
-                <!-- Python Orientation -->
-                <a href="./PF0/introduction.html" class="hero-module-card">
-                    <div class="hero-module-icon"><img src="./assets/homepage/pf0-icon.png" alt="Python Orientation icon" /></div>
-                    <div class="hero-module-content">
-                        <h3>Python Orientation</h3>
-                    </div>
-                    <div class="hero-arrow">→</div>
-                </a>
-            </div>
+                <!-- Right Column: Lesson Materials -->
+                <div class="modules-column">
+                    <h2 class="modules-title">Lesson Materials</h2>
+                    <p class="modules-subtitle">Lesson materials and topics in this module.</p>
 
-            <h2 class="section-divider">Lesson Materials</h2>
-            <p class="modules-subtitle">Lesson materials and topics in this module.</p>
-
-            <div class="modules-list">
-                <!-- Python Fundamentals 1 -->
-                <a href="./PF1/introduction.html" class="hero-module-card">
-                    <div class="hero-module-icon"><img src="./assets/homepage/pf1-icon.png" alt="Python Fundamentals 1 icon" /></div>
-                    <div class="hero-module-content">
-                        <h3>Python Fundamentals 1</h3>
+                    <div class="modules-list">
+                        <!-- Python Fundamentals 1 -->
+                        <a href="./PF1/introduction.html" class="hero-module-card">
+                            <div class="hero-module-icon"><img src="./assets/homepage/pf1-icon.png" alt="Python Fundamentals 1 icon" /></div>
+                            <div class="hero-module-content">
+                                <h3>Python Fundamentals 1</h3>
+                            </div>
+                            <div class="hero-arrow">→</div>
+                        </a>
                     </div>
-                    <div class="hero-arrow">→</div>
-                </a>
+                </div>
             </div>
         </div>
 
