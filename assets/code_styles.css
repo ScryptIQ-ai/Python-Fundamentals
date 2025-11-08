@@ -1,0 +1,153 @@
+Additional styles for enhanced pyodide functionality
+.code-area {
+    margin-bottom: 25px;
+    margin-top: 25px;
+}
+
+.cm-s-dracula {
+    height: auto;
+    border-radius: 5px;
+}
+
+.CodeMirror {
+    height: auto;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    border-radius: 5px;
+    padding: 10px 0;
+    font-size: 14px;
+}
+
+.code-fixed .CodeMirror {
+    border: 2px solid black;
+}
+
+.code-editor .CodeMirror {
+    border: 2px solid var(--primary);
+}
+
+.code-container {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.run-button {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 12px 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.run-button:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(236, 97, 159, 0.3);
+}
+
+.output-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.output {
+    white-space: pre-wrap;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    color: var(--text-primary);
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary);
+    overflow-x: auto;
+    min-height: 20px;
+    /* max-height: 300px; */
+    overflow-y: auto;
+    margin-bottom: 20px;  /* Add this */
+}
+
+.plot-output {
+    background-color: rgba(58, 191, 240, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid var(--l2d-three);
+    display: flex;
+    justify-content: centre;
+    align-items: centre;
+}
+
+.loading-message {
+    color: var(--l2d-three);
+    font-style: italic;
+}
+
+.error-message {
+    color: var(--text-primary);
+    background-color: rgba(220, 53, 69, 0.1);
+    border-left-color: var(--warning);
+}
+
+.success-message {
+    color: var(--text-primary);
+    background-color: rgba(40, 167, 69, 0.1);
+    border-left-color: var(--success);
+}
+
+/* Styling for markdown code blocks */
+.markdown-code-block {
+    background-color: #e8ecf0;
+    color: #333333;
+    border: 1px solid #e9ecef;
+    border-left: 4px solid var(--secondary-dark);
+    border-radius: 5px;
+    padding: 15px;
+    margin: 15px 0;
+    font-family: 'Monaco', 'Consolas', 'Courier New', monospace;
+    font-size: 14px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.markdown-code-block code {
+    background: none;
+    color: inherit;
+    padding: 0;
+    font-family: inherit;
+    border: none;
+    border-radius: 0;
+}
+
+/* Collapsible code styles */
+.code-collapse-header {
+    background-color: #2a2d3f;
+    color: var(--background);
+    padding: 8px 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 4px 4px 0 0;
+    user-select: none;
+    transition: background-color 0.2s;
+}
+
+.code-collapse-header:hover {
+    background-color: #353849;
+}
+
+.code-collapse-icon {
+    transition: transform 0.2s;
+    font-size: 12px;
+}
+
+.code-collapse-icon.expanded {
+    transform: rotate(90deg);
+}
+
+.code-container.code-collapsed {
+    display: none !important;
+}
