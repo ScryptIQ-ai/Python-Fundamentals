@@ -1,0 +1,49 @@
+/* L2D Azure AI Theme - Shared Styles */
+/* Module card */
+.module-card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.module-header {
+    background-color: var(--third);
+    color: white;
+    padding: 15px 25px;
+    font-size: 28px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.module-tag {
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: normal;
+}
+
+.module-body {
+    padding: 25px;
+}
+
+.module-section {
+    margin-bottom: 25px;
+}
+
+.module-section:last-child {
+    margin-bottom: 0;
+}
+
+.module-section h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--third);
+    border-bottom: 2px solid var(--secondary);
+    padding-bottom: 10px;
+}
