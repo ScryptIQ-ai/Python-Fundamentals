@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Pyodide and CodeMirror -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/pastel-on-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/python/python.min.js"></script>
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="../assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../assets/android-chrome-512x512.png">
+    
+    <!-- Core Stylesheets -->
+    <link rel="stylesheet" href="../assets/colours.css">
+    <link rel="stylesheet" href="../assets/shared-styles.css">
+    <link rel="stylesheet" href="../assets/nav-bar.css">
+    <link rel="stylesheet" href="../assets/module_card.css">
+    <link rel="stylesheet" href="../assets/learning_outcomes.css">
+    <link rel="stylesheet" href="../assets/learning_lists.css">
+    <link rel="stylesheet" href="../assets/box_styles.css">
+    <link rel="stylesheet" href="../assets/code_styles.css">
+
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L2D - PF0 - Essential Tools</title>
+    
+    <!-- File URLs for this lesson -->
+    <script>window.LESSON_FILES = []; window.LESSON_PACKAGES = [];</script>
+        
+</head>
+<body>
+    
+    <!-- Sidebar Navigation -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+        </div>
+        
+        <h3>Content</h3>
+        <ul>
+            <li><a href="./introduction.html" class="">Introduction</a></li><li><a href="./about-python.html">About Python</a></li><li><a href="./installing-python.html">Installing Python</a></li>
+            <li>
+                <div class="nav-toggle active" data-target="expandable-section-3">
+                    Essential Tools
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <ul class="nested-nav expanded" id="expandable-section-3"><li><a href="#introduction">Introduction</a></li><li><a href="#using-python-in-the-terminal">Using Python in the terminal</a></li><li><a href="#terminal-os-differences">Terminal OS Differences</a></li><li><a href="#terminal-basics-for-python">Terminal Basics for Python</a></li><li><a href="#python-files">Python Files</a></li><li><a href="#integrated-development-environments">Integrated Development Environments</a></li><li><a href="#other-notable-ides">Other Notable IDEs</a></li><li><a href="#jupyter-notebooks">Jupyter Notebooks</a></li><li><a href="#packages---environments">Packages & Environments</a></li>
+                </ul>
+            </li><li><a href="./basic-git.html">Basic Git</a></li><li><a href="./course-setup.html">Course setup</a></li><li><a href="./feedback.html">Feedback</a></li>
+        </ul>
+
+        <h3 class="collapsible-header collapsed">
+            Resources
+            <span class="collapse-icon">►</span>
+        </h3>
+        <div class="collapsible-content collapsed">
+            <ul>
+                <li><a href="./glossary.html">Glossary</a></li><li><a href="./downloads.html">Downloads</a></li><li><a href="../HB/introduction.html">Handbook</a></li>
+            </ul>
+        </div>
+
+        <h3>
+            <li><a href="./report-issue.html">Report an Issue</a></li>
+        </h3>
+    </div>
+    
+    <!-- Sidebar Toggle Button -->
+    <button id="sidebar-toggle" class="sidebar-toggle">❮</button>
+    
+    <!-- Main Content Area -->
+    <div id="main-content" class="main-content">
+        <!-- Top Navigation Bar -->
+        <div class="top-navbar">
+            <h1 class="page-title">Python Orientation</h1>
+            <div class="nav-actions">
+            </div>
+        </div>
+
+        
+            <div class="module-card" id="introduction">
+                <div class="module-header">
+                    Essential Tools <span class="module-tag">PF0</span>
+                </div>
+                <div class="module-body">
+                    <h3>Learning Objectives</h3>
+                    <div class="learning-outcomes">
+                        <div class="outcome-item">
+                    <span class="outcome-number">1</span>
+                    <span class="outcome-text">Using the terminal</span>
+                </div>
+<div class="outcome-item">
+                    <span class="outcome-number">2</span>
+                    <span class="outcome-text">What is an IDE?</span>
+                </div>
+<div class="outcome-item">
+                    <span class="outcome-number">3</span>
+                    <span class="outcome-text">Using Jupyter notebooks for Python</span>
+                </div>
+<div class="outcome-item">
+                    <span class="outcome-number">4</span>
+                    <span class="outcome-text">Understand packages and environments</span>
+                </div>
+                    </div>
+                    <h3>Introduction</h3>
+                    <p>Often one of the most frustrating parts of learning to code is understanding and properly utilising the tools that are used to execute and edit the code, which can sadly lack the cohesive logic found in the language itself.<br><br>We&#x27;ll run through a few basics that will help you get started, starting from using the terminal (Mac &amp; Linux) or command line (Windows), to what common code editors are available, and the basics of Jupyter Notebooks: an interactive coding environment we will use heavily in this course.</p>
+                </div>
+            </div>
+            
+            <div class="module-card" id="using-python-in-the-terminal">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Using Python in the terminal</h3>
+                        <h4>What is the Terminal?</h4><p>The terminal (also called command line interface or CLI) is a text-based interface that allows you to interact directly with your computer&#x27;s operating system through typed commands. Originally, this was the primary way people interacted with computers before <strong>graphical user interfaces</strong> (GUIs) became widespread in the 1980s.<br><br>While it might seem outdated compared to clicking buttons and dragging files, the terminal remains an incredibly powerful tool for developers. It provides direct access to system functions, allows for automation through scripts, and often offers more control and flexibility than graphical alternatives. Additionally, you may find yourself having to use a headless (no graphical interface) setup, such as an institutes computing cluster or remote hardware.<br><br>For Python specifically, the terminal allows you to run scripts, install packages, manage virtual environments, and access the <strong>interactive Python interpreter</strong> (REPL) quickly and efficiently.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="terminal-os-differences">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Terminal OS Differences</h3>
+                        <p>Different operating systems provide various applications to access the terminal:<br><ul class="nested-list"><li><strong>Windows</strong>: Command Prompt (cmd), PowerShell, Windows Terminal (recommended for Windows 10/11)</li><br><li><strong>Mac</strong>: Terminal (built-in)</li><br><li><strong>Linux</strong>: Varies by distribution—GNOME Terminal, Konsole, xterm, among others</li></ul></p><h4>Command Differences</h4><p>One key difference you&#x27;ll encounter is how Python is invoked:<br><ul class="nested-list"><li><strong>Windows</strong>: Both <code>python</code> and <code>py</code> commands are available, with <code>py</code> being the Python launcher that&#x27;s often more reliable</li><br><li><strong>Mac/Linux</strong>: Typically use <code>python</code> or <code>python3</code>, depending on your installation</li></ul></p><h4>File Paths</h4><p>File paths are represented differently across operating systems:<br><ul class="nested-list"><li><strong>Windows</strong>: Uses backslashes (<code>C:\Users\YourName\Documents\script.py</code>)</li><br><li><strong>Mac/Linux</strong>: Uses forward slashes (<code>/Users/YourName/Documents/script.py</code>)</li></ul></p>
+        <div class="info-box note-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                NOTE
+            </div>
+            <div class="box-content">
+                <p>In Python a backslash (<code>\</code>) is a character that denotes the start of an escape sequence (which allows normally disallowed characters to be inputted). As Windows paths include backslashes, this will cause an error. To get around this you need to place an <code>r</code> before your path like so: <code>r&quot;C:\Users\YourName\Documents\myData.csv&quot;</code>, or use double backslashes: <code>&quot;C:\\Users\\YourName\\Documents\\myData.csv&quot;</code>, or there are built-in functions that automatically handle all path types. This will be made clearer in the lessons.</p>
+            </div>
+        </div>
+        <h4>Case Sensitivity</h4><p>File and directory (folder) names are treated differently:<br><ul class="nested-list"><li><strong>Mac/Linux</strong>: Case-sensitive (<code>MyFile.py</code> and <code>myfile.py</code> are different files)</li><br><li><strong>Windows</strong>: Case-insensitive (<code>MyFile.py</code> and <code>myfile.py</code> refer to the same file)</li></ul></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="terminal-basics-for-python">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Terminal Basics for Python</h3>
+                        <h4>Opening the Terminal</h4><p><ul class="nested-list"><li><strong>Windows</strong>: Press <code>Win+R</code>, type <code>cmd</code> or <code>powershell</code>, and press Enter. Alternatively, search for &quot;Command Prompt&quot; or &quot;PowerShell&quot; in the Start menu</li><br><li><strong>Mac</strong>: Press <code>Cmd+Space</code>, type &quot;Terminal&quot;, and press Enter. Or navigate to Applications &gt; Utilities &gt; Terminal</li><br><li><strong>Linux</strong>: Typically <code>Ctrl+Alt+T</code>, or look for Terminal in your applications menu</li></ul></p><h4>Navigation Commands</h4><p>Essential commands for moving around your file system:</p><h4>Changing directory</h4><p>Navigating the terminal is one of the most common commands, use <code>cd</code> to find the right folder to modify and execute your files.<br><ul class="nested-list"><li><code>cd Documents</code> : move to Documents folder</li><br><li><code>cd ..</code> : move back one directory level</li><br><li><code>cd ~</code> : move to home directory (Mac/Linux)</li><br><li><code>cd /</code> : move to root directory (Mac/Linux)</li></ul></p><h4>Showing files in a folder</h4><p>Without the help of a file finder graphical interface you often won&#x27;t remember the full file name. To remind us can use <code>ls</code> or <code>dir</code> to list files and folders in the current directory:<br><ul class="nested-list"><li>ls (Mac/Linux)</li><br><li>dir (Windows)</li></ul></p><h4>Showing files in a folder</h4><p>The current directory path is used in a lot of downstream terminal tasks, so you will often need to print it to screen to copy. Use <code>pwd</code> or <code>cd</code> alone to show the current directory path in the terminal.<br><ul class="nested-list"><li>pwd (Mac/Linux)</li><br><li>cd (Windows without anything after)</li></ul></p><h4>Python REPL</h4><p>The Python REPL (Read-Eval-Print Loop) is an interactive Python shell where you can type Python commands and see immediate results. To start it, simply type <code>python</code> (or <code>py</code> on Windows) in the terminal. You&#x27;ll see something like:<br><br><pre class="markdown-code-block"><code>Python 3.13.2 (main, Feb 12 2025, 14:59:08) [Clang 19.1.6 ] on darwin
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt;</code></pre><br><br>The <code>&gt;&gt;&gt;</code> prompt indicates you&#x27;re now in Python mode. You can type any Python code and press Enter to execute it immediately. To exit the REPL, type <code>exit()</code> or use <code>Ctrl+D</code> (Mac/Linux) or <code>Ctrl+Z</code> then Enter (Windows).</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="python-files">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Python Files</h3>
+                        <p>Python files have a <code>.py</code> extension and contain your Python code. You can create these files using text editors such as Notepad (Windows) or TextEdit (Mac), although this is not recommended. Instead, most users utilise more sophisticated editors called integrated development environments, which we&#x27;ll cover in the next section.</p><h4>Running a Python file</h4><p>To run a Python file from the terminal, navigate to the directory containing your file and use:<br><br><pre class="markdown-code-block"><code>python filename.py</code></pre><br><br>For example, if you have a file called <code>hello_world.py</code>, you would run:<br><br><pre class="markdown-code-block"><code>python hello_world.py</code></pre><br><br>Running <code>python</code> not within an environment (see the later section) will call the main Python installation and packages. Later lessons will talk about setting up environments in more detail.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="integrated-development-environments">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Integrated Development Environments</h3>
+                        <h4>What is an IDE?</h4><p>An Integrated Development Environment (IDE) is a software application that combines a text editor with additional tools specifically designed for software development.<br><br>Unlike basic text editors, IDEs provide additional tools to improve your coding experience:<br><ul class="nested-list"><li><strong>Syntax highlighting</strong>: Code is coloured to make it easier to read and spot errors</li><br><li><strong>Error detection</strong>: Many mistakes are highlighted before you even run your code</li><br><li><strong>Integrated terminal</strong>: Run files without having to open a new terminal</li><br><li><strong>Debugging tools</strong>: Step through your code line by line to find and fix problems (more for developers)</li><br><li><strong>Code completion</strong>: Suggestions and auto-completion as you type</li><br><li><strong>Project management</strong>: Organise multiple files and folders efficiently</li></ul></p>
+        <div class="info-box key-terms-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                KEY TERMS
+            </div>
+            <div class="box-content">
+                <p><strong>What is syntax?</strong> Programming syntax refers the set of rules that dictate the structure and format of a programming language, without the set structure the code would not be read correctly by the interpreter.</p>
+            </div>
+        </div>
+        <h4>L2D Recommendation: Visual Studio Code</h4><p>Visual Studio Code (VSCode) is our recommended IDE for this course. It&#x27;s a free, open-source code editor developed by Microsoft that has become incredibly popular among developers due to its flexibility and performance. It will be the IDE used by your demonstrators in this course, as well as the one used with GitHub CodeSpaces (covered in <a href="./course-setup.html">Course setup</a>).<br><br>VSCode can be a bit overwhelming at first as it has a wealth of options. Many of the tools come in the form of extensions, which can be added to invoke things such as syntax colouring.<br><br>To install, visit the <a href="https://code.visualstudio.com/">VSCode website</a> and follow the instructions for your OS.<br><br>After installation, open VSCode and install the Python extension:<br><ol class="nested-list"><li>Click on the Extensions icon in the left sidebar (or press <code>Ctrl+Shift+X</code>)</li><br><li>Search for &quot;Python&quot; and install the official Microsoft Python extension</li><br><li>This extension provides syntax highlighting, debugging, code completion, and more</li></ol></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="other-notable-ides">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Other Notable IDEs</h3>
+                        <h4>Spyder</h4><p><a href="https://www.spyder-ide.org/">Spyder</a> (Scientific Python Development Environment) is an IDE specifically designed for scientific computing and data analysis. It comes with Anaconda by default and provides a MATLAB-like interface that many researchers find familiar. Spyder includes variable explorers, integrated plotting, and debugging tools tailored for data science workflows.</p><h4>PyCharm</h4><p>Developed by JetBrains, <a href="https://www.jetbrains.com/pycharm/">PyCharm</a> is a professional IDE with powerful features for Python development. It comes in both free (Community) and paid (Professional) versions. PyCharm excels in code analysis, refactoring tools, and advanced debugging capabilities. The Professional version includes additional features for web development and scientific tools.</p><h4>Cursor</h4><p><a href="https://cursor.com">Cursor</a> is a newer IDE that integrates AI assistance directly into the coding experience. Built on VSCode&#x27;s foundation, it provides AI-powered code completion, explanation, and generation features. While still evolving, it represents an interesting direction for AI-assisted development. AI usage in Curson is limited without a subscription or a link to a paid GenAI account.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="jupyter-notebooks">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Jupyter Notebooks</h3>
+                        <h4>What is a Notebook?</h4><p>Jupyter Notebooks are interactive documents that combine code, text, and visualisations in a single file. Unlike traditional Python scripts that contain only code, notebooks allow you to intersperse your code with explanatory text, mathematical equations, and rich media outputs like graphs and images.<br><br>They all allow you to run small snippets of code (<strong>cells</strong>) one at a time, viewing their output instantly, rather than waiting for the whole script to run. This format makes it perfect for exploratory science, as you can pay about with your data on, making changes on the fly and observing its effects with visualisations. Once settled, you can enrich the outputs with your thoughts and context to make it a true digital lab notebook.</p><h4>Cell-based Structure</h4><p>Notebooks are organised into cells, which are individual blocks that can contain either code or text, see below:</p><p><img src="./images/jupyter-notebook.png" alt="Notebook cells" class="notebook-image"></p><p>As can be seen above, notebooks contain two main types of cells:<br><ul class="nested-list"><li><strong>Code cells</strong>: Enter Python code into these so that they can be executed.</li><br><li><strong>Markdown cells</strong>: Enter text formatted text, mathematical equations, and documentation into these cells.</li></ul></p><p>You can change cell types using the dropdown menu in the toolbar or keyboard shortcuts (typically &#x27;M&#x27; for Markdown, &#x27;Y&#x27; for code when in command mode).</p><p>This structure allows you to:<ul class="nested-list"><li>Run small sections of code independently</li><br><li>See immediate results after each cell execution</li><br><li>Modify and re-run specific parts without restarting the entire program</li><br><li>Build your analysis step-by-step with explanations between each step</li></ul></p><h4>Basics of Using Jupyter Notebooks</h4><p>To use Jupyter Notebooks, you&#x27;ll first need to install the necessary packages. If you installed Python through Anaconda, Jupyter is included. Otherwise, install it using:<br><br><pre class="markdown-code-block"><code>python -m pip install jupyter</code></pre></p>
+        <div class="info-box note-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                NOTE
+            </div>
+            <div class="box-content">
+                <p>We will explain in more detail how to install packages for Python in <strong>PF3</strong>, so don&#x27;t worry too much about this for now. All of these parts will be set up for you in the Codespace we create for you through Github, see <a href="./course-setup.html">Course setup</a>.</p>
+            </div>
+        </div>
+        <h4>In VScode</h4><p>To work with a Jupyter notebook in VScode you must also install the <em>Jupyter</em> extension from the extension marketplace.<br><br>After installing the Jupyter extension you can create a new notebook by:<br><ol class="nested-list"><li>Opening the Command Palette (<code>Ctrl+Shift+P</code> or <code>Cmd+Shift+P</code>)</li><br><li>Typing &quot;Jupyter: Create New Notebook&quot;</li></ol>Or simply creating a new file with a <code>.ipynb</code> extension.</p><h4>Running Cells</h4><p>There are several ways to execute cells:<br><ul class="nested-list"><li><strong>Shift+Enter</strong>: Run the current cell and move to the next one</li><br><li><strong>Ctrl+Enter</strong>: Run the current cell and stay on it</li><br><li><strong>Toolbar buttons</strong>: Click the play button to run individual cells</li><br><li><strong>Run All</strong>: Execute all cells in the notebook sequentially</li></ul></p><h4>Other Important Buttons and Features</h4><p><ul class="nested-list"><li><strong>Restart kernel</strong>: Sometimes your notebook&#x27;s memory gets cluttered or you encounter errors. The kernel is the computational engine that runs your code; restarting it clears all variables and starts fresh</li><br><li><strong>Clear all outputs</strong>: Remove all the output displays from your notebook, useful for sharing clean versions</li><br><li><strong>Save</strong>: Regularly save your work (<code>Ctrl+S</code> or <code>Cmd+S</code>)</li><br><li><strong>Add cells</strong>: Use the &#x27;+&#x27; button to add new cells above or below the current one</li></ul></p><h4>Good Practices</h4><p><ul class="nested-list"><li><strong>Annotate your code</strong>: Use Markdown cells to explain your thought process, describe what each section does, and note interesting findings</li><br><li><strong>Keep cells focused</strong>: Each cell should represent a single logical step or concept</li><br><li><strong>Run cells in order</strong>: Notebooks can be run out of sequence, but this can lead to confusion</li></ul>Jupyter Notebooks is the primary tool for learning Python throughout this course, so becoming comfortable with their interface and workflow early will pay dividends as we progress to more complex topics.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="packages---environments">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Packages & Environments</h3>
+                        <h4>What Are Packages</h4><p>Python packages are additional pieces of code that other developers have written and shared, extending Python&#x27;s capabilities. These can range from simple utilities to complex frameworks for machine learning or computational biology analysis pipelines. Packages are one of Python&#x27;s great strengths, as within this vast ecosystem there is normally some code already created that meets your research/project needs. You simply just have to install it, integrate it into your work, and use it.<br><br>However, installing packages comes with some issues. Each package requires specific versions of other packages or Python itself. When you have a few, this may cause conflicts that break the usage of the packages and this is where environments are useful.<br><br>We will cover installing and import packages into your workspace in <strong>PF3</strong>.</p><h4>What are Environments</h4><p>Environments are isolated Python installations that contain their own specific set of packages and dependencies. Think of an environment as a self-contained Python setup that exists independently from your main Python installation and from other environments on your system. This allows you to only install the combination of packages you need for a project, ones you know work together (package managers like <code>conda</code> and <code>uv</code> handle this automatically).<br><br><strong>An example:</strong><ul class="nested-list"><li>Project A might need <em>pandas</em> version 1.5.0 and <em>numpy</em> version 1.20.0</li><br><li>Project B might need <em>pandas</em> version 2.0.0 and <em>numpy</em> version 1.24.0</li></ul></p><h4>To be Demonstrated Later</h4><p>We will demonstrate in a later release how to handle environments and package installation yourself, but for now just understand its importance.<br><br>The future resources will cover:<br><ul class="nested-list"><li><strong>Creating Environments</strong>: <code>python -m venv environment_name</code></li><br><li><strong>Activating and Deactivating environments</strong>: OS specific</li><br><li><strong>Installing Packages</strong>: <code>python -m pip install</code></li></ul></p>
+                    </div>
+                </div>
+            </div>
+            
+        
+        <div class="page-navigation">
+            <a href="./installing-python.html" class="nav-button prev">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
+                Previous
+            </a>
+            <a href="./basic-git.html" class="nav-button next">
+                Next
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                </svg>
+            </a></div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div>© All materials are copyright scryptIQ 2025</div>
+            <div>Powered by Pyodide</div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../assets/main.js"></script>
+    
+    <!-- Pyodide Initialisation Script -->
+    <script>
+
+// Generalisable Pyodide Initialisation Script
+// Variables and state build up naturally as code blocks execute in order
+
+async function main() {
+    // Show loading message for all output elements
+    document.querySelectorAll(".output").forEach(el => {
+        el.textContent = "Loading Pyodide...";
+        el.classList.add("loading-message");
+    });
+    
+    try {
+        // Load Pyodide
+        console.log("Loading Pyodide...");
+        const pyodideStartTime = performance.now();
+        let pyodide = await loadPyodide();
+        const pyodideLoadTime = performance.now() - pyodideStartTime;
+        console.log(`Pyodide loaded in ${pyodideLoadTime.toFixed(2)}ms`);
+        
+        // Load required packages only if specified
+        const lessonPackages = window.LESSON_PACKAGES || [];
+        
+        if (lessonPackages.length > 0) {
+            console.log("Loading required Python packages...");
+            const packagesStartTime = performance.now();
+            
+            // Separate built-in packages from PyPI packages
+            const builtInPackages = lessonPackages.filter(pkg => 
+                ['numpy', 'scipy', 'matplotlib', 'pandas', 'scikit-learn', 'pillow', 'regex'].includes(pkg)
+            );
+            
+            const micropipPackages = lessonPackages.filter(pkg => !builtInPackages.includes(pkg));
+            
+            // Load built-in packages (fast)
+            if (builtInPackages.length > 0) {
+                await pyodide.loadPackage(builtInPackages);
+                console.log(`Loaded built-in packages: ${builtInPackages.join(', ')}`);
+            }
+            
+            // Install PyPI packages (slower)
+            if (micropipPackages.length > 0) {
+                await pyodide.loadPackage(['micropip']);
+                const micropip = pyodide.pyimport('micropip');
+                await micropip.install(micropipPackages);
+                console.log(`Installed PyPI packages: ${micropipPackages.join(', ')}`);
+            }
+            
+            const packagesLoadTime = performance.now() - packagesStartTime;
+            console.log(`Packages loaded in ${packagesLoadTime.toFixed(2)}ms`);
+            console.log(`Total initialisation time: ${(pyodideLoadTime + packagesLoadTime).toFixed(2)}ms`);
+        } else {
+            console.log("No packages to load for this lesson");
+            console.log(`Total initialisation time: ${pyodideLoadTime.toFixed(2)}ms`);
+        }
+
+        // Only set up basic Python environment - no pre-loaded variables
+        await pyodide.runPythonAsync(`
+            import sys
+            from io import StringIO
+        `);
+        
+        console.log("Pyodide loaded successfully");
+        
+        // Load remote files if URLs are specified
+        const lessonFiles = window.LESSON_FILES || [];
+        
+        if (lessonFiles.length > 0) {
+            try {
+                console.log(`Checking for ${lessonFiles.length} remote file(s) to load...`);
+                
+                // Build Python code to load all files dynamically
+                let pythonCode = `
+from pyodide.http import pyfetch
+import os
+
+# Create data directory if it doesn't exist
+os.makedirs('./data', exist_ok=True)
+`;
+                
+                // Add loading code for each file
+                for (const file of lessonFiles) {
+                    pythonCode += `
+# Load ${file.filename}
+try:
+    response = await pyfetch("${file.url}")
+    content = await response.string()
+    with open('./data/${file.filename}', 'w') as f:
+        f.write(content)
+    print("Loaded: ${file.filename}")
+except Exception as e:
+    print(f"Could not load ${file.filename}: {e}")
+`;
+                }
+                
+                await pyodide.runPythonAsync(pythonCode);
+                console.log("Remote files loaded successfully");
+            } catch (error) {
+                console.warn("Error loading remote files (continuing anyway):", error);
+            }
+        } else {
+            console.log("No remote files to load for this lesson");
+        }
+        
+        // Function to execute Python code and capture output
+        async function executePythonCode(code) {
+            try {
+                // Redirect Python stdout to capture print statements
+                await pyodide.runPythonAsync(`
+                    old_stdout = sys.stdout
+                    sys.stdout = mystdout = StringIO()
+                `);
+                
+                // Run the user code
+                const result = await pyodide.runPythonAsync(code);
+                
+                // Get the captured stdout
+                const stdout = await pyodide.runPythonAsync(`
+                    sys.stdout = old_stdout
+                    mystdout.getvalue()
+                `);
+                
+                // Combine stdout and result
+                let output = stdout;
+                if (result !== undefined && result !== null && String(result).trim() !== '') {
+                    if (output) output += "\n";
+                    output += String(result);
+                }
+                
+                return { success: true, output: output || "Code executed successfully (no output)" };
+                
+            } catch (error) {
+                return { success: false, output: "Error: " + error.message };
+            }
+        }
+        
+        // Execute all hidden code blocks first (for setup code like imports)
+        const hiddenCodeBlocks = Array.from(document.querySelectorAll('.hidden-code textarea'));
+        console.log(`Found ${hiddenCodeBlocks.length} hidden code blocks`);
+
+        for (const textarea of hiddenCodeBlocks) {
+            const code = textarea.value.trim();
+            if (!code) continue;
+            
+            console.log(`Executing hidden code block: ${textarea.id}`);
+            const result = await executePythonCode(code);
+            
+            if (!result.success) {
+                console.error(`Error in hidden code block ${textarea.id}:`, result.output);
+            } else {
+                console.log(`Hidden code block ${textarea.id} executed successfully`);
+            }
+        }
+
+        console.log("All hidden code blocks executed");
+        
+        // Get all fixed code blocks in document order
+        const fixedCodeBlocks = Array.from(document.querySelectorAll('.code-fixed textarea'));
+        
+        // Setup and execute fixed code blocks sequentially
+        for (const textarea of fixedCodeBlocks) {
+            const code = textarea.value.trim();
+            if (!code) continue;
+            
+            // Set up CodeMirror editor (read-only)
+            const editor = CodeMirror.fromTextArea(textarea, {
+                mode: "python",
+                theme: "pastel-on-dark",
+                lineNumbers: true,
+                readOnly: true,
+                viewportMargin: Infinity
+            });
+            
+            // Find corresponding output element
+            const outputId = textarea.id + '-output';
+            const outputElement = document.getElementById(outputId);
+            
+            if (outputElement) {
+                outputElement.textContent = "Running code...";
+                outputElement.classList.add("loading-message");
+                
+                // Execute the code (this maintains state for subsequent blocks)
+                const result = await executePythonCode(code);
+                
+                // Display the output - check if it's HTML
+                const trimmedOutput = result.output.trim();
+                console.log('Output length:', trimmedOutput.length);
+                console.log('Output starts with:', trimmedOutput.substring(0, 100));
+                
+                if (trimmedOutput.includes('<script') && trimmedOutput.includes('Plotly')) {
+                    // It's Plotly HTML output - extract just the body content
+                    console.log('Rendering as Plotly HTML');
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(result.output, 'text/html');
+                    // Clear the output element and append the body content
+                    outputElement.innerHTML = '';
+                    
+                    // Find and load external scripts first (like Plotly CDN)
+                    const externalScripts = Array.from(doc.querySelectorAll('script[src]'));
+                    const inlineScripts = Array.from(doc.querySelectorAll('script:not([src])'));
+                    
+                    // Append non-script content first
+                    Array.from(doc.body.children).forEach(child => {
+                        if (child.tagName !== 'SCRIPT') {
+                            outputElement.appendChild(child.cloneNode(true));
+                        }
+                    });
+                    
+                    // Load external scripts sequentially
+                    const loadScript = (src) => {
+                        return new Promise((resolve, reject) => {
+                            const script = document.createElement('script');
+                            script.src = src;
+                            script.onload = resolve;
+                            script.onerror = reject;
+                            document.head.appendChild(script);
+                        });
+                    };
+                    
+                    // Load all external scripts first
+                    Promise.all(externalScripts.map(s => loadScript(s.src)))
+                        .then(() => {
+                            console.log('External scripts loaded, executing inline scripts');
+                            // Now execute inline scripts
+                            inlineScripts.forEach(oldScript => {
+                                const newScript = document.createElement('script');
+                                newScript.textContent = oldScript.textContent;
+                                outputElement.appendChild(newScript);
+                            });
+                            console.log('Output element after processing:', outputElement.children.length, 'children');
+                        })
+                        .catch(err => {
+                            console.error('Failed to load external scripts:', err);
+                            outputElement.textContent = 'Error loading Plotly: ' + err.message;
+                        });
+                } else if (trimmedOutput.startsWith('<!DOCTYPE') || 
+                           trimmedOutput.startsWith('<html') ||
+                           trimmedOutput.startsWith('<div')) {
+                    console.log('Rendering as generic HTML');
+                    outputElement.innerHTML = result.output;
+                    console.log('Output element after innerHTML:', outputElement.children.length, 'children');
+                } else {
+                    console.log('Rendering as plain text');
+                    outputElement.textContent = result.output;
+                }
+                outputElement.classList.remove("loading-message");
+                if (result.success) {
+                    outputElement.classList.add("success-message");
+                    outputElement.classList.remove("error-message");
+                } else {
+                    outputElement.classList.add("error-message");
+                    outputElement.classList.remove("success-message");
+                }
+            }
+            
+            // Small delay to show progression
+            await new Promise(resolve => setTimeout(resolve, 100));
+        }
+        
+        // Setup all editable code blocks (but don't execute them)
+        document.querySelectorAll('.code-editor textarea').forEach((textarea) => {
+            // Set up CodeMirror editor (editable)
+            const editor = CodeMirror.fromTextArea(textarea, {
+                mode: "python",
+                theme: "pastel-on-dark",
+                lineNumbers: true,
+                viewportMargin: Infinity
+            });
+            
+            // Find corresponding run button and output element
+            const baseId = textarea.id;
+            const runButtonId = 'run-' + baseId;
+            const outputId = baseId + '-output';
+            
+            const runButton = document.getElementById(runButtonId);
+            const outputElement = document.getElementById(outputId);
+            
+            if (runButton && outputElement) {
+                // Set initial state
+                outputElement.textContent = "Ready to run code!";
+                outputElement.classList.remove("loading-message");
+                
+                runButton.addEventListener("click", async () => {
+                    const code = editor.getValue().trim();
+                    if (!code) {
+                        outputElement.textContent = "No code to run";
+                        return;
+                    }
+                    
+                    outputElement.textContent = "Running...";
+                    outputElement.classList.remove("error-message", "success-message");
+                    outputElement.classList.add("loading-message");
+                    
+                    // Execute the code (this also maintains state for future blocks)
+                    const result = await executePythonCode(code);
+                    
+                    // Display the output - check if it's HTML
+                    const trimmedOutput = result.output.trim();
+                    console.log('Output length:', trimmedOutput.length);
+                    console.log('Output starts with:', trimmedOutput.substring(0, 100));
+                    
+                    if (trimmedOutput.includes('<script') && trimmedOutput.includes('Plotly')) {
+                        // It's Plotly HTML output - extract just the body content
+                        console.log('Rendering as Plotly HTML');
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(result.output, 'text/html');
+                        // Clear the output element and append the body content
+                        outputElement.innerHTML = '';
+                        
+                        // Find and load external scripts first (like Plotly CDN)
+                        const externalScripts = Array.from(doc.querySelectorAll('script[src]'));
+                        const inlineScripts = Array.from(doc.querySelectorAll('script:not([src])'));
+                        
+                        // Append non-script content first
+                        Array.from(doc.body.children).forEach(child => {
+                            if (child.tagName !== 'SCRIPT') {
+                                outputElement.appendChild(child.cloneNode(true));
+                            }
+                        });
+                        
+                        // Load external scripts sequentially
+                        const loadScript = (src) => {
+                            return new Promise((resolve, reject) => {
+                                const script = document.createElement('script');
+                                script.src = src;
+                                script.onload = resolve;
+                                script.onerror = reject;
+                                document.head.appendChild(script);
+                            });
+                        };
+                        
+                        // Load all external scripts first
+                        Promise.all(externalScripts.map(s => loadScript(s.src)))
+                            .then(() => {
+                                console.log('External scripts loaded, executing inline scripts');
+                                // Now execute inline scripts
+                                inlineScripts.forEach(oldScript => {
+                                    const newScript = document.createElement('script');
+                                    newScript.textContent = oldScript.textContent;
+                                    outputElement.appendChild(newScript);
+                                });
+                                console.log('Output element after processing:', outputElement.children.length, 'children');
+                            })
+                            .catch(err => {
+                                console.error('Failed to load external scripts:', err);
+                                outputElement.textContent = 'Error loading Plotly: ' + err.message;
+                            });
+                    } else if (trimmedOutput.startsWith('<!DOCTYPE') || 
+                               trimmedOutput.startsWith('<html') ||
+                               trimmedOutput.startsWith('<div')) {
+                        outputElement.innerHTML = result.output;
+                    } else {
+                        outputElement.textContent = result.output;
+                    }
+                    outputElement.classList.remove("loading-message");
+                    if (result.success) {
+                        outputElement.classList.add("success-message");
+                        outputElement.classList.remove("error-message");
+                    } else {
+                        outputElement.classList.add("error-message");
+                        outputElement.classList.remove("success-message");
+                    }
+                });
+            }
+        });
+        
+        console.log("All code blocks initialised successfully");
+        
+    } catch (error) {
+        console.error("Failed to initialise Pyodide:", error);
+        document.querySelectorAll(".output").forEach(el => {
+            el.textContent = "Error loading Pyodide: " + error.message;
+            el.classList.remove("loading-message");
+            el.classList.add("error-message");
+        });
+    }
+}
+
+// Start the application when DOM is loaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', main);
+} else {
+    main();
+}
+    </script>
+</body>
+</html>
+    

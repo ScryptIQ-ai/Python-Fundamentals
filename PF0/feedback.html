@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Pyodide and CodeMirror -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/pastel-on-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/python/python.min.js"></script>
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="../assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../assets/android-chrome-512x512.png">
+    
+    <!-- Core Stylesheets -->
+    <link rel="stylesheet" href="../assets/colours.css">
+    <link rel="stylesheet" href="../assets/shared-styles.css">
+    <link rel="stylesheet" href="../assets/nav-bar.css">
+    <link rel="stylesheet" href="../assets/module_card.css">
+    <link rel="stylesheet" href="../assets/learning_outcomes.css">
+    <link rel="stylesheet" href="../assets/learning_lists.css">
+    <link rel="stylesheet" href="../assets/box_styles.css">
+    <link rel="stylesheet" href="../assets/code_styles.css">
+
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L2D - PF0 - Feedback</title>
+    
+    <!-- File URLs for this lesson -->
+    <script>window.LESSON_FILES = []; window.LESSON_PACKAGES = [];</script>
+        
+</head>
+<body>
+    
+    <!-- Sidebar Navigation -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+        </div>
+        
+        <h3>Content</h3>
+        <ul>
+            <li><a href="./introduction.html" class="">Introduction</a></li><li><a href="./about-python.html">About Python</a></li><li><a href="./installing-python.html">Installing Python</a></li><li><a href="./essential-tools.html">Essential Tools</a></li><li><a href="./basic-git.html">Basic Git</a></li><li><a href="./course-setup.html">Course setup</a></li><li><a href="./feedback.html">Feedback</a></li>
+        </ul>
+
+        <h3 class="collapsible-header collapsed">
+            Resources
+            <span class="collapse-icon">►</span>
+        </h3>
+        <div class="collapsible-content collapsed">
+            <ul>
+                <li><a href="./glossary.html">Glossary</a></li><li><a href="./downloads.html">Downloads</a></li><li><a href="../HB/introduction.html">Handbook</a></li>
+            </ul>
+        </div>
+
+        <h3>
+            <li><a href="./report-issue.html">Report an Issue</a></li>
+        </h3>
+    </div>
+    
+    <!-- Sidebar Toggle Button -->
+    <button id="sidebar-toggle" class="sidebar-toggle">❮</button>
+    
+    <!-- Main Content Area -->
+    <div id="main-content" class="main-content">
+        <!-- Top Navigation Bar -->
+        <div class="top-navbar">
+            <h1 class="page-title">Python Orientation</h1>
+            <div class="nav-actions">
+            </div>
+        </div>
+
+        <div class="module-card" id="feedback">
+                <div class="module-header">
+                    Feedback <span class="module-tag">PF0</span>
+                </div>
+                <div class="module-body">
+                    <p>We're always looking to improve our materials, so if you found anything lacking in any areas, let us know. If there's nothing, then just let us know how great the course is.</p>
+                    
+                    <div style="margin: 20px 0;">
+                        <iframe 
+                            src="https://docs.google.com/forms/d/1NmmvwfAub8DruzrREASqrfJ0avhuVcab8M8gV8PjqUQ/viewform?embedded=true" 
+                            width="100%"
+                            height="1000"
+                            frameborder="0" 
+                            marginheight="0" 
+                            marginwidth="0"
+                            style="border: none;">
+                            Loading…
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        
+        <div class="page-navigation">
+            <a href="./assignment.html" class="nav-button prev">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
+                Previous
+            </a>
+            <div></div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div>© All materials are copyright scryptIQ 2025</div>
+            <div>Powered by Pyodide</div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../assets/main.js"></script>
+    
+    <!-- Pyodide Initialisation Script -->
+    <script>
+
+// Generalisable Pyodide Initialisation Script
+// Variables and state build up naturally as code blocks execute in order
+
+async function main() {
+    // Show loading message for all output elements
+    document.querySelectorAll(".output").forEach(el => {
+        el.textContent = "Loading Pyodide...";
+        el.classList.add("loading-message");
+    });
+    
+    try {
+        // Load Pyodide
+        console.log("Loading Pyodide...");
+        const pyodideStartTime = performance.now();
+        let pyodide = await loadPyodide();
+        const pyodideLoadTime = performance.now() - pyodideStartTime;
+        console.log(`Pyodide loaded in ${pyodideLoadTime.toFixed(2)}ms`);
+        
+        // Load required packages only if specified
+        const lessonPackages = window.LESSON_PACKAGES || [];
+        
+        if (lessonPackages.length > 0) {
+            console.log("Loading required Python packages...");
+            const packagesStartTime = performance.now();
+            
+            // Separate built-in packages from PyPI packages
+            const builtInPackages = lessonPackages.filter(pkg => 
+                ['numpy', 'scipy', 'matplotlib', 'pandas', 'scikit-learn', 'pillow', 'regex'].includes(pkg)
+            );
+            
+            const micropipPackages = lessonPackages.filter(pkg => !builtInPackages.includes(pkg));
+            
+            // Load built-in packages (fast)
+            if (builtInPackages.length > 0) {
+                await pyodide.loadPackage(builtInPackages);
+                console.log(`Loaded built-in packages: ${builtInPackages.join(', ')}`);
+            }
+            
+            // Install PyPI packages (slower)
+            if (micropipPackages.length > 0) {
+                await pyodide.loadPackage(['micropip']);
+                const micropip = pyodide.pyimport('micropip');
+                await micropip.install(micropipPackages);
+                console.log(`Installed PyPI packages: ${micropipPackages.join(', ')}`);
+            }
+            
+            const packagesLoadTime = performance.now() - packagesStartTime;
+            console.log(`Packages loaded in ${packagesLoadTime.toFixed(2)}ms`);
+            console.log(`Total initialisation time: ${(pyodideLoadTime + packagesLoadTime).toFixed(2)}ms`);
+        } else {
+            console.log("No packages to load for this lesson");
+            console.log(`Total initialisation time: ${pyodideLoadTime.toFixed(2)}ms`);
+        }
+
+        // Only set up basic Python environment - no pre-loaded variables
+        await pyodide.runPythonAsync(`
+            import sys
+            from io import StringIO
+        `);
+        
+        console.log("Pyodide loaded successfully");
+        
+        // Load remote files if URLs are specified
+        const lessonFiles = window.LESSON_FILES || [];
+        
+        if (lessonFiles.length > 0) {
+            try {
+                console.log(`Checking for ${lessonFiles.length} remote file(s) to load...`);
+                
+                // Build Python code to load all files dynamically
+                let pythonCode = `
+from pyodide.http import pyfetch
+import os
+
+# Create data directory if it doesn't exist
+os.makedirs('./data', exist_ok=True)
+`;
+                
+                // Add loading code for each file
+                for (const file of lessonFiles) {
+                    pythonCode += `
+# Load ${file.filename}
+try:
+    response = await pyfetch("${file.url}")
+    content = await response.string()
+    with open('./data/${file.filename}', 'w') as f:
+        f.write(content)
+    print("Loaded: ${file.filename}")
+except Exception as e:
+    print(f"Could not load ${file.filename}: {e}")
+`;
+                }
+                
+                await pyodide.runPythonAsync(pythonCode);
+                console.log("Remote files loaded successfully");
+            } catch (error) {
+                console.warn("Error loading remote files (continuing anyway):", error);
+            }
+        } else {
+            console.log("No remote files to load for this lesson");
+        }
+        
+        // Function to execute Python code and capture output
+        async function executePythonCode(code) {
+            try {
+                // Redirect Python stdout to capture print statements
+                await pyodide.runPythonAsync(`
+                    old_stdout = sys.stdout
+                    sys.stdout = mystdout = StringIO()
+                `);
+                
+                // Run the user code
+                const result = await pyodide.runPythonAsync(code);
+                
+                // Get the captured stdout
+                const stdout = await pyodide.runPythonAsync(`
+                    sys.stdout = old_stdout
+                    mystdout.getvalue()
+                `);
+                
+                // Combine stdout and result
+                let output = stdout;
+                if (result !== undefined && result !== null && String(result).trim() !== '') {
+                    if (output) output += "\n";
+                    output += String(result);
+                }
+                
+                return { success: true, output: output || "Code executed successfully (no output)" };
+                
+            } catch (error) {
+                return { success: false, output: "Error: " + error.message };
+            }
+        }
+        
+        // Execute all hidden code blocks first (for setup code like imports)
+        const hiddenCodeBlocks = Array.from(document.querySelectorAll('.hidden-code textarea'));
+        console.log(`Found ${hiddenCodeBlocks.length} hidden code blocks`);
+
+        for (const textarea of hiddenCodeBlocks) {
+            const code = textarea.value.trim();
+            if (!code) continue;
+            
+            console.log(`Executing hidden code block: ${textarea.id}`);
+            const result = await executePythonCode(code);
+            
+            if (!result.success) {
+                console.error(`Error in hidden code block ${textarea.id}:`, result.output);
+            } else {
+                console.log(`Hidden code block ${textarea.id} executed successfully`);
+            }
+        }
+
+        console.log("All hidden code blocks executed");
+        
+        // Get all fixed code blocks in document order
+        const fixedCodeBlocks = Array.from(document.querySelectorAll('.code-fixed textarea'));
+        
+        // Setup and execute fixed code blocks sequentially
+        for (const textarea of fixedCodeBlocks) {
+            const code = textarea.value.trim();
+            if (!code) continue;
+            
+            // Set up CodeMirror editor (read-only)
+            const editor = CodeMirror.fromTextArea(textarea, {
+                mode: "python",
+                theme: "pastel-on-dark",
+                lineNumbers: true,
+                readOnly: true,
+                viewportMargin: Infinity
+            });
+            
+            // Find corresponding output element
+            const outputId = textarea.id + '-output';
+            const outputElement = document.getElementById(outputId);
+            
+            if (outputElement) {
+                outputElement.textContent = "Running code...";
+                outputElement.classList.add("loading-message");
+                
+                // Execute the code (this maintains state for subsequent blocks)
+                const result = await executePythonCode(code);
+                
+                // Display the output - check if it's HTML
+                const trimmedOutput = result.output.trim();
+                console.log('Output length:', trimmedOutput.length);
+                console.log('Output starts with:', trimmedOutput.substring(0, 100));
+                
+                if (trimmedOutput.includes('<script') && trimmedOutput.includes('Plotly')) {
+                    // It's Plotly HTML output - extract just the body content
+                    console.log('Rendering as Plotly HTML');
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(result.output, 'text/html');
+                    // Clear the output element and append the body content
+                    outputElement.innerHTML = '';
+                    
+                    // Find and load external scripts first (like Plotly CDN)
+                    const externalScripts = Array.from(doc.querySelectorAll('script[src]'));
+                    const inlineScripts = Array.from(doc.querySelectorAll('script:not([src])'));
+                    
+                    // Append non-script content first
+                    Array.from(doc.body.children).forEach(child => {
+                        if (child.tagName !== 'SCRIPT') {
+                            outputElement.appendChild(child.cloneNode(true));
+                        }
+                    });
+                    
+                    // Load external scripts sequentially
+                    const loadScript = (src) => {
+                        return new Promise((resolve, reject) => {
+                            const script = document.createElement('script');
+                            script.src = src;
+                            script.onload = resolve;
+                            script.onerror = reject;
+                            document.head.appendChild(script);
+                        });
+                    };
+                    
+                    // Load all external scripts first
+                    Promise.all(externalScripts.map(s => loadScript(s.src)))
+                        .then(() => {
+                            console.log('External scripts loaded, executing inline scripts');
+                            // Now execute inline scripts
+                            inlineScripts.forEach(oldScript => {
+                                const newScript = document.createElement('script');
+                                newScript.textContent = oldScript.textContent;
+                                outputElement.appendChild(newScript);
+                            });
+                            console.log('Output element after processing:', outputElement.children.length, 'children');
+                        })
+                        .catch(err => {
+                            console.error('Failed to load external scripts:', err);
+                            outputElement.textContent = 'Error loading Plotly: ' + err.message;
+                        });
+                } else if (trimmedOutput.startsWith('<!DOCTYPE') || 
+                           trimmedOutput.startsWith('<html') ||
+                           trimmedOutput.startsWith('<div')) {
+                    console.log('Rendering as generic HTML');
+                    outputElement.innerHTML = result.output;
+                    console.log('Output element after innerHTML:', outputElement.children.length, 'children');
+                } else {
+                    console.log('Rendering as plain text');
+                    outputElement.textContent = result.output;
+                }
+                outputElement.classList.remove("loading-message");
+                if (result.success) {
+                    outputElement.classList.add("success-message");
+                    outputElement.classList.remove("error-message");
+                } else {
+                    outputElement.classList.add("error-message");
+                    outputElement.classList.remove("success-message");
+                }
+            }
+            
+            // Small delay to show progression
+            await new Promise(resolve => setTimeout(resolve, 100));
+        }
+        
+        // Setup all editable code blocks (but don't execute them)
+        document.querySelectorAll('.code-editor textarea').forEach((textarea) => {
+            // Set up CodeMirror editor (editable)
+            const editor = CodeMirror.fromTextArea(textarea, {
+                mode: "python",
+                theme: "pastel-on-dark",
+                lineNumbers: true,
+                viewportMargin: Infinity
+            });
+            
+            // Find corresponding run button and output element
+            const baseId = textarea.id;
+            const runButtonId = 'run-' + baseId;
+            const outputId = baseId + '-output';
+            
+            const runButton = document.getElementById(runButtonId);
+            const outputElement = document.getElementById(outputId);
+            
+            if (runButton && outputElement) {
+                // Set initial state
+                outputElement.textContent = "Ready to run code!";
+                outputElement.classList.remove("loading-message");
+                
+                runButton.addEventListener("click", async () => {
+                    const code = editor.getValue().trim();
+                    if (!code) {
+                        outputElement.textContent = "No code to run";
+                        return;
+                    }
+                    
+                    outputElement.textContent = "Running...";
+                    outputElement.classList.remove("error-message", "success-message");
+                    outputElement.classList.add("loading-message");
+                    
+                    // Execute the code (this also maintains state for future blocks)
+                    const result = await executePythonCode(code);
+                    
+                    // Display the output - check if it's HTML
+                    const trimmedOutput = result.output.trim();
+                    console.log('Output length:', trimmedOutput.length);
+                    console.log('Output starts with:', trimmedOutput.substring(0, 100));
+                    
+                    if (trimmedOutput.includes('<script') && trimmedOutput.includes('Plotly')) {
+                        // It's Plotly HTML output - extract just the body content
+                        console.log('Rendering as Plotly HTML');
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(result.output, 'text/html');
+                        // Clear the output element and append the body content
+                        outputElement.innerHTML = '';
+                        
+                        // Find and load external scripts first (like Plotly CDN)
+                        const externalScripts = Array.from(doc.querySelectorAll('script[src]'));
+                        const inlineScripts = Array.from(doc.querySelectorAll('script:not([src])'));
+                        
+                        // Append non-script content first
+                        Array.from(doc.body.children).forEach(child => {
+                            if (child.tagName !== 'SCRIPT') {
+                                outputElement.appendChild(child.cloneNode(true));
+                            }
+                        });
+                        
+                        // Load external scripts sequentially
+                        const loadScript = (src) => {
+                            return new Promise((resolve, reject) => {
+                                const script = document.createElement('script');
+                                script.src = src;
+                                script.onload = resolve;
+                                script.onerror = reject;
+                                document.head.appendChild(script);
+                            });
+                        };
+                        
+                        // Load all external scripts first
+                        Promise.all(externalScripts.map(s => loadScript(s.src)))
+                            .then(() => {
+                                console.log('External scripts loaded, executing inline scripts');
+                                // Now execute inline scripts
+                                inlineScripts.forEach(oldScript => {
+                                    const newScript = document.createElement('script');
+                                    newScript.textContent = oldScript.textContent;
+                                    outputElement.appendChild(newScript);
+                                });
+                                console.log('Output element after processing:', outputElement.children.length, 'children');
+                            })
+                            .catch(err => {
+                                console.error('Failed to load external scripts:', err);
+                                outputElement.textContent = 'Error loading Plotly: ' + err.message;
+                            });
+                    } else if (trimmedOutput.startsWith('<!DOCTYPE') || 
+                               trimmedOutput.startsWith('<html') ||
+                               trimmedOutput.startsWith('<div')) {
+                        outputElement.innerHTML = result.output;
+                    } else {
+                        outputElement.textContent = result.output;
+                    }
+                    outputElement.classList.remove("loading-message");
+                    if (result.success) {
+                        outputElement.classList.add("success-message");
+                        outputElement.classList.remove("error-message");
+                    } else {
+                        outputElement.classList.add("error-message");
+                        outputElement.classList.remove("success-message");
+                    }
+                });
+            }
+        });
+        
+        console.log("All code blocks initialised successfully");
+        
+    } catch (error) {
+        console.error("Failed to initialise Pyodide:", error);
+        document.querySelectorAll(".output").forEach(el => {
+            el.textContent = "Error loading Pyodide: " + error.message;
+            el.classList.remove("loading-message");
+            el.classList.add("error-message");
+        });
+    }
+}
+
+// Start the application when DOM is loaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', main);
+} else {
+    main();
+}
+    </script>
+</body>
+</html>
+    
