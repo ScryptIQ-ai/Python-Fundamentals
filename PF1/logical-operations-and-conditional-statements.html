@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Pyodide and CodeMirror -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/pastel-on-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/python/python.min.js"></script>
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="../assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../assets/android-chrome-512x512.png">
+    
+    <!-- Core Stylesheets -->
+    <link rel="stylesheet" href="../assets/colours.css">
+    <link rel="stylesheet" href="../assets/shared-styles.css">
+    <link rel="stylesheet" href="../assets/nav-bar.css">
+    <link rel="stylesheet" href="../assets/module_card.css">
+    <link rel="stylesheet" href="../assets/learning_outcomes.css">
+    <link rel="stylesheet" href="../assets/learning_lists.css">
+    <link rel="stylesheet" href="../assets/box_styles.css">
+    <link rel="stylesheet" href="../assets/code_styles.css">
+
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L2D - PF1 - Logical Operations and Conditional Statements</title>
+    
+    <!-- File URLs for this lesson -->
+    <script>window.LESSON_FILES = []; window.LESSON_PACKAGES = [];</script>
+        
+</head>
+<body>
+    
+    <!-- Sidebar Navigation -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+        </div>
+        
+        <h3>Content</h3>
+        <ul>
+            <li><a href="./introduction.html" class="">Introduction</a></li><li><a href="./input-output-operations.html">Input/Output Operations</a></li>
+            <li>
+                <div class="nav-toggle active" data-target="expandable-section-2">
+                    Logical Operations and Conditional Statements
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <ul class="nested-nav expanded" id="expandable-section-2"><li><a href="#introduction">Introduction</a></li><li><a href="#logical-operations-in-python">Logical Operations in Python</a></li><li><a href="#what-is-a-conditional-statement">What is a conditional statement?</a></li><li><a href="#summary">Summary</a></li>
+                </ul>
+            </li><li><a href="./errors-in-python.html">Errors in Python</a></li><li><a href="./assignment.html">Assignment</a></li><li><a href="./feedback.html">Feedback</a></li>
+        </ul>
+
+        <h3 class="collapsible-header collapsed">
+            Resources
+            <span class="collapse-icon">►</span>
+        </h3>
+        <div class="collapsible-content collapsed">
+            <ul>
+                <li><a href="./glossary.html">Glossary</a></li><li><a href="./downloads.html">Downloads</a></li><li><a href="../HB/introduction.html">Handbook</a></li>
+            </ul>
+        </div>
+
+        <h3 class="collapsible-header collapsed">
+            Previous Modules
+            <span class="collapse-icon">►</span>
+        </h3>
+        <div class="collapsible-content collapsed">
+            <ul>
+            <li><a href="../PF0/introduction.html">PF0</a></li>
+        </ul>
+        </div>
+
+        <h3>
+            <li><a href="./report-issue.html">Report an Issue</a></li>
+        </h3>
+    </div>
+    
+    <!-- Sidebar Toggle Button -->
+    <button id="sidebar-toggle" class="sidebar-toggle">❮</button>
+    
+    <!-- Main Content Area -->
+    <div id="main-content" class="main-content">
+        <!-- Top Navigation Bar -->
+        <div class="top-navbar">
+            <h1 class="page-title">Python Fundamentals 1</h1>
+            <div class="nav-actions">
+            </div>
+        </div>
+
+        
+            <div class="module-card" id="introduction">
+                <div class="module-header">
+                    Logical Operations and Conditional Statements <span class="module-tag">PF1</span>
+                </div>
+                <div class="module-body">
+                    <h3>Learning Objectives</h3>
+                    <div class="learning-outcomes">
+                        <div class="outcome-item">
+                    <span class="outcome-number">1</span>
+                    <span class="outcome-text">What is a logical operation and how to use them</span>
+                </div>
+<div class="outcome-item">
+                    <span class="outcome-number">2</span>
+                    <span class="outcome-text">What is a conditional statement and how to use them</span>
+                </div>
+                    </div>
+                    <h3>Introduction</h3>
+                    <p>Before we delve into both logical operations and conditional statements, it is important to define what both of these have in common: they allow the flow of a program to be modulated in response to an interaction with data. Conceptually, the directive &#x27;if a is true, do b&#x27; is a simple arrangement of words that implies an action only happens, in response to a condition being met.<br><br>While both logical operators and conditional statements differ in Python, both have at least this much in common. With this in mind, let&#x27;s dive into each concept, in more detail.</p>
+                </div>
+            </div>
+            
+            <div class="module-card" id="logical-operations-in-python">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Logical Operations in Python</h3>
+                        <p>Intrinsic to Python is a method of making decisions by comparing values with one another. For example, we can ask questions such as: &quot;is <code>value_a</code> equal to <code>value_b</code>?&quot; Or &quot;is <code>value_c</code> greater than <code>value_d</code>?&quot; The answer that is returned is in the form of the data type <strong>boolean</strong> (i.e. either <code>True</code> or <code>False</code>). From a Pythonic perspective, we term these questions <strong>logical operations</strong>; and without them, your block of code would just run from top to bottom without interacting with your data, at all.<br><br>Logical operations are useful whenever it is required of a program, to make choices. For example, they allow you to check whether inputted data meets certain criteria, to compare results from calculations, or even to combine several checks into a single decision. Logical operations are the building blocks that conditional statements rely on: once a condition evaluates to <code>True</code> or <code>False</code>, Python knows whether to execute a particular block of code. In this way, logical operations provide the &quot;questions” that drive the “answers” of decision-making in your programs.</p><p>Python has specific syntax (often common punctuation marks) that constitue what we call <strong>logical operators</strong>. Below is a list of built-in logical operators in Python:<br><ul class="nested-list"><li><code>==</code> – <strong>equality</strong> operator; checks if two values are the same.</li><br><li><code>!=</code> – <strong>inequality</strong> operator; checks if two values are different.</li><br><li><code>&lt;</code> – <strong>less-than</strong> operator; checks if the value on the left is smaller than the one on the right.</li><br><li><code>&gt;</code> – <strong>greater-than</strong> operator; checks if the value on the left is larger than the one on the right.</li><br><li><code>&lt;=</code> – <strong>less-than-or-equal-to</strong> operator; checks if the value on the left is smaller than or equal to the one on the right.</li><br><li><code>&gt;=</code> – <strong>greater-than-or-equal-to</strong> operator; checks if the value on the left is larger than or equal to the one on the right.</li></ul></p><p><ul class="nested-list"><li><code>and</code> – logical <strong>conjunction</strong>; returns <code>True</code> only if both conditions are true.</li><br><li><code>or</code> – logical <strong>disjunction</strong>; returns <code>True</code> if at least one condition is true.</li><br><li><code>not</code> – logical <strong>negation</strong>; inverts the truth value of a condition (True becomes False, and vice versa).</li></ul></p>
+        <div class="info-box key-terms-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                KEY TERMS
+            </div>
+            <div class="box-content">
+                <p><strong>Arithmetic operators</strong>: Consists of basic mathematical operations such as <code>+</code>, <code>-</code>, <code>*</code> to  add, minus, and multiply numbers respectively.<br><br><strong>Logical operations</strong>: Consists of a mix of mathematical comparators such as equivalent <code>==</code> and greater than <code>&gt;</code>, and language based logical statements such as <code>and</code>, <code>or</code>, and <code>not</code>. They are used in combination with conditional statements to dictate workflows.</p>
+            </div>
+        </div>
+        <p>Let&#x27;s define the values of two variables (as integers), in the code cell below:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-34"># Define variables:
+
+a = 5
+b = 6</textarea>
+            </div>
+            <div id="code-cell-34-output" class="output"></div>
+        </div>
+        <p>We can then use the comparative operator <code>==</code> (also referred to as the <strong>equality operator</strong>) to check whether one value is equal to another.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-35"># Equality operator (==)
+
+a == b</textarea>
+            </div>
+            <div id="code-cell-35-output" class="output"></div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-36"># Inequality operator (!=)
+
+a != b</textarea>
+            </div>
+            <div id="code-cell-36-output" class="output"></div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-37"># Less-than operator (&lt;)
+
+a &lt; b</textarea>
+            </div>
+            <div id="code-cell-37-output" class="output"></div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-38"># Greater-than operator (&gt;)
+
+a &gt; b</textarea>
+            </div>
+            <div id="code-cell-38-output" class="output"></div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-39"># Less-than-or-equal operator (&lt;=)
+
+a &lt;= b</textarea>
+            </div>
+            <div id="code-cell-39-output" class="output"></div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-40"># Greater-than-or-equal operator (&gt;=)
+
+a &gt;= b</textarea>
+            </div>
+            <div id="code-cell-40-output" class="output"></div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-41"># Logical conjunction (and)
+
+# Checks that both conditions on the left and right of the `and` operator are met.
+
+a == 5 and b == 6</textarea>
+            </div>
+            <div id="code-cell-41-output" class="output"></div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-42"># Logical disjunction (or)
+
+# Checks that either the condition on the left or that on the right of the `or` operator, is met.
+
+a == 5 or b == 10</textarea>
+            </div>
+            <div id="code-cell-42-output" class="output"></div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-43"># Logical negation (not)
+
+# Checks that the condition inside the round brackets is NOT met.
+
+not (a == b)</textarea>
+            </div>
+            <div id="code-cell-43-output" class="output"></div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-44"># Have a play around with the logical operations yourself
+</textarea>
+            </div>
+            <button id="run-code-cell-44" class="run-button">Run Code</button>
+            <div id="code-cell-44-output" class="output"></div>
+        </div>
+        
+        <div class="info-box fact-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                FACT
+            </div>
+            <div class="box-content">
+                <p>While we are lumping all of these operators under the heading &quot;logical operators&quot;, there is actually a subtle difference between some of them. In Python we technically have both <strong>comparison operators</strong> <em>and</em> <strong>logical operators</strong>. In the list above, we have added a line break between the three further &#x27;sub-categories&#x27; of operator.<br><br>The <em>first six</em> operators in the list, constitute <strong>comparison operators</strong> (like <code>==</code>, <code>&lt;</code>, <code>&gt;</code> and <code>!=</code>) which are used to compare two values and return a <em>Boolean</em> result (<code>True</code> or <code>False</code>).<br><br>The <em>second group of three</em> operators in the list are termed <strong>logical operators</strong> (<code>and</code>, <code>or</code>, <code>not</code>) and these are used to <em>combine</em> or <em>invert</em> those Boolean results.<br><br>And lastly - on its own at the <em>bottom of the list</em>, is the <strong>bitwise complement operator</strong> <code>~</code>, which looks similar because it also flips values, but it works at the binary level of integers, inverting every bit rather than simply switching <code>True</code> and <code>False</code>. It is therefore <em>not</em> a logical operator in the strictest sense.<br><br>For emphasis: while we are superficially categorising all of the above under the heading &quot;logical operators&quot;, technically speaking, they belong to different categories. Common and fundamental to all, these operators are <strong>asking questions</strong> and working with truth values. It is therefore common and useful to group them together under the umbrella of logical operations when first learning Python.</p>
+            </div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="what-is-a-conditional-statement">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>What is a conditional statement?</h3>
+                        <p>One of the most useful aspects of programming, is the ability to execute an action in response to the presence or absence of a condition. For example, if the time is 2:00, and the sun is in the sky, append &#x27;PM&#x27; to give 2:00 PM. If it&#x27;s dark and the sun is down, append &#x27;PM&#x27;. This is a lexical way of expressing a condition, and an action that depends on whether a condition is satisified, or not.<br><br>Aside from some of the logical operators we covered earlier, Python provides three syntaxes that allow us to express these conditions, and execute code in response to whether or not they are satisfied. These are <code>if</code>, <code>elif</code> and <code>else</code>. In summary:<br><ul class="nested-list"><li><code>if</code> – checks a condition, and runs a block of code only <strong>if</strong>* the condition returns the boolean <code>True</code>.</li><br><li><code>elif</code> – shorthand for &#x27;else if&#x27;, this lets you test another condition <em>if</em> the previous condition in your code returns the boolean <code>False</code>.</li><br><li><code>else</code> – usually the last statement in a block of conditionals, <code>else</code> provides a block of code to run when <strong>none</strong> of the previous conditions return the boolean <code>True</code>.</li></ul></p>
+        <div class="info-box key-terms-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                KEY TERMS
+            </div>
+            <div class="box-content">
+                <p><strong>Conditional statements</strong>: A pythonic statement that dictates when to execute a block of code.</p>
+            </div>
+        </div>
+        <h4>Conditional statement type: `if`</h4><p>For the first time in the course so far, we will also see the importance of <strong>indentations</strong> in Python. Let&#x27;s start with the Python keyword <code>if</code> as the first illustrative example. Its syntax specifies that <code>if</code> is followed by a condition, and then a colon <code>:</code>. If you hit return, you will notice that your cursor will automatically be tabbed inwards by a one-tab or four-space indentation. This indentation defines the <strong>scope</strong> of the conditional statement&#x27;s executable code. For example, in the example below - if the patient&#x27;s temperature is above 37.5ºC, the print statement will run. If the condition is not satisfied, the code will not execute:</p>
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-45"># The &#x27;float&#x27; class is used to always convert temperature values to a decimal.
+temperature = 38
+
+if 37.5 &lt; temperature &lt;= 41.0:
+    print(f&quot;The patient is hyperthermic has a fever, with a temperature of {temperature}ºC.&quot;)</textarea>
+            </div>
+            <button id="run-code-cell-45" class="run-button">Run Code</button>
+            <div id="code-cell-45-output" class="output"></div>
+        </div>
+        <p>If the lines that follow the conditional statement are <em>not</em> indented by a single indentation (or four spaces), the code will fall <em>out</em> of the scope of the conditional, and will be executed, irrespective of the condition being met.<br><br>In the code cell below, the temperature is fixed at 35, which does not meet the condition of our <code>if</code> statement; but still, our print statement at the bottom of the code block will run, regardless:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-46">temperature = 35.0
+
+if 37.5 &lt; temperature &lt;= 41.0:
+    print(f&quot;The patient is hyperthermic and has a fever, with a temperature of {temperature}ºC.&quot;)
+
+print(&quot;Regardless of the condition, this line will always print.&quot;) # This line isn&#x27;t indented.</textarea>
+            </div>
+            <div id="code-cell-46-output" class="output"></div>
+        </div>
+        
+        <div class="info-box key-terms-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                KEY TERMS
+            </div>
+            <div class="box-content">
+                <p><strong>Coding indentations</strong>: Visual indentations in the written code. Typically indicating a defined block of code, such as after a conditional statement or when defining a function.</p>
+            </div>
+        </div>
+        <h4>Conditional statement type: `elif`</h4><p>Following on with this logic in mind, we can look at the <code>elif</code> conditional (note this is named as shorthand for &#x27;else if&#x27;). These always follow an <code>if</code> conditional, and explicitly state that if the condition of the <code>if</code> isn&#x27;t met, then proceed to the next <code>elif</code> statement. <code>elif</code> follows the same syntactical rules as <code>if</code>, in that the <code>elif</code> keyword is followed by both a condition and a colon <code>:</code>, with newline characters automatically indenting a single tab-space in, to specify the code within its scope. This code is then executed if the condition of the <code>elif</code> statement is met.<br><br>Let&#x27;s develop the above example to illustrate this. For ease, we will predefine the temperature in the code, and not use the <code>input()</code> function.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-47">temperature = 35.5
+
+if 37.5 &lt; temperature &lt;= 41.0:
+    print(f&quot;The patient is hyperthermic and has a fever, with a temperature of {temperature}ºC.&quot;)
+
+elif 35.0 &lt;= temperature &lt; 36.0:
+    print(f&quot;The patient is mildly hypothermic, with a temperature of {temperature}ºC.&quot;)</textarea>
+            </div>
+            <div id="code-cell-47-output" class="output"></div>
+        </div>
+        
+        <div class="info-box remember-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                REMEMBER
+            </div>
+            <div class="box-content">
+                <p>Note, when you use return to move the cursor to a new line, when you&#x27;re inside a conditional statement, it will always return an indented new line (i.e. within the scope of the conditional statement you&#x27;re already in). In order to specify an <code>elif</code> statement, you need to hit the backspace key, to make sure your <code>elif</code> conditional statement begins on the <em>same indentation level</em> as the if conditional, above it. This way, the Python interpreter knows that the <code>elif</code> is not inside the scope of the top <code>if</code> statement, and thus will run only if the condition is <em>not</em> met, rather than if it <em>is</em> met.</p>
+            </div>
+        </div>
+        <p>The condition of the above <code>elif</code> statement means that the print statement will print, only if the temperature is greater than or equal to 35.5 <em>and</em> less than 36.0.<br><br>We can continue, and add another two <code>elif</code> statements to define normal body temperature and severe hypothermia, as follows. The <code>input</code> function has been reintroduced, so that you can easily change the temperature, to see which condition you satisfy, and thus, which statement is printed:</p>
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-48"># Change the temperature to test the conditional statements
+
+temperature = 38.0
+
+# Fever:
+if 37.5 &lt; temperature &lt;= 41.0:
+    print(f&quot;The patient is hyperthermic and has a fever, with a temperature of {temperature}ºC.&quot;)
+
+# Mild hypothermia:
+elif 35.0 &lt;= temperature &lt; 36.0:
+    print(f&quot;The patient is mildly hypothermic, with a temperature of {temperature}ºC.&quot;)
+
+# Severe hypothermia:
+elif 28.0 &lt; temperature &lt; 35.0:
+    print(f&quot;The patient is severely hypothermic, with a temperature of {temperature}ºC.&quot;)
+
+# Normal body temperature:
+elif 36.0 &lt;= temperature &lt;= 37.5:
+    print(f&quot;The patient’s temperature is normal, with a temperature of {temperature}ºC.&quot;)</textarea>
+            </div>
+            <button id="run-code-cell-48" class="run-button">Run Code</button>
+            <div id="code-cell-48-output" class="output"></div>
+        </div>
+        <h4>Conditional statement type: `else`</h4><p>The final type of conditional statement is <code>else</code>. This specifies that if all conditions specified in your code are <em>not</em> met then - irrespective of the condition - this block of code will always execute. Think of it as a final &#x27;catch-all&#x27; statement. So long as there is an <code>else</code> statement in your code, something will always execute.<br><br>We can build on our example, and add in an <code>else</code> statement: this specifies that all values not within the ranges specified by <em>any</em> of the conditional statements in our code, will tell our Python interpreter to execute the <code>else</code> statement&#x27;s code.</p>
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-49"># Change the temperature to test the conditional statements
+
+temperature = 42.0
+
+# Fever:
+if 37.5 &lt; temperature &lt;= 41.0:
+    print(f&quot;The patient is hyperthermic and has a fever, with a temperature of {temperature}ºC.&quot;)
+
+# Mild hypothermia:
+elif 35.0 &lt;= temperature &lt; 36.0:
+    print(f&quot;The patient is mildly hypothermic, with a temperature of {temperature}ºC.&quot;)
+
+# Severe hypothermia:
+elif 28.0 &lt; temperature &lt; 35.0:
+    print(f&quot;The patient is severely hypothermic, with a temperature of {temperature}ºC.&quot;)
+
+# Normal body temperature:
+elif 36.0 &lt;= temperature &lt;= 37.5:
+    print(f&quot;The patient’s temperature is normal, with a temperature of {temperature}ºC.&quot;)
+
+else:
+    print(f&quot;The patient’s temperature is at a critical level of {temperature}ºC: potentially fatal.&quot;)</textarea>
+            </div>
+            <button id="run-code-cell-49" class="run-button">Run Code</button>
+            <div id="code-cell-49-output" class="output"></div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-50"># Have a go creating your own if, elif statements</textarea>
+            </div>
+            <button id="run-code-cell-50" class="run-button">Run Code</button>
+            <div id="code-cell-50-output" class="output"></div>
+        </div>
+        
+        <div class="info-box key-terms-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                KEY TERMS
+            </div>
+            <div class="box-content">
+                <p><strong>if</strong>: Executes a block of code only when a specified condition evaluates to True.<br><br><strong>elif</strong>: Provides an alternative condition to check if the previous if or <em>elif</em> condition was False.<br><br><strong>else</strong>: Executes a block of code when all preceding <em>if</em> and <em>elif</em> conditions evaluate to False.</p>
+            </div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="summary">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Summary</h3>
+                        <p>In this lesson, we explored how Python makes decisions using <strong>logical operations</strong> and <strong>conditional statements</strong>. We began by learning how <strong>comparison operators</strong> (<code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>) allow us to compare values and return Boolean results of either <code>True</code> or <code>False</code>. We then examined how <strong>logical operators</strong> <code>and</code>, <code>or</code> and <code>not</code> enable the <em>combination</em> or <em>negation</em> of multiple conditions, allowing for more complex decision-making. We then introduced Python’s <strong>conditional statements</strong> — <code>if</code>, <code>elif</code> and <code>else</code> — which allow the program to choose between different paths of execution depending on whether conditions are met. Along the way, we emphasised the importance of <strong>colons</strong> and <strong>indentation</strong> as syntactical rules, both of which define the structure and scope of conditionals in Python. By the end of this lesson, we saw how these tools allow Python programs to respond dynamically to data, modelling real-world decision processes with clarity and precision.</p>
+                    </div>
+                </div>
+            </div>
+            
+        
+        <div class="page-navigation">
+            <a href="./input-output-operations.html" class="nav-button prev">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
+                Previous
+            </a>
+            <a href="./errors-in-python.html" class="nav-button next">
+                Next
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                </svg>
+            </a></div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div>© All materials are copyright scryptIQ 2025</div>
+            <div>Powered by Pyodide</div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../assets/main.js"></script>
+    
+    <!-- Pyodide Initialisation Script -->
+    <script>
+
+// Generalisable Pyodide Initialisation Script
+// Variables and state build up naturally as code blocks execute in order
+
+async function main() {
+    // Show loading message for all output elements
+    document.querySelectorAll(".output").forEach(el => {
+        el.textContent = "Loading Pyodide...";
+        el.classList.add("loading-message");
+    });
+    
+    try {
+        // Load Pyodide
+        console.log("Loading Pyodide...");
+        const pyodideStartTime = performance.now();
+        let pyodide = await loadPyodide();
+        const pyodideLoadTime = performance.now() - pyodideStartTime;
+        console.log(`Pyodide loaded in ${pyodideLoadTime.toFixed(2)}ms`);
+        
+        // Load required packages only if specified
+        const lessonPackages = window.LESSON_PACKAGES || [];
+        
+        if (lessonPackages.length > 0) {
+            console.log("Loading required Python packages...");
+            const packagesStartTime = performance.now();
+            
+            // Separate built-in packages from PyPI packages
+            const builtInPackages = lessonPackages.filter(pkg => 
+                ['numpy', 'scipy', 'matplotlib', 'pandas', 'scikit-learn', 'pillow', 'regex'].includes(pkg)
+            );
+            
+            const micropipPackages = lessonPackages.filter(pkg => !builtInPackages.includes(pkg));
+            
+            // Load built-in packages (fast)
+            if (builtInPackages.length > 0) {
+                await pyodide.loadPackage(builtInPackages);
+                console.log(`Loaded built-in packages: ${builtInPackages.join(', ')}`);
+            }
+            
+            // Install PyPI packages (slower)
+            if (micropipPackages.length > 0) {
+                await pyodide.loadPackage(['micropip']);
+                const micropip = pyodide.pyimport('micropip');
+                await micropip.install(micropipPackages);
+                console.log(`Installed PyPI packages: ${micropipPackages.join(', ')}`);
+            }
+            
+            const packagesLoadTime = performance.now() - packagesStartTime;
+            console.log(`Packages loaded in ${packagesLoadTime.toFixed(2)}ms`);
+            console.log(`Total initialisation time: ${(pyodideLoadTime + packagesLoadTime).toFixed(2)}ms`);
+        } else {
+            console.log("No packages to load for this lesson");
+            console.log(`Total initialisation time: ${pyodideLoadTime.toFixed(2)}ms`);
+        }
+
+        // Only set up basic Python environment - no pre-loaded variables
+        await pyodide.runPythonAsync(`
+            import sys
+            from io import StringIO
+        `);
+        
+        console.log("Pyodide loaded successfully");
+        
+        // Load remote files if URLs are specified
+        const lessonFiles = window.LESSON_FILES || [];
+        
+        if (lessonFiles.length > 0) {
+            try {
+                console.log(`Checking for ${lessonFiles.length} remote file(s) to load...`);
+                
+                // Build Python code to load all files dynamically
+                let pythonCode = `
+from pyodide.http import pyfetch
+import os
+
+# Create data directory if it doesn't exist
+os.makedirs('./data', exist_ok=True)
+`;
+                
+                // Add loading code for each file
+                for (const file of lessonFiles) {
+                    pythonCode += `
+# Load ${file.filename}
+try:
+    response = await pyfetch("${file.url}")
+    content = await response.string()
+    with open('./data/${file.filename}', 'w') as f:
+        f.write(content)
+    print("Loaded: ${file.filename}")
+except Exception as e:
+    print(f"Could not load ${file.filename}: {e}")
+`;
+                }
+                
+                await pyodide.runPythonAsync(pythonCode);
+                console.log("Remote files loaded successfully");
+            } catch (error) {
+                console.warn("Error loading remote files (continuing anyway):", error);
+            }
+        } else {
+            console.log("No remote files to load for this lesson");
+        }
+        
+        // Function to execute Python code and capture output
+        async function executePythonCode(code) {
+            try {
+                // Redirect Python stdout to capture print statements
+                await pyodide.runPythonAsync(`
+                    old_stdout = sys.stdout
+                    sys.stdout = mystdout = StringIO()
+                `);
+                
+                // Run the user code
+                const result = await pyodide.runPythonAsync(code);
+                
+                // Get the captured stdout
+                const stdout = await pyodide.runPythonAsync(`
+                    sys.stdout = old_stdout
+                    mystdout.getvalue()
+                `);
+                
+                // Combine stdout and result
+                let output = stdout;
+                if (result !== undefined && result !== null && String(result).trim() !== '') {
+                    if (output) output += "\n";
+                    output += String(result);
+                }
+                
+                return { success: true, output: output || "Code executed successfully (no output)" };
+                
+            } catch (error) {
+                return { success: false, output: "Error: " + error.message };
+            }
+        }
+        
+        // Execute all hidden code blocks first (for setup code like imports)
+        const hiddenCodeBlocks = Array.from(document.querySelectorAll('.hidden-code textarea'));
+        console.log(`Found ${hiddenCodeBlocks.length} hidden code blocks`);
+
+        for (const textarea of hiddenCodeBlocks) {
+            const code = textarea.value.trim();
+            if (!code) continue;
+            
+            console.log(`Executing hidden code block: ${textarea.id}`);
+            const result = await executePythonCode(code);
+            
+            if (!result.success) {
+                console.error(`Error in hidden code block ${textarea.id}:`, result.output);
+            } else {
+                console.log(`Hidden code block ${textarea.id} executed successfully`);
+            }
+        }
+
+        console.log("All hidden code blocks executed");
+        
+        // Get all fixed code blocks in document order
+        const fixedCodeBlocks = Array.from(document.querySelectorAll('.code-fixed textarea'));
+        
+        // Setup and execute fixed code blocks sequentially
+        for (const textarea of fixedCodeBlocks) {
+            const code = textarea.value.trim();
+            if (!code) continue;
+            
+            // Set up CodeMirror editor (read-only)
+            const editor = CodeMirror.fromTextArea(textarea, {
+                mode: "python",
+                theme: "pastel-on-dark",
+                lineNumbers: true,
+                readOnly: true,
+                viewportMargin: Infinity
+            });
+            
+            // Find corresponding output element
+            const outputId = textarea.id + '-output';
+            const outputElement = document.getElementById(outputId);
+            
+            if (outputElement) {
+                outputElement.textContent = "Running code...";
+                outputElement.classList.add("loading-message");
+                
+                // Execute the code (this maintains state for subsequent blocks)
+                const result = await executePythonCode(code);
+                
+                // Display the output - check if it's HTML
+                const trimmedOutput = result.output.trim();
+                console.log('Output length:', trimmedOutput.length);
+                console.log('Output starts with:', trimmedOutput.substring(0, 100));
+                
+                if (trimmedOutput.includes('<script') && trimmedOutput.includes('Plotly')) {
+                    // It's Plotly HTML output - extract just the body content
+                    console.log('Rendering as Plotly HTML');
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(result.output, 'text/html');
+                    // Clear the output element and append the body content
+                    outputElement.innerHTML = '';
+                    
+                    // Find and load external scripts first (like Plotly CDN)
+                    const externalScripts = Array.from(doc.querySelectorAll('script[src]'));
+                    const inlineScripts = Array.from(doc.querySelectorAll('script:not([src])'));
+                    
+                    // Append non-script content first
+                    Array.from(doc.body.children).forEach(child => {
+                        if (child.tagName !== 'SCRIPT') {
+                            outputElement.appendChild(child.cloneNode(true));
+                        }
+                    });
+                    
+                    // Load external scripts sequentially
+                    const loadScript = (src) => {
+                        return new Promise((resolve, reject) => {
+                            const script = document.createElement('script');
+                            script.src = src;
+                            script.onload = resolve;
+                            script.onerror = reject;
+                            document.head.appendChild(script);
+                        });
+                    };
+                    
+                    // Load all external scripts first
+                    Promise.all(externalScripts.map(s => loadScript(s.src)))
+                        .then(() => {
+                            console.log('External scripts loaded, executing inline scripts');
+                            // Now execute inline scripts
+                            inlineScripts.forEach(oldScript => {
+                                const newScript = document.createElement('script');
+                                newScript.textContent = oldScript.textContent;
+                                outputElement.appendChild(newScript);
+                            });
+                            console.log('Output element after processing:', outputElement.children.length, 'children');
+                        })
+                        .catch(err => {
+                            console.error('Failed to load external scripts:', err);
+                            outputElement.textContent = 'Error loading Plotly: ' + err.message;
+                        });
+                } else if (trimmedOutput.startsWith('<!DOCTYPE') || 
+                           trimmedOutput.startsWith('<html') ||
+                           trimmedOutput.startsWith('<div')) {
+                    console.log('Rendering as generic HTML');
+                    outputElement.innerHTML = result.output;
+                    console.log('Output element after innerHTML:', outputElement.children.length, 'children');
+                } else {
+                    console.log('Rendering as plain text');
+                    outputElement.textContent = result.output;
+                }
+                outputElement.classList.remove("loading-message");
+                if (result.success) {
+                    outputElement.classList.add("success-message");
+                    outputElement.classList.remove("error-message");
+                } else {
+                    outputElement.classList.add("error-message");
+                    outputElement.classList.remove("success-message");
+                }
+            }
+            
+            // Small delay to show progression
+            await new Promise(resolve => setTimeout(resolve, 100));
+        }
+        
+        // Setup all editable code blocks (but don't execute them)
+        document.querySelectorAll('.code-editor textarea').forEach((textarea) => {
+            // Set up CodeMirror editor (editable)
+            const editor = CodeMirror.fromTextArea(textarea, {
+                mode: "python",
+                theme: "pastel-on-dark",
+                lineNumbers: true,
+                viewportMargin: Infinity
+            });
+            
+            // Find corresponding run button and output element
+            const baseId = textarea.id;
+            const runButtonId = 'run-' + baseId;
+            const outputId = baseId + '-output';
+            
+            const runButton = document.getElementById(runButtonId);
+            const outputElement = document.getElementById(outputId);
+            
+            if (runButton && outputElement) {
+                // Set initial state
+                outputElement.textContent = "Ready to run code!";
+                outputElement.classList.remove("loading-message");
+                
+                runButton.addEventListener("click", async () => {
+                    const code = editor.getValue().trim();
+                    if (!code) {
+                        outputElement.textContent = "No code to run";
+                        return;
+                    }
+                    
+                    outputElement.textContent = "Running...";
+                    outputElement.classList.remove("error-message", "success-message");
+                    outputElement.classList.add("loading-message");
+                    
+                    // Execute the code (this also maintains state for future blocks)
+                    const result = await executePythonCode(code);
+                    
+                    // Display the output - check if it's HTML
+                    const trimmedOutput = result.output.trim();
+                    console.log('Output length:', trimmedOutput.length);
+                    console.log('Output starts with:', trimmedOutput.substring(0, 100));
+                    
+                    if (trimmedOutput.includes('<script') && trimmedOutput.includes('Plotly')) {
+                        // It's Plotly HTML output - extract just the body content
+                        console.log('Rendering as Plotly HTML');
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(result.output, 'text/html');
+                        // Clear the output element and append the body content
+                        outputElement.innerHTML = '';
+                        
+                        // Find and load external scripts first (like Plotly CDN)
+                        const externalScripts = Array.from(doc.querySelectorAll('script[src]'));
+                        const inlineScripts = Array.from(doc.querySelectorAll('script:not([src])'));
+                        
+                        // Append non-script content first
+                        Array.from(doc.body.children).forEach(child => {
+                            if (child.tagName !== 'SCRIPT') {
+                                outputElement.appendChild(child.cloneNode(true));
+                            }
+                        });
+                        
+                        // Load external scripts sequentially
+                        const loadScript = (src) => {
+                            return new Promise((resolve, reject) => {
+                                const script = document.createElement('script');
+                                script.src = src;
+                                script.onload = resolve;
+                                script.onerror = reject;
+                                document.head.appendChild(script);
+                            });
+                        };
+                        
+                        // Load all external scripts first
+                        Promise.all(externalScripts.map(s => loadScript(s.src)))
+                            .then(() => {
+                                console.log('External scripts loaded, executing inline scripts');
+                                // Now execute inline scripts
+                                inlineScripts.forEach(oldScript => {
+                                    const newScript = document.createElement('script');
+                                    newScript.textContent = oldScript.textContent;
+                                    outputElement.appendChild(newScript);
+                                });
+                                console.log('Output element after processing:', outputElement.children.length, 'children');
+                            })
+                            .catch(err => {
+                                console.error('Failed to load external scripts:', err);
+                                outputElement.textContent = 'Error loading Plotly: ' + err.message;
+                            });
+                    } else if (trimmedOutput.startsWith('<!DOCTYPE') || 
+                               trimmedOutput.startsWith('<html') ||
+                               trimmedOutput.startsWith('<div')) {
+                        outputElement.innerHTML = result.output;
+                    } else {
+                        outputElement.textContent = result.output;
+                    }
+                    outputElement.classList.remove("loading-message");
+                    if (result.success) {
+                        outputElement.classList.add("success-message");
+                        outputElement.classList.remove("error-message");
+                    } else {
+                        outputElement.classList.add("error-message");
+                        outputElement.classList.remove("success-message");
+                    }
+                });
+            }
+        });
+        
+        console.log("All code blocks initialised successfully");
+        
+    } catch (error) {
+        console.error("Failed to initialise Pyodide:", error);
+        document.querySelectorAll(".output").forEach(el => {
+            el.textContent = "Error loading Pyodide: " + error.message;
+            el.classList.remove("loading-message");
+            el.classList.add("error-message");
+        });
+    }
+}
+
+// Start the application when DOM is loaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', main);
+} else {
+    main();
+}
+    </script>
+</body>
+</html>
+    
