@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Pyodide and CodeMirror -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/pastel-on-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/python/python.min.js"></script>
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="../assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../assets/android-chrome-512x512.png">
+    
+    <!-- Core Stylesheets -->
+    <link rel="stylesheet" href="../assets/colours.css">
+    <link rel="stylesheet" href="../assets/shared-styles.css">
+    <link rel="stylesheet" href="../assets/nav-bar.css">
+    <link rel="stylesheet" href="../assets/module_card.css">
+    <link rel="stylesheet" href="../assets/learning_outcomes.css">
+    <link rel="stylesheet" href="../assets/learning_lists.css">
+    <link rel="stylesheet" href="../assets/box_styles.css">
+    <link rel="stylesheet" href="../assets/code_styles.css">
+
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L2D - PF2 - Strings</title>
+    
+    <!-- File URLs for this lesson -->
+    <script>window.LESSON_FILES = []; window.LESSON_PACKAGES = [];</script>
+        
+</head>
+<body>
+    
+    <!-- Sidebar Navigation -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+        </div>
+        
+        <h3>Content</h3>
+        <ul>
+            <li><a href="./introduction.html" class="">Introduction</a></li><li><a href="./lists.html">Lists</a></li><li><a href="./tuples.html">Tuples</a></li><li><a href="./sets.html">Sets</a></li>
+            <li>
+                <div class="nav-toggle active" data-target="expandable-section-4">
+                    Strings
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <ul class="nested-nav expanded" id="expandable-section-4"><li><a href="#introduction">Introduction</a></li><li><a href="#recap--creating-a-string">Recap: creating a string</a></li><li><a href="#numbers-as-strings">Numbers as strings</a></li><li><a href="#string-fundamentals">String fundamentals</a></li><li><a href="#string-operations">String operations</a></li><li><a href="#string-methods">String methods</a></li><li><a href="#converting-strings-into-other-data-structures">Converting strings into other data structures</a></li>
+                </ul>
+            </li><li><a href="./comparison.html">Comparison</a></li><li><a href="./assignment.html">Assignment</a></li><li><a href="./feedback.html">Feedback</a></li>
+        </ul>
+
+        <h3 class="collapsible-header collapsed">
+            Resources
+            <span class="collapse-icon">►</span>
+        </h3>
+        <div class="collapsible-content collapsed">
+            <ul>
+                <li><a href="./glossary.html">Glossary</a></li><li><a href="./downloads.html">Downloads</a></li><li><a href="../HB/introduction.html">Handbook</a></li>
+            </ul>
+        </div>
+
+        <h3 class="collapsible-header collapsed">
+            Previous Modules
+            <span class="collapse-icon">►</span>
+        </h3>
+        <div class="collapsible-content collapsed">
+            <ul>
+            <li><a href="../PF0/introduction.html">PF0</a></li>
+            <li><a href="../PF1/introduction.html">PF1</a></li>
+        </ul>
+        </div>
+
+        <h3>
+            <li><a href="./report-issue.html">Report an Issue</a></li>
+        </h3>
+    </div>
+    
+    <!-- Sidebar Toggle Button -->
+    <button id="sidebar-toggle" class="sidebar-toggle">❮</button>
+    
+    <!-- Main Content Area -->
+    <div id="main-content" class="main-content">
+        <!-- Top Navigation Bar -->
+        <div class="top-navbar">
+            <h1 class="page-title">Python Fundamentals 2</h1>
+            <div class="nav-actions">
+            </div>
+        </div>
+
+        
+            <div class="module-card" id="introduction">
+                <div class="module-header">
+                    Strings <span class="module-tag">PF2</span>
+                </div>
+                <div class="module-body">
+                    <h3>Learning Objectives</h3>
+                    <div class="learning-outcomes">
+                        <div class="outcome-item">
+                    <span class="outcome-number">1</span>
+                    <span class="outcome-text">Understand string fundamentals</span>
+                </div>
+<div class="outcome-item">
+                    <span class="outcome-number">2</span>
+                    <span class="outcome-text">Apply **string operations** to manipulate and analyse sequence data</span>
+                </div>
+<div class="outcome-item">
+                    <span class="outcome-number">3</span>
+                    <span class="outcome-text">Utilise built-in **string methods** for searching, cleaning, and reformatting data</span>
+                </div>
+<div class="outcome-item">
+                    <span class="outcome-number">4</span>
+                    <span class="outcome-text">**Convert** strings to other data structures (lists and tuples)</span>
+                </div>
+                    </div>
+                    <h3>Introduction</h3>
+                    <p>In the previous lesson, we have explored strings as both inputs and outputs. However, strings are much more than just output printed to your screen in a <code>print</code> statement; they are also a <strong>data structure</strong> in their own right, and can be manipulated and explored to extract information.<br><br>In this context, we can view them as a store of individual data points (each <strong>character</strong> pertaining to a single data point), stored as one long <strong>sequence</strong>: conceptually not too dissimilar to a list, in this respect. An obvious example for biologists of complex string data would be nucleic and amino acid sequences, where nucleotide or residue is a single point of information, as part of a longer sequence. In fact, many Python-based programs exist that can efficiently find and match specific string sequences across multiple DNA samples. In this section of the lesson, we will try to demonstrate our own approach to this.</p>
+                </div>
+            </div>
+            
+            <div class="module-card" id="recap--creating-a-string">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Recap: creating a string</h3>
+                        <p>Any character, alphabetical, grammatical, numerical <em>etc.</em> can be stored as a string data-type <em>via</em> <strong>single</strong> (<code>&#x27;...&#x27;</code>) or <strong>double</strong> (<code>&quot;...&quot;</code>) <strong>quotation marks</strong> around the data, or by using the <code>str()</code> class (which typecasts data such as integers, floats and booleans into a string).</p>
+        <div class="info-box note-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                NOTE
+            </div>
+            <div class="box-content">
+                <p>It is <strong>fine to use either single or double quotations</strong> to create a string, although it is considered good practice to use and adhere to one in your Python script. However, there are a few occasions where you need to mix quotations, such as actively incorporating quotation marks inside your string, i.e. <code>&#x27;To quote Aristotle: &quot;This is the proper way to use nested quotations&quot;&#x27;</code>. If we were limited to only a single or double quote syntax, writing a sentence like this would result in the premature termination of the string.</p>
+            </div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-105">alphabet_string = &quot;abcdfeg&quot;
+numerical_string = str(12345) # can also be: numerical_string = &quot;12345&quot;
+mixed_string = &quot;abc-123&quot;
+
+print(alphabet_string)
+print(numerical_string)
+print(mixed_string)</textarea>
+            </div>
+            <div id="code-cell-105-output" class="output"></div>
+        </div>
+        <p>You can check if anything is a string by calling the <code>type()</code> class. If the data is a string, it should return <code>&lt;class &#x27;str&#x27;&gt;</code>, when printed.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-106">print(type(alphabet_string))</textarea>
+            </div>
+            <div id="code-cell-106-output" class="output"></div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="numbers-as-strings">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Numbers as strings</h3>
+                        <p>When numerical data is converted to a string, it will <em>lose the attributes associated with being an integer or float</em> data type. It is therefore important to check - when importing data - that your numerical data is not mistakenly being imported as a string; a common accident when data is parsed from one mode to another.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-107"># No matter the characters within the string, they are all the same data type
+
+type(alphabet_string) == type(numerical_string)</textarea>
+            </div>
+            <div id="code-cell-107-output" class="output"></div>
+        </div>
+        <p>It is crucial to note that operations (such as mathematical operations) will perform differently on data that is a string, compared to the same sequence of numbers stored as a numerical data type:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-108">numerical_true = 12345
+
+numerical_string = str(numerical_true)
+
+print(&quot;Multiplying an integer:                                        &quot;, 
+      numerical_true, &quot;----&gt;&quot;, numerical_true * 2)
+
+print(&quot;\nMultiplying the same numerical sequence, stored as a string:   &quot;, 
+      numerical_string, &quot;----&gt;&quot;, numerical_string * 2)</textarea>
+            </div>
+            <div id="code-cell-108-output" class="output"></div>
+        </div>
+        <p>In the cell below, have a play with different operations on the string, we&#x27;ll explore some in more detail further on. Note - many won&#x27;t work and will throw an error, be sure to note the error as they are common ones.</p>
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-109">practice_string = &quot;L2D&quot;</textarea>
+            </div>
+            <button id="run-code-cell-109" class="run-button">Run Code</button>
+            <div id="code-cell-109-output" class="output"></div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="string-fundamentals">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>String fundamentals</h3>
+                        <p>As you will have seen with data types, data structures also have fundamental aspects to them which standardises their usage. It is important to understand these aspects, so that you better understand how your data is stored and augmented throughout your Python script.</p><h4>Immutability</h4><p>Strings <strong>cannot be changed after they are instantiated</strong>. The data structure itself is <strong>immutable</strong>. If you were to augment the string through operations or methods, Python will instead create a new string to be stored as another variable if needed. This means you can always be assured your original data will be unchanged.<br><br>In the cell below, let&#x27;s use the <code>+</code> to concatenate new characters into our string, using an F-string. Note how - inspite of the change - it is not overstored into the variable containing the original string, which is subsequently still recallable.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-110">original_sequence = &quot;ATCGATCG&quot;
+print(f&quot;Concatenated sequence: {original_sequence + &#x27;GGGGGGGG&#x27;}&quot;), # Concatenate a poly-G repeat.
+print(f&quot;Original (unchanged):  {original_sequence}&quot;) </textarea>
+            </div>
+            <div id="code-cell-110-output" class="output"></div>
+        </div>
+        <h4>Case-sensitive</h4><p>Python treats <strong>uppercase</strong> and <strong>lowercase</strong> as <em>different characters</em>. This means that extra dilligence should be afforded when importing data, to check that it was inputted, correctly. Many experimental pipelines have been held up by one user using lower case when another uses upper case.<br><br>We&#x27;ll demonstrate some methods later that convert from one case to the other.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-111">gene1 = &quot;TP53&quot;  # Upper case.
+gene2 = &quot;tp53&quot;  # Lower case.
+
+print(f&quot;Are these genes equivalent? \n\n{gene1 == gene2}&quot;)</textarea>
+            </div>
+            <div id="code-cell-111-output" class="output"></div>
+        </div>
+        <h4>Indexing</h4><p>Much like a list or tuple, <strong>strings can be indexed</strong>, allowing the use of operations such as <strong>slicing</strong>. Each character is an <strong>ordered item</strong> in the string, exactly as each element is within a list. In fact, the same basic slicing operations that we previously covered in the lists section of this material, can be applied to strings.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-112">rna_seq = &quot;AUGGGCAGUCCGUAA&quot;
+
+print(f&quot;Original sequence: {rna_seq}\n&quot;)
+
+print(f&quot;Slicing first nucleotide: {rna_seq[0]}&quot;)
+print(f&quot;Slicing last nucleotide: {rna_seq[-1]}&quot;)
+
+print(f&quot;Slicing RNA without start codon: {rna_seq[3:]}&quot;) # We sliced downstream of start codon AUG.</textarea>
+            </div>
+            <div id="code-cell-112-output" class="output"></div>
+        </div>
+        <p>In th ecell below, isolate the termination codon from the string in variable <code>rna_seq</code>.<br><br><em>HINT: RNA stop codons can be either UAA, UAG or UGA.</em></p>
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-113">rna_seq = &quot;AUGGGCAGUCCGUAA&quot;
+</textarea>
+            </div>
+            <button id="run-code-cell-113" class="run-button">Run Code</button>
+            <div id="code-cell-113-output" class="output"></div>
+        </div>
+        <h4>Comparable / sortable</h4><p>Strings can also be <strong>sorted</strong> or <strong>compared</strong> based on their characters. Much as we can order various numbers by ascending or descending value, we can also sort strings based on the ranking of their characters.<br><br>Python compares strings lexicographically (in dictionary-like order) using <strong>ASCII values</strong>.<br><br>This means:<ol class="nested-list"><li>Numbers come before letters</li><br><li>Uppercase letters come before lowercase letters</li><br><li>Letters are ordered alphabetically</li></ol></p>
+        <div class="info-box fact-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                FACT
+            </div>
+            <div class="box-content">
+                <p>An <strong>ASCII value</strong> is a numerical code that represents a specific character in the <em>American Standard Code for Information Interchange</em> system, allowing computers to store and interpret text as numbers. For example, the character &#x27;A&#x27; has an ASCII value of 65, &#x27;a&#x27; is 97, and &#x27;0&#x27; is 48.<br><br>Observe how this logical behaves:</p>
+            </div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-114"># Comparisons between strings is not always obvious
+
+ex1 = &quot;exp_10&quot;
+ex2 = &quot;exp_2&quot;
+
+print(ex1 &gt; ex2)</textarea>
+            </div>
+            <div id="code-cell-114-output" class="output"></div>
+        </div>
+        <p>For strings, the comparison occurs from left to right in its search for differing characters. In the example above, the first 4 characters - <code>exp_</code> - are identical. The 5th are different with <strong>1</strong> coming before <strong>2</strong>.<br><br>If you want to ensure you sample names can be ordered properly, it is important to <strong>zero-pad</strong> you strings when entering them. That is - &#x27;experiment 1&#x27; would be zero-padded to &#x27;experiment 01&#x27;.<br><br>Zero-padding is demonstrated in the cell, below:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-115"># If your samples run into the double digits, remember to add zeros in front of the single digit numbers
+
+samples = [&quot;exp_01&quot;, &quot;exp_10&quot;, &quot;exp_02&quot;, &quot;exp_21&quot;]
+
+print(sorted(samples)) </textarea>
+            </div>
+            <div id="code-cell-115-output" class="output"></div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="string-operations">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>String operations</h3>
+                        <p>Python also supports several basic operations with strings, similar to those found with lists:</p><h4>Concatenation</h4><p>A new character, or sequence of new characters, can be added (or concatenated) onto the end of another string, increasing its size and information. This is done using the logical operator: <code>+</code>.<br><br>The cell below demonstrates how <code>+</code> behaves differently with a list, compared with a string.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-116">start_list = [&#x27;1&#x27;]
+start_string = &#x27;1&#x27;
+
+print(&quot;Adding to a list:&quot;, start_list + [&#x27;1&#x27;])
+print(&quot;Adding to a string:&quot;, start_string + &#x27;1&#x27;)</textarea>
+            </div>
+            <div id="code-cell-116-output" class="output"></div>
+        </div>
+        <p>In many ways both the string and list above are similar: they are both a sequential store of the character &#x27;1&#x27;.<br><br>Adding strings together can is also useful as a quick method to create unique ID&#x27;s given two pieces of existing data. For example:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-117">study = &quot;CARDIO&quot;
+patient_num = &quot;001&quot;
+patient_id = study + &quot;_&quot; + patient_num
+print(patient_id)</textarea>
+            </div>
+            <div id="code-cell-117-output" class="output"></div>
+        </div>
+        <h4>Multiplication</h4><p>Multiplying a string <strong>repeats the whole string by the given number</strong>. There are not many uses for this within biology, but it does make for a nice visual break when printing your output.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-118">title = &quot; BACTERIAL GROWTH ASSAY &quot;
+border = &quot;=&quot; * len(title)
+print(border)
+print(title)
+print(border)</textarea>
+            </div>
+            <div id="code-cell-118-output" class="output"></div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-119"># Have a play around with a string using the above operations
+
+study = &quot;test_string&quot;
+</textarea>
+            </div>
+            <button id="run-code-cell-119" class="run-button">Run Code</button>
+            <div id="code-cell-119-output" class="output"></div>
+        </div>
+        <h4>`in` operation</h4><p>Often the information we are looking for is hidden within a larger string. Using the <code>in</code> operation we can determine if a unique sub-string is within a larger string. The <code>in</code> operation won&#x27;t isolate the string you are looking for, but often all you need to know is if one data point is present for an action to be taken.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-120"># protein sequence
+protein_sequence = &quot;MKWVTFISLLFLFSSAYSRGVFRRDAHKSEVAHRFKDLGEENFKALVLIAFAQYLQQ&quot;
+
+# Check for signal peptides and domains
+signal_peptide = &quot;MKW&quot;
+hydrophobic_region = &quot;FFF&quot;
+binding_motif = &quot;KSEVAHRFK&quot;
+
+print(f&quot;Has signal peptide:             {signal_peptide in protein_sequence}&quot;)
+print(f&quot;Contains hydrophobic region:    {hydrophobic_region in protein_sequence}&quot;)
+print(f&quot;Contains binding motif:         {binding_motif in protein_sequence}&quot;)</textarea>
+            </div>
+            <div id="code-cell-120-output" class="output"></div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-121"># Have a play around finding sub-sequences in `protein_sequence`</textarea>
+            </div>
+            <button id="run-code-cell-121" class="run-button">Run Code</button>
+            <div id="code-cell-121-output" class="output"></div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="string-operations">
+                <div class="module-body">
+                    <div class="module-section">
+                        
+        <div class="info-box practice-exercise-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                PRACTICE EXERCISE
+            </div>
+            <div class="box-content">
+                <p><strong>1.</strong></p>
+                <p>You have a tuple of strings containing the approved treatments for a clinical trial, <code>approved_drugs</code>:<ol class="nested-list"><li>You&#x27;ve noticed &quot;insulin&quot; is misspelled, it&#x27;s missing the last two letters. Add the missing letters back to it.</li></ol></p>
+            </div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-122">approved_drugs = (&quot;metformin&quot;, &quot;insul&quot;, &quot;glipizide&quot;, &quot;pioglitazone&quot;)</textarea>
+            </div>
+            <button id="run-code-cell-122" class="run-button">Run Code</button>
+            <div id="code-cell-122-output" class="output"></div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="string-methods">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>String methods</h3>
+                        <p>The string data type also comes with <strong>built-in methods</strong> that quickly and neatly perform common tasks with letter based data, such as <em>finding sub-strings</em>, <em>removing unwanted characters</em> (such as whitespace), and <em>reformatting to a uniformed state</em>. We will go through a few of the common string methods, and provide a table that contains few more.<br><br>There are many more string methods than demonstrated or mentioned here, some of which fit very specific circumstances. They can all be found in the Python documentation <a href="https://docs.python.org/3/library/stdtypes.html#string-methods">here</a>.</p><h4>`.find()`</h4><p>Rather than using the <code>in</code> to confirm the presence of sub-strings we can use the <code>find()</code> method. This method will <strong>search for the given string and return the index of the first character</strong>, if not present it will return <strong>-1</strong>. The index can then be used to extract the subsequent string.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-123">medication = &quot;ibuprofen_200mg_tablet&quot;
+
+# Find the position of substring (returns -1 if not found)
+print(f&quot;Index of &#x27;200gm&#x27;: {medication.find(&#x27;200mg&#x27;)}\n&quot;)  
+print(f&quot;Index when not found: {medication.find(&#x27;400gm&#x27;)}&quot;)    # -1 (not found)</textarea>
+            </div>
+            <div id="code-cell-123-output" class="output"></div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-124"># Isolate the rest of the string using the returned index
+index_start = medication.find(&quot;200mg&quot;)
+
+print(f&quot;Isolated string: {medication[index_start:]}&quot;) # Prints all characters downstream of the found sequence.</textarea>
+            </div>
+            <div id="code-cell-124-output" class="output"></div>
+        </div>
+        <h4>Count</h4><p>The <code>count()</code> method allows the user to find the number of times a particular character or sequence appears within a string, as demonstrated, below:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-125">dna_sequence = &quot;ATCGGATCGGACGG&quot;
+
+# Count occurrences
+print(f&quot;Number of instances of &#x27;AT&#x27;: {dna_sequence.count(&quot;AT&quot;)}&quot;)
+print(f&quot;Number of instances of &#x27;CG&#x27;: {dna_sequence.count(&quot;GG&quot;)}&quot;) </textarea>
+            </div>
+            <div id="code-cell-125-output" class="output"></div>
+        </div>
+        <h4>Other methods for searching strings</h4><table class="markdown-table">
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>find(sub)</code></td>
+<td>Find substring (returns index or -1)</td>
+<td><code>"hello".find("ll")</code> → <code>2</code></td>
+</tr>
+<tr>
+<td><code>rfind(sub)</code></td>
+<td>Find substring from right</td>
+<td><code>"hello".rfind("l")</code> → <code>3</code></td>
+</tr>
+<tr>
+<td><code>index(sub)</code></td>
+<td>Find substring (raises error if not found)</td>
+<td><code>"hello".index("ll")</code> → <code>2</code></td>
+</tr>
+<tr>
+<td><code>rindex(sub)</code></td>
+<td>Find substring from right (raises error)</td>
+<td><code>"hello".rindex("l")</code> → <code>3</code></td>
+</tr>
+<tr>
+<td><code>count(sub)</code></td>
+<td>Count occurrences</td>
+<td><code>"hello".count("l")</code> → <code>2</code></td>
+</tr>
+<tr>
+<td><code>startswith(prefix)</code></td>
+<td>Check if starts with</td>
+<td><code>"hello".startswith("he")</code> → <code>True</code></td>
+</tr>
+<tr>
+<td><code>endswith(suffix)</code></td>
+<td>Check if ends with</td>
+<td><code>"hello".endswith("lo")</code> → <code>True</code></td>
+</tr>
+</tbody>
+</table><h4>Case manipulation</h4><p>As we learned earlier, Python <strong>strings are case-sensitive</strong>. This can have considerable effects on your analysis, as groups that are meant to be the same may have small capitalisation differences. If you are unable to prevent these happening at the source, you can augment them using the <code>.lower()</code> and <code>.upper()</code> string methods.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-126"># Going back to our earlier example
+
+gene1 = &quot;TP53&quot;
+gene2 = &quot;tp53&quot;
+
+print(f&quot;Are these genes equivalent? {gene1 == gene2}&quot;)
+
+# we can change either string to be in upper or lower case
+
+print(f&quot;Are these genes equivalent using .lower()? {gene1.lower() == gene2}&quot;)
+
+print(f&quot;Are these genes equivalent using .upper()? {gene1 == gene2.upper()}&quot;)
+</textarea>
+            </div>
+            <div id="code-cell-126-output" class="output"></div>
+        </div>
+        <h4>Other case methods</h4><table class="markdown-table">
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>upper()</code></td>
+<td>Convert to uppercase</td>
+<td><code>"hello".upper()</code> → <code>"HELLO"</code></td>
+</tr>
+<tr>
+<td><code>lower()</code></td>
+<td>Convert to lowercase</td>
+<td><code>"HELLO".lower()</code> → <code>"hello"</code></td>
+</tr>
+<tr>
+<td><code>capitalize()</code></td>
+<td>Capitalise first letter only</td>
+<td><code>"hello world".capitalize()</code> → <code>"Hello world"</code></td>
+</tr>
+<tr>
+<td><code>title()</code></td>
+<td>Capitalise each word</td>
+<td><code>"hello world".title()</code> → <code>"Hello World"</code></td>
+</tr>
+<tr>
+<td><code>swapcase()</code></td>
+<td>Swap upper/lower case</td>
+<td><code>"Hello".swapcase()</code> → <code>"hELLO"</code></td>
+</tr>
+<tr>
+<td><code>casefold()</code></td>
+<td>Aggressive lowercase for comparisons</td>
+<td><code>"ß".casefold()</code> → <code>"ss"</code></td>
+</tr>
+</tbody>
+</table><h4>Cleaning</h4><p>Another common issue when dealing with strings is <strong>unwanted characters</strong>, such as <em>whitespace</em> or <em>special characters</em>, that are an <em>artefact</em> of, say, the machine recording the experiment, or of parsing the content into Python. This is especially common in <em>FASTA files</em>, which often contain many millions of characters, or even billions, of characters.<br><br>The <code>.strip()</code> string method, for example, can be used to remove <strong>whitespace</strong> and <em>escape sequences</em>* (such as <code>\n</code>, which returns a newline character).</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-127"># Remove whitespace and escape characters (common when reading files)
+messy_gene = &quot;  EGFR  \n&quot;
+clean_gene = messy_gene.strip()
+print(clean_gene) </textarea>
+            </div>
+            <div id="code-cell-127-output" class="output"></div>
+        </div>
+        <p>Another method - <code>.replace()</code> - can be useful for finding a certain character, and replacing it with another. The first argument it accepts is the sequence being searched, and the second argument, is the sequence intended to replace it.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-128"># Replace characters
+sequence = &quot;ATCG-NATCG&quot;
+clean_sequence = sequence.replace(&quot;-&quot;, &quot;&quot;).replace(&quot;N&quot;, &quot;&quot;)
+print(clean_sequence)   </textarea>
+            </div>
+            <div id="code-cell-128-output" class="output"></div>
+        </div>
+        <p>The <code>.split()</code> method is also particularly useful when dealing with FASTA files that have varying seperators.<br><br>In the example below, we split the sequence header on the <code>|</code> character, assigning each split section of the string to the element of a new list. We can then use indexing to retrieve just the accession number, for instance, from this list, allowing us to swiftly retrieve just the information we are looking for, from a string, using minimal code.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-129"># Parsing a FASTA header
+fasta_header = &quot;&gt;gi|123456|ref|NM_000546.5| tumor protein p53 (TP53), mRNA&quot;
+
+# Remove the &#x27;&gt;&#x27; and split by &#x27;|&#x27;
+header_parts = fasta_header[1:].split(&#x27;|&#x27;)
+print(f&quot;FASTA components: {header_parts, type(header_parts)}\n&quot;)
+
+# Extract specific information
+accession = header_parts[3]
+print(f&quot;Accession number: {accession}&quot;)</textarea>
+            </div>
+            <div id="code-cell-129-output" class="output"></div>
+        </div>
+        <h4>Other modification methods</h4><table class="markdown-table">
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>replace(old, new)</code></td>
+<td>Replace occurrences</td>
+<td><code>"hello".replace("l", "x")</code> → <code>"hexxo"</code></td>
+</tr>
+<tr>
+<td><code>strip()</code></td>
+<td>Remove whitespace from ends</td>
+<td><code>"  hello  ".strip()</code> → <code>"hello"</code></td>
+</tr>
+<tr>
+<td><code>lstrip()</code></td>
+<td>Remove whitespace from left</td>
+<td><code>"  hello  ".lstrip()</code> → <code>"hello  "</code></td>
+</tr>
+<tr>
+<td><code>rstrip()</code></td>
+<td>Remove whitespace from right</td>
+<td><code>"  hello  ".rstrip()</code> → <code>"  hello"</code></td>
+</tr>
+<tr>
+<td><code>removeprefix(prefix)</code></td>
+<td>Remove prefix if present</td>
+<td><code>"hello".removeprefix("he")</code> → <code>"llo"</code></td>
+</tr>
+<tr>
+<td><code>removesuffix(suffix)</code></td>
+<td>Remove suffix if present</td>
+<td><code>"hello".removesuffix("lo")</code> → <code>"hel"</code></td>
+</tr>
+</tbody>
+</table>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="string-methods">
+                <div class="module-body">
+                    <div class="module-section">
+                        
+        <div class="info-box practice-exercise-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                PRACTICE EXERCISE
+            </div>
+            <div class="box-content">
+                <p><strong>2.</strong></p>
+                <p>You&#x27;re cleaning up a messy dataset of gene names and sample IDs from different laboratories. Each lab has used different formatting conventions that need to be standardised. Using the provided data:<ol class="nested-list"><li>Remove any leading/trailing whitespace from the gene name</li><br><li>Convert the gene name to uppercase for consistency</li><br><li>Replace any hyphens (-) with underscores (_) in the gene names</li><br><li>For the sample ID, split it at the underscore and create a formatted ID using f-strings: f&quot;LAB-{lab_code}_SAMPLE-{number}&quot;</li><br><li>Create a final summary string that combines the cleaned gene name and formatted sample ID</li></ol></p>
+            </div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-130"># Messy data
+gene_name = &quot;  brca-1  &quot;          
+sample_id = &quot;gilestro_024&quot;</textarea>
+            </div>
+            <button id="run-code-cell-130" class="run-button">Run Code</button>
+            <div id="code-cell-130-output" class="output"></div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="converting-strings-into-other-data-structures">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Converting strings into other data structures</h3>
+                        <h4>Lists</h4><p>Converting a string to a <strong>list</strong> can be extremely useful when you need to manipulate individual characters or when you want to analyse the frequency of specific elements. The <code>split()</code> method is particularly powerful for parsing structured data, whilst the <code>list()</code> class converts each character into a separate list element.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-131"># Convert each character to a list element
+dna_sequence = &quot;ATCGATCG&quot;
+nucleotides = list(dna_sequence)
+print(f&quot;Individual nucleotides: {nucleotides}\n&quot;)
+
+# Split a string by delimiter (useful for CSV data)
+sample_data = &quot;sample1,control,25.6,positive&quot;
+data_fields = sample_data.split(&quot;,&quot;)
+print(f&quot;Data fields: {data_fields}&quot;)</textarea>
+            </div>
+            <div id="code-cell-131-output" class="output"></div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="converting-strings-into-other-data-structures">
+                <div class="module-body">
+                    <div class="module-section">
+                        
+        <div class="info-box practice-exercise-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                PRACTICE EXERCISE
+            </div>
+            <div class="box-content">
+                <p><strong>3.</strong></p>
+                <p>Convert the following amino acid sequence into a list and count how many hydrophobic amino acids (A, I, L, M, F, W, Y, V) it contains.</p>
+            </div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-132">protein_sequence = &quot;MKWVTFISLLFLFSSAYS&quot;
+hydrophobic = [&#x27;A&#x27;, &#x27;I&#x27;, &#x27;L&#x27;, &#x27;M&#x27;, &#x27;F&#x27;, &#x27;W&#x27;, &#x27;Y&#x27;, &#x27;V&#x27;]
+
+# Your code here
+</textarea>
+            </div>
+            <button id="run-code-cell-132" class="run-button">Run Code</button>
+            <div id="code-cell-132-output" class="output"></div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="useful--string--to--list--methods">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Useful `string`-to-`list` methods</h3>
+                        <table class="markdown-table">
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>list(string)</code></td>
+<td>Convert each character to list element</td>
+<td><code>list("ATCG")</code> → <code>['A', 'T', 'C', 'G']</code></td>
+</tr>
+<tr>
+<td><code>split()</code></td>
+<td>Split by whitespace</td>
+<td><code>"hello world".split()</code> → <code>['hello', 'world']</code></td>
+</tr>
+<tr>
+<td><code>split(delimiter)</code></td>
+<td>Split by specific character</td>
+<td><code>"A,T,C,G".split(",")</code> → <code>['A', 'T', 'C', 'G']</code></td>
+</tr>
+<tr>
+<td><code>splitlines()</code></td>
+<td>Split by line breaks</td>
+<td><code>"line1\nline2".splitlines()</code> → <code>['line1', 'line2']</code></td>
+</tr>
+<tr>
+<td><code>partition(sep)</code></td>
+<td>Split into 3 parts at first separator</td>
+<td><code>"a=b=c".partition("=")</code> → <code>('a', '=', 'b=c')</code></td>
+</tr>
+<tr>
+<td><code>rpartition(sep)</code></td>
+<td>Split into 3 parts at last separator</td>
+<td><code>"a=b=c".rpartition("=")</code> → <code>('a=b', '=', 'c')</code></td>
+</tr>
+</tbody>
+</table><h4>Tuples</h4><p>Converting strings to tuples follows similar principles to lists, but creates an <strong>immutable sequence</strong>. This can be particularly <em>useful when you need to ensure your sequence data remains unchanged</em> throughout your analysis, or when you want to use the sequence as a dictionary key (we will discuss dictionaries in Python Fundamentals 3).</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-133"># Convert string to tuple of characters
+codon = &quot;ATG&quot;
+codon_tuple = tuple(codon)
+print(f&quot;Codon as tuple: {codon_tuple}&quot;)
+print(f&quot;Data type: {type(codon_tuple)}&quot;)
+
+# Useful for creating immutable sequence identifiers
+sample_id = &quot;EXP_001_CTRL&quot;
+id_parts = tuple(sample_id.split(&quot;_&quot;))
+print(f&quot;Sample ID parts: {id_parts}&quot;)</textarea>
+            </div>
+            <div id="code-cell-133-output" class="output"></div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="useful--string--to--list--methods">
+                <div class="module-body">
+                    <div class="module-section">
+                        
+        <div class="info-box practice-exercise-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                PRACTICE EXERCISE
+            </div>
+            <div class="box-content">
+                <p><strong>4.</strong></p>
+                <p>Create a tuple from the following restriction enzyme recognition sequence and use it to check if it&#x27;s <em>palindromic</em>.<ol class="nested-list"><li>Covert the string to a list</li><br><li>Save the reversed list to a new variable</li><br><li>Check their equivalence</li></ol></p>
+            </div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-134">restriction_site = &quot;GAATTC&quot;
+
+# Your code here
+</textarea>
+            </div>
+            <button id="run-code-cell-134" class="run-button">Run Code</button>
+            <div id="code-cell-134-output" class="output"></div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="key-differences--lists--vs---tuples-from-strings">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Key differences: lists *vs.* tuples from strings</h3>
+                        <table class="markdown-table">
+<thead>
+<tr>
+<th>Aspect</th>
+<th>List</th>
+<th>Tuple</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Mutability</strong></td>
+<td>Mutable (can be changed)</td>
+<td>Immutable (cannot be changed)</td>
+</tr>
+<tr>
+<td><strong>Use Case</strong></td>
+<td>When you need to modify sequence</td>
+<td>When sequence should remain constant</td>
+</tr>
+<tr>
+<td><strong>Dictionary Key</strong></td>
+<td>Cannot be used as dict key</td>
+<td>Can be used as dict key</td>
+</tr>
+<tr>
+<td><strong>Memory</strong></td>
+<td>Uses more memory</td>
+<td>Uses less memory</td>
+</tr>
+<tr>
+<td><strong>Performance</strong></td>
+<td>Slightly slower access</td>
+<td>Faster access</td>
+</tr>
+<tr>
+<td><strong>Methods</strong></td>
+<td>Many methods (append, remove, etc.)</td>
+<td>Few methods (count, index)</td>
+</tr>
+</tbody>
+</table><h4>Summary
+
+In this section, we explored **strings** — ordered sequences of characters used to store and manipulate text in Python. We learned that strings can be created using **single** (`&#x27;...&#x27;`) or **double** (`&quot;...&quot;`) quotation marks, and that any type of character — alphabetical, grammatical, numerical *etc.* — can be represented as a string. We also saw how the `str()` class can convert other data types into their string form. The lesson introduced **escape sequences** (such as `\n` for a new line), **f-strings** for formatted output, and the concept of **ASCII values**, which map characters to numerical codes (e.g. `&#x27;A&#x27;` is `65`). Together, these tools allow us to store, display, and manipulate textual data effectively in Python.</h4>
+                    </div>
+                </div>
+            </div>
+            
+        
+        <div class="page-navigation">
+            <a href="./sets.html" class="nav-button prev">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
+                Previous
+            </a>
+            <a href="./comparison.html" class="nav-button next">
+                Next
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                </svg>
+            </a></div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div>© All materials are copyright scryptIQ 2025</div>
+            <div>Powered by Pyodide</div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../assets/main.js"></script>
+    
+    <!-- Pyodide Initialisation Script -->
+    <script>
+
+// Generalisable Pyodide Initialisation Script
+// Variables and state build up naturally as code blocks execute in order
+
+async function main() {
+    // Show loading message for all output elements
+    document.querySelectorAll(".output").forEach(el => {
+        el.textContent = "Loading Pyodide...";
+        el.classList.add("loading-message");
+    });
+    
+    try {
+        // Load Pyodide
+        console.log("Loading Pyodide...");
+        const pyodideStartTime = performance.now();
+        let pyodide = await loadPyodide();
+        const pyodideLoadTime = performance.now() - pyodideStartTime;
+        console.log(`Pyodide loaded in ${pyodideLoadTime.toFixed(2)}ms`);
+        
+        // Load required packages only if specified
+        const lessonPackages = window.LESSON_PACKAGES || [];
+        
+        if (lessonPackages.length > 0) {
+            console.log("Loading required Python packages...");
+            const packagesStartTime = performance.now();
+            
+            // Separate built-in packages from PyPI packages
+            const builtInPackages = lessonPackages.filter(pkg => 
+                ['numpy', 'scipy', 'matplotlib', 'pandas', 'scikit-learn', 'pillow', 'regex'].includes(pkg)
+            );
+            
+            const micropipPackages = lessonPackages.filter(pkg => !builtInPackages.includes(pkg));
+            
+            // Load built-in packages (fast)
+            if (builtInPackages.length > 0) {
+                await pyodide.loadPackage(builtInPackages);
+                console.log(`Loaded built-in packages: ${builtInPackages.join(', ')}`);
+            }
+            
+            // Install PyPI packages (slower)
+            if (micropipPackages.length > 0) {
+                await pyodide.loadPackage(['micropip']);
+                const micropip = pyodide.pyimport('micropip');
+                await micropip.install(micropipPackages);
+                console.log(`Installed PyPI packages: ${micropipPackages.join(', ')}`);
+            }
+            
+            const packagesLoadTime = performance.now() - packagesStartTime;
+            console.log(`Packages loaded in ${packagesLoadTime.toFixed(2)}ms`);
+            console.log(`Total initialisation time: ${(pyodideLoadTime + packagesLoadTime).toFixed(2)}ms`);
+        } else {
+            console.log("No packages to load for this lesson");
+            console.log(`Total initialisation time: ${pyodideLoadTime.toFixed(2)}ms`);
+        }
+
+        // Only set up basic Python environment - no pre-loaded variables
+        await pyodide.runPythonAsync(`
+            import sys
+            from io import StringIO
+        `);
+        
+        console.log("Pyodide loaded successfully");
+        
+        // Load remote files if URLs are specified
+        const lessonFiles = window.LESSON_FILES || [];
+        
+        if (lessonFiles.length > 0) {
+            try {
+                console.log(`Checking for ${lessonFiles.length} remote file(s) to load...`);
+                
+                // Build Python code to load all files dynamically
+                let pythonCode = `
+from pyodide.http import pyfetch
+import os
+
+# Create data directory if it doesn't exist
+os.makedirs('./data', exist_ok=True)
+`;
+                
+                // Add loading code for each file
+                for (const file of lessonFiles) {
+                    pythonCode += `
+# Load ${file.filename}
+try:
+    response = await pyfetch("${file.url}")
+    content = await response.string()
+    with open('./data/${file.filename}', 'w') as f:
+        f.write(content)
+    print("Loaded: ${file.filename}")
+except Exception as e:
+    print(f"Could not load ${file.filename}: {e}")
+`;
+                }
+                
+                await pyodide.runPythonAsync(pythonCode);
+                console.log("Remote files loaded successfully");
+            } catch (error) {
+                console.warn("Error loading remote files (continuing anyway):", error);
+            }
+        } else {
+            console.log("No remote files to load for this lesson");
+        }
+        
+        // Function to execute Python code and capture output
+        async function executePythonCode(code) {
+            try {
+                // Redirect Python stdout to capture print statements
+                await pyodide.runPythonAsync(`
+                    old_stdout = sys.stdout
+                    sys.stdout = mystdout = StringIO()
+                `);
+                
+                // Run the user code
+                const result = await pyodide.runPythonAsync(code);
+                
+                // Get the captured stdout
+                const stdout = await pyodide.runPythonAsync(`
+                    sys.stdout = old_stdout
+                    mystdout.getvalue()
+                `);
+                
+                // Combine stdout and result
+                let output = stdout;
+                if (result !== undefined && result !== null && String(result).trim() !== '') {
+                    if (output) output += "\n";
+                    output += String(result);
+                }
+                
+                return { success: true, output: output || "Code executed successfully (no output)" };
+                
+            } catch (error) {
+                return { success: false, output: "Error: " + error.message };
+            }
+        }
+        
+        // Execute all hidden code blocks first (for setup code like imports)
+        const hiddenCodeBlocks = Array.from(document.querySelectorAll('.hidden-code textarea'));
+        console.log(`Found ${hiddenCodeBlocks.length} hidden code blocks`);
+
+        for (const textarea of hiddenCodeBlocks) {
+            const code = textarea.value.trim();
+            if (!code) continue;
+            
+            console.log(`Executing hidden code block: ${textarea.id}`);
+            const result = await executePythonCode(code);
+            
+            if (!result.success) {
+                console.error(`Error in hidden code block ${textarea.id}:`, result.output);
+            } else {
+                console.log(`Hidden code block ${textarea.id} executed successfully`);
+            }
+        }
+
+        console.log("All hidden code blocks executed");
+        
+        // Get all fixed code blocks in document order
+        const fixedCodeBlocks = Array.from(document.querySelectorAll('.code-fixed textarea'));
+        
+        // Setup and execute fixed code blocks sequentially
+        for (const textarea of fixedCodeBlocks) {
+            const code = textarea.value.trim();
+            if (!code) continue;
+            
+            // Set up CodeMirror editor (read-only)
+            const editor = CodeMirror.fromTextArea(textarea, {
+                mode: "python",
+                theme: "pastel-on-dark",
+                lineNumbers: true,
+                readOnly: true,
+                viewportMargin: Infinity
+            });
+            
+            // Find corresponding output element
+            const outputId = textarea.id + '-output';
+            const outputElement = document.getElementById(outputId);
+            
+            if (outputElement) {
+                outputElement.textContent = "Running code...";
+                outputElement.classList.add("loading-message");
+                
+                // Execute the code (this maintains state for subsequent blocks)
+                const result = await executePythonCode(code);
+                
+                // Display the output - check if it's HTML
+                const trimmedOutput = result.output.trim();
+                console.log('Output length:', trimmedOutput.length);
+                console.log('Output starts with:', trimmedOutput.substring(0, 100));
+                
+                if (trimmedOutput.includes('<script') && trimmedOutput.includes('Plotly')) {
+                    // It's Plotly HTML output - extract just the body content
+                    console.log('Rendering as Plotly HTML');
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(result.output, 'text/html');
+                    // Clear the output element and append the body content
+                    outputElement.innerHTML = '';
+                    
+                    // Find and load external scripts first (like Plotly CDN)
+                    const externalScripts = Array.from(doc.querySelectorAll('script[src]'));
+                    const inlineScripts = Array.from(doc.querySelectorAll('script:not([src])'));
+                    
+                    // Append non-script content first
+                    Array.from(doc.body.children).forEach(child => {
+                        if (child.tagName !== 'SCRIPT') {
+                            outputElement.appendChild(child.cloneNode(true));
+                        }
+                    });
+                    
+                    // Load external scripts sequentially
+                    const loadScript = (src) => {
+                        return new Promise((resolve, reject) => {
+                            const script = document.createElement('script');
+                            script.src = src;
+                            script.onload = resolve;
+                            script.onerror = reject;
+                            document.head.appendChild(script);
+                        });
+                    };
+                    
+                    // Load all external scripts first
+                    Promise.all(externalScripts.map(s => loadScript(s.src)))
+                        .then(() => {
+                            console.log('External scripts loaded, executing inline scripts');
+                            // Now execute inline scripts
+                            inlineScripts.forEach(oldScript => {
+                                const newScript = document.createElement('script');
+                                newScript.textContent = oldScript.textContent;
+                                outputElement.appendChild(newScript);
+                            });
+                            console.log('Output element after processing:', outputElement.children.length, 'children');
+                        })
+                        .catch(err => {
+                            console.error('Failed to load external scripts:', err);
+                            outputElement.textContent = 'Error loading Plotly: ' + err.message;
+                        });
+                } else if (trimmedOutput.startsWith('<!DOCTYPE') || 
+                           trimmedOutput.startsWith('<html') ||
+                           trimmedOutput.startsWith('<div')) {
+                    console.log('Rendering as generic HTML');
+                    outputElement.innerHTML = result.output;
+                    console.log('Output element after innerHTML:', outputElement.children.length, 'children');
+                } else {
+                    console.log('Rendering as plain text');
+                    outputElement.textContent = result.output;
+                }
+                outputElement.classList.remove("loading-message");
+                if (result.success) {
+                    outputElement.classList.add("success-message");
+                    outputElement.classList.remove("error-message");
+                } else {
+                    outputElement.classList.add("error-message");
+                    outputElement.classList.remove("success-message");
+                }
+            }
+            
+            // Small delay to show progression
+            await new Promise(resolve => setTimeout(resolve, 100));
+        }
+        
+        // Setup all editable code blocks (but don't execute them)
+        document.querySelectorAll('.code-editor textarea').forEach((textarea) => {
+            // Set up CodeMirror editor (editable)
+            const editor = CodeMirror.fromTextArea(textarea, {
+                mode: "python",
+                theme: "pastel-on-dark",
+                lineNumbers: true,
+                viewportMargin: Infinity
+            });
+            
+            // Find corresponding run button and output element
+            const baseId = textarea.id;
+            const runButtonId = 'run-' + baseId;
+            const outputId = baseId + '-output';
+            
+            const runButton = document.getElementById(runButtonId);
+            const outputElement = document.getElementById(outputId);
+            
+            if (runButton && outputElement) {
+                // Set initial state
+                outputElement.textContent = "Ready to run code!";
+                outputElement.classList.remove("loading-message");
+                
+                runButton.addEventListener("click", async () => {
+                    const code = editor.getValue().trim();
+                    if (!code) {
+                        outputElement.textContent = "No code to run";
+                        return;
+                    }
+                    
+                    outputElement.textContent = "Running...";
+                    outputElement.classList.remove("error-message", "success-message");
+                    outputElement.classList.add("loading-message");
+                    
+                    // Execute the code (this also maintains state for future blocks)
+                    const result = await executePythonCode(code);
+                    
+                    // Display the output - check if it's HTML
+                    const trimmedOutput = result.output.trim();
+                    console.log('Output length:', trimmedOutput.length);
+                    console.log('Output starts with:', trimmedOutput.substring(0, 100));
+                    
+                    if (trimmedOutput.includes('<script') && trimmedOutput.includes('Plotly')) {
+                        // It's Plotly HTML output - extract just the body content
+                        console.log('Rendering as Plotly HTML');
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(result.output, 'text/html');
+                        // Clear the output element and append the body content
+                        outputElement.innerHTML = '';
+                        
+                        // Find and load external scripts first (like Plotly CDN)
+                        const externalScripts = Array.from(doc.querySelectorAll('script[src]'));
+                        const inlineScripts = Array.from(doc.querySelectorAll('script:not([src])'));
+                        
+                        // Append non-script content first
+                        Array.from(doc.body.children).forEach(child => {
+                            if (child.tagName !== 'SCRIPT') {
+                                outputElement.appendChild(child.cloneNode(true));
+                            }
+                        });
+                        
+                        // Load external scripts sequentially
+                        const loadScript = (src) => {
+                            return new Promise((resolve, reject) => {
+                                const script = document.createElement('script');
+                                script.src = src;
+                                script.onload = resolve;
+                                script.onerror = reject;
+                                document.head.appendChild(script);
+                            });
+                        };
+                        
+                        // Load all external scripts first
+                        Promise.all(externalScripts.map(s => loadScript(s.src)))
+                            .then(() => {
+                                console.log('External scripts loaded, executing inline scripts');
+                                // Now execute inline scripts
+                                inlineScripts.forEach(oldScript => {
+                                    const newScript = document.createElement('script');
+                                    newScript.textContent = oldScript.textContent;
+                                    outputElement.appendChild(newScript);
+                                });
+                                console.log('Output element after processing:', outputElement.children.length, 'children');
+                            })
+                            .catch(err => {
+                                console.error('Failed to load external scripts:', err);
+                                outputElement.textContent = 'Error loading Plotly: ' + err.message;
+                            });
+                    } else if (trimmedOutput.startsWith('<!DOCTYPE') || 
+                               trimmedOutput.startsWith('<html') ||
+                               trimmedOutput.startsWith('<div')) {
+                        outputElement.innerHTML = result.output;
+                    } else {
+                        outputElement.textContent = result.output;
+                    }
+                    outputElement.classList.remove("loading-message");
+                    if (result.success) {
+                        outputElement.classList.add("success-message");
+                        outputElement.classList.remove("error-message");
+                    } else {
+                        outputElement.classList.add("error-message");
+                        outputElement.classList.remove("success-message");
+                    }
+                });
+            }
+        });
+        
+        console.log("All code blocks initialised successfully");
+        
+    } catch (error) {
+        console.error("Failed to initialise Pyodide:", error);
+        document.querySelectorAll(".output").forEach(el => {
+            el.textContent = "Error loading Pyodide: " + error.message;
+            el.classList.remove("loading-message");
+            el.classList.add("error-message");
+        });
+    }
+}
+
+// Start the application when DOM is loaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', main);
+} else {
+    main();
+}
+    </script>
+</body>
+</html>
+    

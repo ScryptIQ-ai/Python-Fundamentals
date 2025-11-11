@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="../assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../assets/android-chrome-512x512.png">
+    
+    <!-- Core Stylesheets -->
+    <link rel="stylesheet" href="../assets/colours.css">
+    <link rel="stylesheet" href="../assets/shared-styles.css">
+    <link rel="stylesheet" href="../assets/module_card.css">
+    
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L2D - PF2 - Glossary</title>
+    
+    <style>
+        /* Override sidebar styling since we're not using it */
+        body {
+            background-color: var(--background) !important;
+            color: var(--text-primary);
+            margin: 0 !important;
+            padding: 0 !important;
+            min-height: 100vh;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: flex-start !important;
+            flex-direction: column !important;
+        }
+
+        .main-content {
+            width: 100% !important;
+            max-width: 1200px !important;
+            padding: 0 20px !important;
+            box-sizing: border-box !important;
+            margin: 0 auto !important;
+            position: relative !important;
+            left: auto !important;
+            right: auto !important;
+            transform: none !important;
+        }
+
+        /* Additional centering overrides */
+        #main-content {
+            margin-left: auto !important;
+            margin-right: auto !important;
+            text-align: left !important;
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo-container img {
+            width: clamp(60px, 10vw, 120px);
+            height: clamp(60px, 10vw, 120px);
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .glossary-entry {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .glossary-entry:last-child {
+            border-bottom: none;
+        }
+
+        .glossary-term {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .glossary-definition {
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .logo-container img {
+                height: 60px;
+            }
+            
+            .glossary-term {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="main-content" class="main-content">
+        <div class="top-navbar">
+            <div class="logo-container">
+                <h1 class="page-title">Python Fundamentals 2 - Glossary</h1>
+            </div>
+        </div>
+
+        <div class="module-card">
+            <div class="module-header">
+                Glossary <span class="module-tag">PF2</span>
+            </div>
+            <div class="module-body">
+                
+                <div class="glossary-entry">
+                    <div class="glossary-term">Aliases</div>
+                    <div class="glossary-definition">Another term for references; when multiple variables point to the same object in memory.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">ASCII</div>
+                    <div class="glossary-definition">Character encoding standard used by Python for string comparisons and lexicographic ordering. Numbers come before letters, and uppercase letters come before lowercase letters in ASCII order.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Case-sensitive</div>
+                    <div class="glossary-definition">Property where uppercase and lowercase letters are treated as different characters. Python strings are case-sensitive, so &quot;Gene&quot; and &quot;gene&quot; are considered different strings.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Concatenation</div>
+                    <div class="glossary-definition">Joining strings together using the `+` operator to create new strings. Commonly used for creating unique identifiers or combining text data.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Copy</div>
+                    <div class="glossary-definition">An independent duplicate of a list created using methods like `.copy()` or slice notation `[:]`. Changes made to a copy do not affect the original list, making it essential for preserving experimental data whilst performing modifications.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Data Structures</div>
+                    <div class="glossary-definition">Structures for storing multiple values together, such as lists, tuples, sets, and dictionaries.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Deep Copy</div>
+                    <div class="glossary-definition">A complete copy where nested mutable objects are also copied independently, requiring the `copy.deepcopy()` function from the copy module.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Element</div>
+                    <div class="glossary-definition">See **Item**.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Exclusive</div>
+                    <div class="glossary-definition">In slicing, the end index does not include the element at that position.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Explicit</div>
+                    <div class="glossary-definition">Clearly stated or defined code that shows exactly what is happening, following the Zen of Python principle &quot;Explicit is better than implicit&quot;. For example, using parentheses `()` when creating tuples even when they&#x27;re not strictly required.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Immutable</div>
+                    <div class="glossary-definition">A data type that cannot be changed after creation. When you &quot;modify&quot; an immutable object (such as a string or tuple), Python creates a completely new object rather than changing the original.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Implicit</div>
+                    <div class="glossary-definition">Code behaviour that is inferred or understood without being directly stated, such as creating tuples without parentheses using comma separation.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Inclusive</div>
+                    <div class="glossary-definition">In slicing, the start index includes the element at that position.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Index</div>
+                    <div class="glossary-definition">The position of an element in a list, starting from 0 for the first element.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Item</div>
+                    <div class="glossary-definition">An individual value stored within a data structure such as a list. Also referred to as an element.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Length</div>
+                    <div class="glossary-definition">The number of items/elements in a data structure, found using the `len()` function.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Lists</div>
+                    <div class="glossary-definition">One of the most common data structures in Python, providing a flexible structure that can hold mixed data types in square brackets `[]`, separated by commas.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Membership Testing</div>
+                    <div class="glossary-definition">Checking whether a specific value exists in a data structure using `in` and `not in` operators.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Method</div>
+                    <div class="glossary-definition">Special functions that belong to a specific data type in Python, called using dot notation after the object (e.g., `my_list.append(5)`). Methods are dependent on their object and cannot be called independently.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Mutable</div>
+                    <div class="glossary-definition">A data type that can be changed after creation. You can modify the contents directly without creating a new object. Lists are mutable in Python - you can add, remove, or change elements in place.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Negative Indexing</div>
+                    <div class="glossary-definition">A system for accessing elements from the end of a list, where -1 refers to the last element, -2 to second-to-last, etc. Particularly useful for accessing recent data without knowing the exact length.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Nested</div>
+                    <div class="glossary-definition">A data structure that contains other data structures of the same type within it. In the context of lists, a nested list is a list that contains other lists as its elements, creating a multi-dimensional structure similar to a table with rows and columns.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Object</div>
+                    <div class="glossary-definition">In Python, everything is an object - a container that holds data along with built-in capabilities (methods). Every piece of data you work with is an object.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Object-oriented Programming</div>
+                    <div class="glossary-definition">A programming paradigm where everything is treated as objects with data and methods. Python is described as object-oriented because all data types are objects that can be measured and manipulated.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Packing</div>
+                    <div class="glossary-definition">The process of combining multiple values into a single tuple, either explicitly with parentheses `(a, b, c)` or implicitly with comma separation `a, b, c`. Python automatically interprets comma-separated values as a tuple.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Reference</div>
+                    <div class="glossary-definition">An alias created when you assign one list variable to another using `=`. Both variables point to the same list object in memory, so modifying one affects the other. For example, if `backup_data = original_data`, then `backup_data` is a reference to `original_data`, not a separate list.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Set</div>
+                    <div class="glossary-definition">An unordered collection of unique elements in Python, created using curly braces `{}` or the `set()` function. Particularly useful for removing duplicates from data and performing mathematical operations to compare datasets.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Shallow Copy</div>
+                    <div class="glossary-definition">A copy that creates a new list, but the items in the new list are still references to the original items. If those items are mutable (like nested lists), changing them in the copy will affect the original.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Singleton</div>
+                    <div class="glossary-definition">A tuple containing only one element, which requires a trailing comma `(item,)` to distinguish it from parentheses used for grouping. Without the comma, Python interprets the parentheses as grouping rather than a tuple.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Slice</div>
+                    <div class="glossary-definition">A portion of a list extracted using slice notation, creating a new list containing the specified elements.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Slicing</div>
+                    <div class="glossary-definition">Extracting portions of lists using `[start:end]` notation to retrieve multiple elements at once. The start index is inclusive, the end index is exclusive.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">String</div>
+                    <div class="glossary-definition">A sequence of characters in Python, created using single or double quotation marks. Strings are immutable, case-sensitive, and can be indexed and sliced like lists.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Sub-string</div>
+                    <div class="glossary-definition">A smaller string contained within a larger string. Can be searched for using methods like `.find()` or the `in` operator.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Tuple</div>
+                    <div class="glossary-definition">An immutable sequence data type in Python that stores ordered collections of items in parentheses `()`, whose contents cannot be modified after creation. Particularly useful for storing data that should remain constant throughout analysis, such as experimental conditions or genetic codes.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Unique</div>
+                    <div class="glossary-definition">Property where each element can only appear once; duplicates are automatically removed. This is a fundamental characteristic of sets in Python.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Unpacking</div>
+                    <div class="glossary-definition">The process of extracting values from a tuple and assigning them to individual variables, making code more readable and allowing work with individual elements. For example, `x, y, z = coordinates` extracts three values from a coordinates tuple.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Unordered</div>
+                    <div class="glossary-definition">Collections that do not have a defined sequence or index; elements cannot be accessed by position. Sets are unordered collections, unlike lists and tuples which maintain element order.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Zero-based Indexing</div>
+                    <div class="glossary-definition">A system where the first element of a sequence is at position 0, used by Python for memory efficiency and continuation from other coding languages like C.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div>© All materials are copyright scryptIQ 2025</div>
+            <div>Learn to Discover</div>
+        </div>
+    </div>
+</body>
+</html>
+        
