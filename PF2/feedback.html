@@ -495,6 +495,10 @@ except Exception as e:
         });
         
         console.log("All code blocks initialised successfully");
+
+        // Set flag to indicate Pyodide is fully ready
+        window.pyodideReady = true;
+        console.log("Pyodide fully ready");
         
     } catch (error) {
         console.error("Failed to initialise Pyodide:", error);
