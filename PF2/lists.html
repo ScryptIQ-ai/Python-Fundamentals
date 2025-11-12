@@ -539,7 +539,17 @@ print(amino_acids.index(&#x27;Cys&#x27;))</textarea>
                 <div class="module-body">
                     <div class="module-section">
                         <h3>Slicing: accessing multiple specific elements</h3>
-                        <p>You can also retrieve more than one value from a <code>list</code> at a time, using a mechanism called <strong>slicing</strong>. To slice a list you use square brackets <code>[]</code> directly after the variable storing your list: <code>my_list[]</code>. Slicing extracts portions of lists using a <code>[start:end]</code> notation, where start and end are integers, separated by a colon.</p><p>IMPORTANT BOX<br><br>A slicing behaviour that is very important to note is:<br><ul class="nested-list"><li>A <strong><code>start</code></strong> index is <strong>inclusive</strong> (the value at that position is included).</li><br><li>An <strong><code>end</code></strong> index is <strong>exclusive</strong> (the value at that position is not included).</li></ul></p><p>The diagram below helps to visualise this for more clarity:</p><p><img src="./images/list-3.png" alt="Slicing Notation" class="notebook-image"></p>
+                        <p>You can also retrieve more than one value from a <code>list</code> at a time, using a mechanism called <strong>slicing</strong>. To slice a list you use square brackets <code>[]</code> directly after the variable storing your list: <code>my_list[]</code>. Slicing extracts portions of lists using a <code>[start:end]</code> notation, where start and end are integers, separated by a colon.</p>
+        <div class="info-box remember-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                REMEMBER
+            </div>
+            <div class="box-content">
+                <p>A slicing behaviour that is very important to note is:<br><ul class="nested-list"><li>A <strong><code>start</code></strong> index is <strong>inclusive</strong> (the value at that position is included).</li><br><li>An <strong><code>end</code></strong> index is <strong>exclusive</strong> (the value at that position is not included).</li></ul></p>
+            </div>
+        </div>
+        <p>The diagram below helps to visualise this for more clarity:</p><p><img src="./images/list-3.png" alt="Slicing Notation" class="notebook-image"></p>
         <div class="code-area">
             <div class="code-container code-fixed">
                 <textarea id="code-cell-21">my_list = [5, 21, 5, -1]</textarea>
@@ -717,7 +727,17 @@ print(amino_acids)</textarea>
                 <div class="module-body">
                     <div class="module-section">
                         <h3>Methods</h3>
-                        <p>As we briefly mentioned earlier, <strong>methods</strong> are special functions associateed with an object using <strong>dot notation</strong>. Each specific data type in Python will have its own suite of methods available to it. You can think of a method as a tool that is permanently attached to a particular type of object, such as a <em>list</em>, <em>string</em> or an <em>integer</em>.</p><p>IMPORTANT BOX<br><br>The key difference when comparing methods to functions is that <code>methods</code> are <em>dependent on their object</em>; they <strong>cannot be called independently</strong>. To call a method, we use dot notation <code>.</code> in Python, appending the method to the object using its name. I.e. <code>my_list.append(5)</code>, <code>my_list.index(3)</code>.</p><h4>Types of methods</h4><p>Methods can be separated into two general categories:<br><ol class="nested-list"><li>Operations that <em>return</em> a result <strong>without</strong> modifying the original object.</li><br><li>Operations that <strong>modify</strong> the original object, but <em>do not return</em> anything.</li></ol></p><h4>Adding to (and combining) lists</h4><p>One useful feature of <strong>lists</strong> is the ability to add new items to them. There are two common built-in Python methods for this <code>.append()</code> and <code>.insert()</code>. Both of these methods operate <em>in situ</em>, modifying the original <em>list</em>.<br><br>As with two strings, the <code>+</code> operator can also be used to add one list to another <em>via</em> a process called <strong>concatenation</strong>.</p><h4>`.append()`
+                        <p>As we briefly mentioned earlier, <strong>methods</strong> are special functions associateed with an object using <strong>dot notation</strong>. Each specific data type in Python will have its own suite of methods available to it. You can think of a method as a tool that is permanently attached to a particular type of object, such as a <em>list</em>, <em>string</em> or an <em>integer</em>.</p>
+        <div class="info-box remember-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                REMEMBER
+            </div>
+            <div class="box-content">
+                <p>The key difference when comparing methods to functions is that <code>methods</code> are <em>dependent on their object</em>; they <strong>cannot be called independently</strong>. To call a method, we use dot notation <code>.</code> in Python, appending the method to the object using its name. I.e. <code>my_list.append(5)</code>, <code>my_list.index(3)</code>.</p>
+            </div>
+        </div>
+        <h4>Types of methods</h4><p>Methods can be separated into two general categories:<br><ol class="nested-list"><li>Operations that <em>return</em> a result <strong>without</strong> modifying the original object.</li><br><li>Operations that <strong>modify</strong> the original object, but <em>do not return</em> anything.</li></ol></p><h4>Adding to (and combining) lists</h4><p>One useful feature of <strong>lists</strong> is the ability to add new items to them. There are two common built-in Python methods for this <code>.append()</code> and <code>.insert()</code>. Both of these methods operate <em>in situ</em>, modifying the original <em>list</em>.<br><br>As with two strings, the <code>+</code> operator can also be used to add one list to another <em>via</em> a process called <strong>concatenation</strong>.</p><h4>`.append()`
 
 The Python method `.append()` can be used to add items to the *end* of a `list`. If that item is a collection like another `list`, the entire collection is added as a *single element*, rather than merging its contents.</h4>
         <div class="info-box note-box">
