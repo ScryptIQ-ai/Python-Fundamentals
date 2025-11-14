@@ -103,19 +103,19 @@
                     <div class="learning-outcomes">
                         <div class="outcome-item">
                     <span class="outcome-number">1</span>
-                    <span class="outcome-text">Understand how to create and manipulate Python **lists**</span>
+                    <span class="outcome-text">Understand how to create and manipulate Python lists</span>
                 </div>
 <div class="outcome-item">
                     <span class="outcome-number">2</span>
-                    <span class="outcome-text">Apply **indexing** and **slicing** to access items inside a list</span>
+                    <span class="outcome-text">Apply indexing and slicing to access items inside a list</span>
                 </div>
 <div class="outcome-item">
                     <span class="outcome-number">3</span>
-                    <span class="outcome-text">Learn about **list methods** and how they can modify lists</span>
+                    <span class="outcome-text">Learn about list methods and how they can modify lists</span>
                 </div>
 <div class="outcome-item">
                     <span class="outcome-number">4</span>
-                    <span class="outcome-text">Work with **nested lists**</span>
+                    <span class="outcome-text">Work with nested lists</span>
                 </div>
                     </div>
                     <h3>Introduction</h3>
@@ -165,6 +165,16 @@
             </div>
             <div class="box-content">
                 <p>In additition to lists, the Python ecosystem includes external packages, and one such popular package that we will use throughout our course, is <strong>NumPy</strong>. NumPy provides its own data structure type known as the <strong>NumPy array</strong>. NumPy arrays are especially useful for mathematical operations, as they support fast, element-wise computations and are optimised for performance. Unlike regular Python lists, NumPy arrays store data more efficiently and in a fixed type, making them well suited to numerical applications. However, a lot of the concepts behind lists are applicable to NumPy arrays. We will explore the differences between NumPy arrays and lists later in the Data Handling module of the course, but they are worth mentioning at this stage, due to their importance in mathematical and scientific computing.</p>
+            </div>
+        </div>
+        
+        <div class="image-placeholder">
+            <div class="placeholder-content">
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="5,3 19,12 5,21"/>
+                </svg>
+                <p><strong>Video unavailable:</strong></p>
+                <p><small>No URL provided</small></p>
             </div>
         </div>
         
@@ -552,23 +562,18 @@ print(amino_acids.index(&#x27;Cys&#x27;))</textarea>
         <p>The diagram below helps to visualise this for more clarity:</p><p><img src="./images/list-3.png" alt="Slicing Notation" class="notebook-image"></p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-21">my_list = [5, 21, 5, -1]</textarea>
-            </div>
-            <div id="code-cell-21-output" class="output"></div>
-        </div>
-        
-        <div class="code-area">
-            <div class="code-container code-fixed">
-                <textarea id="code-cell-22">my_slice = my_list[1:3]
+                <textarea id="code-cell-21">my_list = [5, 21, 5, -1]
+
+my_slice = my_list[1:3]
 
 print(my_slice)</textarea>
             </div>
-            <div id="code-cell-22-output" class="output"></div>
+            <div id="code-cell-21-output" class="output"></div>
         </div>
         <p>If we want to retrieve all the values <em>from</em> the first index, it can be written in either of two ways: <code>my_list[0:3]</code> or <code>my_list[:3]</code> with the latter being more commonly used. The start index (<code>0</code>, in this case) is done away with entirely, with Python&#x27;s interpreter implicitly treating this as meaning &#x27;all elements up to&#x27; to the stop index.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-23"># Including the zero when slicing from the first index is not necessary
+                <textarea id="code-cell-22"># Including the zero when slicing from the first index is not necessary
 
 # With zero
 print(my_list[0:3])
@@ -579,31 +584,31 @@ print(my_list[:3])
 # They return the same slice
 print(my_list[0:3] == my_list[:3])</textarea>
             </div>
-            <div id="code-cell-23-output" class="output"></div>
+            <div id="code-cell-22-output" class="output"></div>
         </div>
         <p>The same is also true in reverse, when you wish to return all the values from a certain point in your list, all the way to end of that list. Namely, the start index is given, and the end value is left out.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-24"># Slicing to the end
+                <textarea id="code-cell-23"># Slicing to the end
 print(my_list[2:])</textarea>
             </div>
-            <div id="code-cell-24-output" class="output"></div>
+            <div id="code-cell-23-output" class="output"></div>
         </div>
         <p>These principles can also be applied to negative indices, resulting in negative slicing, as follows:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-25"># Combining with negative slicing can produce the same result
+                <textarea id="code-cell-24"># Combining with negative slicing can produce the same result
 print(my_list[-2:])</textarea>
             </div>
-            <div id="code-cell-25-output" class="output"></div>
+            <div id="code-cell-24-output" class="output"></div>
         </div>
         <p>In the code cell below, feel free to experiment with slicing into lists.</p>
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-26"># Have a play with slicing lists here</textarea>
+                <textarea id="code-cell-25"># Have a play with slicing lists here</textarea>
             </div>
-            <button id="run-code-cell-26" class="run-button">Run Code</button>
-            <div id="code-cell-26-output" class="output"></div>
+            <button id="run-code-cell-25" class="run-button">Run Code</button>
+            <div id="code-cell-25-output" class="output"></div>
         </div>
         
         <div class="info-box note-box">
@@ -618,29 +623,29 @@ print(my_list[-2:])</textarea>
         
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-27">my_slice = slice(1, 3) # Retrieves items 2 and 3 in the list. Index 3 is exclusive, and not included in the slice.
+                <textarea id="code-cell-26">my_slice = slice(1, 3) # Retrieves items 2 and 3 in the list. Index 3 is exclusive, and not included in the slice.
 
 print(my_list[my_slice])</textarea>
             </div>
-            <div id="code-cell-27-output" class="output"></div>
+            <div id="code-cell-26-output" class="output"></div>
         </div>
         <p>As well as a start and end index (given as integers), you can also give it a third input argument: <code>step</code>. This directs <code>slice()</code> to skip values, only returning every 2 or 3 values in your slice, for example.<br><br>Let&#x27;s create a new list, with a few more items in it, and slice into this using the <code>slice()</code> function, to obtain the first 6 items in this list:</p>
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-28">my_2nd_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+                <textarea id="code-cell-27">my_2nd_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 my_2nd_list[slice(0, 6)]</textarea>
             </div>
-            <button id="run-code-cell-28" class="run-button">Run Code</button>
-            <div id="code-cell-28-output" class="output"></div>
+            <button id="run-code-cell-27" class="run-button">Run Code</button>
+            <div id="code-cell-27-output" class="output"></div>
         </div>
         <p>And now run the cell below, which operates over the same 6 elements, but skips every second item from its returned output, by the provision of <code>2</code> as the <strong>step</strong> argument:</p>
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-29">my_2nd_list[slice(0, 6, 2)]</textarea>
+                <textarea id="code-cell-28">my_2nd_list[slice(0, 6, 2)]</textarea>
             </div>
-            <button id="run-code-cell-29" class="run-button">Run Code</button>
-            <div id="code-cell-29-output" class="output"></div>
+            <button id="run-code-cell-28" class="run-button">Run Code</button>
+            <div id="code-cell-28-output" class="output"></div>
         </div>
         
                     </div>
@@ -664,12 +669,12 @@ my_2nd_list[slice(0, 6)]</textarea>
         
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-30"># Complete the PRACTICE EXERCISE here
+                <textarea id="code-cell-29"># Complete the PRACTICE EXERCISE here
 
 growth_data = [0.1, 0.2, 0.4, 0.8, 1.6, 3.2, 6.4, 12.8, 25.6, 51.2]</textarea>
             </div>
-            <button id="run-code-cell-30" class="run-button">Run Code</button>
-            <div id="code-cell-30-output" class="output"></div>
+            <button id="run-code-cell-29" class="run-button">Run Code</button>
+            <div id="code-cell-29-output" class="output"></div>
         </div>
         
                     </div>
@@ -687,13 +692,13 @@ growth_data = [0.1, 0.2, 0.4, 0.8, 1.6, 3.2, 6.4, 12.8, 25.6, 51.2]</textarea>
                 KEY TERMS
             </div>
             <div class="box-content">
-                <p><strong>mutable</strong>: a data type that can be changed after creation. You can modify the contents directly without creating a new object.</p>
+                <p><strong>Mutable</strong>: a data type that can be changed after creation. You can modify the contents directly without creating a new object.</p>
             </div>
         </div>
         <p>We can reassign an item in a <code>list</code> through indexing, and casting a new value using hte assignment operator: <code>=</code></p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-31"># We notice an item is incorrect
+                <textarea id="code-cell-30"># We notice an item is incorrect
 
 amino_acids = [&#x27;Ala&#x27;, &#x27;Gly&#x27;, &#x27;Va&#x27;]
 
@@ -703,20 +708,20 @@ amino_acids[2] = &#x27;Val&#x27;
 
 print(amino_acids)</textarea>
             </div>
-            <div id="code-cell-31-output" class="output"></div>
+            <div id="code-cell-30-output" class="output"></div>
         </div>
         <p>It is also possible to perform the reassignment over a slice containing any number of values. The replacement values must be of the <strong>same length</strong> as the slice they are replacing.</p>
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-32"># We&#x27;ve decided to change the last two amino acids in our list
+                <textarea id="code-cell-31"># We&#x27;ve decided to change the last two amino acids in our list
 # Have a play with this one
 
 amino_acids[1:] = [&#x27;Pro&#x27;, &#x27;Met&#x27;]
 
 print(amino_acids)</textarea>
             </div>
-            <button id="run-code-cell-32" class="run-button">Run Code</button>
-            <div id="code-cell-32-output" class="output"></div>
+            <button id="run-code-cell-31" class="run-button">Run Code</button>
+            <div id="code-cell-31-output" class="output"></div>
         </div>
         <h4>Mutability of list members</h4><p>As discussed at the start of this lesson, <strong>lists</strong> can contain any Python object. Each object will have a data type, and a useful feature of Python lists is that they can contain <strong>multiple data types</strong> within a single list. As a result, each type will be subject to its own properties and mutability.</p>
                     </div>
@@ -737,9 +742,7 @@ print(amino_acids)</textarea>
                 <p>The key difference when comparing methods to functions is that <code>methods</code> are <em>dependent on their object</em>; they <strong>cannot be called independently</strong>. To call a method, we use dot notation <code>.</code> in Python, appending the method to the object using its name. I.e. <code>my_list.append(5)</code>, <code>my_list.index(3)</code>.</p>
             </div>
         </div>
-        <h4>Types of methods</h4><p>Methods can be separated into two general categories:<br><ol class="nested-list"><li>Operations that <em>return</em> a result <strong>without</strong> modifying the original object.</li><br><li>Operations that <strong>modify</strong> the original object, but <em>do not return</em> anything.</li></ol></p><h4>Adding to (and combining) lists</h4><p>One useful feature of <strong>lists</strong> is the ability to add new items to them. There are two common built-in Python methods for this <code>.append()</code> and <code>.insert()</code>. Both of these methods operate <em>in situ</em>, modifying the original <em>list</em>.<br><br>As with two strings, the <code>+</code> operator can also be used to add one list to another <em>via</em> a process called <strong>concatenation</strong>.</p><h4>`.append()`
-
-The Python method `.append()` can be used to add items to the *end* of a `list`. If that item is a collection like another `list`, the entire collection is added as a *single element*, rather than merging its contents.</h4>
+        <h4>Types of methods</h4><p>Methods can be separated into two general categories:<br><ol class="nested-list"><li>Operations that <em>return</em> a result <strong>without</strong> modifying the original object.</li><br><li>Operations that <strong>modify</strong> the original object, but <em>do not return</em> anything.</li></ol></p><h4>Adding to (and combining) lists</h4><p>One useful feature of <strong>lists</strong> is the ability to add new items to them. There are two common built-in Python methods for this <code>.append()</code> and <code>.insert()</code>. Both of these methods operate <em>in situ</em>, modifying the original <em>list</em>.<br><br>As with two strings, the <code>+</code> operator can also be used to add one list to another <em>via</em> a process called <strong>concatenation</strong>.</p><h4>.append()</h4><p>The Python method <code>.append()</code> can be used to add items to the <em>end</em> of a <code>list</code>. If that item is a collection like another <code>list</code>, the entire collection is added as a <em>single element</em>, rather than merging its contents.</p>
         <div class="info-box note-box">
             <div class="box-title">
                 <span class="box-icon"></span>
@@ -752,7 +755,7 @@ The Python method `.append()` can be used to add items to the *end* of a `list`.
         
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-33">amino_acids = [&#x27;Ala&#x27;, &#x27;Gly&#x27;, &#x27;Val&#x27;, &#x27;Leu&#x27;, &#x27;Ile&#x27;]
+                <textarea id="code-cell-32">amino_acids = [&#x27;Ala&#x27;, &#x27;Gly&#x27;, &#x27;Val&#x27;, &#x27;Leu&#x27;, &#x27;Ile&#x27;]
 
 amino_acids.append(&#x27;Met&#x27;)
 
@@ -762,21 +765,21 @@ amino_acids.append([&#x27;Phe&#x27;, &#x27;Trp&#x27;])
 
 print(&quot;Appending a list using .append():&quot;, amino_acids)</textarea>
             </div>
-            <div id="code-cell-33-output" class="output"></div>
+            <div id="code-cell-32-output" class="output"></div>
         </div>
         <p>The method <code>.insert()</code> gives you more control than <code>.append()</code>, allowing you to dictate the index position you want the new value to be. Due to this, the method takes two arguments, the first being the index, and the second the value.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-34">amino_acids.insert(2, &#x27;new AA at index 2&#x27;)
+                <textarea id="code-cell-33">amino_acids.insert(2, &#x27;new AA at index 2&#x27;)
 
 print(amino_acids)</textarea>
             </div>
-            <div id="code-cell-34-output" class="output"></div>
+            <div id="code-cell-33-output" class="output"></div>
         </div>
         <p>Adding a new item one at a time for multiple items can be time consuming and inefficient. If you have lots of new data, it is most efficient to add all the new data in one go, combining one list with another, or <strong>concatenating</strong> them. For this you can use the <code>+</code> operator, which will return a new object unlike the previous methods.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-35">amino_acids_2 = [&#x27;Met&#x27;, &#x27;Phe&#x27;, &#x27;Trp&#x27;, &#x27;Pro&#x27;, &#x27;Ser&#x27;]
+                <textarea id="code-cell-34">amino_acids_2 = [&#x27;Met&#x27;, &#x27;Phe&#x27;, &#x27;Trp&#x27;, &#x27;Pro&#x27;, &#x27;Ser&#x27;]
 
 new_amino_acids = amino_acids + amino_acids_2 # Concatenate two lists using `+`.
 
@@ -784,7 +787,7 @@ print(&quot;Original list:&quot;, amino_acids)
 
 print(&quot;Concatenated lists:&quot;, new_amino_acids)</textarea>
             </div>
-            <div id="code-cell-35-output" class="output"></div>
+            <div id="code-cell-34-output" class="output"></div>
         </div>
         
                     </div>
@@ -808,10 +811,10 @@ print(&quot;Concatenated lists:&quot;, new_amino_acids)</textarea>
         
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-36">morning_behaviours = [&#x27;foraging&#x27;, &#x27;grooming&#x27;, &#x27;resting&#x27;]</textarea>
+                <textarea id="code-cell-35">morning_behaviours = [&#x27;foraging&#x27;, &#x27;grooming&#x27;, &#x27;resting&#x27;]</textarea>
             </div>
-            <button id="run-code-cell-36" class="run-button">Run Code</button>
-            <div id="code-cell-36-output" class="output"></div>
+            <button id="run-code-cell-35" class="run-button">Run Code</button>
+            <div id="code-cell-35-output" class="output"></div>
         </div>
         
                     </div>
@@ -825,18 +828,18 @@ print(&quot;Concatenated lists:&quot;, new_amino_acids)</textarea>
                         <p>It is also necessary to remove items from a list, from time to time. For example you might want to drop a feature from your dataset. As with <code>.append()</code>, we have two options depending on our needs: <code>.remove()</code> and <code>.pop()</code>. Both operate <em>in situ</em>, modifying the <code>list</code>.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-37"># Let&#x27;s remove those items we added that don&#x27;t fit the theme
+                <textarea id="code-cell-36"># Let&#x27;s remove those items we added that don&#x27;t fit the theme
 
 amino_acids.remove(&#x27;new AA at index 2&#x27;)
 
 print(amino_acids)</textarea>
             </div>
-            <div id="code-cell-37-output" class="output"></div>
+            <div id="code-cell-36-output" class="output"></div>
         </div>
         <p>The method <code>.pop()</code> does the same, but instead of only acting <em>in situ</em> it will also return the value too. Rather than giving the value, <code>.pop()</code> takes the index position.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-38"># Store the popped value in a new variable
+                <textarea id="code-cell-37"># Store the popped value in a new variable
 
 unwanted_item = amino_acids.pop(-1)
 
@@ -844,18 +847,18 @@ print(&quot;Item that is popped:&quot;, unwanted_item)
 
 print(&quot;Original list:&quot;, amino_acids)</textarea>
             </div>
-            <div id="code-cell-38-output" class="output"></div>
+            <div id="code-cell-37-output" class="output"></div>
         </div>
         <p>There is also a third method to remove an item <a href="https://docs.python.org/3/tutorial/datastructures.html#the-del-statement"><code>DEL</code></a>. Although it is not commonly used.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-39">print(&quot;Before:&quot;, amino_acids)
+                <textarea id="code-cell-38">print(&quot;Before:&quot;, amino_acids)
 
 del amino_acids[0]
 
 print(&quot;After:&quot;, amino_acids)</textarea>
             </div>
-            <div id="code-cell-39-output" class="output"></div>
+            <div id="code-cell-38-output" class="output"></div>
         </div>
         
                     </div>
@@ -879,10 +882,10 @@ print(&quot;After:&quot;, amino_acids)</textarea>
         
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-40"># Write your code here</textarea>
+                <textarea id="code-cell-39"># Write your code here</textarea>
             </div>
-            <button id="run-code-cell-40" class="run-button">Run Code</button>
-            <div id="code-cell-40-output" class="output"></div>
+            <button id="run-code-cell-39" class="run-button">Run Code</button>
+            <div id="code-cell-39-output" class="output"></div>
         </div>
         
                     </div>
@@ -896,7 +899,7 @@ print(&quot;After:&quot;, amino_acids)</textarea>
                         <p>Python&#x27;s <code>list</code> type has many helpful methods beyond just adding and removing items. Below are some other commonly used methods used on lists:</p><p><strong>Count specific values:</strong> The <code>.count()</code> method tells us how many times a particular value appears in a list. This is particularly useful for analysing the frequency of an item in your data.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-41"># Count frequency of PCR results
+                <textarea id="code-cell-40"># Count frequency of PCR results
 pcr_results = [&#x27;positive&#x27;, &#x27;negative&#x27;, &#x27;positive&#x27;, &#x27;positive&#x27;, &#x27;negative&#x27;, &#x27;positive&#x27;]
 
 positive_count = pcr_results.count(&#x27;positive&#x27;)
@@ -905,12 +908,12 @@ negative_count = pcr_results.count(&#x27;negative&#x27;)
 print(f&#x27;Positive results: {positive_count}&#x27;)
 print(f&#x27;Negative results: {negative_count}&#x27;)</textarea>
             </div>
-            <div id="code-cell-41-output" class="output"></div>
+            <div id="code-cell-40-output" class="output"></div>
         </div>
         <p><strong>Extending lists:</strong> The <code>.extend()</code> method adds all items from one list to another, and retains the item designation in the destination list. For instance, unlike <code>.append()</code> which adds the entire list as a single element, using <code>.extend()</code> adds all items to the list <em>as individual items</em>. And unlike using the <code>+</code> operator, <code>.extend()</code>, modifies the original list <em>in situ</em>.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-42">morning_samples = [&#x27;A1&#x27;, &#x27;A2&#x27;, &#x27;A3&#x27;]
+                <textarea id="code-cell-41">morning_samples = [&#x27;A1&#x27;, &#x27;A2&#x27;, &#x27;A3&#x27;]
 evening_samples = [&#x27;B1&#x27;, &#x27;B2&#x27;, &#x27;B3&#x27;]
 
 # Create a copy and extend it
@@ -918,12 +921,12 @@ morning_samples.extend(evening_samples)
 
 print(&#x27;All samples:&#x27;, morning_samples)</textarea>
             </div>
-            <div id="code-cell-42-output" class="output"></div>
+            <div id="code-cell-41-output" class="output"></div>
         </div>
         <p><strong>Sorting lists:</strong> The <code>.sort()</code> method sorts items in <em>ascending</em> order, by default. Use the optional argument and set its value to <code>reverse=True</code>, for <em>descending</em> order.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-43">concentrations = [2.5, 1.2, 4.8, 3.1, 0.9, 5.2]  
+                <textarea id="code-cell-42">concentrations = [2.5, 1.2, 4.8, 3.1, 0.9, 5.2]  
 
 # Sort ascending (lowest to highest)
 concentrations.sort()
@@ -933,15 +936,15 @@ print(&#x27;Ascending:&#x27;, concentrations)
 concentrations.sort(reverse=True)
 print(&#x27;Descending:&#x27;, concentrations)</textarea>
             </div>
-            <div id="code-cell-43-output" class="output"></div>
+            <div id="code-cell-42-output" class="output"></div>
         </div>
         
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-44"># Practice: Try using .count(), .extend(), and .sort() with your own data</textarea>
+                <textarea id="code-cell-43"># Practice: Try using .count(), .extend(), and .sort() with your own data</textarea>
             </div>
-            <button id="run-code-cell-44" class="run-button">Run Code</button>
-            <div id="code-cell-44-output" class="output"></div>
+            <button id="run-code-cell-43" class="run-button">Run Code</button>
+            <div id="code-cell-43-output" class="output"></div>
         </div>
         
                     </div>
@@ -965,10 +968,10 @@ print(&#x27;Descending:&#x27;, concentrations)</textarea>
         
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-45">enzyme_activities = [92, 78, 85, 91, 85, 73, 88, 85, 79, 94]</textarea>
+                <textarea id="code-cell-44">enzyme_activities = [92, 78, 85, 91, 85, 73, 88, 85, 79, 94]</textarea>
             </div>
-            <button id="run-code-cell-45" class="run-button">Run Code</button>
-            <div id="code-cell-45-output" class="output"></div>
+            <button id="run-code-cell-44" class="run-button">Run Code</button>
+            <div id="code-cell-44-output" class="output"></div>
         </div>
         
                     </div>
@@ -982,18 +985,18 @@ print(&#x27;Descending:&#x27;, concentrations)</textarea>
                         <p>Often we need to check whether a specific value exists in our dataset. Python provides the <strong>membership operator keyword</strong> <code>in</code> for membership testing, which returns the boolean <code>True</code> if a value is found in the list, and <code>False</code> if not.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-46">genes_of_interest = [&#x27;BRCA1&#x27;, &#x27;TP53&#x27;, &#x27;EGFR&#x27;, &#x27;MYC&#x27;, &#x27;KRAS&#x27;]
+                <textarea id="code-cell-45">genes_of_interest = [&#x27;BRCA1&#x27;, &#x27;TP53&#x27;, &#x27;EGFR&#x27;, &#x27;MYC&#x27;, &#x27;KRAS&#x27;]
 
 # Check if specific genes are in our list
 print(&#x27;BRCA1 in list:&#x27;, &#x27;BRCA1&#x27; in genes_of_interest)
 print(&#x27;BRAF in list:&#x27;, &#x27;BRAF&#x27; in genes_of_interest)</textarea>
             </div>
-            <div id="code-cell-46-output" class="output"></div>
+            <div id="code-cell-45-output" class="output"></div>
         </div>
         <p>We can also use <code>not in</code> to check if a value is <strong>not</strong> present in the list:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-47"># Check what&#x27;s missing from our gene panel
+                <textarea id="code-cell-46"># Check what&#x27;s missing from our gene panel
 target_genes = [&#x27;BRCA1&#x27;, &#x27;BRCA2&#x27;, &#x27;TP53&#x27;]
 
 if &#x27;BRCA2&#x27; not in genes_of_interest:
@@ -1001,12 +1004,12 @@ if &#x27;BRCA2&#x27; not in genes_of_interest:
 else:
     print(&#x27;BRCA2 is included in our gene panel&#x27;)</textarea>
             </div>
-            <div id="code-cell-47-output" class="output"></div>
+            <div id="code-cell-46-output" class="output"></div>
         </div>
         <p>Membership testing also works with conditional statements, making it easy to create decision logic based on your data:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-48"># Checking experimental conditions
+                <textarea id="code-cell-47"># Checking experimental conditions
 valid_conditions = [&#x27;control&#x27;, &#x27;treated&#x27;, &#x27;inhibitor&#x27;, &#x27;activator&#x27;]
 current_condition = &#x27;treated&#x27;
 
@@ -1015,7 +1018,7 @@ if current_condition in valid_conditions:
 else:
     print(f&#x27;Error: {current_condition} is not a valid experimental condition&#x27;)</textarea>
             </div>
-            <div id="code-cell-48-output" class="output"></div>
+            <div id="code-cell-47-output" class="output"></div>
         </div>
         
         <div class="info-box note-box">
@@ -1030,7 +1033,7 @@ else:
         
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-49"># Practice: Given a list of randomly generated peptide sequences, `peptides`. Determine whether or not `IVADH`, &#x27;NNVSR&#x27;, &#x27;CMGFT&#x27; exists
+                <textarea id="code-cell-48"># Practice: Given a list of randomly generated peptide sequences, `peptides`. Determine whether or not `IVADH`, &#x27;NNVSR&#x27;, &#x27;CMGFT&#x27; exists
 # Try combining your test with finding the index of the value
 
 peptides = [
@@ -1042,8 +1045,8 @@ peptides = [
   &#x27;MDKHQ&#x27;, &#x27;YHKTQ&#x27;, &#x27;HVRWD&#x27;, &#x27;YNFQW&#x27;, &#x27;MGCLY&#x27;, &#x27;CQCCL&#x27;, &#x27;ACQCL&#x27;
   ]</textarea>
             </div>
-            <button id="run-code-cell-49" class="run-button">Run Code</button>
-            <div id="code-cell-49-output" class="output"></div>
+            <button id="run-code-cell-48" class="run-button">Run Code</button>
+            <div id="code-cell-48-output" class="output"></div>
         </div>
         
                     </div>
@@ -1061,15 +1064,13 @@ peptides = [
                 KEY TERMS
             </div>
             <div class="box-content">
-                <p><strong>reference</strong>: An alias created when you assign one list variable to another using <code>=</code>. Both variables point to the same list object in memory, so modifying one affects the other. For example, if <code>backup_data = original_data</code>, then <code>backup_data</code> is a reference to <code>original_data</code>, not a separate list.<br><br><strong>copy</strong>: An independent duplicate of a list created using methods like <code>.copy()</code> or slice notation <code>[:]</code>. Changes made to a copy do not affect the original list, making it essential for preserving experimental data whilst performing modifications. For example, <code>treated_samples = control_samples.copy()</code> creates a true copy that can be modified independently.</p>
+                <p><strong>Reference</strong>: An alias created when you assign one list variable to another using <code>=</code>. Both variables point to the same list object in memory, so modifying one affects the other. For example, if <code>backup_data = original_data</code>, then <code>backup_data</code> is a reference to <code>original_data</code>, not a separate list.<br><br><strong>Copy</strong>: An independent duplicate of a list created using methods like <code>.copy()</code> or slice notation <code>[:]</code>. Changes made to a copy do not affect the original list, making it essential for preserving experimental data whilst performing modifications. For example, <code>treated_samples = control_samples.copy()</code> creates a true copy that can be modified independently.</p>
             </div>
         </div>
-        <h4>References (Aliases)
-
-When you assign one list variable to another using `=`, you&#x27;re creating a reference, not a copy. Both variables point to the same list in memory:</h4>
+        <h4>References (Aliases)</h4><p>When you assign one list variable to another using <code>=</code>, you&#x27;re creating a reference, not a copy. Both variables point to the same list in memory:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-50">original_samples = [&#x27;Sample_A&#x27;, &#x27;Sample_B&#x27;, &#x27;Sample_C&#x27;]
+                <textarea id="code-cell-49">original_samples = [&#x27;Sample_A&#x27;, &#x27;Sample_B&#x27;, &#x27;Sample_C&#x27;]
 
 # This creates a reference, not a copy
 samples_alias = original_samples
@@ -1078,26 +1079,24 @@ print(&#x27;Original:&#x27;, original_samples)
 print(&#x27;Alias:&#x27;, samples_alias)
 print(&#x27;Are they the same object?&#x27;, original_samples is samples_alias)</textarea>
             </div>
-            <div id="code-cell-50-output" class="output"></div>
+            <div id="code-cell-49-output" class="output"></div>
         </div>
         <p>If we were to modify a new reference, the original will also be changed.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-51"># Modifying the alias affects the original!
+                <textarea id="code-cell-50"># Modifying the alias affects the original!
 samples_alias.append(&#x27;Sample_D&#x27;)
 
 print(&#x27;After modifying alias:&#x27;)
 print(&#x27;Original:&#x27;, original_samples)
 print(&#x27;Alias:&#x27;, samples_alias)</textarea>
             </div>
-            <div id="code-cell-51-output" class="output"></div>
+            <div id="code-cell-50-output" class="output"></div>
         </div>
-        <h4>Creating True Copies
-
-To preserve your original data, you need to create a proper copy. Python provides two main methods:</h4>
+        <h4>Creating True Copies</h4><p>To preserve your original data, you need to create a proper copy. Python provides two main methods:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-52">control_data = [12.5, 13.1, 12.8, 13.0, 12.9]
+                <textarea id="code-cell-51">control_data = [12.5, 13.1, 12.8, 13.0, 12.9]
 
 # Method 1: Using .copy()
 treatment_data = control_data.copy()
@@ -1110,27 +1109,27 @@ print(&#x27;Copy method:&#x27;, treatment_data)
 print(&#x27;Slice method:&#x27;, backup_data)
 print(&#x27;Are they the same object?&#x27;, control_data is treatment_data)</textarea>
             </div>
-            <div id="code-cell-52-output" class="output"></div>
+            <div id="code-cell-51-output" class="output"></div>
         </div>
         <p>Now modifications to one list won&#x27;t affect the others:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-53"># Modify the copy - original stays unchanged
+                <textarea id="code-cell-52"># Modify the copy - original stays unchanged
 treatment_data[0] = 15.2  # Simulate treatment effect
 
 print(&#x27;After modifying copy:&#x27;)
 print(&#x27;Original control:&#x27;, control_data)
 print(&#x27;Modified treatment:&#x27;, treatment_data)</textarea>
             </div>
-            <div id="code-cell-53-output" class="output"></div>
+            <div id="code-cell-52-output" class="output"></div>
         </div>
         
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-54"># Practice: Create references and copies to understand the difference</textarea>
+                <textarea id="code-cell-53"># Practice: Create references and copies to understand the difference</textarea>
             </div>
-            <button id="run-code-cell-54" class="run-button">Run Code</button>
-            <div id="code-cell-54-output" class="output"></div>
+            <button id="run-code-cell-53" class="run-button">Run Code</button>
+            <div id="code-cell-53-output" class="output"></div>
         </div>
         
         <div class="info-box note-box">
@@ -1161,12 +1160,10 @@ print(&#x27;Modified treatment:&#x27;, treatment_data)</textarea>
                 <p><strong>Nested</strong>: A data structure that contains other data structures of the same type within it. In the context of lists, a nested list is a list that contains other lists as its elements, creating a multi-dimensional structure similar to a table with rows and columns. The diagram below helps to visualise this concept.</p>
             </div>
         </div>
-        <p><img src="./images/list-4.png" alt="Nested List" class="notebook-image"></p><h4>Creating nested lists
-
-Think of nested lists as being like a table with rows and columns, where each row is a separate list:</h4>
+        <p><img src="./images/list-4.png" alt="Nested List" class="notebook-image"></p><h4>Creating nested lists</h4><p>Think of nested lists as being like a table with rows and columns, where each row is a separate list:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-55"># Experimental data: [sample_id, pH, temperature, growth_rate]
+                <textarea id="code-cell-54"># Experimental data: [sample_id, pH, temperature, growth_rate]
 experiment_data = [
     [&#x27;Sample_1&#x27;, 7.2, 37.0, 0.85],
     [&#x27;Sample_2&#x27;, 6.8, 42.0, 0.73],
@@ -1175,27 +1172,23 @@ experiment_data = [
 
 print(experiment_data)</textarea>
             </div>
-            <div id="code-cell-55-output" class="output"></div>
+            <div id="code-cell-54-output" class="output"></div>
         </div>
-        <h4>Accessing elements in a nested list
-
-To access elements in nested lists, use multiple square brackets `[]`. The first index selects the row, the second selects the column:</h4>
+        <h4>Accessing elements in a nested list</h4><p>To access elements in nested lists, use multiple square brackets <code>[]</code>. The first index selects the row, the second selects the column:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-56"># Access specific elements
+                <textarea id="code-cell-55"># Access specific elements
 print(&#x27;First sample data:&#x27;, experiment_data[0])  # First row
 print(&#x27;First sample ID:&#x27;, experiment_data[0][0])  # First row, first column
 print(&#x27;Second sample temperature:&#x27;, experiment_data[1][2])  # Second row, third column
 print(&#x27;All growth rates:&#x27;, [row[3] for row in experiment_data])  # All fourth columns</textarea>
             </div>
-            <div id="code-cell-56-output" class="output"></div>
+            <div id="code-cell-55-output" class="output"></div>
         </div>
-        <h4>Modifying nested lists
-
-You can modify elements in nested lists just like regular lists:</h4>
+        <h4>Modifying nested lists</h4><p>You can modify elements in nested lists just like regular lists:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-57"># Update a specific measurement
+                <textarea id="code-cell-56"># Update a specific measurement
 print(&#x27;Before update:&#x27;, experiment_data[1])
 
 # Correct a temperature reading
@@ -1203,7 +1196,7 @@ experiment_data[1][2] = 41.5  # Second sample, temperature column
 
 print(&#x27;After update:&#x27;, experiment_data[1])</textarea>
             </div>
-            <div id="code-cell-57-output" class="output"></div>
+            <div id="code-cell-56-output" class="output"></div>
         </div>
         
                     </div>
@@ -1227,7 +1220,7 @@ print(&#x27;After update:&#x27;, experiment_data[1])</textarea>
         
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-58"># Gene expression matrix: [gene_name, control, treatment_1, treatment_2]
+                <textarea id="code-cell-57"># Gene expression matrix: [gene_name, control, treatment_1, treatment_2]
 gene_expression = [
     [&#x27;BRCA1&#x27;, 2.3, 4.1, 1.8],
     [&#x27;TP53&#x27;, 1.9, 3.7, 2.1],
@@ -1236,8 +1229,8 @@ gene_expression = [
 
 # Complete the tasks above here</textarea>
             </div>
-            <button id="run-code-cell-58" class="run-button">Run Code</button>
-            <div id="code-cell-58-output" class="output"></div>
+            <button id="run-code-cell-57" class="run-button">Run Code</button>
+            <div id="code-cell-57-output" class="output"></div>
         </div>
         
                     </div>
@@ -1251,7 +1244,7 @@ gene_expression = [
                         <p>A list where at least one of the items is not a list, is considered a one-dimensional (1-D) list. A list can be considered two-dimensional (2-D) when all of its items are lists of another data collection type, themselves. If the internal data lists are all of different sizes, it is called a <strong>jagged list</strong>. The opposite, where all lists are of the same size, would be called a <strong>matrix</strong>.<br><br>Matrices are important structures in mathematics and machine learning, as they provide a standardised way to represent and manipulate data in tabular form. Their rectangular structure allows for efficient mathematical operations such as matrix multiplication, transposition, and element-wise calculations. It is therefore important that we introduce them, early on.</p><p>The implementation of a matrix is identical to other nested arrays. However, there is a visually appealing way to do so by offsetting the outer brackets of the list:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-59">matrix = [
+                <textarea id="code-cell-58">matrix = [
   [1, 2, 3],
   [4, 5, 6],
   [7, 8, 9]
@@ -1259,16 +1252,16 @@ gene_expression = [
 
 print(matrix)</textarea>
             </div>
-            <div id="code-cell-59-output" class="output"></div>
+            <div id="code-cell-58-output" class="output"></div>
         </div>
         
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-60"># Play around with indexing and slicing the matrix
+                <textarea id="code-cell-59"># Play around with indexing and slicing the matrix
 </textarea>
             </div>
-            <button id="run-code-cell-60" class="run-button">Run Code</button>
-            <div id="code-cell-60-output" class="output"></div>
+            <button id="run-code-cell-59" class="run-button">Run Code</button>
+            <div id="code-cell-59-output" class="output"></div>
         </div>
         <p>In future modules we would create this matrix using a <code>NumPy</code> array, a list-like object made specifically for numerical calculations using the popular mathematical / scientific Python library, <code>NumPy</code>.</p>
                     </div>

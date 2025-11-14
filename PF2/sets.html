@@ -103,19 +103,19 @@
                     <div class="learning-outcomes">
                         <div class="outcome-item">
                     <span class="outcome-number">1</span>
-                    <span class="outcome-text">**Create** and **manipulate** sets in Python</span>
+                    <span class="outcome-text">Create and manipulate sets in Python</span>
                 </div>
 <div class="outcome-item">
                     <span class="outcome-number">2</span>
-                    <span class="outcome-text">Understand the unique **properties** of sets</span>
+                    <span class="outcome-text">Understand the unique properties of sets</span>
                 </div>
 <div class="outcome-item">
                     <span class="outcome-number">3</span>
-                    <span class="outcome-text">Perform mathematical set **operations**</span>
+                    <span class="outcome-text">Perform mathematical set operations</span>
                 </div>
 <div class="outcome-item">
                     <span class="outcome-number">4</span>
-                    <span class="outcome-text">Identify **when to use sets** versus other data structures like lists and tuples</span>
+                    <span class="outcome-text">Identify when to use sets versus other data structures like lists and tuples</span>
                 </div>
                     </div>
                     <h3>Introduction</h3>
@@ -130,21 +130,21 @@
                         <p>Sets can be created using <strong>curly braces</strong> <code>{}</code> or calling the <code>set()</code> class on a list or tuple. When creating a set with curly braces, duplicate values are automatically removed.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-84"># Creating a set of unique sample identifiers
+                <textarea id="code-cell-83"># Creating a set of unique sample identifiers
 unique_samples = {&#x27;sample1&#x27;, &#x27;sample2&#x27;, &#x27;sample3&#x27;, &#x27;sample1&#x27;, &#x27;sampleC&#x27;}
 print(unique_samples)</textarea>
             </div>
-            <div id="code-cell-84-output" class="output"></div>
+            <div id="code-cell-83-output" class="output"></div>
         </div>
         <p>Notice that <code>sample1</code> appears twice in our creation, but the set <strong>automatically removes the duplicate</strong>. This function helps make <code>set()</code> more than a data structure, but all a powerful <em>data cleaning tool</em>.<br><br>In the cell below, let&#x27;s explore adding two equal values (the number &#x27;1&#x27;), but inserting them into our set as two different types (integer and string, respectively).</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-85"># Creating a set from a list to remove duplicates
+                <textarea id="code-cell-84"># Creating a set from a list to remove duplicates
 samples = [1, 1, &#x27;1&#x27;, 2, 5]
 unique_samples = set(samples)
 print(unique_samples)</textarea>
             </div>
-            <div id="code-cell-85-output" class="output"></div>
+            <div id="code-cell-84-output" class="output"></div>
         </div>
         
         <div class="info-box note-box">
@@ -178,11 +178,11 @@ print(unique_samples)</textarea>
         
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-86">gene_list = [&#x27;BRCA1&#x27;, &#x27;TP53&#x27;, &#x27;BRCA1&#x27;, &#x27;MYC&#x27;, &#x27;TP53&#x27;, &#x27;KRAS&#x27;, &#x27;MYC&#x27;]
+                <textarea id="code-cell-85">gene_list = [&#x27;BRCA1&#x27;, &#x27;TP53&#x27;, &#x27;BRCA1&#x27;, &#x27;MYC&#x27;, &#x27;TP53&#x27;, &#x27;KRAS&#x27;, &#x27;MYC&#x27;]
 # Create your unique_genes set here</textarea>
             </div>
-            <button id="run-code-cell-86" class="run-button">Run Code</button>
-            <div id="code-cell-86-output" class="output"></div>
+            <button id="run-code-cell-85" class="run-button">Run Code</button>
+            <div id="code-cell-85-output" class="output"></div>
         </div>
         
                     </div>
@@ -196,22 +196,22 @@ print(unique_samples)</textarea>
                         <p>Using <code>{}</code> alone creates an empty dictionary (a different data structure we will learn about in Python Fundamentals 3), <em>not</em> a set.<br><br>The cell below demonstrates why you shouldn&#x27;t use <em>empty</em> curly braces <code>{}</code> to instantiate a set:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-87">object = {}
+                <textarea id="code-cell-86">object = {}
 
 print(type(object))</textarea>
             </div>
-            <div id="code-cell-87-output" class="output"></div>
+            <div id="code-cell-86-output" class="output"></div>
         </div>
         <p>Using the <code>type()</code> class, we can confirm that empty curly braces create a dictionary.<br><br>However, as we have seen earlier in this lesson, when appropriately used, curly brackets <code>{}</code> will create a set.<br><br>However, as <code>set()</code> is usually deployed to clean a list or tuple (of duplicates), you will most often find yourself using the <code>set()</code> class, as follows:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-88"># Creating an empty set
+                <textarea id="code-cell-87"># Creating an empty set
 empty_set = set()
 
 print(empty_set)
 print(type(empty_set))</textarea>
             </div>
-            <div id="code-cell-88-output" class="output"></div>
+            <div id="code-cell-87-output" class="output"></div>
         </div>
         
                     </div>
@@ -225,7 +225,7 @@ print(type(empty_set))</textarea>
                         <p>Like lists, sets are <strong>mutable</strong>, meaning that you can add or remove elements, after they are instantiated (created).<br><br>As with lists, set objects have their own built-in, associated methods. One of these is <code>.add</code>, allowing us to add new items to an existing set.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-89"># Instantiate a set:
+                <textarea id="code-cell-88"># Instantiate a set:
 gene_set = {&#x27;geneA&#x27;, &#x27;geneB&#x27;, &#x27;geneC&#x27;}
 print(&quot;Original set:&quot;, gene_set)
 
@@ -234,15 +234,15 @@ print(&quot;Original set:&quot;, gene_set)
 gene_set.add(&#x27;geneD&#x27;) # Use the .add() method
 print(&quot;After adding geneD:&quot;, gene_set)</textarea>
             </div>
-            <div id="code-cell-89-output" class="output"></div>
+            <div id="code-cell-88-output" class="output"></div>
         </div>
         <p>If you attempt to add a duplicate, the operation is simply <em>ignored</em> without raising an error:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-90">gene_set.add(&#x27;geneA&#x27;)  # This already exists
+                <textarea id="code-cell-89">gene_set.add(&#x27;geneA&#x27;)  # This already exists
 print(&quot;After attempting to add geneA again:&quot;, gene_set)</textarea>
             </div>
-            <div id="code-cell-90-output" class="output"></div>
+            <div id="code-cell-89-output" class="output"></div>
         </div>
         
                     </div>
@@ -256,7 +256,7 @@ print(&quot;After attempting to add geneA again:&quot;, gene_set)</textarea>
                         <p>Unique items in a set can be removed using <code>.remove()</code> or <code>.discard()</code>:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-91">gene_set.remove(&#x27;geneB&#x27;)                    # Use .remove() to remove a specified element.
+                <textarea id="code-cell-90">gene_set.remove(&#x27;geneB&#x27;)                    # Use .remove() to remove a specified element.
 print(&quot;After removing geneB:&quot;, gene_set)
 
 # .discard() won&#x27;t raise an error if the element doesn&#x27;t exist:
@@ -264,15 +264,15 @@ gene_set.discard(&#x27;geneZ&#x27;)                   # This doesn&#x27;t exist,
 
 print(&quot;After attempting to discard geneZ:&quot;, gene_set)</textarea>
             </div>
-            <div id="code-cell-91-output" class="output"></div>
+            <div id="code-cell-90-output" class="output"></div>
         </div>
         
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-92"># Practice adding and removing elements from sets</textarea>
+                <textarea id="code-cell-91"># Practice adding and removing elements from sets</textarea>
             </div>
-            <button id="run-code-cell-92" class="run-button">Run Code</button>
-            <div id="code-cell-92-output" class="output"></div>
+            <button id="run-code-cell-91" class="run-button">Run Code</button>
+            <div id="code-cell-91-output" class="output"></div>
         </div>
         
                     </div>
@@ -290,16 +290,16 @@ print(&quot;After attempting to discard geneZ:&quot;, gene_set)</textarea>
             </div>
             <div class="box-content">
                 <p><strong>2.</strong></p>
-                <p>Create an empty set called <code>patient_ids</code>. Add the following patient IDs to it, one by one:<ul class="nested-list"><li>&#x27;P001&#x27;, &#x27;P002&#x27;, &#x27;P003&#x27;.</li></ul>Then check if &#x27;P002&#x27; is in the set and print the result.</p>
+                <p>Create an empty set called <code>patient_ids</code>. Add the following patient IDs to it, one by one:<ul class="nested-list"><li>&#x27;P001&#x27;, &#x27;P002&#x27;, &#x27;P003&#x27;.</li><br><li>Next, check if &#x27;P002&#x27; is in the set and print the result.</li></ul></p>
             </div>
         </div>
         
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-93"># Create and populate your patient_ids set here</textarea>
+                <textarea id="code-cell-92"># Create and populate your patient_ids set here</textarea>
             </div>
-            <button id="run-code-cell-93" class="run-button">Run Code</button>
-            <div id="code-cell-93-output" class="output"></div>
+            <button id="run-code-cell-92" class="run-button">Run Code</button>
+            <div id="code-cell-92-output" class="output"></div>
         </div>
         
                     </div>
@@ -313,19 +313,29 @@ print(&quot;After attempting to discard geneZ:&quot;, gene_set)</textarea>
                         <p>Because sets are unordered, they <strong>do not support indexing or slicing</strong> like lists do. Attempting to access elements by position will raise a <code>TypeError</code>:</p>
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-94"># Run this cell to see the error: TypeError
+                <textarea id="code-cell-93"># Run this cell to see the error: TypeError
 gene = gene_set[0]</textarea>
             </div>
-            <button id="run-code-cell-94" class="run-button">Run Code</button>
-            <div id="code-cell-94-output" class="output"></div>
+            <button id="run-code-cell-93" class="run-button">Run Code</button>
+            <div id="code-cell-93-output" class="output"></div>
         </div>
         <p>However, you can still check for an element&#x27;s membership using the <code>in</code> operator:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-95">print(&#x27;geneA&#x27; in gene_set)
+                <textarea id="code-cell-94">print(&#x27;geneA&#x27; in gene_set)
 print(&#x27;geneZ&#x27; in gene_set)</textarea>
             </div>
-            <div id="code-cell-95-output" class="output"></div>
+            <div id="code-cell-94-output" class="output"></div>
+        </div>
+        
+        <div class="info-box fact-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                FACT
+            </div>
+            <div class="box-content">
+                <p>Membership testing is far more efficient with sets than with lists. This is obvious when comparing lists with duplicates to its set. However it is also quicker when they are of the same size and unique items. Rather than iterate through all the items to check for equivalence, like in a list, a set membership test will look up the hash (a unique fingerprint) of any given object, and use this to find the position said item should have in a set.</p>
+            </div>
         </div>
         
                     </div>
@@ -339,30 +349,40 @@ print(&#x27;geneZ&#x27; in gene_set)</textarea>
                         <p>Sets provide fast and expressive ways to <em>compare</em> collections. This is particularly powerful in biological data analysis, where we often need to compare different datasets to one another in order to find overlaps, or identify unique elements.<br><br>In the code cell below, we will use set operations to compare differentially-expressed genes from two experiments:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-96"># Example: Comparing differentially expressed genes from two experiments
+                <textarea id="code-cell-95"># Example: Comparing differentially expressed genes from two experiments
 experiment1_genes = {&#x27;TP53&#x27;, &#x27;MYC&#x27;, &#x27;BRCA1&#x27;, &#x27;AKT1&#x27;, &#x27;KRAS&#x27;}
 experiment2_genes = {&#x27;MYC&#x27;, &#x27;VEGFA&#x27;, &#x27;KRAS&#x27;, &#x27;MAPK1&#x27;, &#x27;TP53&#x27;}
 
 print(&quot;Experiment 1 genes:&quot;, experiment1_genes)
 print(&quot;Experiment 2 genes:&quot;, experiment2_genes)</textarea>
             </div>
-            <div id="code-cell-96-output" class="output"></div>
+            <div id="code-cell-95-output" class="output"></div>
+        </div>
+        
+        <div class="image-placeholder">
+            <div class="placeholder-content">
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="5,3 19,12 5,21"/>
+                </svg>
+                <p><strong>Video unavailable:</strong></p>
+                <p><small>No URL provided</small></p>
+            </div>
         </div>
         <p>We can also make use of the <code>.union()</code> method to identify all elements <em>unique</em> to multiple sets. The method returns a brand new set, containing only unique elements. This can be used on two or more sets.<br><br>In this example, let&#x27;s identify genes unique to each of the two experiments:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-97">all_found_genes = experiment1_genes.union(experiment2_genes)
+                <textarea id="code-cell-96">all_found_genes = experiment1_genes.union(experiment2_genes)
 
 print(f&quot;Unique genes:  {all_found_genes}&quot;)
 print(f&quot;\nTotal unique genes: {len(all_found_genes)}&quot;)
 print(f&quot;\nType of object returned by .union():    {type(all_found_genes)}&quot;)</textarea>
             </div>
-            <div id="code-cell-97-output" class="output"></div>
+            <div id="code-cell-96-output" class="output"></div>
         </div>
         <p>The <code>.intersection()</code> method finds elements common to two or more sets.<br><br>In the code cell below, we are going to create a third set, with one gene that is common to the two sets created, previously.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-98">experiment3_genes = {&#x27;EGFR&#x27;, &#x27;AKT1&#x27;, &#x27;PTEN&#x27;, &#x27;VEGFA&#x27;, &#x27;BRCA2&#x27;, &#x27;MAPK3&#x27;, &#x27;KRAS&#x27;} # Let&#x27;s make a third set.
+                <textarea id="code-cell-97">experiment3_genes = {&#x27;EGFR&#x27;, &#x27;AKT1&#x27;, &#x27;PTEN&#x27;, &#x27;VEGFA&#x27;, &#x27;BRCA2&#x27;, &#x27;MAPK3&#x27;, &#x27;KRAS&#x27;} # Let&#x27;s make a third set.
 
 common_genes = experiment1_genes.intersection(experiment2_genes, experiment3_genes)
 
@@ -370,7 +390,7 @@ print(&quot;Common genes:&quot;, common_genes)
 print(&quot;\nNumber of overlapping genes:&quot;, len(common_genes))
 print(f&quot;\nType of object returned by .intersection():   {type(common_genes)}&quot;)</textarea>
             </div>
-            <div id="code-cell-98-output" class="output"></div>
+            <div id="code-cell-97-output" class="output"></div>
         </div>
         
         <div class="info-box note-box">
@@ -385,19 +405,19 @@ print(f&quot;\nType of object returned by .intersection():   {type(common_genes)
         <p>In order to find genes unique to one set only, we can use the set method <code>.difference()</code>. The set to which the method is appended, is the set in whose elements we are searching for unique items. As with all the methods discussed, a new set is returned containing the unique elements.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-99">unique_to_exp1 = experiment1_genes.difference(experiment2_genes, experiment3_genes)
+                <textarea id="code-cell-98">unique_to_exp1 = experiment1_genes.difference(experiment2_genes, experiment3_genes)
 
 print(&quot;Unique to Experiment 1:&quot;, unique_to_exp1)</textarea>
             </div>
-            <div id="code-cell-99-output" class="output"></div>
+            <div id="code-cell-98-output" class="output"></div>
         </div>
-        <h4>`.symmetric_difference` and `^`</h4><p>In order to return a new set containing either of the elements in <strong>two</strong> sets, but not in both, we can use <code>.symmetric_difference()</code>. Explicitly, this returns <strong>everything <em>except</em> what is shared</strong> between two sets.</p>
+        <h4>Using .symmetric_difference() and ^</h4><p>In order to return a new set containing either of the elements in <strong>two</strong> sets, but not in both, we can use <code>.symmetric_difference()</code>. Explicitly, this returns <strong>everything <em>except</em> what is shared</strong> between two sets.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-100">exclusive_genes = experiment1_genes.symmetric_difference(experiment2_genes)
+                <textarea id="code-cell-99">exclusive_genes = experiment1_genes.symmetric_difference(experiment2_genes)
 print(&quot;Genes found exclusively in one experiment:&quot;, exclusive_genes)</textarea>
             </div>
-            <div id="code-cell-100-output" class="output"></div>
+            <div id="code-cell-99-output" class="output"></div>
         </div>
         
         <div class="info-box note-box">
@@ -412,25 +432,23 @@ print(&quot;Genes found exclusively in one experiment:&quot;, exclusive_genes)</
         <p>To get around this, you can also use the caret <code>^</code> operator to evaluate the same relationship between sets. Namely, <strong>everything <em>except</em> what is shared</strong> between sets.<br><br>However, <code>^</code> offers one main advantage. And that is that you can compare more than two sets. This is demonstrated in the code cell below.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-101">exclusive_genes = experiment1_genes ^ experiment2_genes ^ experiment3_genes
+                <textarea id="code-cell-100">exclusive_genes = experiment1_genes ^ experiment2_genes ^ experiment3_genes
 print(&quot;Genes found exclusively in one experiment:&quot;, exclusive_genes)</textarea>
             </div>
-            <div id="code-cell-101-output" class="output"></div>
+            <div id="code-cell-100-output" class="output"></div>
         </div>
-        <h4>`set` operations and other mathematical operators
-
-As with `^`, you can also use other mathematical operators for different set operations.</h4>
+        <h4>Using set operations and other mathematical operators</h4><p>As with <code>^</code>, you can also use other mathematical operators for different set operations.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-102"># Alternative syntax using operators
+                <textarea id="code-cell-101"># Alternative syntax using operators
 print(&quot;Union using |:&quot;, experiment1_genes | experiment2_genes)
 print(&quot;Intersection using &amp;:&quot;, experiment1_genes &amp; experiment2_genes)
 print(&quot;Difference using -:&quot;, experiment1_genes - experiment2_genes)
 print(&quot;Symmetric difference using ^:&quot;, experiment1_genes ^ experiment2_genes)</textarea>
             </div>
-            <div id="code-cell-102-output" class="output"></div>
+            <div id="code-cell-101-output" class="output"></div>
         </div>
-        <p>For clarity, this table summarises the different methods, operators and operations associated with them.<br><br>### Set Operations in Python<br><br></p><table class="markdown-table">
+        <h4>Set Operations in Python</h4><p>For clarity, this table summarises the different methods, operators and operations associated with them.</p><table class="markdown-table">
 <thead>
 <tr>
 <th><strong>Operation</strong></th>
@@ -443,11 +461,8 @@ print(&quot;Symmetric difference using ^:&quot;, experiment1_genes ^ experiment2
 <tr>
 <td><strong>Union</strong></td>
 <td><code>set1.union(set2)</code></td>
-<td>`set1 \</td>
-<td>set2`</td>
-<td>Combines all unique elements from both sets. Both forms allow comparison across multiple sets (e.g. <code>set1.union(set2, set3)</code> or `set1 \</td>
-<td>set2 \</td>
-<td>set3`).</td>
+<td><code>set1 | set2</code></td>
+<td>Combines all unique elements from both sets. Both forms allow comparison across multiple sets (e.g. <code>set1.union(set2, set3)</code> or <code>set1 | set2 | set3</code>).</td>
 </tr>
 <tr>
 <td><strong>Intersection</strong></td>
@@ -471,10 +486,10 @@ print(&quot;Symmetric difference using ^:&quot;, experiment1_genes ^ experiment2
 </table>
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-103"># Practice with set operations using your own biological examples</textarea>
+                <textarea id="code-cell-102"># Practice with set operations using your own biological examples</textarea>
             </div>
-            <button id="run-code-cell-103" class="run-button">Run Code</button>
-            <div id="code-cell-103-output" class="output"></div>
+            <button id="run-code-cell-102" class="run-button">Run Code</button>
+            <div id="code-cell-102-output" class="output"></div>
         </div>
         
                     </div>
@@ -498,13 +513,13 @@ print(&quot;Symmetric difference using ^:&quot;, experiment1_genes ^ experiment2
         
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-104">population_A_resistance = {&#x27;blaTEM&#x27;, &#x27;aac&#x27;, &#x27;tetA&#x27;, &#x27;sul1&#x27;, &#x27;qnrS&#x27;}
+                <textarea id="code-cell-103">population_A_resistance = {&#x27;blaTEM&#x27;, &#x27;aac&#x27;, &#x27;tetA&#x27;, &#x27;sul1&#x27;, &#x27;qnrS&#x27;}
 population_B_resistance = {&#x27;blaCTX&#x27;, &#x27;aac&#x27;, &#x27;tetA&#x27;, &#x27;sul2&#x27;, &#x27;qnrS&#x27;, &#x27;mecA&#x27;}
 
 # Complete the analysis here</textarea>
             </div>
-            <button id="run-code-cell-104" class="run-button">Run Code</button>
-            <div id="code-cell-104-output" class="output"></div>
+            <button id="run-code-cell-103" class="run-button">Run Code</button>
+            <div id="code-cell-103-output" class="output"></div>
         </div>
         
                     </div>

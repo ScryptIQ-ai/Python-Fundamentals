@@ -127,7 +127,7 @@
                 <div class="module-body">
                     <div class="module-section">
                         <h3>Creating a tuple</h3>
-                        <p>The most common way to implement a tuple in Python is to place comma-separated values inside <strong>round parentheses</strong>:<br><pre class="markdown-code-block"><code>x = (1, 2, 3)</code></pre><br>As seen with lists and square brackets <code>[]</code>.<br><br>You can also create a tuple <em>without</em> parentheses:<br><pre class="markdown-code-block"><code>x = 1, 2, 3</code></pre><br>In this case, Python acknowledges that a tuple is <em>implied</em> through the comma separation, creating the tuple through an operation known as <strong>packing</strong>. The former is referred to as an <strong>explicit tuple</strong>, and the latter, an <strong>implicit tuple</strong>.</p>
+                        <p>The most common way to implement a tuple in Python is to place comma-separated values inside <strong>round parentheses</strong>, <code>()</code>:<br><pre class="markdown-code-block"><code>x = (1, 2, 3)</code></pre><br>You can also create a tuple <em>without</em> parentheses:<br><pre class="markdown-code-block"><code>x = 1, 2, 3</code></pre><br>In this case, Python acknowledges that a tuple is <em>implied</em> through the comma separation, creating the tuple through an operation known as <strong>packing</strong>. The former is referred to as an <strong>explicit tuple</strong>, and the latter, an <strong>implicit tuple</strong>.</p>
         <div class="info-box note-box">
             <div class="box-title">
                 <span class="box-icon"></span>
@@ -144,7 +144,7 @@
                 HISTORY
             </div>
             <div class="box-content">
-                <p>There are numerous ways of doing things in Python, all with their own potential benefits to different users and scenarios. However, there are good practices to coding in Python. One guide (or more of a philosophy) to how you set out your code is called the <a href="https://peps.python.org/pep-0020/"><strong>Zen of Python</strong></a>, a collection of 19 guiding principles for writing computer programs, written by Tim Peters, a major contributor to the creation of Python itself.<br><br>One line stands out for beginners:<br><br><code>Explicit is better than implicit.</code><br><br>We should always be making our code as readable as possible for others and ourselves, which means taking the time to use code that explicitly shows what is happening. For example, this principle encourages using round parentheses <code>()</code> when creating a tuple, even when they&#x27;re not strictly required.</p>
+                <p>There are numerous ways of doing things in Python, all with their own potential benefits to different users and scenarios. However, there are good practices to coding in Python. One guide (or more of a philosophy) to how you set out your code is called the <a href="https://peps.python.org/pep-0020/"><strong>Zen of Python</strong></a>, a collection of 19 guiding principles for writing computer programs, written by Tim Peters, a major contributor to the creation of Python itself.<br><br>One line stands out for beginners:<br><br><strong>Explicit is better than implicit.</strong><br><br>We should always be making our code as readable as possible for others and ourselves, which means taking the time to use code that explicitly shows what is happening. For example, this principle encourages using round parentheses <code>()</code> when creating a tuple, even when they&#x27;re not strictly required.</p>
             </div>
         </div>
         
@@ -160,39 +160,49 @@
         
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-61"># The Wnt pathway coreceptors will not be changing, so we save them as a tuple
+                <textarea id="code-cell-60"># The Wnt pathway coreceptors will not be changing, so we save them as a tuple
 
 coreceptors = (&#x27;Frizzled&#x27;, &#x27;LRP&#x27;)
 
 print(type(coreceptors))</textarea>
             </div>
-            <div id="code-cell-61-output" class="output"></div>
+            <div id="code-cell-60-output" class="output"></div>
         </div>
         
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-62"># Printing them retains the () brackets
+                <textarea id="code-cell-61"># Printing them retains the () brackets
 
 print(coreceptors)</textarea>
             </div>
-            <div id="code-cell-62-output" class="output"></div>
+            <div id="code-cell-61-output" class="output"></div>
         </div>
         <p>Accessing values inside a tuple works the same as accessing a list, using square brackets <code>[]</code>.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-63">print(coreceptors[0])</textarea>
+                <textarea id="code-cell-62">print(coreceptors[0])</textarea>
             </div>
-            <div id="code-cell-63-output" class="output"></div>
+            <div id="code-cell-62-output" class="output"></div>
         </div>
         <p>However, different from a list, a tuple is <strong>immutable</strong>, so we cannot reassign or modify the values within</p>
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-64"># Run this cell to return a TypeError due to trying to reassign one of the values
+                <textarea id="code-cell-63"># Run this cell to return a TypeError due to trying to reassign one of the values
 
 coreceptors[0] = &#x27;new&#x27;</textarea>
             </div>
-            <button id="run-code-cell-64" class="run-button">Run Code</button>
-            <div id="code-cell-64-output" class="output"></div>
+            <button id="run-code-cell-63" class="run-button">Run Code</button>
+            <div id="code-cell-63-output" class="output"></div>
+        </div>
+        
+        <div class="image-placeholder">
+            <div class="placeholder-content">
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="5,3 19,12 5,21"/>
+                </svg>
+                <p><strong>Video unavailable:</strong></p>
+                <p><small>No URL provided</small></p>
+            </div>
         </div>
         
                     </div>
@@ -206,26 +216,26 @@ coreceptors[0] = &#x27;new&#x27;</textarea>
                         <p>The principles of indexing and slicing a tuple are identical to those of a list. You can access elements using positive and negative indexing, and create slices using the same <code>[start:end]</code> notation.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-65"># DNA bases tuple
+                <textarea id="code-cell-64"># DNA bases tuple
 dna_bases = (&#x27;A&#x27;, &#x27;T&#x27;, &#x27;G&#x27;, &#x27;C&#x27;)
 
 print(&#x27;First base:&#x27;, dna_bases[0])     # Positive indexing
 print(&#x27;Last base:&#x27;, dna_bases[-1])     # Negative indexing
 print(&#x27;First two:&#x27;, dna_bases[:2])     # Slicing</textarea>
             </div>
-            <div id="code-cell-65-output" class="output"></div>
+            <div id="code-cell-64-output" class="output"></div>
         </div>
         
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-66"># Practice indexing with the tuple below
+                <textarea id="code-cell-65"># Practice indexing with the tuple below
 amino_acids = (&#x27;Ala&#x27;, &#x27;Gly&#x27;, &#x27;Val&#x27;, &#x27;Leu&#x27;, &#x27;Ile&#x27;, &#x27;Pro&#x27;)
 
 # Access the third amino acid
 # Access the last two amino acids using slicing</textarea>
             </div>
-            <button id="run-code-cell-66" class="run-button">Run Code</button>
-            <div id="code-cell-66-output" class="output"></div>
+            <button id="run-code-cell-65" class="run-button">Run Code</button>
+            <div id="code-cell-65-output" class="output"></div>
         </div>
         
                     </div>
@@ -249,10 +259,10 @@ amino_acids = (&#x27;Ala&#x27;, &#x27;Gly&#x27;, &#x27;Val&#x27;, &#x27;Leu&#x27
         
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-67"># Create your genetic_code tuple here</textarea>
+                <textarea id="code-cell-66"># Create your genetic_code tuple here</textarea>
             </div>
-            <button id="run-code-cell-67" class="run-button">Run Code</button>
-            <div id="code-cell-67-output" class="output"></div>
+            <button id="run-code-cell-66" class="run-button">Run Code</button>
+            <div id="code-cell-66-output" class="output"></div>
         </div>
         
                     </div>
@@ -266,24 +276,24 @@ amino_acids = (&#x27;Ala&#x27;, &#x27;Gly&#x27;, &#x27;Val&#x27;, &#x27;Leu&#x27
                         <p>A <code>tuple</code> can be empty or only have a single value (singleton) stored within it.<br><br>The use of empty tuples is not immediately obvious, but they do have their use case in maintaining data type consistency, on occasions where the entry has no data, for instance. Remember: a tuple cannot be modified after it is instantiated, and so it will stay empty, unless it is overwritten or replaced.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-68">empty_tuple = tuple() # empty_tuple = () also works
+                <textarea id="code-cell-67">empty_tuple = tuple() # empty_tuple = () also works
 
 print(f&quot;Tuple: {empty_tuple}, Type: {type(empty_tuple)}, Length: {len(empty_tuple)}&quot;)</textarea>
             </div>
-            <div id="code-cell-68-output" class="output"></div>
+            <div id="code-cell-67-output" class="output"></div>
         </div>
         <p><strong>Singleton tuples</strong> are needed frequently, but have a creation quirk that is worth addressing. <em>You cannot create a singleton tuple with just round parentheses around an item</em> <code>(item)</code>. Instead, you <strong>must</strong> provide a <em>trailing comma after the item</em>: <code>(item,)</code>. Without the comma, Python will interpret the parentheses as a grouping and not a tuple, which can cause a lot of common bugs.</p>
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-69"># Without the comma an error will be given
+                <textarea id="code-cell-68"># Without the comma an error will be given
 # Try this for yourself by removing the comma, and rerunning the cell
 
 singleton = (1,)
 
 print(f&quot;Tuple: {singleton}, Type: {type(singleton)}, Length: {len(singleton)}&quot;)</textarea>
             </div>
-            <button id="run-code-cell-69" class="run-button">Run Code</button>
-            <div id="code-cell-69-output" class="output"></div>
+            <button id="run-code-cell-68" class="run-button">Run Code</button>
+            <div id="code-cell-68-output" class="output"></div>
         </div>
         
                     </div>
@@ -307,36 +317,36 @@ print(f&quot;Tuple: {singleton}, Type: {type(singleton)}, Length: {len(singleton
         <p>In the code cell below, let&#x27;s create a list, and check its type.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-70"># Our behaviour list is now complete with no further editing
+                <textarea id="code-cell-69"># Our behaviour list is now complete with no further editing
 
 behaviours = [&#x27;foraging&#x27;, &#x27;grooming&#x27;, &#x27;resting&#x27;]
 
 print(type(behaviours))</textarea>
             </div>
-            <div id="code-cell-70-output" class="output"></div>
+            <div id="code-cell-69-output" class="output"></div>
         </div>
         <p>And now lets create a new tuple object, and typecast the items in the list into the elements of a new tuple, using the <code>tuple()</code> class.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-71"># So we make it a tuple to prevent any accidental modification
+                <textarea id="code-cell-70"># So we make it a tuple to prevent any accidental modification
 
 behaviours_tuple = tuple(behaviours)
 
 print(behaviours_tuple)
 print(type(behaviours_tuple))</textarea>
             </div>
-            <div id="code-cell-71-output" class="output"></div>
+            <div id="code-cell-70-output" class="output"></div>
         </div>
         <p>Experiment for yourself in the code cell below, typecasting the list into a tuple object.</p>
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-72"># Convert a list of enzyme names to a tuple
+                <textarea id="code-cell-71"># Convert a list of enzyme names to a tuple
 enzyme_list = [&#x27;amylase&#x27;, &#x27;pepsin&#x27;, &#x27;trypsin&#x27;, &#x27;lipase&#x27;]
 
 # Convert to tuple and print both the result and its type</textarea>
             </div>
-            <button id="run-code-cell-72" class="run-button">Run Code</button>
-            <div id="code-cell-72-output" class="output"></div>
+            <button id="run-code-cell-71" class="run-button">Run Code</button>
+            <div id="code-cell-71-output" class="output"></div>
         </div>
         
                     </div>
@@ -350,19 +360,30 @@ enzyme_list = [&#x27;amylase&#x27;, &#x27;pepsin&#x27;, &#x27;trypsin&#x27;, &#x
                         <p><br>Whilst a tuple itself is <em>immutable</em>, the mutability of its items depends on the data type of that value. It can therefore contain both mutable and immutable objects. For the sake of explicitness, this basically means that a tuple <em>can</em> contain mutable objects but is, itself, <em>immutable</em>.<br><br>In the code cell below, we will create a tuple that contains a list (a mutable data structure) as one of its items:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-73"># This tuple&#x27;s items are: (immutable, immutable, immutable, immutable, MUTABLE)
+                <textarea id="code-cell-72"># This tuple&#x27;s items are: (immutable, immutable, immutable, immutable, MUTABLE)
 mixed_tuple = (1, 2.5, &#x27;abc&#x27;, (3, 4), [5, 6])
+
+print(mixed_tuple)</textarea>
+            </div>
+            <div id="code-cell-72-output" class="output"></div>
+        </div>
+        <p>Mutable objects inside a tuple may still be changed. Just because we are storing a mutable list inside a tuple, does not mean that we cannot edit the contents of that list. It is only the outer structure of the tuple itself that cannot be changed.<br><br>Let&#x27;s slice into that list in this code cell, and demonstrate how we can change its first element using adjacent pairs of square brackets, and reassigning the first list item (index 0), by replacing it with a string.<br><br>For the sake of explicitness, the first line of code in the cell below accesses the last item in the tuple using negative indexing, and in the second square bracket pair, accesses the first item in the sublist, and reassigns its value from &#x27;5&#x27; to &#x27;index modified&#x27;.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-73"># Accessing the items inside the mutable object allows us to modify them
+
+mixed_tuple[-1][0] = &#x27;index modified&#x27;
 
 print(mixed_tuple)</textarea>
             </div>
             <div id="code-cell-73-output" class="output"></div>
         </div>
-        <p>Mutable objects inside a tuple may still be changed. Just because we are storing a mutable list inside a tuple, does not mean that we cannot edit the contents of that list. It is only the outer structure of the tuple itself that cannot be changed.<br><br>Let&#x27;s slice into that list in this code cell, and demonstrate how we can change its first element using adjacent pairs of square brackets, and reassigning the first list item (index 0), by replacing it with a string.<br><br>For the sake of explicitness, the first line of code in the cell below accesses the last item in the tuple using negative indexing, and in the second square bracket pair, accesses the first item in the sublist, and reassigns its value from &#x27;5&#x27; to &#x27;index modified&#x27;.</p>
+        
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-74"># Accessing the items inside the mutable object allows us to modify them
+                <textarea id="code-cell-74"># Applying a method that acts in-situ to the item will also modify it
 
-mixed_tuple[-1][0] = &#x27;index modified&#x27;
+mixed_tuple[-1].append(&#x27;append modified&#x27;)
 
 print(mixed_tuple)</textarea>
             </div>
@@ -371,25 +392,14 @@ print(mixed_tuple)</textarea>
         
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-75"># Applying a method that acts in-situ to the item will also modify it
-
-mixed_tuple[-1].append(&#x27;append modified&#x27;)
-
-print(mixed_tuple)</textarea>
-            </div>
-            <div id="code-cell-75-output" class="output"></div>
-        </div>
-        
-        <div class="code-area">
-            <div class="code-container code-fixed">
-                <textarea id="code-cell-76"># We cannot remove the list from the tuple,
+                <textarea id="code-cell-75"># We cannot remove the list from the tuple,
 # but we can empty it by clearing its items:
 
 mixed_tuple[4].clear()
 
 print(mixed_tuple)</textarea>
             </div>
-            <div id="code-cell-76-output" class="output"></div>
+            <div id="code-cell-75-output" class="output"></div>
         </div>
         
         <div class="info-box fact-box">
@@ -423,10 +433,10 @@ print(mixed_tuple)</textarea>
         
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-77"># Create your tuples and test immutability here</textarea>
+                <textarea id="code-cell-76"># Create your tuples and test immutability here</textarea>
             </div>
-            <button id="run-code-cell-77" class="run-button">Run Code</button>
-            <div id="code-cell-77-output" class="output"></div>
+            <button id="run-code-cell-76" class="run-button">Run Code</button>
+            <div id="code-cell-76-output" class="output"></div>
         </div>
         
                     </div>
@@ -444,30 +454,28 @@ print(mixed_tuple)</textarea>
                 KEY TERMS
             </div>
             <div class="box-content">
-                <p><strong>Packing</strong>: The process of combining multiple values into a single tuple, either explicitly with parentheses <code>(a, b, c)</code> or implicitly with comma separation <code>a, b, c</code>. Python automatically interprets comma-separated values as a tuple.<br><br><strong>Unpacking</strong>: The process of extracting values from a tuple and assigning them to individual variables, making code more readable and allowing work with individual elements.<br><br>For example, <code>x, y, z = coordinates</code> extracts three values from a coordinates tuple, and stores them in the order they appear.</p>
+                <p><strong>Packing</strong>: The process of combining multiple values into a single tuple, either explicitly with parentheses <code>(a, b, c)</code> or implicitly with comma separation <code>a, b, c</code>. Python automatically interprets comma-separated values as a tuple.<br><br><strong>Unpacking</strong>: The process of extracting values from a tuple and assigning them to individual variables, making code more readable and allowing work with individual elements.</p>
             </div>
         </div>
         <p>Let&#x27;s demonstrate packing in this cell, creating a new tuple called <code>my_tuple</code>, in the process:</p>
         <div class="code-area">
-            <div class="code-container code-editor">
-                <textarea id="code-cell-78">my_tuple = 1, 2, 3 # Implicitly packing 3 numbers into a tuple (not using round brackets).
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-77">my_tuple = 1, 2, 3 # Implicitly packing 3 numbers into a tuple (not using round brackets).
 
 # my_tuple = (1, 2, 3) &lt;- This would produce the same result, and is just explicitly packing the tuple.
 
 print(f&quot;My tuple contains: {my_tuple} and is of type {type(my_tuple)}.&quot;)</textarea>
             </div>
-            <button id="run-code-cell-78" class="run-button">Run Code</button>
-            <div id="code-cell-78-output" class="output"></div>
+            <div id="code-cell-77-output" class="output"></div>
         </div>
         <p>And in this cell, let&#x27;s <em>unpack</em> that tuple&#x27;s items into three variables called a, b and c.<br><br>This is also an example of a <strong>multiple assignment</strong>, where we are using a single line of code and a single <code>=</code> operator to assign values to three variables, at once. (The alternative would be to assign each of them, individually, on separate lines).</p>
         <div class="code-area">
-            <div class="code-container code-editor">
-                <textarea id="code-cell-79">a, b, c = my_tuple # Creates three variables, and storing each of the tuple&#x27;s items in these, in sequence.
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-78">a, b, c = my_tuple # Creates three variables, and storing each of the tuple&#x27;s items in these, in sequence.
 
 print(f&quot;The contents of a = {a}&quot;, f&quot;The contents of b = {b}&quot;, f&quot;The contents of c = {c}&quot;, sep=&quot;\n&quot;)</textarea>
             </div>
-            <button id="run-code-cell-79" class="run-button">Run Code</button>
-            <div id="code-cell-79-output" class="output"></div>
+            <div id="code-cell-78-output" class="output"></div>
         </div>
         
         <div class="info-box warning-box">
@@ -482,23 +490,24 @@ print(f&quot;The contents of a = {a}&quot;, f&quot;The contents of b = {b}&quot;
         <p>For clarity, here&#x27;s a second example, where we <em>explicitly</em> create the tuple using round brackets. We consider this to be better coding practice, but both packing techniques are considered valid.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-80">dimensions = (1, 2, 3, 5, 7, 11)
+                <textarea id="code-cell-79">dimensions = (1, 2, 3, 5, 7, 11)
 
 print(dimensions,          # Our new tuple.
       type(dimensions),    # Checks its type.
       len(dimensions),     # Checks its length (its total number of items).
       sep=&#x27;\n&#x27;)</textarea>
             </div>
-            <div id="code-cell-80-output" class="output"></div>
+            <div id="code-cell-79-output" class="output"></div>
         </div>
         <p>As we can see, our tuple contains 6 elements (or items). Let&#x27;s try to unpack the first 3, and see what happens:</p>
         <div class="code-area">
-            <div class="code-container code-fixed">
-                <textarea id="code-cell-81">x, y, z = dimensions
+            <div class="code-container code-editor">
+                <textarea id="code-cell-80">x, y, z = dimensions
 
 print(&quot;First 3 dimensions:&quot;, x, y, z)</textarea>
             </div>
-            <div id="code-cell-81-output" class="output"></div>
+            <button id="run-code-cell-80" class="run-button">Run Code</button>
+            <div id="code-cell-80-output" class="output"></div>
         </div>
         <p>Python immediately throws a ValueError. When unpacking a <code>tuple</code>, the <strong>number of variables on the left must match the number of elements in the tuple</strong>.</p>
         <div class="info-box note-box">
@@ -532,10 +541,10 @@ print(&quot;First 3 dimensions:&quot;, x, y, z)</textarea>
         
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-82"># Complete the protein analysis tasks here</textarea>
+                <textarea id="code-cell-81"># Complete the protein analysis tasks here</textarea>
             </div>
-            <button id="run-code-cell-82" class="run-button">Run Code</button>
-            <div id="code-cell-82-output" class="output"></div>
+            <button id="run-code-cell-81" class="run-button">Run Code</button>
+            <div id="code-cell-81-output" class="output"></div>
         </div>
         
                     </div>
@@ -549,7 +558,7 @@ print(&quot;First 3 dimensions:&quot;, x, y, z)</textarea>
                         <p>Python also supports more advanced unpacking patterns, including the <code><em></code> operator. The <code></em></code> will collect any remaining items into a list, allowing you to unpack a variable number of elements from a sequence. This is particularly useful when you know some specific positions but want to capture the rest as a group.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-83"># Unpacking with the * operator
+                <textarea id="code-cell-82"># Unpacking with the * operator
 gene_expression_data = (&#x27;BRCA1&#x27;, 2.3, 4.1, 3.7, 5.2, 1.8)
 
 gene_name, *expression_levels = gene_expression_data
@@ -558,7 +567,7 @@ print(&#x27;Gene:&#x27;, gene_name)
 print(&#x27;Expression levels:&#x27;, expression_levels)
 print(&#x27;Type of expression levels:&#x27;, type(expression_levels))</textarea>
             </div>
-            <div id="code-cell-83-output" class="output"></div>
+            <div id="code-cell-82-output" class="output"></div>
         </div>
         <p>The <code>*</code> operator captures all remaining elements as a list (not a tuple), making it easy to work with variable-length data.</p>
         <div class="info-box fact-box">

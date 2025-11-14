@@ -50,7 +50,7 @@
                     Strings
                     <span class="toggle-icon">▼</span>
                 </div>
-                <ul class="nested-nav expanded" id="expandable-section-4"><li><a href="#introduction">Introduction</a></li><li><a href="#recap--creating-a-string">Recap: creating a string</a></li><li><a href="#numbers-as-strings">Numbers as strings</a></li><li><a href="#string-fundamentals">String fundamentals</a></li><li><a href="#string-operations">String operations</a></li><li><a href="#string-methods">String methods</a></li><li><a href="#converting-strings-into-other-data-structures">Converting strings into other data structures</a></li>
+                <ul class="nested-nav expanded" id="expandable-section-4"><li><a href="#introduction">Introduction</a></li><li><a href="#recap--creating-a-string">Recap: creating a string</a></li><li><a href="#numbers-as-strings">Numbers as strings</a></li><li><a href="#string-fundamentals">String fundamentals</a></li><li><a href="#string-operations">String operations</a></li><li><a href="#string-methods">String methods</a></li><li><a href="#converting-strings-into-other-data-structures">Converting strings into other data structures</a></li><li><a href="#summary">Summary</a></li>
                 </ul>
             </li><li><a href="./comparison.html">Comparison</a></li><li><a href="./assignment.html">Assignment</a></li><li><a href="./feedback.html">Feedback</a></li>
         </ul>
@@ -107,15 +107,15 @@
                 </div>
 <div class="outcome-item">
                     <span class="outcome-number">2</span>
-                    <span class="outcome-text">Apply **string operations** to manipulate and analyse sequence data</span>
+                    <span class="outcome-text">Apply string operations to manipulate and analyse sequence data</span>
                 </div>
 <div class="outcome-item">
                     <span class="outcome-number">3</span>
-                    <span class="outcome-text">Utilise built-in **string methods** for searching, cleaning, and reformatting data</span>
+                    <span class="outcome-text">Utilise built-in string methods for searching, cleaning, and reformatting data</span>
                 </div>
 <div class="outcome-item">
                     <span class="outcome-number">4</span>
-                    <span class="outcome-text">**Convert** strings to other data structures (lists and tuples)</span>
+                    <span class="outcome-text">Convert strings to other data structures (lists and tuples)</span>
                 </div>
                     </div>
                     <h3>Introduction</h3>
@@ -140,7 +140,7 @@
         
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-105">alphabet_string = &quot;abcdfeg&quot;
+                <textarea id="code-cell-104">alphabet_string = &quot;abcdfeg&quot;
 numerical_string = str(12345) # can also be: numerical_string = &quot;12345&quot;
 mixed_string = &quot;abc-123&quot;
 
@@ -148,14 +148,14 @@ print(alphabet_string)
 print(numerical_string)
 print(mixed_string)</textarea>
             </div>
-            <div id="code-cell-105-output" class="output"></div>
+            <div id="code-cell-104-output" class="output"></div>
         </div>
         <p>You can check if anything is a string by calling the <code>type()</code> class. If the data is a string, it should return <code>&lt;class &#x27;str&#x27;&gt;</code>, when printed.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-106">print(type(alphabet_string))</textarea>
+                <textarea id="code-cell-105">print(type(alphabet_string))</textarea>
             </div>
-            <div id="code-cell-106-output" class="output"></div>
+            <div id="code-cell-105-output" class="output"></div>
         </div>
         
                     </div>
@@ -169,16 +169,16 @@ print(mixed_string)</textarea>
                         <p>When numerical data is converted to a string, it will <em>lose the attributes associated with being an integer or float</em> data type. It is therefore important to check - when importing data - that your numerical data is not mistakenly being imported as a string; a common accident when data is parsed from one mode to another.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-107"># No matter the characters within the string, they are all the same data type
+                <textarea id="code-cell-106"># No matter the characters within the string, they are all the same data type
 
 type(alphabet_string) == type(numerical_string)</textarea>
             </div>
-            <div id="code-cell-107-output" class="output"></div>
+            <div id="code-cell-106-output" class="output"></div>
         </div>
         <p>It is crucial to note that operations (such as mathematical operations) will perform differently on data that is a string, compared to the same sequence of numbers stored as a numerical data type:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-108">numerical_true = 12345
+                <textarea id="code-cell-107">numerical_true = 12345
 
 numerical_string = str(numerical_true)
 
@@ -188,15 +188,15 @@ print(&quot;Multiplying an integer:                                        &quot
 print(&quot;\nMultiplying the same numerical sequence, stored as a string:   &quot;, 
       numerical_string, &quot;----&gt;&quot;, numerical_string * 2)</textarea>
             </div>
-            <div id="code-cell-108-output" class="output"></div>
+            <div id="code-cell-107-output" class="output"></div>
         </div>
         <p>In the cell below, have a play with different operations on the string, we&#x27;ll explore some in more detail further on. Note - many won&#x27;t work and will throw an error, be sure to note the error as they are common ones.</p>
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-109">practice_string = &quot;L2D&quot;</textarea>
+                <textarea id="code-cell-108">practice_string = &quot;L2D&quot;</textarea>
             </div>
-            <button id="run-code-cell-109" class="run-button">Run Code</button>
-            <div id="code-cell-109-output" class="output"></div>
+            <button id="run-code-cell-108" class="run-button">Run Code</button>
+            <div id="code-cell-108-output" class="output"></div>
         </div>
         
                     </div>
@@ -210,26 +210,26 @@ print(&quot;\nMultiplying the same numerical sequence, stored as a string:   &qu
                         <p>As you will have seen with data types, data structures also have fundamental aspects to them which standardises their usage. It is important to understand these aspects, so that you better understand how your data is stored and augmented throughout your Python script.</p><h4>Immutability</h4><p>Strings <strong>cannot be changed after they are instantiated</strong>. The data structure itself is <strong>immutable</strong>. If you were to augment the string through operations or methods, Python will instead create a new string to be stored as another variable if needed. This means you can always be assured your original data will be unchanged.<br><br>In the cell below, let&#x27;s use the <code>+</code> to concatenate new characters into our string, using an F-string. Note how - inspite of the change - it is not overstored into the variable containing the original string, which is subsequently still recallable.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-110">original_sequence = &quot;ATCGATCG&quot;
+                <textarea id="code-cell-109">original_sequence = &quot;ATCGATCG&quot;
 print(f&quot;Concatenated sequence: {original_sequence + &#x27;GGGGGGGG&#x27;}&quot;), # Concatenate a poly-G repeat.
 print(f&quot;Original (unchanged):  {original_sequence}&quot;) </textarea>
             </div>
-            <div id="code-cell-110-output" class="output"></div>
+            <div id="code-cell-109-output" class="output"></div>
         </div>
         <h4>Case-sensitive</h4><p>Python treats <strong>uppercase</strong> and <strong>lowercase</strong> as <em>different characters</em>. This means that extra dilligence should be afforded when importing data, to check that it was inputted, correctly. Many experimental pipelines have been held up by one user using lower case when another uses upper case.<br><br>We&#x27;ll demonstrate some methods later that convert from one case to the other.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-111">gene1 = &quot;TP53&quot;  # Upper case.
+                <textarea id="code-cell-110">gene1 = &quot;TP53&quot;  # Upper case.
 gene2 = &quot;tp53&quot;  # Lower case.
 
 print(f&quot;Are these genes equivalent? \n\n{gene1 == gene2}&quot;)</textarea>
             </div>
-            <div id="code-cell-111-output" class="output"></div>
+            <div id="code-cell-110-output" class="output"></div>
         </div>
         <h4>Indexing</h4><p>Much like a list or tuple, <strong>strings can be indexed</strong>, allowing the use of operations such as <strong>slicing</strong>. Each character is an <strong>ordered item</strong> in the string, exactly as each element is within a list. In fact, the same basic slicing operations that we previously covered in the lists section of this material, can be applied to strings.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-112">rna_seq = &quot;AUGGGCAGUCCGUAA&quot;
+                <textarea id="code-cell-111">rna_seq = &quot;AUGGGCAGUCCGUAA&quot;
 
 print(f&quot;Original sequence: {rna_seq}\n&quot;)
 
@@ -238,16 +238,16 @@ print(f&quot;Slicing last nucleotide: {rna_seq[-1]}&quot;)
 
 print(f&quot;Slicing RNA without start codon: {rna_seq[3:]}&quot;) # We sliced downstream of start codon AUG.</textarea>
             </div>
-            <div id="code-cell-112-output" class="output"></div>
+            <div id="code-cell-111-output" class="output"></div>
         </div>
-        <p>In th ecell below, isolate the termination codon from the string in variable <code>rna_seq</code>.<br><br><em>HINT: RNA stop codons can be either UAA, UAG or UGA.</em></p>
+        <p>In th ecell below, isolate the termination codon from the string in variable <code>rna_seq</code>.<br><br><em>Hint: RNA stop codons can be either UAA, UAG or UGA.</em></p>
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-113">rna_seq = &quot;AUGGGCAGUCCGUAA&quot;
+                <textarea id="code-cell-112">rna_seq = &quot;AUGGGCAGUCCGUAA&quot;
 </textarea>
             </div>
-            <button id="run-code-cell-113" class="run-button">Run Code</button>
-            <div id="code-cell-113-output" class="output"></div>
+            <button id="run-code-cell-112" class="run-button">Run Code</button>
+            <div id="code-cell-112-output" class="output"></div>
         </div>
         <h4>Comparable / sortable</h4><p>Strings can also be <strong>sorted</strong> or <strong>compared</strong> based on their characters. Much as we can order various numbers by ascending or descending value, we can also sort strings based on the ranking of their characters.<br><br>Python compares strings lexicographically (in dictionary-like order) using <strong>ASCII values</strong>.<br><br>This means:<ol class="nested-list"><li>Numbers come before letters</li><br><li>Uppercase letters come before lowercase letters</li><br><li>Letters are ordered alphabetically</li></ol></p>
         <div class="info-box fact-box">
@@ -262,25 +262,25 @@ print(f&quot;Slicing RNA without start codon: {rna_seq[3:]}&quot;) # We sliced d
         
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-114"># Comparisons between strings is not always obvious
+                <textarea id="code-cell-113"># Comparisons between strings is not always obvious
 
 ex1 = &quot;exp_10&quot;
 ex2 = &quot;exp_2&quot;
 
 print(ex1 &gt; ex2)</textarea>
             </div>
-            <div id="code-cell-114-output" class="output"></div>
+            <div id="code-cell-113-output" class="output"></div>
         </div>
         <p>For strings, the comparison occurs from left to right in its search for differing characters. In the example above, the first 4 characters - <code>exp_</code> - are identical. The 5th are different with <strong>1</strong> coming before <strong>2</strong>.<br><br>If you want to ensure you sample names can be ordered properly, it is important to <strong>zero-pad</strong> you strings when entering them. That is - &#x27;experiment 1&#x27; would be zero-padded to &#x27;experiment 01&#x27;.<br><br>Zero-padding is demonstrated in the cell, below:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-115"># If your samples run into the double digits, remember to add zeros in front of the single digit numbers
+                <textarea id="code-cell-114"># If your samples run into the double digits, remember to add zeros in front of the single digit numbers
 
 samples = [&quot;exp_01&quot;, &quot;exp_10&quot;, &quot;exp_02&quot;, &quot;exp_21&quot;]
 
 print(sorted(samples)) </textarea>
             </div>
-            <div id="code-cell-115-output" class="output"></div>
+            <div id="code-cell-114-output" class="output"></div>
         </div>
         
                     </div>
@@ -294,50 +294,50 @@ print(sorted(samples)) </textarea>
                         <p>Python also supports several basic operations with strings, similar to those found with lists:</p><h4>Concatenation</h4><p>A new character, or sequence of new characters, can be added (or concatenated) onto the end of another string, increasing its size and information. This is done using the logical operator: <code>+</code>.<br><br>The cell below demonstrates how <code>+</code> behaves differently with a list, compared with a string.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-116">start_list = [&#x27;1&#x27;]
+                <textarea id="code-cell-115">start_list = [&#x27;1&#x27;]
 start_string = &#x27;1&#x27;
 
 print(&quot;Adding to a list:&quot;, start_list + [&#x27;1&#x27;])
 print(&quot;Adding to a string:&quot;, start_string + &#x27;1&#x27;)</textarea>
             </div>
-            <div id="code-cell-116-output" class="output"></div>
+            <div id="code-cell-115-output" class="output"></div>
         </div>
         <p>In many ways both the string and list above are similar: they are both a sequential store of the character &#x27;1&#x27;.<br><br>Adding strings together can is also useful as a quick method to create unique ID&#x27;s given two pieces of existing data. For example:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-117">study = &quot;CARDIO&quot;
+                <textarea id="code-cell-116">study = &quot;CARDIO&quot;
 patient_num = &quot;001&quot;
 patient_id = study + &quot;_&quot; + patient_num
 print(patient_id)</textarea>
             </div>
-            <div id="code-cell-117-output" class="output"></div>
+            <div id="code-cell-116-output" class="output"></div>
         </div>
         <h4>Multiplication</h4><p>Multiplying a string <strong>repeats the whole string by the given number</strong>. There are not many uses for this within biology, but it does make for a nice visual break when printing your output.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-118">title = &quot; BACTERIAL GROWTH ASSAY &quot;
+                <textarea id="code-cell-117">title = &quot; BACTERIAL GROWTH ASSAY &quot;
 border = &quot;=&quot; * len(title)
 print(border)
 print(title)
 print(border)</textarea>
             </div>
-            <div id="code-cell-118-output" class="output"></div>
+            <div id="code-cell-117-output" class="output"></div>
         </div>
         
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-119"># Have a play around with a string using the above operations
+                <textarea id="code-cell-118"># Have a play around with a string using the above operations
 
 study = &quot;test_string&quot;
 </textarea>
             </div>
-            <button id="run-code-cell-119" class="run-button">Run Code</button>
-            <div id="code-cell-119-output" class="output"></div>
+            <button id="run-code-cell-118" class="run-button">Run Code</button>
+            <div id="code-cell-118-output" class="output"></div>
         </div>
-        <h4>`in` operation</h4><p>Often the information we are looking for is hidden within a larger string. Using the <code>in</code> operation we can determine if a unique sub-string is within a larger string. The <code>in</code> operation won&#x27;t isolate the string you are looking for, but often all you need to know is if one data point is present for an action to be taken.</p>
+        <h4>Using the `in` operation</h4><p>Often the information we are looking for is hidden within a larger string. Using the <code>in</code> operation we can determine if a unique sub-string is within a larger string. The <code>in</code> operation won&#x27;t isolate the string you are looking for, but often all you need to know is if one data point is present for an action to be taken.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-120"># protein sequence
+                <textarea id="code-cell-119"># protein sequence
 protein_sequence = &quot;MKWVTFISLLFLFSSAYSRGVFRRDAHKSEVAHRFKDLGEENFKALVLIAFAQYLQQ&quot;
 
 # Check for signal peptides and domains
@@ -349,15 +349,15 @@ print(f&quot;Has signal peptide:             {signal_peptide in protein_sequence
 print(f&quot;Contains hydrophobic region:    {hydrophobic_region in protein_sequence}&quot;)
 print(f&quot;Contains binding motif:         {binding_motif in protein_sequence}&quot;)</textarea>
             </div>
-            <div id="code-cell-120-output" class="output"></div>
+            <div id="code-cell-119-output" class="output"></div>
         </div>
         
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-121"># Have a play around finding sub-sequences in `protein_sequence`</textarea>
+                <textarea id="code-cell-120"># Have a play around finding sub-sequences in `protein_sequence`</textarea>
             </div>
-            <button id="run-code-cell-121" class="run-button">Run Code</button>
-            <div id="code-cell-121-output" class="output"></div>
+            <button id="run-code-cell-120" class="run-button">Run Code</button>
+            <div id="code-cell-120-output" class="output"></div>
         </div>
         
                     </div>
@@ -381,10 +381,10 @@ print(f&quot;Contains binding motif:         {binding_motif in protein_sequence}
         
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-122">approved_drugs = (&quot;metformin&quot;, &quot;insul&quot;, &quot;glipizide&quot;, &quot;pioglitazone&quot;)</textarea>
+                <textarea id="code-cell-121">approved_drugs = (&quot;metformin&quot;, &quot;insul&quot;, &quot;glipizide&quot;, &quot;pioglitazone&quot;)</textarea>
             </div>
-            <button id="run-code-cell-122" class="run-button">Run Code</button>
-            <div id="code-cell-122-output" class="output"></div>
+            <button id="run-code-cell-121" class="run-button">Run Code</button>
+            <div id="code-cell-121-output" class="output"></div>
         </div>
         
                     </div>
@@ -395,37 +395,37 @@ print(f&quot;Contains binding motif:         {binding_motif in protein_sequence}
                 <div class="module-body">
                     <div class="module-section">
                         <h3>String methods</h3>
-                        <p>The string data type also comes with <strong>built-in methods</strong> that quickly and neatly perform common tasks with letter based data, such as <em>finding sub-strings</em>, <em>removing unwanted characters</em> (such as whitespace), and <em>reformatting to a uniformed state</em>. We will go through a few of the common string methods, and provide a table that contains few more.<br><br>There are many more string methods than demonstrated or mentioned here, some of which fit very specific circumstances. They can all be found in the Python documentation <a href="https://docs.python.org/3/library/stdtypes.html#string-methods">here</a>.</p><h4>`.find()`</h4><p>Rather than using the <code>in</code> to confirm the presence of sub-strings we can use the <code>find()</code> method. This method will <strong>search for the given string and return the index of the first character</strong>, if not present it will return <strong>-1</strong>. The index can then be used to extract the subsequent string.</p>
+                        <p>The string data type also comes with <strong>built-in methods</strong> that quickly and neatly perform common tasks with letter based data, such as <em>finding sub-strings</em>, <em>removing unwanted characters</em> (such as whitespace), and <em>reformatting to a uniformed state</em>. We will go through a few of the common string methods, and provide a table that contains few more.<br><br>There are many more string methods than demonstrated or mentioned here, some of which fit very specific circumstances. They can all be found in the Python documentation <a href="https://docs.python.org/3/library/stdtypes.html#string-methods">here</a>.</p><h4>Find</h4><p>Rather than using the <code>in</code> to confirm the presence of sub-strings we can use the <code>find()</code> method. This method will <strong>search for the given string and return the index of the first character</strong>, if not present it will return <strong>-1</strong>. The index can then be used to extract the subsequent string.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-123">medication = &quot;ibuprofen_200mg_tablet&quot;
+                <textarea id="code-cell-122">medication = &quot;ibuprofen_200mg_tablet&quot;
 
 # Find the position of substring (returns -1 if not found)
 print(f&quot;Index of &#x27;200gm&#x27;: {medication.find(&#x27;200mg&#x27;)}\n&quot;)  
 print(f&quot;Index when not found: {medication.find(&#x27;400gm&#x27;)}&quot;)    # -1 (not found)</textarea>
             </div>
-            <div id="code-cell-123-output" class="output"></div>
+            <div id="code-cell-122-output" class="output"></div>
         </div>
         
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-124"># Isolate the rest of the string using the returned index
+                <textarea id="code-cell-123"># Isolate the rest of the string using the returned index
 index_start = medication.find(&quot;200mg&quot;)
 
 print(f&quot;Isolated string: {medication[index_start:]}&quot;) # Prints all characters downstream of the found sequence.</textarea>
             </div>
-            <div id="code-cell-124-output" class="output"></div>
+            <div id="code-cell-123-output" class="output"></div>
         </div>
         <h4>Count</h4><p>The <code>count()</code> method allows the user to find the number of times a particular character or sequence appears within a string, as demonstrated, below:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-125">dna_sequence = &quot;ATCGGATCGGACGG&quot;
+                <textarea id="code-cell-124">dna_sequence = &quot;ATCGGATCGGACGG&quot;
 
 # Count occurrences
-print(f&quot;Number of instances of &#x27;AT&#x27;: {dna_sequence.count(&quot;AT&quot;)}&quot;)
-print(f&quot;Number of instances of &#x27;CG&#x27;: {dna_sequence.count(&quot;GG&quot;)}&quot;) </textarea>
+print(f&quot;Number of instances of &#x27;AT&#x27;: {dna_sequence.count(&#x27;AT&#x27;)}&quot;)
+print(f&quot;Number of instances of &#x27;CG&#x27;: {dna_sequence.count(&#x27;GG&#x27;)}&quot;) </textarea>
             </div>
-            <div id="code-cell-125-output" class="output"></div>
+            <div id="code-cell-124-output" class="output"></div>
         </div>
         <h4>Other methods for searching strings</h4><table class="markdown-table">
 <thead>
@@ -475,7 +475,7 @@ print(f&quot;Number of instances of &#x27;CG&#x27;: {dna_sequence.count(&quot;GG
 </table><h4>Case manipulation</h4><p>As we learned earlier, Python <strong>strings are case-sensitive</strong>. This can have considerable effects on your analysis, as groups that are meant to be the same may have small capitalisation differences. If you are unable to prevent these happening at the source, you can augment them using the <code>.lower()</code> and <code>.upper()</code> string methods.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-126"># Going back to our earlier example
+                <textarea id="code-cell-125"># Going back to our earlier example
 
 gene1 = &quot;TP53&quot;
 gene2 = &quot;tp53&quot;
@@ -489,7 +489,7 @@ print(f&quot;Are these genes equivalent using .lower()? {gene1.lower() == gene2}
 print(f&quot;Are these genes equivalent using .upper()? {gene1 == gene2.upper()}&quot;)
 </textarea>
             </div>
-            <div id="code-cell-126-output" class="output"></div>
+            <div id="code-cell-125-output" class="output"></div>
         </div>
         <h4>Other case methods</h4><table class="markdown-table">
 <thead>
@@ -534,27 +534,37 @@ print(f&quot;Are these genes equivalent using .upper()? {gene1 == gene2.upper()}
 </table><h4>Cleaning</h4><p>Another common issue when dealing with strings is <strong>unwanted characters</strong>, such as <em>whitespace</em> or <em>special characters</em>, that are an <em>artefact</em> of, say, the machine recording the experiment, or of parsing the content into Python. This is especially common in <em>FASTA files</em>, which often contain many millions of characters, or even billions, of characters.<br><br>The <code>.strip()</code> string method, for example, can be used to remove <strong>whitespace</strong> and <em>escape sequences</em>* (such as <code>\n</code>, which returns a newline character).</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-127"># Remove whitespace and escape characters (common when reading files)
+                <textarea id="code-cell-126"># Remove whitespace and escape characters (common when reading files)
 messy_gene = &quot;  EGFR  \n&quot;
 clean_gene = messy_gene.strip()
 print(clean_gene) </textarea>
             </div>
-            <div id="code-cell-127-output" class="output"></div>
+            <div id="code-cell-126-output" class="output"></div>
         </div>
         <p>Another method - <code>.replace()</code> - can be useful for finding a certain character, and replacing it with another. The first argument it accepts is the sequence being searched, and the second argument, is the sequence intended to replace it.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-128"># Replace characters
+                <textarea id="code-cell-127"># Replace characters
 sequence = &quot;ATCG-NATCG&quot;
 clean_sequence = sequence.replace(&quot;-&quot;, &quot;&quot;).replace(&quot;N&quot;, &quot;&quot;)
 print(clean_sequence)   </textarea>
             </div>
-            <div id="code-cell-128-output" class="output"></div>
+            <div id="code-cell-127-output" class="output"></div>
+        </div>
+        
+        <div class="info-box tip-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                TIP
+            </div>
+            <div class="box-content">
+                <p>In the above code we have chained two methods together, a common sight in Python. Here the first method will execute returning a new object, which in turn is acted upon by the next method. Chaining of methods only works for those thAT return a object, as this is what the subsequent method is working on.</p>
+            </div>
         </div>
         <p>The <code>.split()</code> method is also particularly useful when dealing with FASTA files that have varying seperators.<br><br>In the example below, we split the sequence header on the <code>|</code> character, assigning each split section of the string to the element of a new list. We can then use indexing to retrieve just the accession number, for instance, from this list, allowing us to swiftly retrieve just the information we are looking for, from a string, using minimal code.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-129"># Parsing a FASTA header
+                <textarea id="code-cell-128"># Parsing a FASTA header
 fasta_header = &quot;&gt;gi|123456|ref|NM_000546.5| tumor protein p53 (TP53), mRNA&quot;
 
 # Remove the &#x27;&gt;&#x27; and split by &#x27;|&#x27;
@@ -565,7 +575,17 @@ print(f&quot;FASTA components: {header_parts, type(header_parts)}\n&quot;)
 accession = header_parts[3]
 print(f&quot;Accession number: {accession}&quot;)</textarea>
             </div>
-            <div id="code-cell-129-output" class="output"></div>
+            <div id="code-cell-128-output" class="output"></div>
+        </div>
+        
+        <div class="image-placeholder">
+            <div class="placeholder-content">
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="5,3 19,12 5,21"/>
+                </svg>
+                <p><strong>Video unavailable:</strong></p>
+                <p><small>No URL provided</small></p>
+            </div>
         </div>
         <h4>Other modification methods</h4><table class="markdown-table">
 <thead>
@@ -629,12 +649,12 @@ print(f&quot;Accession number: {accession}&quot;)</textarea>
         
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-130"># Messy data
+                <textarea id="code-cell-129"># Messy data
 gene_name = &quot;  brca-1  &quot;          
 sample_id = &quot;gilestro_024&quot;</textarea>
             </div>
-            <button id="run-code-cell-130" class="run-button">Run Code</button>
-            <div id="code-cell-130-output" class="output"></div>
+            <button id="run-code-cell-129" class="run-button">Run Code</button>
+            <div id="code-cell-129-output" class="output"></div>
         </div>
         
                     </div>
@@ -648,7 +668,7 @@ sample_id = &quot;gilestro_024&quot;</textarea>
                         <h4>Lists</h4><p>Converting a string to a <strong>list</strong> can be extremely useful when you need to manipulate individual characters or when you want to analyse the frequency of specific elements. The <code>split()</code> method is particularly powerful for parsing structured data, whilst the <code>list()</code> class converts each character into a separate list element.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-131"># Convert each character to a list element
+                <textarea id="code-cell-130"># Convert each character to a list element
 dna_sequence = &quot;ATCGATCG&quot;
 nucleotides = list(dna_sequence)
 print(f&quot;Individual nucleotides: {nucleotides}\n&quot;)
@@ -658,7 +678,7 @@ sample_data = &quot;sample1,control,25.6,positive&quot;
 data_fields = sample_data.split(&quot;,&quot;)
 print(f&quot;Data fields: {data_fields}&quot;)</textarea>
             </div>
-            <div id="code-cell-131-output" class="output"></div>
+            <div id="code-cell-130-output" class="output"></div>
         </div>
         
                     </div>
@@ -682,14 +702,14 @@ print(f&quot;Data fields: {data_fields}&quot;)</textarea>
         
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-132">protein_sequence = &quot;MKWVTFISLLFLFSSAYS&quot;
+                <textarea id="code-cell-131">protein_sequence = &quot;MKWVTFISLLFLFSSAYS&quot;
 hydrophobic = [&#x27;A&#x27;, &#x27;I&#x27;, &#x27;L&#x27;, &#x27;M&#x27;, &#x27;F&#x27;, &#x27;W&#x27;, &#x27;Y&#x27;, &#x27;V&#x27;]
 
 # Your code here
 </textarea>
             </div>
-            <button id="run-code-cell-132" class="run-button">Run Code</button>
-            <div id="code-cell-132-output" class="output"></div>
+            <button id="run-code-cell-131" class="run-button">Run Code</button>
+            <div id="code-cell-131-output" class="output"></div>
         </div>
         
                     </div>
@@ -743,7 +763,7 @@ hydrophobic = [&#x27;A&#x27;, &#x27;I&#x27;, &#x27;L&#x27;, &#x27;M&#x27;, &#x27
 </table><h4>Tuples</h4><p>Converting strings to tuples follows similar principles to lists, but creates an <strong>immutable sequence</strong>. This can be particularly <em>useful when you need to ensure your sequence data remains unchanged</em> throughout your analysis, or when you want to use the sequence as a dictionary key (we will discuss dictionaries in Python Fundamentals 3).</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-133"># Convert string to tuple of characters
+                <textarea id="code-cell-132"># Convert string to tuple of characters
 codon = &quot;ATG&quot;
 codon_tuple = tuple(codon)
 print(f&quot;Codon as tuple: {codon_tuple}&quot;)
@@ -754,7 +774,7 @@ sample_id = &quot;EXP_001_CTRL&quot;
 id_parts = tuple(sample_id.split(&quot;_&quot;))
 print(f&quot;Sample ID parts: {id_parts}&quot;)</textarea>
             </div>
-            <div id="code-cell-133-output" class="output"></div>
+            <div id="code-cell-132-output" class="output"></div>
         </div>
         
                     </div>
@@ -778,23 +798,23 @@ print(f&quot;Sample ID parts: {id_parts}&quot;)</textarea>
         
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-134">restriction_site = &quot;GAATTC&quot;
+                <textarea id="code-cell-133">restriction_site = &quot;GAATTC&quot;
 
 # Your code here
 </textarea>
             </div>
-            <button id="run-code-cell-134" class="run-button">Run Code</button>
-            <div id="code-cell-134-output" class="output"></div>
+            <button id="run-code-cell-133" class="run-button">Run Code</button>
+            <div id="code-cell-133-output" class="output"></div>
         </div>
         
                     </div>
                 </div>
             </div>
             
-            <div class="module-card" id="key-differences--lists--vs---tuples-from-strings">
+            <div class="module-card" id="key-differences--lists-vs--tuples-from-strings">
                 <div class="module-body">
                     <div class="module-section">
-                        <h3>Key differences: lists *vs.* tuples from strings</h3>
+                        <h3>Key differences: lists vs. tuples from strings</h3>
                         <table class="markdown-table">
 <thead>
 <tr>
@@ -835,9 +855,16 @@ print(f&quot;Sample ID parts: {id_parts}&quot;)</textarea>
 <td>Few methods (count, index)</td>
 </tr>
 </tbody>
-</table><h4>Summary
-
-In this section, we explored **strings** — ordered sequences of characters used to store and manipulate text in Python. We learned that strings can be created using **single** (`&#x27;...&#x27;`) or **double** (`&quot;...&quot;`) quotation marks, and that any type of character — alphabetical, grammatical, numerical *etc.* — can be represented as a string. We also saw how the `str()` class can convert other data types into their string form. The lesson introduced **escape sequences** (such as `\n` for a new line), **f-strings** for formatted output, and the concept of **ASCII values**, which map characters to numerical codes (e.g. `&#x27;A&#x27;` is `65`). Together, these tools allow us to store, display, and manipulate textual data effectively in Python.</h4>
+</table>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="summary">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Summary</h3>
+                        <p>In this section, we explored <strong>strings</strong> — ordered sequences of characters used to store and manipulate text in Python. We learned that strings can be created using <strong>single</strong> (<code>&#x27;...&#x27;</code>) or <strong>double</strong> (<code>&quot;...&quot;</code>) quotation marks, and that any type of character — alphabetical, grammatical, numerical <em>etc.</em> — can be represented as a string. We also saw how the <code>str()</code> class can convert other data types into their string form. The lesson introduced <strong>escape sequences</strong> (such as <code>\n</code> for a new line), <strong>f-strings</strong> for formatted output, and the concept of <strong>ASCII values</strong>, which map characters to numerical codes (e.g. <code>&#x27;A&#x27;</code> is <code>65</code>). Together, these tools allow us to store, display, and manipulate textual data effectively in Python.</p>
                     </div>
                 </div>
             </div>
