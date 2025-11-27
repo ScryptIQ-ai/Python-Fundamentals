@@ -324,23 +324,56 @@ import genomics_toolkit   # not a real or installed module</textarea>
                 <div class="module-body">
                     <div class="module-section">
                         <h3>Error handling</h3>
-                        <h4>`try` and `except`:</h4><p>So far, we have covered how exceptions are raised whenever Python encounters a problem during execution. By default, these exceptions stop the program <em>completely</em>, which is often helpful for debugging but not always desirable if you want your program to continue running, just to see how far it gets, for instance.<br><br>Python therefore provides an elegant way to <em>handle</em> exceptions using the keywords <code>try</code> and <code>except</code>. This allows you to wrap a block of code in a <code>try</code> statement, and if an exception occurs, the program will <em>catch</em> it and execute the code inside the corresponding <code>except</code> block instead of crashing. This is not dissimilar to how a conditional statement works, in that if an error occurs, an alternative &#x27;route&#x27; through the program is provided, to try and circumvent it.<br><br>In this way, <code>try</code> and <code>except</code> give you tight control over how your program responds to errors, enabling you to display useful messages back to the console, take alternative actions or safely recover the point you reached without stopping the entire program. If your program is editing, writing or overwriting important data, for example, these recovery options can be invaluable in preventing irreparable damage from occurring.</p><h4>Syntax</h4><p>Similar to the conditional statements we looked at earlier in this lesson, the <code>try</code> keyword is followed by a colon <code>:</code>, and hitting return auto-indents the next line by a single tab space. All lines on this indentation level will then specify the code that is <em>wrapped</em> by the <code>try</code> keyword.<br><br>If we exit the scope of <code>try</code> on a new line, we can then use the <code>except</code> keyword, to specify alternative &#x27;solution&#x27; code, should a particular runtime error or exception occur in the <code>try</code> block.<br><br>Run the code in the cell below. Python will raise a <code>ZeroDivisionError</code>:</p>
+                        <h4>`try` and `except`:</h4><p>So far, we have covered how exceptions are raised whenever Python encounters a problem during execution. By default, these exceptions stop the program <em>completely</em>, which is often helpful for debugging but not always desirable if you want your program to continue running, just to see how far it gets, for instance.<br><br>Python therefore provides an elegant way to <em>handle</em> exceptions using the keywords <code>try</code> and <code>except</code>. This allows you to wrap a block of code in a <code>try</code> statement, and if an exception occurs, the program will <em>catch</em> it and execute the code inside the corresponding <code>except</code> block instead of crashing. This is not dissimilar to how a conditional statement works, in that if an error occurs, an alternative &#x27;route&#x27; through the program is provided, to try and circumvent it.<br><br>In this way, <code>try</code> and <code>except</code> give you tight control over how your program responds to errors, enabling you to display useful messages back to the console, take alternative actions or safely recover the point you reached without stopping the entire program. If your program is editing, writing or overwriting important data, for example, these recovery options can be invaluable in preventing irreparable damage from occurring.</p><h4>Syntax</h4><p>Similar to the conditional statements we looked at earlier in this lesson, the <code>try</code> keyword is followed by a colon <code>:</code>, and hitting return auto-indents the next line by a single tab space. All lines on this indentation level will then specify the code that is <em>wrapped</em> by the <code>try</code> keyword.<br><br>If we exit the scope of <code>try</code> on a new line, we can then use the <code>except</code> keyword, to specify alternative &#x27;solution&#x27; code, should a particular runtime error or exception occur in the <code>try</code> block.<br><br>See below:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-64">try:
+    # your code block here
+    x= 2
+except:
+    # what to do if an error / exception occurs
+    print(&quot;Not what we expected&quot;)</textarea>
+            </div>
+            <div id="code-cell-64-output" class="output" style="display: none;"></div>
+        </div>
+        <h4>In practice</h4><p>Lets run through a typical workflow for finding an error and adding <code>try</code> <code>except</code> to handle it.</p><p>Often we write code that works perfectly during development, but breaks when exposed to new data, giving us error messages. Upon examining the input and error, we might find that the code itself is sound, it simply cannot handle an outlier data point. A common example in data analytics is encountering zeroes when dividing, which raises a <code>ZeroDivisionError</code>.<br><br>Run the code in the cell below to see an example of the error:</p>
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-64">cell_count = 1000
+                <textarea id="code-cell-65">cell_count = 1000
 replicates = 0
 
 average = cell_count / replicates
 
 print(f&quot;Average cells per replicate: {average}&quot;)</textarea>
             </div>
-            <button id="run-code-cell-64" class="run-button">Run Code</button>
-            <div id="code-cell-64-output" class="output"></div>
+            <button id="run-code-cell-65" class="run-button">Run Code</button>
+            <div id="code-cell-65-output" class="output"></div>
         </div>
-        <p>If we wrap the same code in a <code>try</code> statement, and use <code>except</code> to run code that prints an error message of our choosing to the console, Python no longer raises an error. Instead, it runs the code wrapped in the <code>except</code> statement, as a &#x27;solution&#x27; should a specified <code>ZeroDivisionError</code> be raised.<br><br>As follows:</p>
+        <p>Since zeroes appearing in our data is quite likely, we need a way to handle them gracefully in our workflow. This is where <code>try</code> and <code>except</code> come in. We wrap the problematic code in a <code>try</code> block and use <code>except</code> to define what should happen if an error occurs. Instead of Python crashing with an error, it runs the code in the <code>except</code> block as an alternative response.</p>
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-65"># ZeroDivisionError
+                <textarea id="code-cell-66"># ZeroDivisionError
+
+try:
+
+    cell_count = 1000
+    replicates = 0
+
+    average = cell_count / replicates
+    
+    print(f&quot;Average cells per replicate: {average}&quot;)
+
+except:
+    
+    print(&quot;Error: number of replicates cannot be zero.&quot;)</textarea>
+            </div>
+            <button id="run-code-cell-66" class="run-button">Run Code</button>
+            <div id="code-cell-66-output" class="output"></div>
+        </div>
+        <p>The error handling above works with all errors, not just <code>ZeroDivisionError</code>. This can be useful if you want to bypass a block of code that&#x27;s repeatedly throwing errors. However, in production code you should be <em>explicit</em> about which errors you want to handle. We do this by specifying the expected error type after <code>except</code>.</p>
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-67"># Explicit ZeroDivisionError catch
 
 try:
 
@@ -355,23 +388,23 @@ except ZeroDivisionError:
     
     print(&quot;Error: number of replicates cannot be zero.&quot;)</textarea>
             </div>
-            <button id="run-code-cell-65" class="run-button">Run Code</button>
-            <div id="code-cell-65-output" class="output"></div>
+            <button id="run-code-cell-67" class="run-button">Run Code</button>
+            <div id="code-cell-67-output" class="output"></div>
         </div>
-        <p>Similarly, run the cell below, and enter your age as a word (string), and a <code>ValueError</code> will raise, because the <code>int</code> class expects numeric characters as input, only. In this case, instead of Python&#x27;s internal error reporting displaying, the <code>except</code> statement&#x27;s code will execute:</p>
+        <h4>Other examples</h4><p>Similarly, run the cell below, and enter your age as a word, and a <code>ValueError</code> will raise, because the <code>int</code> class expects numeric characters as input, only. In this case, instead of Python&#x27;s internal error reporting displaying, the <code>except</code> statement&#x27;s code will execute:</p>
         <div class="code-area hidden-code" style="display: none;">
             <div class="code-container">
-                <textarea id="code-cell-66">import js
+                <textarea id="code-cell-68">import js
 
 def input(prompt=&quot;&quot;):
     return js.prompt(prompt)</textarea>
             </div>
-            <div id="code-cell-66-output" class="output" style="display: none;"></div>
+            <div id="code-cell-68-output" class="output" style="display: none;"></div>
         </div>
         
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-67"># ValueError
+                <textarea id="code-cell-69"># ValueError
 
 try:
 
@@ -383,24 +416,28 @@ except ValueError:
 
     print(&quot;Error: please enter the age as a number, not text.&quot;)</textarea>
             </div>
-            <button id="run-code-cell-67" class="run-button">Run Code</button>
-            <div id="code-cell-67-output" class="output"></div>
+            <button id="run-code-cell-69" class="run-button">Run Code</button>
+            <div id="code-cell-69-output" class="output"></div>
         </div>
-        <p>Lastly, if we trigger Python to raise a <code>NameError</code> by calling an undefined variable, we can use an <code>except</code> statement to print our own customised error message:</p>
+        <p>Lastly, rather than printing an error statement we can use the exception to execute a block of code. A common use of this is to set a variable that would hae been given in the <code>try</code> block, so as not to cause an error in the code further down the script.</p>
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-68"># NameError
+                <textarea id="code-cell-70"># Calculating concentration
+total_volume = 0  # Empty sample
+substance_amount = 5.2
 
 try:
 
-    print(f&quot;Expression level: {gene_expression}&quot;)
+    concentration = substance_amount / total_volume
 
-except NameError:
+except ZeroDivisionError:
 
-    print(&quot;Error: the variable &#x27;gene_expression&#x27; has not been defined yet.&quot;)</textarea>
+    concentration = 0  # No concentration in empty sample
+
+print(f&quot;Concentration: {concentration}&quot;)</textarea>
             </div>
-            <button id="run-code-cell-68" class="run-button">Run Code</button>
-            <div id="code-cell-68-output" class="output"></div>
+            <button id="run-code-cell-70" class="run-button">Run Code</button>
+            <div id="code-cell-70-output" class="output"></div>
         </div>
         
                     </div>
@@ -423,6 +460,12 @@ except NameError:
                     <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
                 </svg>
                 Previous
+            </a>
+            <a href="./assignment.html" class="nav-button next">
+                Next
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                </svg>
             </a></div>
         
         <!-- Footer -->
@@ -497,6 +540,28 @@ async function main() {
             import sys
             from io import StringIO
         `);
+
+        // Only set up matplotlib if it's in the loaded packages
+        if (lessonPackages.includes('matplotlib')) {
+            await pyodide.runPythonAsync(`
+                # Set up matplotlib for web rendering
+                import matplotlib
+                matplotlib.use('AGG')
+                import matplotlib.pyplot as plt
+                import io
+                import base64
+                
+                def capture_matplotlib():
+                    """Capture current matplotlib figure as HTML img tag"""
+                    buf = io.BytesIO()
+                    plt.savefig(buf, format='png', bbox_inches='tight', dpi=100)
+                    buf.seek(0)
+                    img_base64 = base64.b64encode(buf.read()).decode('utf-8')
+                    plt.close()
+                    return f'<img src="data:image/png;base64,{img_base64}" style="max-width: 100%; height: auto;" />'
+            `);
+            console.log('Matplotlib capture function set up');
+        }
         
         console.log("Pyodide loaded successfully");
         
@@ -553,10 +618,25 @@ except Exception as e:
                 const result = await pyodide.runPythonAsync(code);
                 
                 // Get the captured stdout
-                const stdout = await pyodide.runPythonAsync(`
+                let stdout = await pyodide.runPythonAsync(`
                     sys.stdout = old_stdout
                     mystdout.getvalue()
                 `);
+                
+                // Check for matplotlib figures only if matplotlib was loaded
+                const lessonPackages = window.LESSON_PACKAGES || [];
+                if (lessonPackages.includes('matplotlib')) {
+                    const hasFigures = await pyodide.runPythonAsync(`
+                        import matplotlib.pyplot as plt
+                        len(plt.get_fignums()) > 0
+                    `);
+                    
+                    if (hasFigures) {
+                        const figureHtml = await pyodide.runPythonAsync(`capture_matplotlib()`);
+                        if (stdout) stdout += "\n";
+                        stdout += figureHtml;
+                    }
+                }
                 
                 // Combine stdout and result
                 let output = stdout;
@@ -673,7 +753,8 @@ except Exception as e:
                         });
                 } else if (trimmedOutput.startsWith('<!DOCTYPE') || 
                            trimmedOutput.startsWith('<html') ||
-                           trimmedOutput.startsWith('<div')) {
+                            trimmedOutput.startsWith('<div') ||
+                            trimmedOutput.startsWith('<img')) {
                     console.log('Rendering as generic HTML');
                     outputElement.innerHTML = result.output;
                     console.log('Output element after innerHTML:', outputElement.children.length, 'children');
@@ -803,6 +884,10 @@ except Exception as e:
         });
         
         console.log("All code blocks initialised successfully");
+
+        // Set flag to indicate Pyodide is fully ready
+        window.pyodideReady = true;
+        console.log("Pyodide fully ready");
         
     } catch (error) {
         console.error("Failed to initialise Pyodide:", error);
