@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Pyodide and CodeMirror -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/pastel-on-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/python/python.min.js"></script>
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="../assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../assets/android-chrome-512x512.png">
+    
+    <!-- Core Stylesheets -->
+    <link rel="stylesheet" href="../assets/colours.css">
+    <link rel="stylesheet" href="../assets/shared-styles.css">
+    <link rel="stylesheet" href="../assets/nav-bar.css">
+    <link rel="stylesheet" href="../assets/module_card.css">
+    <link rel="stylesheet" href="../assets/learning_outcomes.css">
+    <link rel="stylesheet" href="../assets/learning_lists.css">
+    <link rel="stylesheet" href="../assets/box_styles.css">
+    <link rel="stylesheet" href="../assets/code_styles.css">
+
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L2D - PF3 - Dictionaries</title>
+    
+    <!-- File URLs for this lesson -->
+    <script>window.LESSON_FILES = []; window.LESSON_PACKAGES = [];</script>
+        
+</head>
+<body>
+    
+    <!-- Sidebar Navigation -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+        </div>
+        
+        <h3>Content</h3>
+        <ul>
+            <li><a href="./introduction.html" class="">Introduction</a></li>
+            <li>
+                <div class="nav-toggle active" data-target="expandable-section-1">
+                    Dictionaries
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <ul class="nested-nav expanded" id="expandable-section-1"><li><a href="#introduction">Introduction</a></li><li><a href="#creating-a-dictionary">Creating a Dictionary</a></li><li><a href="#accessing-your-values">Accessing your values</a></li><li><a href="#modifying-dictionaries">Modifying Dictionaries</a></li><li><a href="#methods">Methods</a></li><li><a href="#nested-dictionaries">Nested dictionaries</a></li><li><a href="#summary">Summary</a></li>
+                </ul>
+            </li><li><a href="./what-data-type.html">Choosing the Right Data Type</a></li><li><a href="./python-packages.html">Python Packages</a></li><li><a href="./iterations.html">Iterations</a></li><li><a href="./assignment.html">Assignment</a></li><li><a href="./feedback.html">Feedback</a></li>
+        </ul>
+
+        <h3 class="collapsible-header collapsed">
+            Resources
+            <span class="collapse-icon">►</span>
+        </h3>
+        <div class="collapsible-content collapsed">
+            <ul>
+                <li><a href="./glossary.html">Glossary</a></li><li><a href="./downloads.html">Downloads</a></li><li><a href="../HB/introduction.html">Handbook</a></li>
+            </ul>
+        </div>
+
+        <h3 class="collapsible-header collapsed">
+            Previous Modules
+            <span class="collapse-icon">►</span>
+        </h3>
+        <div class="collapsible-content collapsed">
+            <ul>
+            <li><a href="../PF0/introduction.html">PF0</a></li>
+            <li><a href="../PF1/introduction.html">PF1</a></li>
+            <li><a href="../PF2/introduction.html">PF2</a></li>
+        </ul>
+        </div>
+
+        <h3>
+            <li><a href="./report-issue.html">Report an Issue</a></li>
+        </h3>
+    </div>
+    
+    <!-- Sidebar Toggle Button -->
+    <button id="sidebar-toggle" class="sidebar-toggle">❮</button>
+    
+    <!-- Main Content Area -->
+    <div id="main-content" class="main-content">
+        <!-- Top Navigation Bar -->
+        <div class="top-navbar">
+            <h1 class="page-title">Python Fundamentals 3</h1>
+            <div class="nav-actions">
+            </div>
+        </div>
+
+        
+            <div class="module-card" id="introduction">
+                <div class="module-header">
+                    Dictionaries <span class="module-tag">PF3</span>
+                </div>
+                <div class="module-body">
+                    <h3>Learning Objectives</h3>
+                    <div class="learning-outcomes">
+                        <div class="outcome-item">
+                    <span class="outcome-number">1</span>
+                    <span class="outcome-text">Understand what dictionaries are and how they differ from other data structures</span>
+                </div>
+<div class="outcome-item">
+                    <span class="outcome-number">2</span>
+                    <span class="outcome-text">Create dictionaries using various methods and syntax</span>
+                </div>
+<div class="outcome-item">
+                    <span class="outcome-number">3</span>
+                    <span class="outcome-text">Access and modify dictionary values using keys</span>
+                </div>
+<div class="outcome-item">
+                    <span class="outcome-number">4</span>
+                    <span class="outcome-text">Apply dictionary methods to retrieve and manipulate data</span>
+                </div>
+                    </div>
+                    <h3>Introduction</h3>
+                    <p>Just like a lexical dictionary, Python dictionaries map a <code>key</code> (the word itself) to a <code>value</code> (its definition). This ability to associate a set of values with a descriptive key is what makes dictionaries so powerful, as you are explicitly calling a value from a unique name. This contrasts against a Python list, where you are reliant on a numerical index that is reusable and not explicitly informative to the user.</p><p>Click here to read the official Python documentations on <a href="https://docs.python.org/3.6/tutorial/datastructures.html#dictionaries">dictionaries</a>, from Python.org.</p><p>In other coding languages, the generic term for data structures analogous to this would be &quot;associative array&quot; or &quot;memory&quot;. As dictionaries are indexed by <code>keys</code>, and not numbers, they are <strong>unordered</strong> (just like sets). Keys can comprise <em>any immutable type</em>, such as a string, integer or float. You can use other immutable structures, such as tuples, however strings and numbers are the most common.</p>
+        <div class="info-box fact-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                FACT
+            </div>
+            <div class="box-content">
+                <p>In Python, dictionaries are <em>technically</em> described as <strong>unordered</strong> because they cannot be accessed using numeric positions (like lists).<br><br>For instance, you cannot execute <code>my_dict[0]</code><br><br>However, since <strong>Python v3.7+</strong>, dictionaries <strong>preserve insertion order</strong>:<br><ul class="nested-list"><li>Keys appear in the order you <em>added</em> them</li><br><li>But this order is <strong>not</strong> the same as having index positions</li><br><li>You still look up items <strong>by key</strong>, and not by position</li></ul><strong>In summary:</strong><br><br>Dictionaries <em>remember</em> insertion order, but they are <em>not indexable</em> like lists.</p>
+            </div>
+        </div>
+        <p>See the diagram below for a visual conceptualisation of how dictionaries are structured:</p><p><img src="./images/dictionary-diagram.png" alt="diagram of dictionary" class="notebook-image"></p>
+                </div>
+            </div>
+            
+            <div class="module-card" id="creating-a-dictionary">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Creating a Dictionary</h3>
+                        
+        <div class="video-container">
+            <iframe 
+                src="https://www.youtube.com/embed/yKu1FfxJ_D0"
+                width="560"
+                height="315"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+        <p>To create a dictionary we typically use curly brackets <code>{}</code> with <code>:</code> separating the key from its value, i.e. <code>{&quot;key&quot; : value}</code>. The combination of a singular dictionary key and its value is referred to as a dictionary item. Each item is then separated from the next by a comma, as seen in lists, tuples, sets.</p>
+        <div class="info-box key-terms-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                KEY TERMS
+            </div>
+            <div class="box-content">
+                <p><strong>Key</strong>: A unique identifier used to access a value in a dictionary (e.g., <code>&quot;temperature_celsius&quot;</code>)<br><br><strong>Value</strong>: The data associated with a key in a dictionary (e.g., <code>30</code>)<br><br><strong>Item</strong> or <strong>element</strong>: A key-value pair within a dictionary (e.g., <code>&quot;temperature_celsius&quot;: 30</code>)</p>
+            </div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-1">woodland_dict = {
+    &quot;dominant_species&quot;: &quot;Quercus robur&quot;,
+    &quot;soil_ph&quot;: 6.2,
+    &quot;rain_ph&quot;: 7.1
+}
+
+print(woodland_dict)</textarea>
+            </div>
+            <div id="code-cell-1-output" class="output"></div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-2">print(type(woodland_dict))</textarea>
+            </div>
+            <div id="code-cell-2-output" class="output"></div>
+        </div>
+        
+        <div class="info-box tip-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                TIP
+            </div>
+            <div class="box-content">
+                <p>You may have noticed that we started each item on a new line. This format is considered good practice as it increases readability, however it is not necessary for the code to execute. You can also create the dictionary on a singular line, which may be easier, in some instances.<br><br>For example:<br><pre class="markdown-code-block"><code>woodland_dict = {&quot;dominant_species&quot;: &quot;Quercus robur&quot;, &quot;soil_ph&quot;: 6.2, &quot;rain_ph&quot;: 7.1}</code></pre></p>
+            </div>
+        </div>
+        <p>Another criterion for a dictionary key is that it must be <strong>unique</strong> within the dictionary. Whilst it won&#x27;t give you an error if a key is repeated, the latest <em>key : value</em> pair will override an existing one.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-3">test_dict = {1 : &#x27;first&#x27;, 1 : &quot;second&quot;}
+
+print(&quot;Despite giving our dictionary two key:values, only one remains:&quot;)
+print(test_dict)</textarea>
+            </div>
+            <div id="code-cell-3-output" class="output"></div>
+        </div>
+        
+        <div class="info-box warning-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                WARNING
+            </div>
+            <div class="box-content">
+                <p>An easy point of confusion is that <strong>sets</strong> can also be instantiated with curly brackets <code>{}</code>. For Python novices, this is why using the <code>set()</code> class is often preferred. Having each element separated by a colon <code>:</code> is what indicates to Python that you are creating a dictionary, and <em>not</em> a set.</p>
+            </div>
+        </div>
+        <h4>Creating a dictionary with dict()</h4><p>For consistency dictionaries can also be made using the <code>dict()</code> class. It is much more explicit in its creation of a dictionary; however this extra verbosity is often unnecessary as the <code>{}</code> syntax does specify a dictionary, when each element is a key-value pair separated by a colon <code>:</code>.<br><br>This does slightly break our rule of explicit is better than implicit, however rules are made to be broken.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-4"># The given parameters (keys) are automatically converted to a string
+# This automatic conversion restricts the user&#x27;s choice of type for the key
+
+woodland_dict_long = dict(dominant_species = &quot;Quercus robur&quot;, soil_ph = 6.2, rain_ph = 5.6)
+
+print(woodland_dict_long)
+print(type(woodland_dict_long))</textarea>
+            </div>
+            <div id="code-cell-4-output" class="output"></div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-5"># You can also give a list of tuples to dict()
+
+woodland_dict_long = dict([(&quot;dominant_species&quot;, &quot;Quercus robur&quot;), (&quot;soil_ph&quot;, 6.2), (&quot;rain_ph&quot;, 5.6)])
+
+print(woodland_dict_long)
+print(&quot; &quot;)
+print(type(woodland_dict_long))</textarea>
+            </div>
+            <div id="code-cell-5-output" class="output"></div>
+        </div>
+        <p>As with other data structures, you can obtain the length of a dictionary using <code>len()</code>.  The length, in this case, represents the <strong>number of key–value pairs</strong>, not the number of keys <em>plus</em> values (summed). Do not forget: a single item or element in a dictionary constitutes both a key, and its corresponding value.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-6">print(f&quot;Number of items in this dict is: {len(woodland_dict)}&quot;)</textarea>
+            </div>
+            <div id="code-cell-6-output" class="output"></div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="creating-a-dictionary">
+                <div class="module-body">
+                    <div class="module-section">
+                        
+        <div class="info-box practice-exercise-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                PRACTICE EXERCISE
+            </div>
+            <div class="box-content">
+                <p><strong>1.</strong></p>
+                <p>Create a dictionary called <code>rainforest_dict</code> with the same keys in <code>woodland_dict</code>. Assign the values given below to their respective keys (<code>dominant_species</code>, <code>soil_ph</code>, <code>rain_ph</code>):<ul class="nested-list"><li>&quot;Gorilla beringei beringei&quot;</li><br><li>7</li><br><li>6.4</li></ul></p>
+            </div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-7"># Create your dictionary here</textarea>
+            </div>
+            <button id="run-code-cell-7" class="run-button">Run Code</button>
+            <div id="code-cell-7-output" class="output"></div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="accessing-your-values">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Accessing your values</h3>
+                        <p>As discussed, rather than accessing our values through a numerical index, we use the <strong>key</strong> - whether that&#x27;s a string or number. As with indexing a list, the syntax is to use square brackets <code>[]</code> after the variable&#x27;s name.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-8">print(woodland_dict[&#x27;dominant_species&#x27;])</textarea>
+            </div>
+            <div id="code-cell-8-output" class="output"></div>
+        </div>
+        <p>And just like trying to index a list out of range, if you try to use a key that does not exist, the Python interpreter will generate a <code>KeyError</code>.</p>
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-9"># Run this cell to see the error
+
+print(woodland_dict[&#x27;rainfall&#x27;])</textarea>
+            </div>
+            <button id="run-code-cell-9" class="run-button">Run Code</button>
+            <div id="code-cell-9-output" class="output"></div>
+        </div>
+        <h4>Checking for keys</h4><p>If you&#x27;re not sure if a key exists in a dictionary you can use the membership operator <code>in</code> to test the membership of that key.</p>
+        <div class="info-box warning-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                WARNING
+            </div>
+            <div class="box-content">
+                <p>Note: this will only search the keys, and not the values.</p>
+            </div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-10">&quot;soil_ph&quot; in woodland_dict</textarea>
+            </div>
+            <div id="code-cell-10-output" class="output"></div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="accessing-your-values">
+                <div class="module-body">
+                    <div class="module-section">
+                        
+        <div class="info-box practice-exercise-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                PRACTICE EXERCISE
+            </div>
+            <div class="box-content">
+                <p><strong>2.</strong></p>
+                <p>Using both the <code>rainforest_dict</code> you created and the <code>woodland_dict</code>, extract the values for <code>rain_ph</code> from both, and assign each to their own variables.<ul class="nested-list"><li>Use the <code>&gt;</code> operator to show which one is greater. Give your answer as a boolean output.</li></ul></p>
+            </div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-11"># Complete the exercise here
+</textarea>
+            </div>
+            <button id="run-code-cell-11" class="run-button">Run Code</button>
+            <div id="code-cell-11-output" class="output"></div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="modifying-dictionaries">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Modifying Dictionaries</h3>
+                        <p>Much like a list, dictionaries are <strong>mutable</strong>. Adding new values to a dictionary is easy, and is very similar to replacing a value in a list. We can also make any modification to a value (so long as we know its associated key) by essentially overwriting that value.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-12"># Our store of experimental information
+
+experiment = {
+    &quot;yeast_species&quot;: &quot;Saccharomyces cerevisiae&quot;,
+    &quot;colony_count&quot;: 127,
+    &quot;temperature_celsius&quot;: 30,
+    &quot;growth_medium&quot;: &quot;YPD&quot;
+}
+
+print(experiment)</textarea>
+            </div>
+            <div id="code-cell-12-output" class="output"></div>
+        </div>
+        <h4>Adding new items</h4><p>Creating a new <strong>item</strong> in a dictionary is very similar to accessing a value associated with a given key.<br><br>Once again, the syntactical rule specifies that we use square brackets <code>[]</code> after the dictionary variable&#x27;s name, except this time we&#x27;re providing a new key. This is then assigned to the new value using the assignment <code>=</code> operator.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-13"># We can add new metadata information to the experiment
+
+experiment[&#x27;scientist&#x27;] = &#x27;Laurence Blackhurst&#x27;
+
+print(experiment)</textarea>
+            </div>
+            <div id="code-cell-13-output" class="output"></div>
+        </div>
+        <h4>Modifying existing items</h4><p>We can also modify existing items in the same manner, by calling a key and assigning it (using <code>=</code>) to a new value. This overwrites the old <em>key : value</em> pair, as you cannot have duplicates of a <em>key</em> in a dictionary. In this way, despite the keys themselves being immutable, the <em>key : value</em> pair can be altered.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-14">experiment[&#x27;growth_medium&#x27;] = &#x27;YNB&#x27;
+
+print(experiment)</textarea>
+            </div>
+            <div id="code-cell-14-output" class="output"></div>
+        </div>
+        <h4>Removing items</h4><p>Items are also easily deleted using two methods. The simplest of these is <code>del</code>, which is used before calling a key on the dictionary variable.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-15"># Remove the previously added item
+
+del experiment[&#x27;scientist&#x27;]
+
+print(experiment)</textarea>
+            </div>
+            <div id="code-cell-15-output" class="output"></div>
+        </div>
+        <p>Sometimes we may want to delete the item, but retain the value for evaluation in the moment. For this we use the <code>.pop()</code> method. Calling it with a key as the argument removes the item and returns the value associated with it.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-16"># We can remove an item and use it to update the dictionary
+
+additional_colonies = 52
+
+previous_colonies = experiment.pop(&#x27;colony_count&#x27;)
+
+experiment[&#x27;updated_colony_count&#x27;] = previous_colonies + additional_colonies
+
+print(experiment)</textarea>
+            </div>
+            <div id="code-cell-16-output" class="output"></div>
+        </div>
+        
+        <div class="info-box warning-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                WARNING
+            </div>
+            <div class="box-content">
+                <p>The above cell can only be run once, as the key &#x27;colony_count&#x27; has been removed. It&#x27;s something to be careful of when working in notebooks, as having multiple cells that you can execute in any order, any number of times, means that you can sometimes run your code in the wrong order.</p>
+            </div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="modifying-dictionaries">
+                <div class="module-body">
+                    <div class="module-section">
+                        
+        <div class="info-box practice-exercise-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                PRACTICE EXERCISE
+            </div>
+            <div class="box-content">
+                <p><strong>3.</strong></p>
+                <p>You&#x27;re tracking sample concentrations in a microbiology lab, you start with the dictionary below:<ol class="nested-list"><li>Add a new sample: Add <code>sample_005</code> with a concentration of <code>3.0</code>. Print the updated dictionary.</li><br><li>Modify existing data: <code>sample_002</code> was re-measured and the concentration is now 1.4. Update it and print the new value to confirm.</li><br><li>Remove using <code>del</code>: <code>sample_001</code> got contaminated and needs to be removed from tracking. Use <code>del</code> to remove it, then <code>print</code> the dictionary to confirm its removal.</li><br><li>Remove using <code>.pop()</code>: Extract <code>sample_003</code>&#x27;s concentration using <code>.pop()</code> and store it in a variable called <code>archived_concentration</code>. Print both the extracted value and the remaining samples dictionary.</li><br><li>Print how many samples remain in the dict.</li></ol></p>
+            </div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-17"># Complete the exercise here
+
+samples = {
+    &quot;sample_001&quot;: 1.2,
+    &quot;sample_002&quot;: 0.8,
+    &quot;sample_003&quot;: 2.1,
+    &quot;sample_004&quot;: 1.5
+}</textarea>
+            </div>
+            <button id="run-code-cell-17" class="run-button">Run Code</button>
+            <div id="code-cell-17-output" class="output"></div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="methods">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Methods</h3>
+                        <p>As with the previous data structures, there are various methods that can be called to augment or retrieve specific information from a dictionary. We will run through some of the most commonly used methods, here.</p><h4>.get()</h4><p>The <code>.get()</code> method is one of the most useful ways to retrieve a value from a dictionary. Unlike normal key access, <code>.get()</code> will <strong>not raise an error</strong> if the key is missing. This makes it ideal when your dictionary is being created automatically, and you are not sure whether a particular key exists. In these cases, <code>.get()</code> can often replace a <code>try</code>/<code>except</code> block for safe lookups.</p><p>Let&#x27;s take our <code>experiment</code> dictionary that we made, earlier. These <em>key-value</em> pairs are extracted from data inputted into a colony-counting machine. If an input is missed, it is not added to the extracted dictionary: for example, <code>&quot;incubator_humidity&quot;</code>. If we tried to call this <em>key</em>, our script would return an error, causing it to terminate, prematurely. When working in a Jupyter notebook, we can easily check and adjust our code, accordingly. But ordinarily, we would have defined our own Python function, or have written our own Python script that we could call, which would require more work to fix.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-18"># The first argument is the key,
+# the second the value to return if the key is not present
+
+print(experiment.get(&quot;incubator_humidity&quot;, &quot;NaN&quot;))</textarea>
+            </div>
+            <div id="code-cell-18-output" class="output"></div>
+        </div>
+        
+        <div class="info-box fact-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                FACT
+            </div>
+            <div class="box-content">
+                <p>The value <code>NaN</code> is a standard way to represent missing or undefined data in Python and data science disciplines. Its implementation will be expanded upon more in the <strong>Data Handling</strong> module of this course. <code>NaN</code> stands for &quot;Not a Number&quot;, and was first used in mathematical computations for non-real numbers, among other things.</p>
+            </div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-19"># Try using .get() with different keys and default values
+
+# Test with existing key
+print(experiment.get(&quot;growth_medium&quot;, &quot;Unknown&quot;))
+
+# Test with non-existing key
+print(experiment.get(&quot;ph_level&quot;, 7.0))
+
+# Test without providing default (returns None)
+print(experiment.get(&quot;lab_id&quot;))</textarea>
+            </div>
+            <button id="run-code-cell-19" class="run-button">Run Code</button>
+            <div id="code-cell-19-output" class="output"></div>
+        </div>
+        <h4>Retrieval methods</h4><p>Given the <em>key:value</em> pairing, there are <strong>three</strong> different methods that allow you to retrieve either the keys, values, or both together (items).</p><h4>.keys()</h4><p>One of the main appeals to using Python dictionaries, is the easy retrieval of values, given their keys. However, as these keys can be informative themselves, it is often useful to retrieve the keys, too.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-20"># Get a list-like object of your keys with .keys()
+
+experiment_keys = experiment.keys()
+
+print(experiment_keys)
+
+print(type(experiment_keys))</textarea>
+            </div>
+            <div id="code-cell-20-output" class="output"></div>
+        </div>
+        <p>As can be seen above, the object type returned is <code>dict_keys</code>, not a list. Although they both act very similarly in terms of iteration, <code>dict_keys</code> has some differences that allow it to act much like a Python set would.<br><br>For example, with <code>experiment</code> missing <code>incubator_humidity</code>, we may want to check between experiments what keys are common or unique between the two: similar to the <code>.union()</code> and <code>.difference()</code> methods for sets, using <code>&amp;</code> and <code>-</code>.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-21">experiment_1 = {
+    &quot;yeast_species&quot;: &quot;Saccharomyces cerevisiae&quot;,
+    &quot;colony_count&quot;: 127,
+    &quot;temperature_celsius&quot;: 30,
+    &quot;growth_medium&quot;: &quot;YPD&quot;
+}
+
+experiment_2 = {
+    &quot;yeast_species&quot;: &quot;Candida albicans&quot;,
+    &quot;colony_count&quot;: 89,
+    &quot;temperature_celsius&quot;: 37,
+    &quot;incubator_humidity&quot;: 65,
+    &quot;growth_medium&quot;: &quot;SDA&quot;
+}
+
+# We can check if dictionaries share keys
+
+common_keys = experiment_1.keys() &amp; experiment_2.keys()
+print(f&quot;Common keys: {common_keys}&quot;)
+
+# We can also find keys unique to the second dict
+
+unique_to_2 = experiment_2.keys() - experiment_1.keys()
+print(f&quot;Keys unique to experiment_2: {unique_to_2}&quot;)</textarea>
+            </div>
+            <div id="code-cell-21-output" class="output"></div>
+        </div>
+        <p>As you may have noticed from the curly brackets, the output of these operations is a set object.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-22">print(type(common_keys))</textarea>
+            </div>
+            <div id="code-cell-22-output" class="output"></div>
+        </div>
+        <h4>.values()</h4><p>As with the <code>.keys()</code> method, you can use <code>.values()</code> to retrieve all the values. Unlike <code>dict_keys</code>, the returned <code>dict_values</code> object doesn&#x27;t have special operations, and <em>behaves similarly to a list</em>. Depending on your intended application, this could be useful, as you could apply mathematical and statistical operations on the resultant list. However, if this is your aim, it may be best to either convert the dictionary values to a list, or use a list from the outset.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-23">experiment_values = experiment.values()
+
+print(experiment_values)</textarea>
+            </div>
+            <div id="code-cell-23-output" class="output"></div>
+        </div>
+        <h4>.items()</h4><p>Finally, we can pull out a list of both the keys and values using the <code>.items()</code> method. The resulting list will contain <em>tuples</em>, with each tuple containing the <em>key</em> and <em>value</em>, in that order.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-24">experiment_items = experiment.items()
+
+print(experiment_items)</textarea>
+            </div>
+            <div id="code-cell-24-output" class="output"></div>
+        </div>
+        <p>The typical use of <code>.items()</code> is to <em>iterate</em> (loop) over each key : value pair, sequentially. We&#x27;ll explore this further in the next lesson, <strong>Python Fundamentals 4</strong>. This technique is normally used when you want to modify each value in the same, repeatable way. For example, if a dictionary contains different datasets that require the same analysis, you may want to keep track of each of them by using explicit naming.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="methods">
+                <div class="module-body">
+                    <div class="module-section">
+                        
+        <div class="info-box practice-exercise-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                PRACTICE EXERCISE
+            </div>
+            <div class="box-content">
+                <p><strong>4.</strong></p>
+                <p>Using the <code>experiment_1</code> dictionary from above:<ol class="nested-list"><li>Extract all the values and store them in a variable called <code>exp1_keys</code></li><br><li>Typecast the object to a <code>list</code></li><br><li>Write an <code>if</code> conditional statement that checks if the value <code>&quot;A1&quot;</code> is present in the list</li><ul class="nested-list"><li>Only have the <code>if</code> statement execute when <code>&quot;A1&quot;</code> is <em>not</em> present (<em>Hint: use logical negation</em>)</li></ul></ol></p>
+            </div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-25"># Complete the exercise here</textarea>
+            </div>
+            <button id="run-code-cell-25" class="run-button">Run Code</button>
+            <div id="code-cell-25-output" class="output"></div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="nested-dictionaries">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Nested dictionaries</h3>
+                        <p><strong>Nested dictionaries</strong> are a common tool for deepening and extending the power of dictionaries as a data structure. Much like <em>nested lists</em>, this way of constructing a dictionary can generate structured data with hierarchical organisation, giving a dictionary a greater depth of information.</p><p>Implementing a nested dictionary is easy: simply use curly brackets <em>within</em> curly brackets <code>{{}}</code>.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-26"># Parent dictionary
+organisms = {
+    # Child dictionary
+    &quot;escherichia_coli&quot;: {
+        &quot;domain&quot;: &quot;bacteria&quot;,
+        &quot;genome_size_mb&quot;: 4.6,
+        &quot;generation_time_min&quot;: 20
+    },
+    # Child dictionary
+    &quot;saccharomyces_cerevisiae&quot;: {
+        &quot;domain&quot;: &quot;eukaryote&quot;,
+        &quot;genome_size_mb&quot;: 12.1,
+        &quot;generation_time_min&quot;: 90
+    },
+    # Child dictionary
+    &quot;drosophila_melanogaster&quot;: {
+        &quot;domain&quot;: &quot;eukaryote&quot;,
+        &quot;genome_size_mb&quot;: 140,
+        &quot;generation_time_days&quot;: 10
+    },
+}
+
+print(organisms)</textarea>
+            </div>
+            <div id="code-cell-26-output" class="output"></div>
+        </div>
+        
+        <div class="info-box tip-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                TIP
+            </div>
+            <div class="box-content">
+                <p>Just like our tip about using a new line for each item, it is also good practice to <strong>use an indent</strong> when starting the child or sub-dictionary you are defining. Once again, not doing so will not affect the execution of the code, but it does make it easier to read. The key to good Python code, is legibility: the less complexity a user has to track, the less likely they will be to miss something, or make a mistake.</p>
+            </div>
+        </div>
+        <h4>Accessing a nested dictionary</h4><p>The principles for accessing, altering or removing the values stored in nested dictionaries, are the same as those that apply to element access with nested lists.<br><br>As with lists, you can use sequential <em>indexing</em> to access the values you want.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-27"># Access the whole child dictionary
+
+print(organisms[&#x27;drosophila_melanogaster&#x27;])</textarea>
+            </div>
+            <div id="code-cell-27-output" class="output"></div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-28"># Access values in the child dictionary
+
+print(organisms[&#x27;drosophila_melanogaster&#x27;][&#x27;genome_size_mb&#x27;])</textarea>
+            </div>
+            <div id="code-cell-28-output" class="output"></div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-29"># We can then modify the value
+
+organisms[&#x27;drosophila_melanogaster&#x27;][&#x27;generation_time_days&#x27;] = (10, 12)
+
+print(organisms[&#x27;drosophila_melanogaster&#x27;])</textarea>
+            </div>
+            <div id="code-cell-29-output" class="output"></div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="nested-dictionaries">
+                <div class="module-body">
+                    <div class="module-section">
+                        
+        <div class="info-box practice-exercise-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                PRACTICE EXERCISE
+            </div>
+            <div class="box-content">
+                <p><strong>5.</strong></p>
+                <p>Using the <code>organisms</code> dictionary above:<ol class="nested-list"><li>Add a new organism called <code>&quot;homo_sapiens&quot;</code> with the following properties:</li><ul><li>domain: &quot;eukaryote&quot;</li><br><li>genome_size_mb: 3200</li><br><li>generation_time_years: 25</li><ol><li>Access and print the domain of &quot;escherichia_coli&quot;</li><br><li>Update the genome size of &quot;saccharomyces_cerevisiae&quot; to 12.5</li><br><li>Print the complete updated organisms dictionary</li></ol></ul></ol></p>
+            </div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-30"># Complete the exercise here
+</textarea>
+            </div>
+            <button id="run-code-cell-30" class="run-button">Run Code</button>
+            <div id="code-cell-30-output" class="output"></div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="summary">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Summary</h3>
+                        <p>In this lesson, we explored Python dictionaries - a powerful data structure that allows you to store and retrieve data using descriptive <em>keys</em>, rather than numerical indices.<br><br>Here are the key takeaways:</p><p><strong>Key Concepts:</strong><ul class="nested-list"><li>Dictionaries map <strong>keys</strong> to <strong>values</strong>, creating meaningful <em>associations</em> in your data</li><br><li>Keys must be <strong>unique</strong> and <strong>immutable</strong> (strings, numbers, tuples)</li><br><li>Dictionaries are <strong>mutable</strong> - you can add, modify, and remove items after creation</li><br><li>Unlike lists, dictionaries are <strong>unordered</strong> (although Python 3.7+ maintains insertion order)</li></ul></p>
+                    </div>
+                </div>
+            </div>
+            
+        
+        <div class="page-navigation">
+            <a href="./introduction.html" class="nav-button prev">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
+                Previous
+            </a>
+            <a href="./what-data-type.html" class="nav-button next">
+                Next
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                </svg>
+            </a></div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div>© All materials are copyright scryptIQ 2025</div>
+            <div>Powered by Pyodide</div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../assets/main.js"></script>
+    
+    <!-- Pyodide Initialisation Script -->
+    <script>
+
+// Generalisable Pyodide Initialisation Script
+// Variables and state build up naturally as code blocks execute in order
+
+async function main() {
+    // Show loading message for all output elements
+    document.querySelectorAll(".output").forEach(el => {
+        el.textContent = "Loading Pyodide...";
+        el.classList.add("loading-message");
+    });
+    
+    try {
+        // Load Pyodide
+        console.log("Loading Pyodide...");
+        const pyodideStartTime = performance.now();
+        let pyodide = await loadPyodide();
+        const pyodideLoadTime = performance.now() - pyodideStartTime;
+        console.log(`Pyodide loaded in ${pyodideLoadTime.toFixed(2)}ms`);
+        
+        // Load required packages only if specified
+        const lessonPackages = window.LESSON_PACKAGES || [];
+        
+        if (lessonPackages.length > 0) {
+            console.log("Loading required Python packages...");
+            const packagesStartTime = performance.now();
+            
+            // Separate built-in packages from PyPI packages
+            const builtInPackages = lessonPackages.filter(pkg => 
+                ['numpy', 'scipy', 'matplotlib', 'pandas', 'scikit-learn', 'pillow', 'regex'].includes(pkg)
+            );
+            
+            const micropipPackages = lessonPackages.filter(pkg => !builtInPackages.includes(pkg));
+            
+            // Load built-in packages (fast)
+            if (builtInPackages.length > 0) {
+                await pyodide.loadPackage(builtInPackages);
+                console.log(`Loaded built-in packages: ${builtInPackages.join(', ')}`);
+            }
+            
+            // Install PyPI packages (slower)
+            if (micropipPackages.length > 0) {
+                await pyodide.loadPackage(['micropip']);
+                const micropip = pyodide.pyimport('micropip');
+                await micropip.install(micropipPackages);
+                console.log(`Installed PyPI packages: ${micropipPackages.join(', ')}`);
+            }
+            
+            const packagesLoadTime = performance.now() - packagesStartTime;
+            console.log(`Packages loaded in ${packagesLoadTime.toFixed(2)}ms`);
+            console.log(`Total initialisation time: ${(pyodideLoadTime + packagesLoadTime).toFixed(2)}ms`);
+        } else {
+            console.log("No packages to load for this lesson");
+            console.log(`Total initialisation time: ${pyodideLoadTime.toFixed(2)}ms`);
+        }
+
+        // Only set up basic Python environment - no pre-loaded variables
+        await pyodide.runPythonAsync(`
+            import sys
+            from io import StringIO
+        `);
+
+        // Only set up matplotlib if it's in the loaded packages
+        if (lessonPackages.includes('matplotlib')) {
+            await pyodide.runPythonAsync(`
+                # Set up matplotlib for web rendering
+                import matplotlib
+                matplotlib.use('AGG')
+                import matplotlib.pyplot as plt
+                import io
+                import base64
+                
+                def capture_matplotlib():
+                    """Capture current matplotlib figure as HTML img tag"""
+                    buf = io.BytesIO()
+                    plt.savefig(buf, format='png', bbox_inches='tight', dpi=100)
+                    buf.seek(0)
+                    img_base64 = base64.b64encode(buf.read()).decode('utf-8')
+                    plt.close()
+                    return f'<img src="data:image/png;base64,{img_base64}" style="max-width: 100%; height: auto;" />'
+            `);
+            console.log('Matplotlib capture function set up');
+        }
+        
+        console.log("Pyodide loaded successfully");
+        
+        // Load remote files if URLs are specified
+        const lessonFiles = window.LESSON_FILES || [];
+        
+        if (lessonFiles.length > 0) {
+            try {
+                console.log(`Checking for ${lessonFiles.length} remote file(s) to load...`);
+                
+                // Build Python code to load all files dynamically
+                let pythonCode = `
+from pyodide.http import pyfetch
+import os
+
+# Create data directory if it doesn't exist
+os.makedirs('./data', exist_ok=True)
+`;
+                
+                // Add loading code for each file
+                for (const file of lessonFiles) {
+                    pythonCode += `
+# Load ${file.filename}
+try:
+    response = await pyfetch("${file.url}")
+    content = await response.string()
+    with open('./data/${file.filename}', 'w') as f:
+        f.write(content)
+    print("Loaded: ${file.filename}")
+except Exception as e:
+    print(f"Could not load ${file.filename}: {e}")
+`;
+                }
+                
+                await pyodide.runPythonAsync(pythonCode);
+                console.log("Remote files loaded successfully");
+            } catch (error) {
+                console.warn("Error loading remote files (continuing anyway):", error);
+            }
+        } else {
+            console.log("No remote files to load for this lesson");
+        }
+        
+        // Function to execute Python code and capture output
+        async function executePythonCode(code) {
+            try {
+                // Redirect Python stdout to capture print statements
+                await pyodide.runPythonAsync(`
+                    old_stdout = sys.stdout
+                    sys.stdout = mystdout = StringIO()
+                `);
+                
+                // Run the user code
+                const result = await pyodide.runPythonAsync(code);
+                
+                // Get the captured stdout
+                let stdout = await pyodide.runPythonAsync(`
+                    sys.stdout = old_stdout
+                    mystdout.getvalue()
+                `);
+                
+                // Check for matplotlib figures only if matplotlib was loaded
+                const lessonPackages = window.LESSON_PACKAGES || [];
+                if (lessonPackages.includes('matplotlib')) {
+                    const hasFigures = await pyodide.runPythonAsync(`
+                        import matplotlib.pyplot as plt
+                        len(plt.get_fignums()) > 0
+                    `);
+                    
+                    if (hasFigures) {
+                        const figureHtml = await pyodide.runPythonAsync(`capture_matplotlib()`);
+                        if (stdout) stdout += "\n";
+                        stdout += figureHtml;
+                    }
+                }
+                
+                // Combine stdout and result
+                let output = stdout;
+                if (result !== undefined && result !== null && String(result).trim() !== '') {
+                    if (output) output += "\n";
+                    output += String(result);
+                }
+                
+                return { success: true, output: output || "Code executed successfully (no output)" };
+                
+            } catch (error) {
+                return { success: false, output: "Error: " + error.message };
+            }
+        }
+        
+        // Execute all hidden code blocks first (for setup code like imports)
+        const hiddenCodeBlocks = Array.from(document.querySelectorAll('.hidden-code textarea'));
+        console.log(`Found ${hiddenCodeBlocks.length} hidden code blocks`);
+
+        for (const textarea of hiddenCodeBlocks) {
+            const code = textarea.value.trim();
+            if (!code) continue;
+            
+            console.log(`Executing hidden code block: ${textarea.id}`);
+            const result = await executePythonCode(code);
+            
+            if (!result.success) {
+                console.error(`Error in hidden code block ${textarea.id}:`, result.output);
+            } else {
+                console.log(`Hidden code block ${textarea.id} executed successfully`);
+            }
+        }
+
+        console.log("All hidden code blocks executed");
+        
+        // Get all fixed code blocks in document order
+        const fixedCodeBlocks = Array.from(document.querySelectorAll('.code-fixed textarea'));
+        
+        // Setup and execute fixed code blocks sequentially
+        for (const textarea of fixedCodeBlocks) {
+            const code = textarea.value.trim();
+            if (!code) continue;
+            
+            // Set up CodeMirror editor (read-only)
+            const editor = CodeMirror.fromTextArea(textarea, {
+                mode: "python",
+                theme: "pastel-on-dark",
+                lineNumbers: true,
+                readOnly: true,
+                viewportMargin: Infinity
+            });
+            
+            // Find corresponding output element
+            const outputId = textarea.id + '-output';
+            const outputElement = document.getElementById(outputId);
+            
+            if (outputElement) {
+                outputElement.textContent = "Running code...";
+                outputElement.classList.add("loading-message");
+                
+                // Execute the code (this maintains state for subsequent blocks)
+                const result = await executePythonCode(code);
+                
+                // Display the output - check if it's HTML
+                const trimmedOutput = result.output.trim();
+                console.log('Output length:', trimmedOutput.length);
+                console.log('Output starts with:', trimmedOutput.substring(0, 100));
+                
+                if (trimmedOutput.includes('<script') && trimmedOutput.includes('Plotly')) {
+                    // It's Plotly HTML output - extract just the body content
+                    console.log('Rendering as Plotly HTML');
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(result.output, 'text/html');
+                    // Clear the output element and append the body content
+                    outputElement.innerHTML = '';
+                    
+                    // Find and load external scripts first (like Plotly CDN)
+                    const externalScripts = Array.from(doc.querySelectorAll('script[src]'));
+                    const inlineScripts = Array.from(doc.querySelectorAll('script:not([src])'));
+                    
+                    // Append non-script content first
+                    Array.from(doc.body.children).forEach(child => {
+                        if (child.tagName !== 'SCRIPT') {
+                            outputElement.appendChild(child.cloneNode(true));
+                        }
+                    });
+                    
+                    // Load external scripts sequentially
+                    const loadScript = (src) => {
+                        return new Promise((resolve, reject) => {
+                            const script = document.createElement('script');
+                            script.src = src;
+                            script.onload = resolve;
+                            script.onerror = reject;
+                            document.head.appendChild(script);
+                        });
+                    };
+                    
+                    // Load all external scripts first
+                    Promise.all(externalScripts.map(s => loadScript(s.src)))
+                        .then(() => {
+                            console.log('External scripts loaded, executing inline scripts');
+                            // Now execute inline scripts
+                            inlineScripts.forEach(oldScript => {
+                                const newScript = document.createElement('script');
+                                newScript.textContent = oldScript.textContent;
+                                outputElement.appendChild(newScript);
+                            });
+                            console.log('Output element after processing:', outputElement.children.length, 'children');
+                        })
+                        .catch(err => {
+                            console.error('Failed to load external scripts:', err);
+                            outputElement.textContent = 'Error loading Plotly: ' + err.message;
+                        });
+                } else if (trimmedOutput.startsWith('<!DOCTYPE') || 
+                           trimmedOutput.startsWith('<html') ||
+                            trimmedOutput.startsWith('<div') ||
+                            trimmedOutput.startsWith('<img')) {
+                    console.log('Rendering as generic HTML');
+                    outputElement.innerHTML = result.output;
+                    console.log('Output element after innerHTML:', outputElement.children.length, 'children');
+                } else {
+                    console.log('Rendering as plain text');
+                    outputElement.textContent = result.output;
+                }
+                outputElement.classList.remove("loading-message");
+                if (result.success) {
+                    outputElement.classList.add("success-message");
+                    outputElement.classList.remove("error-message");
+                } else {
+                    outputElement.classList.add("error-message");
+                    outputElement.classList.remove("success-message");
+                }
+            }
+            
+            // Small delay to show progression
+            await new Promise(resolve => setTimeout(resolve, 100));
+        }
+        
+        // Setup all editable code blocks (but don't execute them)
+        document.querySelectorAll('.code-editor textarea').forEach((textarea) => {
+            // Set up CodeMirror editor (editable)
+            const editor = CodeMirror.fromTextArea(textarea, {
+                mode: "python",
+                theme: "pastel-on-dark",
+                lineNumbers: true,
+                viewportMargin: Infinity
+            });
+            
+            // Find corresponding run button and output element
+            const baseId = textarea.id;
+            const runButtonId = 'run-' + baseId;
+            const outputId = baseId + '-output';
+            
+            const runButton = document.getElementById(runButtonId);
+            const outputElement = document.getElementById(outputId);
+            
+            if (runButton && outputElement) {
+                // Set initial state
+                outputElement.textContent = "Ready to run code!";
+                outputElement.classList.remove("loading-message");
+                
+                runButton.addEventListener("click", async () => {
+                    const code = editor.getValue().trim();
+                    if (!code) {
+                        outputElement.textContent = "No code to run";
+                        return;
+                    }
+                    
+                    outputElement.textContent = "Running...";
+                    outputElement.classList.remove("error-message", "success-message");
+                    outputElement.classList.add("loading-message");
+                    
+                    // Execute the code (this also maintains state for future blocks)
+                    const result = await executePythonCode(code);
+                    
+                    // Display the output - check if it's HTML
+                    const trimmedOutput = result.output.trim();
+                    console.log('Output length:', trimmedOutput.length);
+                    console.log('Output starts with:', trimmedOutput.substring(0, 100));
+                    
+                    if (trimmedOutput.includes('<script') && trimmedOutput.includes('Plotly')) {
+                        // It's Plotly HTML output - extract just the body content
+                        console.log('Rendering as Plotly HTML');
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(result.output, 'text/html');
+                        // Clear the output element and append the body content
+                        outputElement.innerHTML = '';
+                        
+                        // Find and load external scripts first (like Plotly CDN)
+                        const externalScripts = Array.from(doc.querySelectorAll('script[src]'));
+                        const inlineScripts = Array.from(doc.querySelectorAll('script:not([src])'));
+                        
+                        // Append non-script content first
+                        Array.from(doc.body.children).forEach(child => {
+                            if (child.tagName !== 'SCRIPT') {
+                                outputElement.appendChild(child.cloneNode(true));
+                            }
+                        });
+                        
+                        // Load external scripts sequentially
+                        const loadScript = (src) => {
+                            return new Promise((resolve, reject) => {
+                                const script = document.createElement('script');
+                                script.src = src;
+                                script.onload = resolve;
+                                script.onerror = reject;
+                                document.head.appendChild(script);
+                            });
+                        };
+                        
+                        // Load all external scripts first
+                        Promise.all(externalScripts.map(s => loadScript(s.src)))
+                            .then(() => {
+                                console.log('External scripts loaded, executing inline scripts');
+                                // Now execute inline scripts
+                                inlineScripts.forEach(oldScript => {
+                                    const newScript = document.createElement('script');
+                                    newScript.textContent = oldScript.textContent;
+                                    outputElement.appendChild(newScript);
+                                });
+                                console.log('Output element after processing:', outputElement.children.length, 'children');
+                            })
+                            .catch(err => {
+                                console.error('Failed to load external scripts:', err);
+                                outputElement.textContent = 'Error loading Plotly: ' + err.message;
+                            });
+                    } else if (trimmedOutput.startsWith('<!DOCTYPE') || 
+                               trimmedOutput.startsWith('<html') ||
+                               trimmedOutput.startsWith('<div')) {
+                        outputElement.innerHTML = result.output;
+                    } else {
+                        outputElement.textContent = result.output;
+                    }
+                    outputElement.classList.remove("loading-message");
+                    if (result.success) {
+                        outputElement.classList.add("success-message");
+                        outputElement.classList.remove("error-message");
+                    } else {
+                        outputElement.classList.add("error-message");
+                        outputElement.classList.remove("success-message");
+                    }
+                });
+            }
+        });
+        
+        console.log("All code blocks initialised successfully");
+
+        // Set flag to indicate Pyodide is fully ready
+        window.pyodideReady = true;
+        console.log("Pyodide fully ready");
+        
+    } catch (error) {
+        console.error("Failed to initialise Pyodide:", error);
+        document.querySelectorAll(".output").forEach(el => {
+            el.textContent = "Error loading Pyodide: " + error.message;
+            el.classList.remove("loading-message");
+            el.classList.add("error-message");
+        });
+    }
+}
+
+// Start the application when DOM is loaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', main);
+} else {
+    main();
+}
+    </script>
+</body>
+</html>
+    

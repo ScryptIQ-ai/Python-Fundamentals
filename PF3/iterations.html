@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Pyodide and CodeMirror -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/pastel-on-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/python/python.min.js"></script>
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="../assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../assets/android-chrome-512x512.png">
+    
+    <!-- Core Stylesheets -->
+    <link rel="stylesheet" href="../assets/colours.css">
+    <link rel="stylesheet" href="../assets/shared-styles.css">
+    <link rel="stylesheet" href="../assets/nav-bar.css">
+    <link rel="stylesheet" href="../assets/module_card.css">
+    <link rel="stylesheet" href="../assets/learning_outcomes.css">
+    <link rel="stylesheet" href="../assets/learning_lists.css">
+    <link rel="stylesheet" href="../assets/box_styles.css">
+    <link rel="stylesheet" href="../assets/code_styles.css">
+
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L2D - PF3 - Iterations</title>
+    
+    <!-- File URLs for this lesson -->
+    <script>window.LESSON_FILES = []; window.LESSON_PACKAGES = [];</script>
+        
+</head>
+<body>
+    
+    <!-- Sidebar Navigation -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+        </div>
+        
+        <h3>Content</h3>
+        <ul>
+            <li><a href="./introduction.html" class="">Introduction</a></li><li><a href="./dictionaries.html">Dictionaries</a></li><li><a href="./what-data-type.html">Choosing the Right Data Type</a></li><li><a href="./python-packages.html">Python Packages</a></li>
+            <li>
+                <div class="nav-toggle active" data-target="expandable-section-4">
+                    Iterations
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <ul class="nested-nav expanded" id="expandable-section-4"><li><a href="#introduction">Introduction</a></li><li><a href="#for-loops">for loops</a></li><li><a href="#iterating-over-lists">Iterating over lists</a></li><li><a href="#iterating-over-dictionaries">Iterating over dictionaries</a></li><li><a href="#the-range---function">The range() function</a></li><li><a href="#continue-and-break">continue and break</a></li><li><a href="#while-loops">while loops</a></li><li><a href="#the-enumerate---function">The enumerate() function</a></li><li><a href="#list-comprehensions">List Comprehensions</a></li><li><a href="#summary">Summary</a></li>
+                </ul>
+            </li><li><a href="./assignment.html">Assignment</a></li><li><a href="./feedback.html">Feedback</a></li>
+        </ul>
+
+        <h3 class="collapsible-header collapsed">
+            Resources
+            <span class="collapse-icon">►</span>
+        </h3>
+        <div class="collapsible-content collapsed">
+            <ul>
+                <li><a href="./glossary.html">Glossary</a></li><li><a href="./downloads.html">Downloads</a></li><li><a href="../HB/introduction.html">Handbook</a></li>
+            </ul>
+        </div>
+
+        <h3 class="collapsible-header collapsed">
+            Previous Modules
+            <span class="collapse-icon">►</span>
+        </h3>
+        <div class="collapsible-content collapsed">
+            <ul>
+            <li><a href="../PF0/introduction.html">PF0</a></li>
+            <li><a href="../PF1/introduction.html">PF1</a></li>
+            <li><a href="../PF2/introduction.html">PF2</a></li>
+        </ul>
+        </div>
+
+        <h3>
+            <li><a href="./report-issue.html">Report an Issue</a></li>
+        </h3>
+    </div>
+    
+    <!-- Sidebar Toggle Button -->
+    <button id="sidebar-toggle" class="sidebar-toggle">❮</button>
+    
+    <!-- Main Content Area -->
+    <div id="main-content" class="main-content">
+        <!-- Top Navigation Bar -->
+        <div class="top-navbar">
+            <h1 class="page-title">Python Fundamentals 3</h1>
+            <div class="nav-actions">
+            </div>
+        </div>
+
+        
+            <div class="module-card" id="introduction">
+                <div class="module-header">
+                    Iterations <span class="module-tag">PF3</span>
+                </div>
+                <div class="module-body">
+                    <h3>Learning Objectives</h3>
+                    <div class="learning-outcomes">
+                        <div class="outcome-item">
+                    <span class="outcome-number">1</span>
+                    <span class="outcome-text">Understand the concept and syntax of iterations in Python, and loops automate repetition</span>
+                </div>
+<div class="outcome-item">
+                    <span class="outcome-number">2</span>
+                    <span class="outcome-text">Use the `range()` function to generate sequences of numbers for iteration</span>
+                </div>
+<div class="outcome-item">
+                    <span class="outcome-number">3</span>
+                    <span class="outcome-text">Understand the concept and syntax of condition-controlled iteration using `while` loops</span>
+                </div>
+<div class="outcome-item">
+                    <span class="outcome-number">4</span>
+                    <span class="outcome-text">Compare `for` and `while` loops and decide which is more appropriate for a given problem</span>
+                </div>
+<div class="outcome-item">
+                    <span class="outcome-number">5</span>
+                    <span class="outcome-text">Understand list comprehensions as a concise and efficient way to create new lists using explicit expressions, optional conditions and using just a single line of code.</span>
+                </div>
+<div class="outcome-item">
+                    <span class="outcome-number">6</span>
+                    <span class="outcome-text">Use `continue` and `break` to skip or terminate the rest of the code in the current loop iteration.</span>
+                </div>
+                    </div>
+                    <h3>Introduction</h3>
+                    <p><strong>What are iterations in Python?</strong><br><br>In programming, the term <strong>iteration</strong> refers to the process of <strong>repeating a set of instructions multiple times</strong>. Instead of writing the same line of code again and again, Python provides structures called <strong>loops</strong> that enable us to automate repetition, while only having to write a single &#x27;set of instructions&#x27;. This is a powerful feature, as many tasks in science and data analysis involve working through large datasets of values; these might be every sample in an experiment, or every base in a nucleic acid sequence, for example. Loops make this process both efficient and flexible.<br><br>In Python there are two main ways of iterating. These are using a <strong><code>for</code> loop</strong> to run through each item in a sequence, and using a <strong><code>while</code> loop</strong> to keep going until a certain condition is no longer <code>True</code>. We will cover <code>while</code> loops in the section below, and begin by looking at <code>for</code> loops.</p>
+                </div>
+            </div>
+            
+            <div class="module-card" id="for-loops">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>for loops</h3>
+                        <p>The first type of iteration we will cover, is the <strong><code>for</code> loop</strong>. In Python, this is used to repeat a block of code <strong>for each item in a sequence</strong>. The sequence might be a data container like a string, a list, a dictionary or a range of numbers. Each time the loop runs, Python takes the next item in the sequence and assigns it to the loop variable, which you can then use inside the body of code inside the loop, itself. The loop body code is then executed once per item in the sequence, and when there are no more items left to iterate though, the loop terminates. This makes <code>for</code> loops a powerful tool for processing repetitive, similarly formatted data, using highly efficient and clean code.<br><br>As an example, a <code>for</code> loop might be used when working on DNA sequences. Say you wanted to look at each individual base in the sequence, one by one, do something with that base, before moving onto the next one, and doing the same. This could be as simple as counting how many times that particular base appears, or checking if it matches a particular pattern. A <code>for</code> loop can be used in this scenario, allowing you to write the code to be executed <em>once</em>, while Python moves steadily through each base, until the end of the sequence is reached.<br><br>Similarly, you can use a <code>for</code> loop to run through all your samples in an experiment, all the numbers in a range, or all the files in a dataset. Because of this, <code>for</code> loops are one of the most common tools in Python for working with data, and are one of the most useful building blocks in writing powerful, dynamic programs.</p><h4>Syntax</h4><p>We have already encountered several structures in which Python&#x27;s sensitivity to <em>indentation</em> is important to the behaviours of various programming constructs. A <code>for</code> loop is similar, in this regard.<br><br>A <code>for</code> loop is instantiated by typing the keyword <code>for</code>, followed by an arbitary name (of your choosing) given to a <strong>loop variable</strong>. We then follow this with the keyword <code>in</code>, which precedes the sequence of items through which the loop will iterate, followed by a colon <code>:</code>. Hitting return in your coding editor, then auto-indents by a single tab, and it is here in the loop body that the code to be executed, is written.<br><br>As an example, let&#x27;s define a string, and write a <code>for</code> loop that iterates over each character of the string. In this example, the string will be a simple nucleic acid sequence, and we will iterate over each base, counting the number of adenine (A) residues in the sequence.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-43">DNA = &#x27;ATCGATGCATGGAATCTTTAGCTAG&#x27; # Define a nucleic acid sequence.
+
+count = 0 # Store an integer in a variable to add to
+
+for base in DNA:
+
+    if base == &#x27;A&#x27;:
+    
+        count += 1
+
+print(f&quot;There are {count} adenine residues in this sequence.&quot;)</textarea>
+            </div>
+            <div id="code-cell-43-output" class="output"></div>
+        </div>
+        <p>In this example, the <code>for</code> loop implicitly knows to iterate over each character in a string, one at a time, terminating once the string has reached its end. The loop inherently splits each character off from the string, uses the conditional statement to check if the character is equal to <code>A</code> and, if so, appending <code>1</code> to the <code>count</code> variable, which gets updated with each iteration.<br><br>Once last character of the string is reached, the loop terminates, and our Python interpreter moves further down the script, where it encounters the <code>print</code> statement, which prints the final value stored in <code>count</code> into a sentence. Note here - the <code>print</code> statement is on the same indentation level as the <code>for</code> keyword - i.e., it is outside of the scope of the <code>for</code> loop, and therefore executes only once, and after the <code>for</code> loop has been terminated.</p>
+        <div class="info-box note-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                NOTE
+            </div>
+            <div class="box-content">
+                <p>In the previous lessons, where we explored various data structures, you will have seen us use the term &#x27;item&#x27; or &#x27;element&#x27; used to refer to each individual data value held in a data structure. And - for many data structures including lists, tuples, sets and dictionaries - these items are separated from each other by a comma, when these data structures are defined for the first time. Many of these data structures are iterable. This means that they can be iterated over by loops such as a <code>for</code> loop.<br><br>However, unlike the aforementioned data structures, the individual data values in a <em>string</em> are implicitly separated on a character-wise basis. That means that all unicode characters (including spaces and escape sequences such as <code>\n</code> and <code>\t</code>) constitute <em>individual data values</em>. Thus, when you iterate over these with a loop, the Python interpreter will execute the code in the loop&#x27;s code block for each character in the string. In biological contexts, this is often very useful for iterating over each individual base in a DNA sequence, for example; to transcribe it into its mRNA transcript, or when calculating its GC content.</p>
+            </div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="for-loops">
+                <div class="module-body">
+                    <div class="module-section">
+                        
+        <div class="info-box practice-exercise-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                PRACTICE EXERCISE
+            </div>
+            <div class="box-content">
+                <p><strong>1.</strong></p>
+                <p></p>
+            </div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-44"># Complete the exercise here</textarea>
+            </div>
+            <button id="run-code-cell-44" class="run-button">Run Code</button>
+            <div id="code-cell-44-output" class="output"></div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="iterating-over-lists">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Iterating over lists</h3>
+                        <p>Other data containers that <code>for</code> loops can operate on, include lists and dictionaries (covered in Python Fundamentals 2 and 3, respectively). We can both iterate over a list, and use the loop body to fill or append items to a list. In this example, let&#x27;s define a list of genes, and identify known tumour suppressors in this list. These operations include iterating over the <code>genes</code> list, and appending identified genes to an empty list instantiated before the loop commences:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-45">genes = [&quot;BRCA1&quot;, &quot;TP53&quot;, &quot;EGFR&quot;, &quot;MYC&quot;, &quot;KRAS&quot;, &quot;PTEN&quot;, &quot;RB1&quot;, &quot;ALK&quot;, &quot;BRAF&quot;, &quot;NRAS&quot;] # List of genes.
+
+tumour_suppressors = [] # Empty list, to hold identified tumour suppressors.
+
+for gene in genes:
+
+    if gene in [&quot;BRCA1&quot;, &quot;TP53&quot;, &quot;PTEN&quot;, &quot;RB1&quot;]: # Known tumour suppressor genes given.
+    
+        tumour_suppressors.append(gene)
+
+print(&quot;The following tumour suppressor genes were identified:&quot;, tumour_suppressors, sep=&#x27;\n&#x27;)</textarea>
+            </div>
+            <div id="code-cell-45-output" class="output"></div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="iterating-over-dictionaries">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Iterating over dictionaries</h3>
+                        <p>It may also be that you have more than one item (assigned to a loop variable) to be extracted from each iteration of a <code>for</code> loop. For example, in a dictionary, where each individual element comprises both a key and a value as a pair, there are clearly two potential entries of information to be retrieved from each: the key, and its corresponding value.<br><br>Iterating over a dictionary to retrieve each, is actually a similar process. The difference is that we specify two loop variables as arbitrary names of our choosing, and the first retrieved value is assigned to the first variable, and the second, to the second variable.<br><br>To demonstrate this, let&#x27;s build on the previous example, by creating a dictionary where we use the gene names as keys, and provide floating point expression levels as values. We can then use a method associated with Python dictionaries: <code>.items</code>, which allows us to extract each element (or entry) from the dictionary. Remember, a single entry in a dictionary is a pair of both key and value, and thus the <code>.items</code> method returns both the key <em>and</em> the value, with each iteration, and we can choose to capture and store these in our named loop variables. They can then each be used in the loop body.<br><br>The code below iterates through the genes and their associated expression values, and specifies that any genes with expression levels above 4.0 be isolated and named as &#x27;highly expressed&#x27;.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-46">expression = {
+    &quot;BRCA1&quot;: 2.5,   # Each key-value pair is a gene, and its expression level given as a float.
+    &quot;TP53&quot;: 4.1,
+    &quot;EGFR&quot;: 1.8,
+    &quot;MYC&quot;: 3.2,
+    &quot;KRAS&quot;: 2.9,
+    &quot;PTEN&quot;: 1.1,
+    &quot;RB1&quot;: 2.2,
+    &quot;ALK&quot;: 3.8,
+    &quot;BRAF&quot;: 4.5,
+    &quot;NRAS&quot;: 1.9
+}
+
+
+for gene, value in expression.items():
+
+    if value &gt; 3.0:
+
+        print(f&quot;{gene} is highly expressed with value {value}&quot;)</textarea>
+            </div>
+            <div id="code-cell-46-output" class="output"></div>
+        </div>
+        <p>As we progress into the Data Handling module, we will be able to use other methods associated with the <code>Pandas</code> library, to read in whole rows of data, with multiple entries which can be cherry-picked out of a dataset quite specifically, for specific iteration and looping operations.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="the-range---function">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>The range() function</h3>
+                        <p>On the subject of iterations, Python also has a built-in <code>range()</code> function, which provides a simple way to generate a sequence of numbers for a loop to iterate over. Instead of writing out a list of numbers by hand, <code>range()</code> can be used to produce them, automatically.<br><br>The <code>range()</code> function can accept three arguments, two of which are optional arguments (meaning - if not specified - the function will default to preset values inherent to it). These three arguments are <code>start</code>, <code>stop</code> and <code>step</code>.<br><ul class="nested-list"><li><code>start</code> - this specifies which value a range of numbers begins with. It is an optional argument in that if it isn&#x27;t explicitly user-defined, it will default to a value of <code>0</code>.</li><br><li><code>stop</code> - this specifies which value the range of numbers terminates at. This must be user-specified in order for the function to operate.</li><br><li><code>step</code> - this specifies the increment or interval between each value in the sequence of values. It is an optional argument which, if unspecified by the user, defaults to a value of <code>1</code>, meaning values in the generated sequence are spaced by a value of 1.</li></ul></p>
+        <div class="info-box note-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                NOTE
+            </div>
+            <div class="box-content">
+                <p>By default, <code>range(n)</code> will start at <code>0</code> and stop <em>just before</em> <code>n</code>, giving you <code>n</code> numbers in total. This is a very important point to note: <strong><code>range()</code> specifies up to but <em>not</em> including <code>stop</code></strong>.</p>
+            </div>
+        </div>
+        <p>The <code>range()</code> function does not generate a list of numbers; rather, it is designed specifically for use in iterations. To be explicit, it does not generate a final sequence of numbers: it goes through the <code>start</code> and <code>stop</code> values (at interval <code>step</code>), and for each stage of the iteration into which it is being incorporated, produces the <em>individual number</em> at the corresponding point in the sequence.<br><br>Thus, the sequence produced by <code>range()</code> is not a list in itself, but it behaves like one inside a <code>for</code> loop, making it a very convenient tool whenever you want to repeat an action a set number of times, or count through a series of positions such as sample numbers or time points in an experiment.</p><p>Let&#x27;s demonstrate this in the following example, where we can use <code>range()</code> as a primitive way to model the doubling rate and growth factor of a cell population (assuming an unrealistic, infinite absence of environmental factors), per unit time. In this example we, look at a 24-hour period (note <code>stop</code> is set to 25), in intervals of 2 hours. The cell below is editable, so feel free to experiment with changing the <code>start</code>, <code>stop</code> and <code>step</code> values, yourself.</p>
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-47">cells = 10000 # Initial cell count at 0 hours.
+
+# Assuming cells double every 6 hours.
+# Growth factor is applied to the cell count, this new number is used to update `cells`
+
+for hour in range(0, 25, 2):   # Range() arguments 0, 25 and 2 ask the loop to iterate over a sequence of 0-24, in intervals of 2 hours.
+    
+    # Growth factor: set to double every 6 hours.
+    growth_factor = 2 ** (1 / 6)             
+    current_count = round(cells * (growth_factor ** 2))
+    
+    print(f&quot;At hour {hour}, the estimated cell count is {current_count} cells.&quot;)
+
+    cells = current_count </textarea>
+            </div>
+            <button id="run-code-cell-47" class="run-button">Run Code</button>
+            <div id="code-cell-47-output" class="output"></div>
+        </div>
+        <p>Thus, at the drop of a hat, adjusting the input arguments of <code>range()</code> can allow you to easily view where the cell population is likely to be at, at a given time point.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="continue-and-break">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>continue and break</h3>
+                        <p>Some eagle-eyed students may have noticed an error in the above <code>for</code> loop, where the cell count is updated with growth from <strong>hour zero</strong>. We could prevent this by changing the range to start from <em>2</em>, or we could use a more Pythonic approach: the <code>continue</code> statement, which lets us skip an iteration prematurely.<br><br>So far, we&#x27;ve seen loops that run through every item in a sequence, or repeat until a condition becomes <code>False</code>. Sometimes, however, we need finer control over what happens inside a loop. Python provides two special keywords, <code>continue</code> and <code>break</code>, that let us change the flow of iteration. Lets explore <code>continue</code> first.</p><h4>continue</h4><p><strong><code>continue</code></strong>: When Python encounters <code>continue</code> inside a loop, it <em>skips the rest of the code for that iteration</em> and moves straight on to the next one. This is useful when you want to ignore certain cases whilst keeping the loop running.<br><br>Let&#x27;s demonstrate this by modifying our code. We want to retain <strong>hour zero</strong> in our loop, but without applying the growth factor. An <code>if</code> statement that checks whether the hour equals <code>0</code> can trigger a specialised print statement, followed by <code>continue</code>. When the loop variable is <code>0</code> (the first iteration), the <code>if</code> statement executes, calling <code>continue</code> and causing the loop to skip straight to the next iteration.</p>
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-48">cells = 10000 
+
+for hour in range(0, 25, 2): 
+
+    if hour == 0: # when the loop variable is 0, trigger
+        print(f&quot;Experiment has begun! The cell count is {cells} cells.&quot;) # Give a unique print statement
+        continue # If called the iteration skips to the next, ignoring the code below
+
+    growth_factor = 2 ** (1 / 6)             
+    current_count = round(cells * (growth_factor ** 2))
+
+    print(f&quot;At hour {hour}, the estimated cell count is {current_count} cells.&quot;)
+
+    cells = current_count</textarea>
+            </div>
+            <button id="run-code-cell-48" class="run-button">Run Code</button>
+            <div id="code-cell-48-output" class="output"></div>
+        </div>
+        <h4>break</h4><p><strong><code>break</code></strong>: When Python encounters <code>break</code>, it <em>immediately ends the loop</em> completely, even if there are items left to process. This is useful when you want to stop once a certain condition has been met.<br><br>For demonstrative purposes, we can use <code>break</code> here to prematurely terminate the for loop when the cell population gets too large.</p>
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-49">cells = 10000 
+
+for hour in range(0, 25, 2): 
+
+    if hour == 0: 
+        print(f&quot;Experiment has begun! The cell count is {cells} cells.&quot;)
+        continue
+
+    growth_factor = 2 ** (1 / 6)             
+    current_count = round(cells * (growth_factor ** 2))
+
+    print(f&quot;At hour {hour}, the estimated cell count is {current_count} cells.&quot;)
+
+    if current_count &gt;= 80000: # When cell count is above 80000, trigger
+        print(&quot;Population limit reached&quot;) # Unique print statement for the end of the loop
+        break # When called it will be the final loop in the iteration
+
+    else:
+        cells = current_count</textarea>
+            </div>
+            <button id="run-code-cell-49" class="run-button">Run Code</button>
+            <div id="code-cell-49-output" class="output"></div>
+        </div>
+        <p>Thus, <code>continue</code> and <code>break</code> can be used to afford us extra control inside loops. <code>continue</code> skips over cases we want to ignore, while <code>break</code> lets us stop the loop entirely once a condition is met. Used carefully, these tools make loops more flexible and efficient without needing extra code.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="while-loops">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>while loops</h3>
+                        <p>Another way of ending a loop given a condition is the alternative iterator, the <code>while</code> loop.<br><br>Syntactically, it bears similarities to a <code>for</code> loop, but crucially differs in that it will run when a <strong>specific condition is <code>True</code></strong>. This makes <code>while</code> loops especially useful for scenarios where you do not know, ahead of time, how many times you might need to repeat an action. The conceptual example of a Python-controlled thermostat can be used to illustrate how a <code>while</code> loop might operate: &quot;while the temperature is below 24ºC, switch on a heating element&quot;. <code>While</code> loops respond to boolean values, so while this condition returns the value <code>True</code>, the loop will continue, potentially <em>ad infinitum</em>. The moment this condition returns the value <code>False</code>, the loop will terminate.<br><br>As a result, programmers need to pay particular attention to updating the values of variables inside loop body, as it can be easy for conditions to end up not changing, resulting in an <em>infinite loop</em> that has to be force terminated.<br><br>Let&#x27;s build on our thermostat analogy in the following demonstration:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-50">temperature = 20  # Starting temperature.
+heater_on = True
+
+while temperature &lt; 24:
+    print(f&quot;Temperature is {float(temperature)}ºC. Heater is ON.&quot;)    
+    
+    temperature += 0.5     # Increase the temperature by 0.5ºC with each iteration.
+    
+print(f&quot;\nTemperature has now reached {temperature}ºC. Heater is OFF.&quot;)</textarea>
+            </div>
+            <div id="code-cell-50-output" class="output"></div>
+        </div>
+        <h4>Applying while loops when the number of iterations is unknown</h4><p>One of the main advantages of a <code>while</code> loop is that it does not require you to know in advance how many times the loop will need to run. Instead, it keeps going on as long as a certain condition is <code>True</code>. This makes <code>while</code> loops useful for modelling processes where the endpoint is uncertain, or where repetition of the loop body code is dependent on changing values.<br><br>For example, suppose you are modelling bacterial growth. You do not know how many generations it will take for the population to exceed a threshold, but you can use a <code>while</code> loop to keep doubling the population until that condition is met.<br><br>Let&#x27;s try to achieve this in the following demonstration. The code has been left editable, so feel free to play with the values of <code>population</code> and <code>threshold</code> to see how the loop responds.</p>
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-51"># Bacterial growth simulation:
+
+population = 100    # Starting population (cell count).
+threshold = 100000   # Threshold at which to stop the loop.
+
+generations = 0
+
+while population &lt; threshold:
+    
+    population *= 2          # Double the population.
+    generations += 1         # count how many doublings
+    
+    print(f&quot;Generation {generations}: population = {population}&quot;)
+
+print(f&quot;\nPopulation exceeded {threshold} after {generations} generations.&quot;)</textarea>
+            </div>
+            <button id="run-code-cell-51" class="run-button">Run Code</button>
+            <div id="code-cell-51-output" class="output"></div>
+        </div>
+        <p>In this example, you can clearly see that the number of iterations depends on how quickly the bacteria reach the threshold number of cells; it does not depend on a number that is fixed ahead of time. This is an example of the kind of problem where <code>while</code> loops are often most useful.</p><h4>Comparing `for` and `while` loops</h4><p>As we have confirmed, both <code>for</code> and <code>while</code> loops are used for iteration in Python, but they each serve slightly different purposes. Thus, they have applications that suit them to different kinds of problems and scenarios. In summary:<br><ul class="nested-list"><li>A <strong><code>for</code> loop</strong> is used when you know <em>in advance</em> the sequence you want to iterate over, or the exact number of times an action should be repeated. It steps automatically through items in a string, list, dictionary, or a range of numbers, and terminates once there are no more items left. This makes <code>for</code> loops ideal for situations where the number of iterations is <em>fixed</em> or <em>tied to a finite sequence</em>. An example of this might be processing each gene in a list, or measuring data at every time point in a predefined experiment.</li><br><li>A <strong><code>while</code> loop</strong>, contrastingly, is used when you <em>do not know ahead of time</em> how many iterations will be needed. Instead, the loop continues <em>until</em> a condition becomes <code>False</code>. This makes <code>while</code> loops well-suited to situations where the end point depends on data or a threshold being reached. As an example, modelling population growth until a limit is exceeded, or continuing to monitor a patient’s temperature until it stabilises, could be two scenarios where <code>while</code> loops are the ideal choice.</li></ul></p><p>In short:<br><ul class="nested-list"><li>Use a <code>for</code> loop when the iterations are <strong>countable or tied to a sequence</strong>.</li><br><li>Use a <code>while</code> loop when the iterations are <strong>condition-driven and potentially unknown in number</strong>.</li></ul></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="while-loops">
+                <div class="module-body">
+                    <div class="module-section">
+                        
+        <div class="info-box practice-exercise-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                PRACTICE EXERCISE
+            </div>
+            <div class="box-content">
+                <p><strong>2.</strong></p>
+                <p>Modify the code given in the <code>continue</code> and <code>break</code> example (cell population growth) so that it utilises <code>while</code> loop rather than the <code>break</code> keyword to stop the iteration.</p>
+            </div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-52"># Modify the code given here:
+
+cells = 10000 
+
+for hour in range(0, 25, 2): 
+
+    if hour == 0: 
+        print(f&quot;Experiment has begun! The cell count is {cells} cells.&quot;)
+        continue
+
+    growth_factor = 2 ** (1 / 6)             
+    current_count = round(cells * (growth_factor ** 2))
+
+    print(f&quot;At hour {hour}, the estimated cell count is {current_count} cells.&quot;)
+
+    if current_count &gt;= 80000: 
+        print(&quot;Population limit reached&quot;) 
+        break 
+
+    else:
+        cells = current_count</textarea>
+            </div>
+            <button id="run-code-cell-52" class="run-button">Run Code</button>
+            <div id="code-cell-52-output" class="output"></div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="the-enumerate---function">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>The enumerate() function</h3>
+                        <p>Sometimes when we are looping through a sequence, it is useful to know not just the item itself but also its position (or index) within the sequence. For this purpose, Python provides a clean, legible way to do this by means of the <code>enumerate()</code> function.<br><br><code>enumerate()</code> automatically gives you both the index of an item, and the item itself, at each iteration of a loop. For example, if you are looping through a list of genes, <code>enumerate()</code> can be used to access both the gene’s name <em>and</em> its position in the list at the same time. There are other ways to do this using <code>range()</code> and <code>len()</code> functions together, for example: but using <code>enumerate()</code> is a succcinct, clear way of doing this, and is more in line with best practices in Python.</p>
+        <div class="info-box remember-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                REMEMBER
+            </div>
+            <div class="box-content">
+                <p>As we covered in Python Fundamentals 2 with lists, it is important to remember that Python uses <strong>zero-based indexing</strong>. Explicitly, that is where the first element of a list is not given an index of &#x27;1&#x27; to record its position; rather, it is given index &#x27;0&#x27;.</p>
+            </div>
+        </div>
+        <p>For demonstrative purposes, let&#x27;s first look at how you can use <code>range()</code> and <code>len()</code> to retrieve an item&#x27;s index. Here, we specify a list of genes, and use <code>len()</code> to give its length (the total number of elements). We can then provide this as an input argument to <code>range()</code>, which will accept it as its <code>stop</code> value. The code then iterates through the list at indices 0, 1, 2, 3 and 4 (a total of 5 values), printing the gene, its index and name.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-53">genes = [&quot;BRCA1&quot;, &quot;TP53&quot;, &quot;EGFR&quot;, &quot;MYC&quot;, &quot;KRAS&quot;] # List of genes.
+
+for i in range(len(genes)):    # i is a conventional name given to loop variables retrieving an item&#x27;s index. But you can name it whatever you like.
+    
+    print(f&quot;Gene {i+1} (with index {i}): {genes[i]}&quot;) # Note here, we are using element access on the whole list</textarea>
+            </div>
+            <div id="code-cell-53-output" class="output"></div>
+        </div>
+        
+        <div class="info-box remember-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                REMEMBER
+            </div>
+            <div class="box-content">
+                <p>This is potentially where a misunderstanding can occur. If we were to print the value of <code>len(genes)</code>, it would return the integer <code>5</code>. Remember, the <code>range()</code> function is actually including 0 (its default value for <code>start</code> when not explicitly user-specified), but does <em>not</em> include the actual value for <code>stop</code>, but terminates one value before. And yet, somehow, the full list of 5 genes is still printed. Again - this is because Python uses zero-based indexing, and <code>range()</code> has a default <code>start</code> value of <code>0</code>, meaning that 5 values are returned: 0, 1, 2, 3 and 4.</p>
+            </div>
+        </div>
+        <p>Now, let&#x27;s demonstrate the use of <code>enumerate()</code> - a far more elegant way to do the same thing:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-54">genes = [&quot;BRCA1&quot;, &quot;TP53&quot;, &quot;EGFR&quot;, &quot;MYC&quot;, &quot;KRAS&quot;] # List of genes.
+
+for i, gene in enumerate(genes):
+    
+    print(f&quot;Gene {i+1} (with index {i}): {gene}&quot;)</textarea>
+            </div>
+            <div id="code-cell-54-output" class="output"></div>
+        </div>
+        
+        <div class="info-box note-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                NOTE
+            </div>
+            <div class="box-content">
+                <p>Note that in both these examples, we&#x27;ve used <code>i+1</code> to give the gene with index 0, the more conventional name of &#x27;Gene 1&#x27;.</p>
+            </div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="list-comprehensions">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>List Comprehensions</h3>
+                        <p>So far, we have seen how to use <code>for</code> loops to build up lists by appending values one by one. Python provides a more compact and often more readable way to achieve the same result, called a <strong>list comprehension</strong>. A list comprehension lets you create a new list by writing the expression and the loop in a <strong>single line</strong>.<br><br>They have very specific syntactical rules, whereby everything is contained within a single pair of square brackets <code>[]</code>. The format they follow is:<br><br><pre class="markdown-code-block"><code>[expression for item in iterable if condition]</code></pre><br><br>The three staple keywords in a list comprehension (in order) are <code>for</code>, <code>in</code> and <code>if</code>. The first two are mandatory, with <code>if</code> being an optional addition, should you wish to include a condition.</p><p>Building on the aforementioned structure, these are the three main components of a list comprehension:<br><ul class="nested-list"><li><strong><code>expression</code></strong></li></ul>This is the value or calculation that you want to appear in the new list. Each time the loop runs, Python evaluates the given expression, appending its result onto the list. This expression can be as simple as the item itself (for instnance, <code>gene</code>), or something more complex such as <code>x**2</code> or even a conditional transformation: such as this <code>&quot;U&quot; if base == &quot;T&quot; else base</code> (which transcribes each encountered thymine into a uracil residue).<br><ul class="nested-list"><li><strong><code>item in iterable</code></strong></li></ul>This part looks very similar to the <code>for</code> loop construct that we have introduced in this lesson. It defines the loop variable (<code>item</code>) and the sequence you are looping over (<code>iterable</code>). Just like in a <code>for</code> loop, Python goes through each element of the iterable one by one, assigning this item to a variable with the arbitrary name given by the user. This value stored in this variable can then be used in the expression.<br><ul class="nested-list"><li><strong><code>if</code> (optional)</strong></li></ul>At each iteration, this is an optional <strong>conditional statement</strong> that allows you to decide whether or not to include the current item in the new list. If the condition is <code>True</code>, the expression is evaluated and the value is appended to the list. If it is <code>False</code>, the item is skipped. For example, <code>[x for x in range(10) if x % 2 == 0]</code> creates a list of only even numbers from 0 to 9. Adding this conditional makes list comprehensions powerful for selecting subsets of data while building the new list.</p><p>To help us understand that list comprehensions are merely a single-line, shorthand way of writing a <code>for</code> loop for creating a new list, let&#x27;s demonstrate both.<br><br>Let&#x27;s remind ourselves a familiar <code>for</code> loop, combined with a conditional statement, that we can use to isolate tumour suppressor genes in a list of genes:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-55">genes = [&quot;BRCA1&quot;, &quot;TP53&quot;, &quot;EGFR&quot;, &quot;MYC&quot;, &quot;KRAS&quot;, &quot;PTEN&quot;]
+
+tumour_suppressors = []
+
+for gene in genes:                      # This is the item in iterable component.
+    
+    if gene in [&quot;BRCA1&quot;, &quot;TP53&quot;, &quot;PTEN&quot;]:  # This is the `if`` conditional.
+    
+        tumour_suppressors.append(gene)    # And this is the expression.
+
+print(tumour_suppressors)</textarea>
+            </div>
+            <div id="code-cell-55-output" class="output"></div>
+        </div>
+        <p>And now let&#x27;s generate the exact same output, using a list comprehension:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-56">genes = [&quot;BRCA1&quot;, &quot;TP53&quot;, &quot;EGFR&quot;, &quot;MYC&quot;, &quot;KRAS&quot;, &quot;PTEN&quot;]
+
+tumour_suppressors = [gene for gene in genes if gene in [&quot;BRCA1&quot;, &quot;TP53&quot;, &quot;PTEN&quot;]] # This is the list comprehension.
+
+print(tumour_suppressors)</textarea>
+            </div>
+            <div id="code-cell-56-output" class="output"></div>
+        </div>
+        <p>Each code block does exactly the same thing. Except the list comprehension performs, in a single line of code, the same operations as four separate lines of code when explicitly using a <code>for</code> loop.<br><br>Aside from their obvious economy and neat appearance, list comprehensions can also offer a very slight computational advantage, in that they perform list-building operations <em>marginally</em> faster than doing so with a long-handed <code>for</code> loop. But this speed advantage is largely trivial - even with larger lists and loops.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="summary">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Summary</h3>
+                        <p>In this lesson, we&#x27;ve explored iterations as a mechanism to repeat blocks of code multiple times without rewriting them. Python provides two main loop constructs: <code>for</code> and <code>while</code> loops. We use <code>for</code> loops to step through items in a sequence such as strings, lists, dictionaries, or numbers provided by the <code>range()</code> function. Indentation is critical syntax for defining the loop body that executes within each iteration.<br><br>The <code>range()</code> function generates sequences of numbers for iteration and accepts <code>start</code>, <code>stop</code>, and <code>step</code> arguments to control the sequence. The <code>enumerate()</code> function provides both the index and the item during iteration, making code more succinct and legible.<br><br><code>while</code> loops repeat code as long as a Boolean condition is <code>True</code>, which is useful when the number of iterations isn&#x27;t known in advance. Care must be taken to update variables in <code>while</code> loops to avoid infinite loops.<br><br>We&#x27;ve also covered <strong>list comprehensions</strong> as a fast, efficient way to create new lists, and <code>continue</code> and <code>break</code> as mechanisms to introduce further control by skipping iterations or terminating loops prematurely.<br><br>In general, use <code>for</code> loops when iterations are countable or tied to a sequence, and use <code>while</code> loops when iterations depend on changing conditions.</p>
+                    </div>
+                </div>
+            </div>
+            
+        
+        <div class="page-navigation">
+            <a href="./python-packages.html" class="nav-button prev">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
+                Previous
+            </a>
+            <a href="./assignment.html" class="nav-button next">
+                Next
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                </svg>
+            </a></div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div>© All materials are copyright scryptIQ 2025</div>
+            <div>Powered by Pyodide</div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../assets/main.js"></script>
+    
+    <!-- Pyodide Initialisation Script -->
+    <script>
+
+// Generalisable Pyodide Initialisation Script
+// Variables and state build up naturally as code blocks execute in order
+
+async function main() {
+    // Show loading message for all output elements
+    document.querySelectorAll(".output").forEach(el => {
+        el.textContent = "Loading Pyodide...";
+        el.classList.add("loading-message");
+    });
+    
+    try {
+        // Load Pyodide
+        console.log("Loading Pyodide...");
+        const pyodideStartTime = performance.now();
+        let pyodide = await loadPyodide();
+        const pyodideLoadTime = performance.now() - pyodideStartTime;
+        console.log(`Pyodide loaded in ${pyodideLoadTime.toFixed(2)}ms`);
+        
+        // Load required packages only if specified
+        const lessonPackages = window.LESSON_PACKAGES || [];
+        
+        if (lessonPackages.length > 0) {
+            console.log("Loading required Python packages...");
+            const packagesStartTime = performance.now();
+            
+            // Separate built-in packages from PyPI packages
+            const builtInPackages = lessonPackages.filter(pkg => 
+                ['numpy', 'scipy', 'matplotlib', 'pandas', 'scikit-learn', 'pillow', 'regex'].includes(pkg)
+            );
+            
+            const micropipPackages = lessonPackages.filter(pkg => !builtInPackages.includes(pkg));
+            
+            // Load built-in packages (fast)
+            if (builtInPackages.length > 0) {
+                await pyodide.loadPackage(builtInPackages);
+                console.log(`Loaded built-in packages: ${builtInPackages.join(', ')}`);
+            }
+            
+            // Install PyPI packages (slower)
+            if (micropipPackages.length > 0) {
+                await pyodide.loadPackage(['micropip']);
+                const micropip = pyodide.pyimport('micropip');
+                await micropip.install(micropipPackages);
+                console.log(`Installed PyPI packages: ${micropipPackages.join(', ')}`);
+            }
+            
+            const packagesLoadTime = performance.now() - packagesStartTime;
+            console.log(`Packages loaded in ${packagesLoadTime.toFixed(2)}ms`);
+            console.log(`Total initialisation time: ${(pyodideLoadTime + packagesLoadTime).toFixed(2)}ms`);
+        } else {
+            console.log("No packages to load for this lesson");
+            console.log(`Total initialisation time: ${pyodideLoadTime.toFixed(2)}ms`);
+        }
+
+        // Only set up basic Python environment - no pre-loaded variables
+        await pyodide.runPythonAsync(`
+            import sys
+            from io import StringIO
+        `);
+
+        // Only set up matplotlib if it's in the loaded packages
+        if (lessonPackages.includes('matplotlib')) {
+            await pyodide.runPythonAsync(`
+                # Set up matplotlib for web rendering
+                import matplotlib
+                matplotlib.use('AGG')
+                import matplotlib.pyplot as plt
+                import io
+                import base64
+                
+                def capture_matplotlib():
+                    """Capture current matplotlib figure as HTML img tag"""
+                    buf = io.BytesIO()
+                    plt.savefig(buf, format='png', bbox_inches='tight', dpi=100)
+                    buf.seek(0)
+                    img_base64 = base64.b64encode(buf.read()).decode('utf-8')
+                    plt.close()
+                    return f'<img src="data:image/png;base64,{img_base64}" style="max-width: 100%; height: auto;" />'
+            `);
+            console.log('Matplotlib capture function set up');
+        }
+        
+        console.log("Pyodide loaded successfully");
+        
+        // Load remote files if URLs are specified
+        const lessonFiles = window.LESSON_FILES || [];
+        
+        if (lessonFiles.length > 0) {
+            try {
+                console.log(`Checking for ${lessonFiles.length} remote file(s) to load...`);
+                
+                // Build Python code to load all files dynamically
+                let pythonCode = `
+from pyodide.http import pyfetch
+import os
+
+# Create data directory if it doesn't exist
+os.makedirs('./data', exist_ok=True)
+`;
+                
+                // Add loading code for each file
+                for (const file of lessonFiles) {
+                    pythonCode += `
+# Load ${file.filename}
+try:
+    response = await pyfetch("${file.url}")
+    content = await response.string()
+    with open('./data/${file.filename}', 'w') as f:
+        f.write(content)
+    print("Loaded: ${file.filename}")
+except Exception as e:
+    print(f"Could not load ${file.filename}: {e}")
+`;
+                }
+                
+                await pyodide.runPythonAsync(pythonCode);
+                console.log("Remote files loaded successfully");
+            } catch (error) {
+                console.warn("Error loading remote files (continuing anyway):", error);
+            }
+        } else {
+            console.log("No remote files to load for this lesson");
+        }
+        
+        // Function to execute Python code and capture output
+        async function executePythonCode(code) {
+            try {
+                // Redirect Python stdout to capture print statements
+                await pyodide.runPythonAsync(`
+                    old_stdout = sys.stdout
+                    sys.stdout = mystdout = StringIO()
+                `);
+                
+                // Run the user code
+                const result = await pyodide.runPythonAsync(code);
+                
+                // Get the captured stdout
+                let stdout = await pyodide.runPythonAsync(`
+                    sys.stdout = old_stdout
+                    mystdout.getvalue()
+                `);
+                
+                // Check for matplotlib figures only if matplotlib was loaded
+                const lessonPackages = window.LESSON_PACKAGES || [];
+                if (lessonPackages.includes('matplotlib')) {
+                    const hasFigures = await pyodide.runPythonAsync(`
+                        import matplotlib.pyplot as plt
+                        len(plt.get_fignums()) > 0
+                    `);
+                    
+                    if (hasFigures) {
+                        const figureHtml = await pyodide.runPythonAsync(`capture_matplotlib()`);
+                        if (stdout) stdout += "\n";
+                        stdout += figureHtml;
+                    }
+                }
+                
+                // Combine stdout and result
+                let output = stdout;
+                if (result !== undefined && result !== null && String(result).trim() !== '') {
+                    if (output) output += "\n";
+                    output += String(result);
+                }
+                
+                return { success: true, output: output || "Code executed successfully (no output)" };
+                
+            } catch (error) {
+                return { success: false, output: "Error: " + error.message };
+            }
+        }
+        
+        // Execute all hidden code blocks first (for setup code like imports)
+        const hiddenCodeBlocks = Array.from(document.querySelectorAll('.hidden-code textarea'));
+        console.log(`Found ${hiddenCodeBlocks.length} hidden code blocks`);
+
+        for (const textarea of hiddenCodeBlocks) {
+            const code = textarea.value.trim();
+            if (!code) continue;
+            
+            console.log(`Executing hidden code block: ${textarea.id}`);
+            const result = await executePythonCode(code);
+            
+            if (!result.success) {
+                console.error(`Error in hidden code block ${textarea.id}:`, result.output);
+            } else {
+                console.log(`Hidden code block ${textarea.id} executed successfully`);
+            }
+        }
+
+        console.log("All hidden code blocks executed");
+        
+        // Get all fixed code blocks in document order
+        const fixedCodeBlocks = Array.from(document.querySelectorAll('.code-fixed textarea'));
+        
+        // Setup and execute fixed code blocks sequentially
+        for (const textarea of fixedCodeBlocks) {
+            const code = textarea.value.trim();
+            if (!code) continue;
+            
+            // Set up CodeMirror editor (read-only)
+            const editor = CodeMirror.fromTextArea(textarea, {
+                mode: "python",
+                theme: "pastel-on-dark",
+                lineNumbers: true,
+                readOnly: true,
+                viewportMargin: Infinity
+            });
+            
+            // Find corresponding output element
+            const outputId = textarea.id + '-output';
+            const outputElement = document.getElementById(outputId);
+            
+            if (outputElement) {
+                outputElement.textContent = "Running code...";
+                outputElement.classList.add("loading-message");
+                
+                // Execute the code (this maintains state for subsequent blocks)
+                const result = await executePythonCode(code);
+                
+                // Display the output - check if it's HTML
+                const trimmedOutput = result.output.trim();
+                console.log('Output length:', trimmedOutput.length);
+                console.log('Output starts with:', trimmedOutput.substring(0, 100));
+                
+                if (trimmedOutput.includes('<script') && trimmedOutput.includes('Plotly')) {
+                    // It's Plotly HTML output - extract just the body content
+                    console.log('Rendering as Plotly HTML');
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(result.output, 'text/html');
+                    // Clear the output element and append the body content
+                    outputElement.innerHTML = '';
+                    
+                    // Find and load external scripts first (like Plotly CDN)
+                    const externalScripts = Array.from(doc.querySelectorAll('script[src]'));
+                    const inlineScripts = Array.from(doc.querySelectorAll('script:not([src])'));
+                    
+                    // Append non-script content first
+                    Array.from(doc.body.children).forEach(child => {
+                        if (child.tagName !== 'SCRIPT') {
+                            outputElement.appendChild(child.cloneNode(true));
+                        }
+                    });
+                    
+                    // Load external scripts sequentially
+                    const loadScript = (src) => {
+                        return new Promise((resolve, reject) => {
+                            const script = document.createElement('script');
+                            script.src = src;
+                            script.onload = resolve;
+                            script.onerror = reject;
+                            document.head.appendChild(script);
+                        });
+                    };
+                    
+                    // Load all external scripts first
+                    Promise.all(externalScripts.map(s => loadScript(s.src)))
+                        .then(() => {
+                            console.log('External scripts loaded, executing inline scripts');
+                            // Now execute inline scripts
+                            inlineScripts.forEach(oldScript => {
+                                const newScript = document.createElement('script');
+                                newScript.textContent = oldScript.textContent;
+                                outputElement.appendChild(newScript);
+                            });
+                            console.log('Output element after processing:', outputElement.children.length, 'children');
+                        })
+                        .catch(err => {
+                            console.error('Failed to load external scripts:', err);
+                            outputElement.textContent = 'Error loading Plotly: ' + err.message;
+                        });
+                } else if (trimmedOutput.startsWith('<!DOCTYPE') || 
+                           trimmedOutput.startsWith('<html') ||
+                            trimmedOutput.startsWith('<div') ||
+                            trimmedOutput.startsWith('<img')) {
+                    console.log('Rendering as generic HTML');
+                    outputElement.innerHTML = result.output;
+                    console.log('Output element after innerHTML:', outputElement.children.length, 'children');
+                } else {
+                    console.log('Rendering as plain text');
+                    outputElement.textContent = result.output;
+                }
+                outputElement.classList.remove("loading-message");
+                if (result.success) {
+                    outputElement.classList.add("success-message");
+                    outputElement.classList.remove("error-message");
+                } else {
+                    outputElement.classList.add("error-message");
+                    outputElement.classList.remove("success-message");
+                }
+            }
+            
+            // Small delay to show progression
+            await new Promise(resolve => setTimeout(resolve, 100));
+        }
+        
+        // Setup all editable code blocks (but don't execute them)
+        document.querySelectorAll('.code-editor textarea').forEach((textarea) => {
+            // Set up CodeMirror editor (editable)
+            const editor = CodeMirror.fromTextArea(textarea, {
+                mode: "python",
+                theme: "pastel-on-dark",
+                lineNumbers: true,
+                viewportMargin: Infinity
+            });
+            
+            // Find corresponding run button and output element
+            const baseId = textarea.id;
+            const runButtonId = 'run-' + baseId;
+            const outputId = baseId + '-output';
+            
+            const runButton = document.getElementById(runButtonId);
+            const outputElement = document.getElementById(outputId);
+            
+            if (runButton && outputElement) {
+                // Set initial state
+                outputElement.textContent = "Ready to run code!";
+                outputElement.classList.remove("loading-message");
+                
+                runButton.addEventListener("click", async () => {
+                    const code = editor.getValue().trim();
+                    if (!code) {
+                        outputElement.textContent = "No code to run";
+                        return;
+                    }
+                    
+                    outputElement.textContent = "Running...";
+                    outputElement.classList.remove("error-message", "success-message");
+                    outputElement.classList.add("loading-message");
+                    
+                    // Execute the code (this also maintains state for future blocks)
+                    const result = await executePythonCode(code);
+                    
+                    // Display the output - check if it's HTML
+                    const trimmedOutput = result.output.trim();
+                    console.log('Output length:', trimmedOutput.length);
+                    console.log('Output starts with:', trimmedOutput.substring(0, 100));
+                    
+                    if (trimmedOutput.includes('<script') && trimmedOutput.includes('Plotly')) {
+                        // It's Plotly HTML output - extract just the body content
+                        console.log('Rendering as Plotly HTML');
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(result.output, 'text/html');
+                        // Clear the output element and append the body content
+                        outputElement.innerHTML = '';
+                        
+                        // Find and load external scripts first (like Plotly CDN)
+                        const externalScripts = Array.from(doc.querySelectorAll('script[src]'));
+                        const inlineScripts = Array.from(doc.querySelectorAll('script:not([src])'));
+                        
+                        // Append non-script content first
+                        Array.from(doc.body.children).forEach(child => {
+                            if (child.tagName !== 'SCRIPT') {
+                                outputElement.appendChild(child.cloneNode(true));
+                            }
+                        });
+                        
+                        // Load external scripts sequentially
+                        const loadScript = (src) => {
+                            return new Promise((resolve, reject) => {
+                                const script = document.createElement('script');
+                                script.src = src;
+                                script.onload = resolve;
+                                script.onerror = reject;
+                                document.head.appendChild(script);
+                            });
+                        };
+                        
+                        // Load all external scripts first
+                        Promise.all(externalScripts.map(s => loadScript(s.src)))
+                            .then(() => {
+                                console.log('External scripts loaded, executing inline scripts');
+                                // Now execute inline scripts
+                                inlineScripts.forEach(oldScript => {
+                                    const newScript = document.createElement('script');
+                                    newScript.textContent = oldScript.textContent;
+                                    outputElement.appendChild(newScript);
+                                });
+                                console.log('Output element after processing:', outputElement.children.length, 'children');
+                            })
+                            .catch(err => {
+                                console.error('Failed to load external scripts:', err);
+                                outputElement.textContent = 'Error loading Plotly: ' + err.message;
+                            });
+                    } else if (trimmedOutput.startsWith('<!DOCTYPE') || 
+                               trimmedOutput.startsWith('<html') ||
+                               trimmedOutput.startsWith('<div')) {
+                        outputElement.innerHTML = result.output;
+                    } else {
+                        outputElement.textContent = result.output;
+                    }
+                    outputElement.classList.remove("loading-message");
+                    if (result.success) {
+                        outputElement.classList.add("success-message");
+                        outputElement.classList.remove("error-message");
+                    } else {
+                        outputElement.classList.add("error-message");
+                        outputElement.classList.remove("success-message");
+                    }
+                });
+            }
+        });
+        
+        console.log("All code blocks initialised successfully");
+
+        // Set flag to indicate Pyodide is fully ready
+        window.pyodideReady = true;
+        console.log("Pyodide fully ready");
+        
+    } catch (error) {
+        console.error("Failed to initialise Pyodide:", error);
+        document.querySelectorAll(".output").forEach(el => {
+            el.textContent = "Error loading Pyodide: " + error.message;
+            el.classList.remove("loading-message");
+            el.classList.add("error-message");
+        });
+    }
+}
+
+// Start the application when DOM is loaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', main);
+} else {
+    main();
+}
+    </script>
+</body>
+</html>
+    

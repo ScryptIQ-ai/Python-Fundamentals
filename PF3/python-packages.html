@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Pyodide and CodeMirror -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/pastel-on-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/python/python.min.js"></script>
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="../assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../assets/android-chrome-512x512.png">
+    
+    <!-- Core Stylesheets -->
+    <link rel="stylesheet" href="../assets/colours.css">
+    <link rel="stylesheet" href="../assets/shared-styles.css">
+    <link rel="stylesheet" href="../assets/nav-bar.css">
+    <link rel="stylesheet" href="../assets/module_card.css">
+    <link rel="stylesheet" href="../assets/learning_outcomes.css">
+    <link rel="stylesheet" href="../assets/learning_lists.css">
+    <link rel="stylesheet" href="../assets/box_styles.css">
+    <link rel="stylesheet" href="../assets/code_styles.css">
+
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L2D - PF3 - Python Packages</title>
+    
+    <!-- File URLs for this lesson -->
+    <script>
+        window.LESSON_FILES = [
+            
+        ];
+        window.LESSON_PACKAGES = ['matplotlib'];
+    </script>
+        
+</head>
+<body>
+    
+    <!-- Sidebar Navigation -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+        </div>
+        
+        <h3>Content</h3>
+        <ul>
+            <li><a href="./introduction.html" class="">Introduction</a></li><li><a href="./dictionaries.html">Dictionaries</a></li><li><a href="./what-data-type.html">Choosing the Right Data Type</a></li>
+            <li>
+                <div class="nav-toggle active" data-target="expandable-section-3">
+                    Python Packages
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <ul class="nested-nav expanded" id="expandable-section-3"><li><a href="#introduction">Introduction</a></li><li><a href="#what-is-a-module">What is a module?</a></li><li><a href="#what-is-a-package">What is a Package?</a></li><li><a href="#base-python">Base Python</a></li><li><a href="#python-library-hierarchy">Python Library Hierarchy</a></li><li><a href="#import-statements">Import Statements</a></li><li><a href="#different-ways-to-import">Different ways to Import</a></li><li><a href="#common-built-in-packages">Common built-in Packages</a></li><li><a href="#common-third-party-packages">Common Third-Party Packages</a></li><li><a href="#pip-installing">Pip installing</a></li><li><a href="#good-practices">Good Practices</a></li><li><a href="#summary">Summary</a></li>
+                </ul>
+            </li><li><a href="./iterations.html">Iterations</a></li><li><a href="./assignment.html">Assignment</a></li><li><a href="./feedback.html">Feedback</a></li>
+        </ul>
+
+        <h3 class="collapsible-header collapsed">
+            Resources
+            <span class="collapse-icon">►</span>
+        </h3>
+        <div class="collapsible-content collapsed">
+            <ul>
+                <li><a href="./glossary.html">Glossary</a></li><li><a href="./downloads.html">Downloads</a></li><li><a href="../HB/introduction.html">Handbook</a></li>
+            </ul>
+        </div>
+
+        <h3 class="collapsible-header collapsed">
+            Previous Modules
+            <span class="collapse-icon">►</span>
+        </h3>
+        <div class="collapsible-content collapsed">
+            <ul>
+            <li><a href="../PF0/introduction.html">PF0</a></li>
+            <li><a href="../PF1/introduction.html">PF1</a></li>
+            <li><a href="../PF2/introduction.html">PF2</a></li>
+        </ul>
+        </div>
+
+        <h3>
+            <li><a href="./report-issue.html">Report an Issue</a></li>
+        </h3>
+    </div>
+    
+    <!-- Sidebar Toggle Button -->
+    <button id="sidebar-toggle" class="sidebar-toggle">❮</button>
+    
+    <!-- Main Content Area -->
+    <div id="main-content" class="main-content">
+        <!-- Top Navigation Bar -->
+        <div class="top-navbar">
+            <h1 class="page-title">Python Fundamentals 3</h1>
+            <div class="nav-actions">
+            </div>
+        </div>
+
+        
+            <div class="module-card" id="introduction">
+                <div class="module-header">
+                    Python Packages <span class="module-tag">PF3</span>
+                </div>
+                <div class="module-body">
+                    <h3>Learning Objectives</h3>
+                    <div class="learning-outcomes">
+                        <div class="outcome-item">
+                    <span class="outcome-number">1</span>
+                    <span class="outcome-text">The hierarchy of Python code</span>
+                </div>
+<div class="outcome-item">
+                    <span class="outcome-number">2</span>
+                    <span class="outcome-text">How to import modules to extend code capability</span>
+                </div>
+<div class="outcome-item">
+                    <span class="outcome-number">3</span>
+                    <span class="outcome-text">The different syntaxes of importing</span>
+                </div>
+<div class="outcome-item">
+                    <span class="outcome-number">4</span>
+                    <span class="outcome-text">Working with third-party packages</span>
+                </div>
+                    </div>
+                    <h3>Introduction</h3>
+                    <p>One of the biggest benefits of Python is the extensive ecosystem of additional code modules you can import to process your data. Due to Python&#x27;s popularity, there are many of these modules available, some come pre-installed with Python, whilst others need to be installed separately. In Python, these are called <strong>modules</strong> (single files) or <strong>packages</strong> (collections of modules), though they&#x27;re often referred to as libraries as well in Python as well as other programming languages.</p><p>We will explore some theory about these terms, where to source external packages from, and the correct way to import them (load them into your Python workspace).</p>
+        <div class="info-box key-terms-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                KEY TERMS
+            </div>
+            <div class="box-content">
+                <p><strong>Module</strong>: A single Python file containing code (functions, classes, variables) that can be imported and used in other Python programs.<br><br><strong>Package</strong>: A collection of related modules organised in a directory structure, allowing for hierarchical organisation of code and functionality.<br><br><strong>Import</strong>: A Python statement that loads modules or specific functions from modules into your current program, making their functionality available for use.</p>
+            </div>
+        </div>
+        
+                </div>
+            </div>
+            
+            <div class="module-card" id="what-is-a-module">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>What is a module?</h3>
+                        <p>A module is simply a Python file containing code that you can use in other Python programs. It acts as a toolbox from which you can select the appropriate tool (script) for tasks you do repeatedly. These tools take the form of functions, a <strong>named block of code that carries out a specific task</strong> whenever it is called.</p><p>Any Python file with a <code>.py</code> extension is a module. For example, if you were to create a file called <code>calculator.py</code> with various mathematical functions inside it, that file then becomes a module called <code>calculator</code>. You can then import that file into another <code>.py</code> file or a Jupyter notebook to be used.</p><p>Modules can contain more than only functions. They can include:<br><ul class="nested-list"><li><strong>Classes</strong> - blueprints for creating objects (explained further below)</li><br><li><strong>Variables</strong> - data that you want to reuse</li><br><li><strong>Executable statements</strong> - code that runs when the module is first imported</li></ul></p>
+        <div class="info-box fact-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                FACT
+            </div>
+            <div class="box-content">
+                <p>Classes are blueprints for creating objects in Python. You already use classes without realising it. Lists, strings, integers, and dictionaries are all classes, and when you create <code>my_list = [1, 2, 3, 4]</code>, you&#x27;re creating an instance of the list class. This is why these objects come with built-in methods like <code>.append()</code> or <code>.upper()</code> that you can use straight away.</p>
+            </div>
+        </div>
+        <p>In the previous example we are importing a module from a file we created, but this can be extended to modules others have written or those included with Python. We will cover the difference between the two in a section below (<strong>Base Python</strong>).</p><p>The key benefit of modules is code reusability. Instead of copying and pasting the same code across multiple projects, you write it once in a module and import it wherever it&#x27;s needed.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="what-is-a-package">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>What is a Package?</h3>
+                        <p>A package is a collection of related modules organised together in a directory structure. Whilst you could have every function or class within one module, it is better practice to organise closely related functions in one file (module). These can then be called into other modules when needed.<br><br>A package should still retain an overarching theme. For example, a package called <code>data_analysis</code> could contain separate modules for statistics, plotting and data cleaning.</p><p>A package is quite simple—it is simply a directory (folder) that contains:<br><ul class="nested-list"><li>Multiple Python modules (<code>.py</code> files)</li><br><li>A special file called <code>__init__.py</code>, which tells the Python interpreter it is a package</li></ul></p><p>An example structure:</p><p><pre class="markdown-code-block"><code>data_analysis/
+    __init__.py
+    statistics.py
+    plotting.py
+    cleaning.py</code></pre></p><p>Packages make Python&#x27;s ecosystem scalable, as developers can create large, well-organised libraries (hopefully) that can be imported to extend the capabilities of Python. We will demonstrate how to import both single modules and packages next.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="base-python">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Base Python</h3>
+                        <p>Up until this point we have only been using the coding language that is part of base Python, with no need to import any tools as what we needed is already there. These tools that you learned can be considered the <strong>fundamental syntax and semantics</strong> of the Python language, enabling an <em>algorithmic</em> way of programming. These make up the base, from which more complex things can be built.</p><p>On top of this, there are also many more modules of code that come as part of the standard distribution of Python, known as built-in modules. These extend the capability of Python. Some of them were built by the developers of Python, some were built by others and then incorporated into the standard distribution due to their ubiquitous use. There are now over 200 modules in the standard distribution.</p><p>After the built-in modules, you have the third-party modules/packages. These have to be installed using a package manager (these are covered in <strong>PF0</strong>), with the standard manager being <code>pip</code>. We&#x27;ll run through common third-party packages and how to install them later in this section.</p>
+        <div class="info-box key-terms-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                KEY TERMS
+            </div>
+            <div class="box-content">
+                <p><strong>Base Python</strong>: The core Python language including fundamental syntax, data types (strings, lists, dictionaries, etc.), control structures (if/else, loops), and basic built-in functions like <code>print()</code>, <code>len()</code>, and <code>type()</code>. This is what&#x27;s immediately available when you start Python without importing anything.<br><br><strong>Built-in Modules</strong>: Additional modules that come pre-installed with Python as part of the standard library, but must be imported to use. Examples include <code>math</code>, <code>datetime</code>, and <code>os</code>. These extend Python&#x27;s capabilities without requiring separate installation.<br><br><strong>Third-party Modules</strong>: Packages created by external developers that must be installed separately (typically using <code>pip</code>) before they can be imported. Examples include <code>pandas</code>, <code>numpy</code>, and <code>matplotlib</code>. These provide specialised functionality for specific domains like data science, web development, or machine learning.</p>
+            </div>
+        </div>
+        <h4>Why are they not all available in base Python straight away?</h4><p>When you start up a Python environment, only the core language syntax and essential built-in functions are loaded into memory. Additional functionality is kept separate in modules and packages. This approach keeps Python lightweight and fast to start, rather than loading every possible tool at once (which would slow down startup), you only import the specific modules you need for your particular task. This modular design means you get quick startup times whilst still having access to Python&#x27;s extensive functionality when required.</p>
+        <div class="info-box fact-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                FACT
+            </div>
+            <div class="box-content">
+                <p>Python&#x27;s standard library is very extensive, offering a wide range of facilities. Many of these built-in modules are written in C, a much faster and efficient (but difficult to write) language. This means these tools will be faster than anything you write in Python for the same task. Additionally, they can provide access to system functionality such as file I/O that would otherwise be inaccessible to Python programmers.</p>
+            </div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="python-library-hierarchy">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Python Library Hierarchy</h3>
+                        
+        <div class="video-container">
+            <iframe 
+                src="https://www.youtube.com/embed/wdelNQKrpeU"
+                width="560"
+                height="315"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+        <p><img src="./images/package-pyramid.png" alt="diagram of python tools" class="notebook-image"></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="import-statements">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Import Statements</h3>
+                        <p>To use code from a module or package, you need to tell Python to load it using an <strong>import statement</strong>. The statement itself is very simple, using the name of the package or module to guide the interpreter to the file location.</p><p>The basic syntax is:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-31">import module_name</textarea>
+            </div>
+        </div>
+        <p>This <em>import</em> statement will always go at the top of your <code>.py</code> file or your jupyter notebook by convention, even if you aren&#x27;t using the imported code until much later. See the later subsection <a href="./python-packages.html#good-practices"><em>Good Practices</em></a></p><p>Once imported, you can use functions from that module by prefixing them with the module name and a dot:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-32">import math
+
+result = math.sqrt(16)  # Uses the sqrt function from the math module
+
+print(result)</textarea>
+            </div>
+            <div id="code-cell-32-output" class="output"></div>
+        </div>
+        <p>This dot notation makes it clear which module each function comes from, helping avoid confusion when different modules might have functions with the same name.</p>
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-33"># Trying to import a module that doesn&#x27;t exist will throw an error:  
+# ImportError / ModuleNotFoundError
+
+import genomics_toolkit   # not a real or installed module</textarea>
+            </div>
+            <button id="run-code-cell-33" class="run-button">Run Code</button>
+            <div id="code-cell-33-output" class="output"></div>
+        </div>
+        <h4>Importing local modules</h4><p>The above example module <code>math</code> is one of the built-in modules in Python. If you want to import one of your own modules, it is done in the same way. All you need to do is make sure the <code>.py</code> file is saved in the same directory you&#x27;re working in.</p><p><pre class="markdown-code-block"><code>working_folder/
+    my_module.py
+    my_notebook.ipynb</code></pre></p><p>When you write an <code>import</code> statement, Python searches in this order:<ul class="nested-list"><li>Current directory</li><br><li>Standard library directory (built-in modules)</li><br><li>Site-packages directory (third-party modules)</li></ul></p><p>You can therefore have a local file called <code>math.py</code> in your current directory, and it will be imported instead of the built-in <code>math</code> module.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="different-ways-to-import">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Different ways to Import</h3>
+                        <p>We can also add in some operational words that indicate specific rules for the import, such as importing only one module or function.</p><p>Python offers several ways to import code, each with different use cases:</p><h4>1. Basic Import</h4>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-34">import math
+
+# Access using module.function
+
+math.pi</textarea>
+            </div>
+            <div id="code-cell-34-output" class="output"></div>
+        </div>
+        <h4>2. Import with Alias</h4><p>You can change the name given to your import with <code>as</code>.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-35">import math as m
+
+# Access using module-alias.function
+
+m.pi</textarea>
+            </div>
+            <div id="code-cell-35-output" class="output"></div>
+        </div>
+        <p>Typically, the above is used when the package or module has a long name. A common example is <code>matplotlib</code>, a plotting package we will be using frequently in Data Handling and beyond, which is imported as so:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-36">import matplotlib.pyplot as plt
+
+plt.plot([1, 2, 3, 4])  # Shorter alias
+
+plt.show()</textarea>
+            </div>
+            <div id="code-cell-36-output" class="output"></div>
+        </div>
+        <h4>3. Import Specific Functions</h4><p>When you only need a few functions, it can be cleaner to only import them.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-37">from math import sqrt, pi
+
+# Use directly, no module prefix needed
+
+result = sqrt(16)
+print(result)</textarea>
+            </div>
+            <div id="code-cell-37-output" class="output"></div>
+        </div>
+        <h4>4. Import All (Not Recommended)</h4><p>Using an <code>*</code> afterwards imports all the functions without needing to use the module name. This is not recommended as it can cause naming conflicts, overwriting existing functions, causing errors or just making the code harder to read.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-38">from math import *
+
+# All functions available directly
+
+result = sqrt(16)
+print(result)</textarea>
+            </div>
+            <div id="code-cell-38-output" class="output"></div>
+        </div>
+        <h4>5. Import from Packages</h4><p>Packages have sub-modules, and sometimes you just need a function from one or just the module itself. For this we use the <code>.</code> notation after the package name, followed by the module name.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-39"># Importing a specific function from a sub-module
+
+from email.mime import text
+
+# Sub-modules can be imported in with an alias
+
+import xml.etree as ET</textarea>
+            </div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="common-built-in-packages">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Common built-in Packages</h3>
+                        <p>Python&#x27;s standard library includes over 200 modules covering common programming tasks. Here are some you&#x27;ll encounter frequently:</p><h4>File and System Operations</h4><p><ul class="nested-list"><li><strong><code>os</code></strong> - Operating system interface (file paths, directories)</li><br><li><strong><code>sys</code></strong> - System-specific parameters and functions</li><br><li><strong><code>pathlib</code></strong> - Modern path handling (preferred over os.path)</li></ul></p><h4>Date and Time</h4><p><ul class="nested-list"><li><strong><code>datetime</code></strong> - Working with dates and times</li><br><li><strong><code>time</code></strong> - Time-related functions and formatting</li></ul></p><h4>Mathematics</h4><p><ul class="nested-list"><li><strong><code>math</code></strong> - Mathematical functions (sqrt, sin, cos, etc.)</li><br><li><strong><code>random</code></strong> - Generate random numbers and make random selections</li><br><li><strong><code>statistics</code></strong> - Statistical functions (mean, median, mode)</li></ul></p><h4>Data Processing</h4><p><ul class="nested-list"><li><strong><code>json</code></strong> - Reading and writing JSON data</li><br><li><strong><code>csv</code></strong> - Reading and writing CSV files</li><br><li><strong><code>re</code></strong> - Regular expressions for pattern matching</li></ul></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="common-third-party-packages">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Common Third-Party Packages</h3>
+                        <p>Beyond the standard library, Python has an enormous ecosystem of third-party packages.</p><p>Here are a few we will be using in later lesson modules:</p><h4>Data Science and Analysis</h4><p><ul class="nested-list"><li><strong><code>pandas</code></strong> - Data manipulation and analysis (think Excel but more powerful)</li><br><li><strong><code>numpy</code></strong> - Numerical computing with arrays and matrices</li><br><li><strong><code>matplotlib</code></strong> - Creating plots and visualisations</li><br><li><strong><code>seaborn</code></strong> - Statistical data visualisation (built on matplotlib)</li><br><li><strong><code>scipy</code></strong> - Scientific computing and statistics</li></ul></p><h4>Machine Learning</h4><p><ul class="nested-list"><li><strong><code>scikit-learn</code></strong> - Machine learning algorithms</li><br><li><strong><code>tensorflow</code></strong> - Deep learning framework</li><br><li><strong><code>pytorch</code></strong> - Deep learning framework</li></ul></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="pip-installing">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Pip installing</h3>
+                        <p>The package manager <a href="https://pypi.org/project/pip/"><code>pip</code></a> is the standard way to install new packages via the internet. To find out the right way to install them you will need to head to their documentation site or <a href="https://pypi.org/">PyPI</a> (the Python Package Index) to find out the right nomenclature for the install name.</p><p>Packages are typically installed into your environment through the terminal, which changes depending on your OS. See <a href="../PF0/essential-tools.html#using-python-in-the-terminal"><strong>PF0</strong></a> for more details.</p><p>You can install a package one at a time:</p><p><pre class="markdown-code-block"><code>pip install matplotlib</code></pre></p><p>Or install multiple in sequence:</p><p><pre class="markdown-code-block"><code>pip install pandas numpy scipy</code></pre></p><p>It is recommended to make a new environment (an isolated installation of Python) before installing packages to keep things tidy. Many packages require specific versions of others, and so installing something new may override the needs of an earlier install. If you were to run the above in your terminal these packages would be installed to your system wide version of Python. In comparison, a new environment will be contained and usually limited to one project.</p><p>For this reason many use more intelligent package managers, such as Anaconda or UV. We cover these also in <a href="../PF0/installing-python.html#anaconda"><strong>PF0</strong></a> and will go into them in more detail in a developers best practices resource.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="good-practices">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Good Practices</h3>
+                        <p>It doesn&#x27;t matter where you write your import statements, as long as they are before the use of the imported function. That being said, there are some good practices.</p><h4>Import location</h4><p>Firstly, all imports should be at the top of a file or the first cell in a notebook. This is the most important one for readability. Secondly, many group their imports by import type: first being built-in packages, second being third-party packages, and lastly local imports.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-40"># Standard library
+import os
+import sys
+from datetime import datetime
+
+# Third-party packages
+import pandas as pd
+import requests
+
+# Local modules
+from my_project import helper_functions</textarea>
+            </div>
+        </div>
+        <h4>Use Standard Aliases</h4><p>Many packages have conventional abbreviations for their alias. Use them so that your code is readable to others and easier to compare when fixing bugs.</p><p>Common aliases:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-41">import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt</textarea>
+            </div>
+        </div>
+        <h4>Be Specific with Imports</h4><p>If you are only using a handful (1-5) functions from a package, consider only importing them specifically, rather than the whole module. The exception here is when an imported function&#x27;s name would overwrite a standard function.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-42"># Good
+from math import sqrt, pi
+
+# Less clear
+import math</textarea>
+            </div>
+        </div>
+        
+        <div class="info-box fact-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                FACT
+            </div>
+            <div class="box-content">
+                <p>Whilst it is good practice to only import the functions you need, it does not save you any memory or time. This is because Python loads the entire module into memory regardless of which parts you import. When you write <code>from math import sqrt</code>, Python still loads the complete math module behind the scenes—you&#x27;re just choosing which names to make directly accessible in your namespace.</p>
+            </div>
+        </div>
+        <h4>Be safe</h4><p>Use well-established packages from <a href="https://pypi.org/">PyPI</a> (the Python Package Index) rather than unknown sources. Popular packages with thousands of downloads and active maintenance are generally safer choices.</p><p>PyPI scans packages for known malware and has implemented security measures like requiring two-factor authentication for popular packages. Installing directly from GitHub or other sources bypasses these protections and increases your risk of downloading malicious code.</p><p>Also watch your spelling carefully—malicious actors often create packages with names similar to popular ones (called &quot;typosquatting&quot;).</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="summary">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Summary</h3>
+                        <p>In this lesson we&#x27;ve covered modules and packages: how they are incorporated in the Python ecosystem and how they are best used.</p><p>Packages are a core concept in Python (and other languages), so using them properly is an essential skill. Remember, you don&#x27;t need to reinvent the wheel. If someone else out there has coded something you&#x27;re looking to do and it is well regarded, then use that and build upon it.</p>
+                    </div>
+                </div>
+            </div>
+            
+        
+        <div class="page-navigation">
+            <a href="./what-data-type.html" class="nav-button prev">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
+                Previous
+            </a>
+            <a href="./iterations.html" class="nav-button next">
+                Next
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                </svg>
+            </a></div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div>© All materials are copyright scryptIQ 2025</div>
+            <div>Powered by Pyodide</div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../assets/main.js"></script>
+    
+    <!-- Pyodide Initialisation Script -->
+    <script>
+
+// Generalisable Pyodide Initialisation Script
+// Variables and state build up naturally as code blocks execute in order
+
+async function main() {
+    // Show loading message for all output elements
+    document.querySelectorAll(".output").forEach(el => {
+        el.textContent = "Loading Pyodide...";
+        el.classList.add("loading-message");
+    });
+    
+    try {
+        // Load Pyodide
+        console.log("Loading Pyodide...");
+        const pyodideStartTime = performance.now();
+        let pyodide = await loadPyodide();
+        const pyodideLoadTime = performance.now() - pyodideStartTime;
+        console.log(`Pyodide loaded in ${pyodideLoadTime.toFixed(2)}ms`);
+        
+        // Load required packages only if specified
+        const lessonPackages = window.LESSON_PACKAGES || [];
+        
+        if (lessonPackages.length > 0) {
+            console.log("Loading required Python packages...");
+            const packagesStartTime = performance.now();
+            
+            // Separate built-in packages from PyPI packages
+            const builtInPackages = lessonPackages.filter(pkg => 
+                ['numpy', 'scipy', 'matplotlib', 'pandas', 'scikit-learn', 'pillow', 'regex'].includes(pkg)
+            );
+            
+            const micropipPackages = lessonPackages.filter(pkg => !builtInPackages.includes(pkg));
+            
+            // Load built-in packages (fast)
+            if (builtInPackages.length > 0) {
+                await pyodide.loadPackage(builtInPackages);
+                console.log(`Loaded built-in packages: ${builtInPackages.join(', ')}`);
+            }
+            
+            // Install PyPI packages (slower)
+            if (micropipPackages.length > 0) {
+                await pyodide.loadPackage(['micropip']);
+                const micropip = pyodide.pyimport('micropip');
+                await micropip.install(micropipPackages);
+                console.log(`Installed PyPI packages: ${micropipPackages.join(', ')}`);
+            }
+            
+            const packagesLoadTime = performance.now() - packagesStartTime;
+            console.log(`Packages loaded in ${packagesLoadTime.toFixed(2)}ms`);
+            console.log(`Total initialisation time: ${(pyodideLoadTime + packagesLoadTime).toFixed(2)}ms`);
+        } else {
+            console.log("No packages to load for this lesson");
+            console.log(`Total initialisation time: ${pyodideLoadTime.toFixed(2)}ms`);
+        }
+
+        // Only set up basic Python environment - no pre-loaded variables
+        await pyodide.runPythonAsync(`
+            import sys
+            from io import StringIO
+        `);
+
+        // Only set up matplotlib if it's in the loaded packages
+        if (lessonPackages.includes('matplotlib')) {
+            await pyodide.runPythonAsync(`
+                # Set up matplotlib for web rendering
+                import matplotlib
+                matplotlib.use('AGG')
+                import matplotlib.pyplot as plt
+                import io
+                import base64
+                
+                def capture_matplotlib():
+                    """Capture current matplotlib figure as HTML img tag"""
+                    buf = io.BytesIO()
+                    plt.savefig(buf, format='png', bbox_inches='tight', dpi=100)
+                    buf.seek(0)
+                    img_base64 = base64.b64encode(buf.read()).decode('utf-8')
+                    plt.close()
+                    return f'<img src="data:image/png;base64,{img_base64}" style="max-width: 100%; height: auto;" />'
+            `);
+            console.log('Matplotlib capture function set up');
+        }
+        
+        console.log("Pyodide loaded successfully");
+        
+        // Load remote files if URLs are specified
+        const lessonFiles = window.LESSON_FILES || [];
+        
+        if (lessonFiles.length > 0) {
+            try {
+                console.log(`Checking for ${lessonFiles.length} remote file(s) to load...`);
+                
+                // Build Python code to load all files dynamically
+                let pythonCode = `
+from pyodide.http import pyfetch
+import os
+
+# Create data directory if it doesn't exist
+os.makedirs('./data', exist_ok=True)
+`;
+                
+                // Add loading code for each file
+                for (const file of lessonFiles) {
+                    pythonCode += `
+# Load ${file.filename}
+try:
+    response = await pyfetch("${file.url}")
+    content = await response.string()
+    with open('./data/${file.filename}', 'w') as f:
+        f.write(content)
+    print("Loaded: ${file.filename}")
+except Exception as e:
+    print(f"Could not load ${file.filename}: {e}")
+`;
+                }
+                
+                await pyodide.runPythonAsync(pythonCode);
+                console.log("Remote files loaded successfully");
+            } catch (error) {
+                console.warn("Error loading remote files (continuing anyway):", error);
+            }
+        } else {
+            console.log("No remote files to load for this lesson");
+        }
+        
+        // Function to execute Python code and capture output
+        async function executePythonCode(code) {
+            try {
+                // Redirect Python stdout to capture print statements
+                await pyodide.runPythonAsync(`
+                    old_stdout = sys.stdout
+                    sys.stdout = mystdout = StringIO()
+                `);
+                
+                // Run the user code
+                const result = await pyodide.runPythonAsync(code);
+                
+                // Get the captured stdout
+                let stdout = await pyodide.runPythonAsync(`
+                    sys.stdout = old_stdout
+                    mystdout.getvalue()
+                `);
+                
+                // Check for matplotlib figures only if matplotlib was loaded
+                const lessonPackages = window.LESSON_PACKAGES || [];
+                if (lessonPackages.includes('matplotlib')) {
+                    const hasFigures = await pyodide.runPythonAsync(`
+                        import matplotlib.pyplot as plt
+                        len(plt.get_fignums()) > 0
+                    `);
+                    
+                    if (hasFigures) {
+                        const figureHtml = await pyodide.runPythonAsync(`capture_matplotlib()`);
+                        if (stdout) stdout += "\n";
+                        stdout += figureHtml;
+                    }
+                }
+                
+                // Combine stdout and result
+                let output = stdout;
+                if (result !== undefined && result !== null && String(result).trim() !== '') {
+                    if (output) output += "\n";
+                    output += String(result);
+                }
+                
+                return { success: true, output: output || "Code executed successfully (no output)" };
+                
+            } catch (error) {
+                return { success: false, output: "Error: " + error.message };
+            }
+        }
+        
+        // Execute all hidden code blocks first (for setup code like imports)
+        const hiddenCodeBlocks = Array.from(document.querySelectorAll('.hidden-code textarea'));
+        console.log(`Found ${hiddenCodeBlocks.length} hidden code blocks`);
+
+        for (const textarea of hiddenCodeBlocks) {
+            const code = textarea.value.trim();
+            if (!code) continue;
+            
+            console.log(`Executing hidden code block: ${textarea.id}`);
+            const result = await executePythonCode(code);
+            
+            if (!result.success) {
+                console.error(`Error in hidden code block ${textarea.id}:`, result.output);
+            } else {
+                console.log(`Hidden code block ${textarea.id} executed successfully`);
+            }
+        }
+
+        console.log("All hidden code blocks executed");
+        
+        // Get all fixed code blocks in document order
+        const fixedCodeBlocks = Array.from(document.querySelectorAll('.code-fixed textarea'));
+        
+        // Setup and execute fixed code blocks sequentially
+        for (const textarea of fixedCodeBlocks) {
+            const code = textarea.value.trim();
+            if (!code) continue;
+            
+            // Set up CodeMirror editor (read-only)
+            const editor = CodeMirror.fromTextArea(textarea, {
+                mode: "python",
+                theme: "pastel-on-dark",
+                lineNumbers: true,
+                readOnly: true,
+                viewportMargin: Infinity
+            });
+            
+            // Find corresponding output element
+            const outputId = textarea.id + '-output';
+            const outputElement = document.getElementById(outputId);
+            
+            if (outputElement) {
+                outputElement.textContent = "Running code...";
+                outputElement.classList.add("loading-message");
+                
+                // Execute the code (this maintains state for subsequent blocks)
+                const result = await executePythonCode(code);
+                
+                // Display the output - check if it's HTML
+                const trimmedOutput = result.output.trim();
+                console.log('Output length:', trimmedOutput.length);
+                console.log('Output starts with:', trimmedOutput.substring(0, 100));
+                
+                if (trimmedOutput.includes('<script') && trimmedOutput.includes('Plotly')) {
+                    // It's Plotly HTML output - extract just the body content
+                    console.log('Rendering as Plotly HTML');
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(result.output, 'text/html');
+                    // Clear the output element and append the body content
+                    outputElement.innerHTML = '';
+                    
+                    // Find and load external scripts first (like Plotly CDN)
+                    const externalScripts = Array.from(doc.querySelectorAll('script[src]'));
+                    const inlineScripts = Array.from(doc.querySelectorAll('script:not([src])'));
+                    
+                    // Append non-script content first
+                    Array.from(doc.body.children).forEach(child => {
+                        if (child.tagName !== 'SCRIPT') {
+                            outputElement.appendChild(child.cloneNode(true));
+                        }
+                    });
+                    
+                    // Load external scripts sequentially
+                    const loadScript = (src) => {
+                        return new Promise((resolve, reject) => {
+                            const script = document.createElement('script');
+                            script.src = src;
+                            script.onload = resolve;
+                            script.onerror = reject;
+                            document.head.appendChild(script);
+                        });
+                    };
+                    
+                    // Load all external scripts first
+                    Promise.all(externalScripts.map(s => loadScript(s.src)))
+                        .then(() => {
+                            console.log('External scripts loaded, executing inline scripts');
+                            // Now execute inline scripts
+                            inlineScripts.forEach(oldScript => {
+                                const newScript = document.createElement('script');
+                                newScript.textContent = oldScript.textContent;
+                                outputElement.appendChild(newScript);
+                            });
+                            console.log('Output element after processing:', outputElement.children.length, 'children');
+                        })
+                        .catch(err => {
+                            console.error('Failed to load external scripts:', err);
+                            outputElement.textContent = 'Error loading Plotly: ' + err.message;
+                        });
+                } else if (trimmedOutput.startsWith('<!DOCTYPE') || 
+                           trimmedOutput.startsWith('<html') ||
+                            trimmedOutput.startsWith('<div') ||
+                            trimmedOutput.startsWith('<img')) {
+                    console.log('Rendering as generic HTML');
+                    outputElement.innerHTML = result.output;
+                    console.log('Output element after innerHTML:', outputElement.children.length, 'children');
+                } else {
+                    console.log('Rendering as plain text');
+                    outputElement.textContent = result.output;
+                }
+                outputElement.classList.remove("loading-message");
+                if (result.success) {
+                    outputElement.classList.add("success-message");
+                    outputElement.classList.remove("error-message");
+                } else {
+                    outputElement.classList.add("error-message");
+                    outputElement.classList.remove("success-message");
+                }
+            }
+            
+            // Small delay to show progression
+            await new Promise(resolve => setTimeout(resolve, 100));
+        }
+        
+        // Setup all editable code blocks (but don't execute them)
+        document.querySelectorAll('.code-editor textarea').forEach((textarea) => {
+            // Set up CodeMirror editor (editable)
+            const editor = CodeMirror.fromTextArea(textarea, {
+                mode: "python",
+                theme: "pastel-on-dark",
+                lineNumbers: true,
+                viewportMargin: Infinity
+            });
+            
+            // Find corresponding run button and output element
+            const baseId = textarea.id;
+            const runButtonId = 'run-' + baseId;
+            const outputId = baseId + '-output';
+            
+            const runButton = document.getElementById(runButtonId);
+            const outputElement = document.getElementById(outputId);
+            
+            if (runButton && outputElement) {
+                // Set initial state
+                outputElement.textContent = "Ready to run code!";
+                outputElement.classList.remove("loading-message");
+                
+                runButton.addEventListener("click", async () => {
+                    const code = editor.getValue().trim();
+                    if (!code) {
+                        outputElement.textContent = "No code to run";
+                        return;
+                    }
+                    
+                    outputElement.textContent = "Running...";
+                    outputElement.classList.remove("error-message", "success-message");
+                    outputElement.classList.add("loading-message");
+                    
+                    // Execute the code (this also maintains state for future blocks)
+                    const result = await executePythonCode(code);
+                    
+                    // Display the output - check if it's HTML
+                    const trimmedOutput = result.output.trim();
+                    console.log('Output length:', trimmedOutput.length);
+                    console.log('Output starts with:', trimmedOutput.substring(0, 100));
+                    
+                    if (trimmedOutput.includes('<script') && trimmedOutput.includes('Plotly')) {
+                        // It's Plotly HTML output - extract just the body content
+                        console.log('Rendering as Plotly HTML');
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(result.output, 'text/html');
+                        // Clear the output element and append the body content
+                        outputElement.innerHTML = '';
+                        
+                        // Find and load external scripts first (like Plotly CDN)
+                        const externalScripts = Array.from(doc.querySelectorAll('script[src]'));
+                        const inlineScripts = Array.from(doc.querySelectorAll('script:not([src])'));
+                        
+                        // Append non-script content first
+                        Array.from(doc.body.children).forEach(child => {
+                            if (child.tagName !== 'SCRIPT') {
+                                outputElement.appendChild(child.cloneNode(true));
+                            }
+                        });
+                        
+                        // Load external scripts sequentially
+                        const loadScript = (src) => {
+                            return new Promise((resolve, reject) => {
+                                const script = document.createElement('script');
+                                script.src = src;
+                                script.onload = resolve;
+                                script.onerror = reject;
+                                document.head.appendChild(script);
+                            });
+                        };
+                        
+                        // Load all external scripts first
+                        Promise.all(externalScripts.map(s => loadScript(s.src)))
+                            .then(() => {
+                                console.log('External scripts loaded, executing inline scripts');
+                                // Now execute inline scripts
+                                inlineScripts.forEach(oldScript => {
+                                    const newScript = document.createElement('script');
+                                    newScript.textContent = oldScript.textContent;
+                                    outputElement.appendChild(newScript);
+                                });
+                                console.log('Output element after processing:', outputElement.children.length, 'children');
+                            })
+                            .catch(err => {
+                                console.error('Failed to load external scripts:', err);
+                                outputElement.textContent = 'Error loading Plotly: ' + err.message;
+                            });
+                    } else if (trimmedOutput.startsWith('<!DOCTYPE') || 
+                               trimmedOutput.startsWith('<html') ||
+                               trimmedOutput.startsWith('<div')) {
+                        outputElement.innerHTML = result.output;
+                    } else {
+                        outputElement.textContent = result.output;
+                    }
+                    outputElement.classList.remove("loading-message");
+                    if (result.success) {
+                        outputElement.classList.add("success-message");
+                        outputElement.classList.remove("error-message");
+                    } else {
+                        outputElement.classList.add("error-message");
+                        outputElement.classList.remove("success-message");
+                    }
+                });
+            }
+        });
+        
+        console.log("All code blocks initialised successfully");
+
+        // Set flag to indicate Pyodide is fully ready
+        window.pyodideReady = true;
+        console.log("Pyodide fully ready");
+        
+    } catch (error) {
+        console.error("Failed to initialise Pyodide:", error);
+        document.querySelectorAll(".output").forEach(el => {
+            el.textContent = "Error loading Pyodide: " + error.message;
+            el.classList.remove("loading-message");
+            el.classList.add("error-message");
+        });
+    }
+}
+
+// Start the application when DOM is loaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', main);
+} else {
+    main();
+}
+    </script>
+</body>
+</html>
+    

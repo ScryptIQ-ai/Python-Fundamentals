@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="../assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../assets/android-chrome-512x512.png">
+    
+    <!-- Core Stylesheets -->
+    <link rel="stylesheet" href="../assets/colours.css">
+    <link rel="stylesheet" href="../assets/shared-styles.css">
+    <link rel="stylesheet" href="../assets/module_card.css">
+    
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L2D - PF3 - Glossary</title>
+    
+    <style>
+        /* Override sidebar styling since we're not using it */
+        body {
+            background-color: var(--background) !important;
+            color: var(--text-primary);
+            margin: 0 !important;
+            padding: 0 !important;
+            min-height: 100vh;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: flex-start !important;
+            flex-direction: column !important;
+        }
+
+        .main-content {
+            width: 100% !important;
+            max-width: 1200px !important;
+            padding: 0 20px !important;
+            box-sizing: border-box !important;
+            margin: 0 auto !important;
+            position: relative !important;
+            left: auto !important;
+            right: auto !important;
+            transform: none !important;
+        }
+
+        /* Additional centering overrides */
+        #main-content {
+            margin-left: auto !important;
+            margin-right: auto !important;
+            text-align: left !important;
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo-container img {
+            width: clamp(60px, 10vw, 120px);
+            height: clamp(60px, 10vw, 120px);
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .glossary-entry {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .glossary-entry:last-child {
+            border-bottom: none;
+        }
+
+        .glossary-term {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .glossary-definition {
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .logo-container img {
+                height: 60px;
+            }
+            
+            .glossary-term {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="main-content" class="main-content">
+        <div class="top-navbar">
+            <div class="logo-container">
+                <h1 class="page-title">Python Fundamentals 3 - Glossary</h1>
+            </div>
+        </div>
+
+        <div class="module-card">
+            <div class="module-header">
+                Glossary <span class="module-tag">PF3</span>
+            </div>
+            <div class="module-body">
+                
+                <div class="glossary-entry">
+                    <div class="glossary-term">.py extension</div>
+                    <div class="glossary-definition">The file extension for Python files; any file with this extension is considered a module that can be imported.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Alias</div>
+                    <div class="glossary-definition">An alternative name given to a module or package when importing using the &#x27;as&#x27; keyword (e.g., import pandas as pd).</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Associative arrays/memories</div>
+                    <div class="glossary-definition">The generic name in other coding languages for data structures like dictionaries that map keys to values.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Base Python</div>
+                    <div class="glossary-definition">The core Python language including fundamental syntax, data types (strings, lists, dictionaries), control structures (if/else, loops), and basic built-in functions that are immediately available without importing anything.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">break</div>
+                    <div class="glossary-definition">A statement that immediately terminates a loop, even if there are items left to process or the loop condition is still True.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Built-in modules</div>
+                    <div class="glossary-definition">Additional modules that come pre-installed with Python as part of the standard library, but must be imported to use (e.g., math, datetime, os).</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Child dictionary</div>
+                    <div class="glossary-definition">A dictionary nested within another (parent) dictionary as a value.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">continue</div>
+                    <div class="glossary-definition">A statement that skips the remaining code in the current loop iteration and moves immediately to the next iteration.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Current directory</div>
+                    <div class="glossary-definition">The folder where your Python script or notebook is located; Python searches here first when looking for modules to import.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Dictionary</div>
+                    <div class="glossary-definition">A data structure that maps keys to values, allowing you to store and retrieve data using descriptive keys rather than numerical indices.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Dot notation</div>
+                    <div class="glossary-definition">The syntax for accessing functions or attributes from a module using a dot (e.g., math.sqrt() uses the sqrt function from the math module).</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">enumerate()</div>
+                    <div class="glossary-definition">A built-in function that provides both the index position and the item itself during iteration over a sequence.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Environment</div>
+                    <div class="glossary-definition">An isolated installation of Python with its own set of installed packages, preventing conflicts between different projects&#x27; dependencies.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">for loop</div>
+                    <div class="glossary-definition">A loop structure that iterates over each item in a sequence (such as a string, list, dictionary, or range), executing a block of code once per item.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Hierarchical organisation</div>
+                    <div class="glossary-definition">A structured arrangement of data with multiple levels of depth, such as nested dictionaries within dictionaries.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Immutable</div>
+                    <div class="glossary-definition">A property of data types that cannot be changed after creation; dictionary keys must be immutable types like strings, numbers, or tuples.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Import</div>
+                    <div class="glossary-definition">A Python statement that loads modules or specific functions from modules into your current programme, making their functionality available for use.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Import statement</div>
+                    <div class="glossary-definition">The Python statement used to load modules or packages (e.g., import math or from math import sqrt).</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Indentation</div>
+                    <div class="glossary-definition">Python&#x27;s use of whitespace (tabs or spaces) to define code blocks and scope; essential for structures like loops, conditionals, and functions.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Indexing</div>
+                    <div class="glossary-definition">The process of accessing values in a dictionary using keys within square brackets.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Insertion order</div>
+                    <div class="glossary-definition">The order in which items were added to a dictionary; maintained and displayed in Python 3.7+.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Iterable</div>
+                    <div class="glossary-definition">An object that can be looped over, such as strings, lists, dictionaries, tuples, sets, or ranges.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Iteration</div>
+                    <div class="glossary-definition">The process of repeating a set of instructions multiple times, typically by looping through items in a sequence.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Item</div>
+                    <div class="glossary-definition">A key-value pair within a dictionary (e.g., &quot;temperature_celsius&quot;: 30).</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Key</div>
+                    <div class="glossary-definition">A unique identifier used to access a value in a dictionary (e.g., &quot;temperature_celsius&quot;).</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">KeyError</div>
+                    <div class="glossary-definition">An error raised when trying to access a dictionary key that doesn&#x27;t exist.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Library</div>
+                    <div class="glossary-definition">A general term used in programming to refer to collections of code; in Python this typically refers to modules or packages.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">List comprehension</div>
+                    <div class="glossary-definition">A concise, single-line syntax for creating new lists by combining an expression, a for loop, and an optional condition within square brackets.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Local modules</div>
+                    <div class="glossary-definition">Python files created by you and stored in your current working directory that can be imported into other programmes.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Loop</div>
+                    <div class="glossary-definition">A programming structure that enables automatic repetition of code, such as for loops and while loops.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Loop variable</div>
+                    <div class="glossary-definition">The variable that holds the current item during each iteration of a loop (e.g., &#x27;gene&#x27; in &#x27;for gene in genes&#x27;).</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Module</div>
+                    <div class="glossary-definition">A single Python file containing code (functions, classes, variables) that can be imported and used in other Python programmes.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Mutable</div>
+                    <div class="glossary-definition">A property of data types that can be modified after creation; dictionaries are mutable, allowing items to be added, modified, or removed.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Nested dictionary</div>
+                    <div class="glossary-definition">A dictionary that contains other dictionaries as values, creating hierarchical data structures.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Package</div>
+                    <div class="glossary-definition">A collection of related modules organised in a directory structure, allowing for hierarchical organisation of code and functionality.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Package manager</div>
+                    <div class="glossary-definition">A tool for installing and managing Python packages; examples include pip, conda, and uv.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Parent dictionary</div>
+                    <div class="glossary-definition">The outer dictionary that contains nested (child) dictionaries as values.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">pip</div>
+                    <div class="glossary-definition">The standard Python package manager used to install third-party packages from PyPI via the command line.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">PyPI</div>
+                    <div class="glossary-definition">Python Package Index; the official repository where Python packages are published and can be downloaded from using pip.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">range()</div>
+                    <div class="glossary-definition">A built-in function that generates a sequence of numbers for iteration, accepting start, stop, and step arguments (stop is exclusive and step defaults to 1).</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Site-packages directory</div>
+                    <div class="glossary-definition">The location where third-party packages are installed; Python searches here after checking the current directory and standard library.</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Standard library</div>
+                    <div class="glossary-definition">The collection of built-in modules that come pre-installed with Python, providing extended functionality beyond base Python (e.g., math, datetime, json).</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Sub-module</div>
+                    <div class="glossary-definition">A module within a package; accessed using dot notation (e.g., email.mime is a sub-module of the email package).</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Third-party modules</div>
+                    <div class="glossary-definition">Packages created by external developers that must be installed separately (typically using pip) before they can be imported (e.g., pandas, numpy, matplotlib).</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">Value</div>
+                    <div class="glossary-definition">The data associated with a key in a dictionary (e.g., 30).</div>
+                </div>
+                <div class="glossary-entry">
+                    <div class="glossary-term">while loop</div>
+                    <div class="glossary-definition">A loop structure that continues to execute a block of code as long as a specified condition remains True.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div>© All materials are copyright scryptIQ 2025</div>
+            <div>Learn to Discover</div>
+        </div>
+    </div>
+</body>
+</html>
+        
