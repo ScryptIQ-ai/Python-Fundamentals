@@ -55,7 +55,7 @@
                     Python Packages
                     <span class="toggle-icon">▼</span>
                 </div>
-                <ul class="nested-nav expanded" id="expandable-section-3"><li><a href="#introduction">Introduction</a></li><li><a href="#what-is-a-module">What is a module?</a></li><li><a href="#what-is-a-package">What is a Package?</a></li><li><a href="#base-python">Base Python</a></li><li><a href="#python-library-hierarchy">Python Library Hierarchy</a></li><li><a href="#import-statements">Import Statements</a></li><li><a href="#different-ways-to-import">Different ways to Import</a></li><li><a href="#common-built-in-packages">Common built-in Packages</a></li><li><a href="#common-third-party-packages">Common Third-Party Packages</a></li><li><a href="#pip-installing">Pip installing</a></li><li><a href="#good-practices">Good Practices</a></li><li><a href="#summary">Summary</a></li>
+                <ul class="nested-nav expanded" id="expandable-section-3"><li><a href="#introduction">Introduction</a></li><li><a href="#what-is-a-module">What is a module?</a></li><li><a href="#what-is-a-package">What is a package?</a></li><li><a href="#base-python">Base Python</a></li><li><a href="#python-library-hierarchy">Python Library Hierarchy</a></li><li><a href="#import-statements">Import Statements</a></li><li><a href="#different-ways-to-import">Different ways to import</a></li><li><a href="#common-built-in-packages">Common built-in packages</a></li><li><a href="#common-third-party-packages">Common third-party packages</a></li><li><a href="#pip-installing">Pip installing</a></li><li><a href="#good-practices">Good practices</a></li><li><a href="#summary">Summary</a></li>
                 </ul>
             </li><li><a href="./iterations.html">Iterations</a></li><li><a href="./assignment.html">Assignment</a></li><li><a href="./feedback.html">Feedback</a></li>
         </ul>
@@ -125,7 +125,7 @@
                 </div>
                     </div>
                     <h3>Introduction</h3>
-                    <p>One of the biggest benefits of Python is the extensive ecosystem of additional code modules you can import to process your data. Due to Python&#x27;s popularity, there are many of these modules available, some come pre-installed with Python, whilst others need to be installed separately. In Python, these are called <strong>modules</strong> (single files) or <strong>packages</strong> (collections of modules), though they&#x27;re often referred to as libraries as well in Python as well as other programming languages.</p><p>We will explore some theory about these terms, where to source external packages from, and the correct way to import them (load them into your Python workspace).</p>
+                    <p>One of the biggest benefits of Python is the extensive ecosystem of additional code modules you can import to process your data. Due to Python&#x27;s popularity, there are many of these modules available, some come pre-installed with Python, whilst others need to be installed separately. In Python, these are called <strong>modules</strong> (single files) or <strong>packages</strong> (collections of modules), though they&#x27;re often also referred to as libraries in Python, as well as in other programming languages.</p><p>We will explore some theory about these terms, where to source external packages from, and the correct way to import them (load them into your Python workspace).</p>
         <div class="info-box key-terms-box">
             <div class="box-title">
                 <span class="box-icon"></span>
@@ -143,17 +143,17 @@
                 <div class="module-body">
                     <div class="module-section">
                         <h3>What is a module?</h3>
-                        <p>A module is simply a Python file containing code that you can use in other Python programs. It acts as a toolbox from which you can select the appropriate tool (script) for tasks you do repeatedly. These tools take the form of functions, a <strong>named block of code that carries out a specific task</strong> whenever it is called.</p><p>Any Python file with a <code>.py</code> extension is a module. For example, if you were to create a file called <code>calculator.py</code> with various mathematical functions inside it, that file then becomes a module called <code>calculator</code>. You can then import that file into another <code>.py</code> file or a Jupyter notebook to be used.</p><p>Modules can contain more than only functions. They can include:<br><ul class="nested-list"><li><strong>Classes</strong> - blueprints for creating objects (explained further below)</li><br><li><strong>Variables</strong> - data that you want to reuse</li><br><li><strong>Executable statements</strong> - code that runs when the module is first imported</li></ul></p>
+                        <p>A module is simply a Python file containing code that you can use in other Python programs. It acts as a toolbox from which you can select the appropriate script for tasks that you perform, repeatedly. These tools often take the form of <strong>functions</strong> (a <em>named block of code that carries out a specific task</em> - whenever these are called.</p><p>Any Python file with a <code>.py</code> extension is termed a <strong>module</strong>. For instance, if you were to create a file called <code>calculator.py</code> with various mathematical functions inside it, that file then becomes a module called <code>calculator</code>. You can then import that file into another <code>.py</code> file or a Jupyter notebook, where you can make use of it.</p><p>Modules can contain more than just functions, however. They can also include:<br><ul class="nested-list"><li><strong>Classes</strong> - blueprints for creating objects (explained further below)</li><br><li><strong>Variables</strong> - data that you want to reuse</li><br><li><strong>Executable statements</strong> - code that runs when the module is first imported</li></ul></p>
         <div class="info-box fact-box">
             <div class="box-title">
                 <span class="box-icon"></span>
                 FACT
             </div>
             <div class="box-content">
-                <p>Classes are blueprints for creating objects in Python. You already use classes without realising it. Lists, strings, integers, and dictionaries are all classes, and when you create <code>my_list = [1, 2, 3, 4]</code>, you&#x27;re creating an instance of the list class. This is why these objects come with built-in methods like <code>.append()</code> or <code>.upper()</code> that you can use straight away.</p>
+                <p>A python <strong>class</strong> is a <strong>blueprint for creating objects</strong> in Python. This blueprint will often include with its own associated methods/functions, attributes and behaviours. You are likely already making extensive use of classes, without realising it. Lists, strings, integers and dictionaries are all classes (as well as being data types and structures), and when you create <code>my_list = [1, 2, 3, 4]</code>, you&#x27;re creating an instance of the list class. This is why we use the term <strong>instantiate</strong> - you are creating a fresh instance of a class, when you define a data structure or variable containing a class such as a list. The fact that you are creating a fresh instance of this class, loaded with your specified data values, is why these objects come with a plethora of built-in methods such as <code>.append()</code> or <code>.upper()</code>, that you can make use of straight away.</p>
             </div>
         </div>
-        <p>In the previous example we are importing a module from a file we created, but this can be extended to modules others have written or those included with Python. We will cover the difference between the two in a section below (<strong>Base Python</strong>).</p><p>The key benefit of modules is code reusability. Instead of copying and pasting the same code across multiple projects, you write it once in a module and import it wherever it&#x27;s needed.</p>
+        <p>In the previous example we are importing a module from a file that we created, but this can be extended to modules others have written, or those included with Python. We will cover the difference between the two in a section below (<strong>Base Python</strong>).</p><p>The key benefit of modules is <strong>code reusability</strong>. Instead of copying and pasting the same code across multiple projects, you write it once in a module and import it wherever it&#x27;s needed, to be used as often as required.</p>
                     </div>
                 </div>
             </div>
@@ -161,12 +161,12 @@
             <div class="module-card" id="what-is-a-package">
                 <div class="module-body">
                     <div class="module-section">
-                        <h3>What is a Package?</h3>
-                        <p>A package is a collection of related modules organised together in a directory structure. Whilst you could have every function or class within one module, it is better practice to organise closely related functions in one file (module). These can then be called into other modules when needed.<br><br>A package should still retain an overarching theme. For example, a package called <code>data_analysis</code> could contain separate modules for statistics, plotting and data cleaning.</p><p>A package is quite simple—it is simply a directory (folder) that contains:<br><ul class="nested-list"><li>Multiple Python modules (<code>.py</code> files)</li><br><li>A special file called <code>__init__.py</code>, which tells the Python interpreter it is a package</li></ul></p><p>An example structure:</p><p><pre class="markdown-code-block"><code>data_analysis/
+                        <h3>What is a package?</h3>
+                        <p>A <strong>package</strong> is a <strong>collection of related modules organised together in a directory structure</strong>. Whilst you could have every function or class within one module, it is better practice to organise closely-related functions in one file (module). These can then be called into other modules when needed.<br><br>A package should still retain an overarching theme. For example, a package called <code>data_analysis</code> could contain separate modules for statistics, plotting and data cleaning.</p><p>A package is quite simple: it is effectively a <em>directory</em> (folder) that contains:<br><ul class="nested-list"><li>Multiple Python <strong>modules</strong> (<code>.py</code> files)</li><br><li>A <em>special file</em> called <code>__init__.py</code>, which tells the Python interpreter it is a package</li></ul></p><p>An example structure:</p><p><pre class="markdown-code-block"><code>data_analysis/
     __init__.py
     statistics.py
     plotting.py
-    cleaning.py</code></pre></p><p>Packages make Python&#x27;s ecosystem scalable, as developers can create large, well-organised libraries (hopefully) that can be imported to extend the capabilities of Python. We will demonstrate how to import both single modules and packages next.</p>
+    cleaning.py</code></pre></p><p>Packages make Python&#x27;s ecosystem <em>scalable</em>, as developers can create large (hopefully) well-organised libraries that can be imported to extend the capabilities of Python. We will demonstrate how to import both single modules and packages, next.</p>
                     </div>
                 </div>
             </div>
@@ -175,24 +175,24 @@
                 <div class="module-body">
                     <div class="module-section">
                         <h3>Base Python</h3>
-                        <p>Up until this point we have only been using the coding language that is part of base Python, with no need to import any tools as what we needed is already there. These tools that you learned can be considered the <strong>fundamental syntax and semantics</strong> of the Python language, enabling an <em>algorithmic</em> way of programming. These make up the base, from which more complex things can be built.</p><p>On top of this, there are also many more modules of code that come as part of the standard distribution of Python, known as built-in modules. These extend the capability of Python. Some of them were built by the developers of Python, some were built by others and then incorporated into the standard distribution due to their ubiquitous use. There are now over 200 modules in the standard distribution.</p><p>After the built-in modules, you have the third-party modules/packages. These have to be installed using a package manager (these are covered in <strong>PF0</strong>), with the standard manager being <code>pip</code>. We&#x27;ll run through common third-party packages and how to install them later in this section.</p>
+                        <p>Up until this point, we have only been using the coding language that is part of base Python, with no need to import any tools as what we have required up to this point, is already there. These tools that you learned can be considered the <strong>fundamental syntax and semantics</strong> of the Python language, enabling an <em>algorithmic</em> approach to programming. These make up the <strong>base</strong>, from which more complex things can be built.</p><p>On top of this, there are also many more modules of code that come as part of the standard distribution of Python, known as <strong>built-in modules</strong>. These extend the standard capability of Python. Some of them were built by the developers of Python, and some were built by others, and later incorporated into the standard distribution due to their ubiquitous use. There are now over 200 modules in the standard distribution of the Python language.</p><p>After the built-in modules, you have the third-party modules/packages. These have to be installed using a package manager (these are covered in our <strong>Python Orientation</strong> materials), with the standard manager being <code>pip</code>. We&#x27;ll run through common third-party packages and how to install them later in this section.</p>
         <div class="info-box key-terms-box">
             <div class="box-title">
                 <span class="box-icon"></span>
                 KEY TERMS
             </div>
             <div class="box-content">
-                <p><strong>Base Python</strong>: The core Python language including fundamental syntax, data types (strings, lists, dictionaries, etc.), control structures (if/else, loops), and basic built-in functions like <code>print()</code>, <code>len()</code>, and <code>type()</code>. This is what&#x27;s immediately available when you start Python without importing anything.<br><br><strong>Built-in Modules</strong>: Additional modules that come pre-installed with Python as part of the standard library, but must be imported to use. Examples include <code>math</code>, <code>datetime</code>, and <code>os</code>. These extend Python&#x27;s capabilities without requiring separate installation.<br><br><strong>Third-party Modules</strong>: Packages created by external developers that must be installed separately (typically using <code>pip</code>) before they can be imported. Examples include <code>pandas</code>, <code>numpy</code>, and <code>matplotlib</code>. These provide specialised functionality for specific domains like data science, web development, or machine learning.</p>
+                <p><strong>Base Python</strong>: The core Python language including fundamental syntax, data types (strings, lists, dictionaries, <em>etc.</em>), control structures (<code>if</code> / <code>else</code>, loops), and basic built-in functions like <code>print()</code>, <code>len()</code>, and <code>type()</code>. This is what&#x27;s immediately available when you start Python without importing anything.<br><br><strong>Built-in Modules</strong>: Additional modules that come pre-installed with Python as part of the standard library, but must be imported to use. Examples include <code>math</code>, <code>datetime</code>, and <code>os</code>. These extend Python&#x27;s capabilities without requiring separate installation.<br><br><strong>Third-party Modules</strong>: Packages created by external developers that must be installed, separately (typically using <code>pip</code>), before they can be imported. Examples include <code>pandas</code>, <code>numpy</code> and <code>matplotlib</code>. These provide specialised functionality for specific fields such as data science, web development, and machine learning.</p>
             </div>
         </div>
-        <h4>Why are they not all available in base Python straight away?</h4><p>When you start up a Python environment, only the core language syntax and essential built-in functions are loaded into memory. Additional functionality is kept separate in modules and packages. This approach keeps Python lightweight and fast to start, rather than loading every possible tool at once (which would slow down startup), you only import the specific modules you need for your particular task. This modular design means you get quick startup times whilst still having access to Python&#x27;s extensive functionality when required.</p>
+        <h4>Why are they not all available in base Python straight away?</h4><p>When you start up a Python environment, only the core language syntax and essential built-in functions are loaded into memory. Additional functionality is kept separate in modules and packages. This approach keeps Python lightweight and fast to start, rather than loading every possible tool at once (which would slow down startup), you only import the specific modules needed for your particular task. This modular design means that you achieve quick startup times, whilst still having access to Python&#x27;s extensive functionality, when required.</p>
         <div class="info-box fact-box">
             <div class="box-title">
                 <span class="box-icon"></span>
                 FACT
             </div>
             <div class="box-content">
-                <p>Python&#x27;s standard library is very extensive, offering a wide range of facilities. Many of these built-in modules are written in C, a much faster and efficient (but difficult to write) language. This means these tools will be faster than anything you write in Python for the same task. Additionally, they can provide access to system functionality such as file I/O that would otherwise be inaccessible to Python programmers.</p>
+                <p>Python&#x27;s standard library is very extensive, offering a wide range of facilities. Many of these built-in modules are written in C: a much faster and more efficient (but difficult-to-write) language. This means that these tools will be faster than anything you write in Python for the same task. Additionally, they can provide access to system functionality such as file I/O that would otherwise be inaccessible to Python programmers.</p>
             </div>
         </div>
         
@@ -230,7 +230,7 @@
                 <textarea id="code-cell-31">import module_name</textarea>
             </div>
         </div>
-        <p>This <em>import</em> statement will always go at the top of your <code>.py</code> file or your jupyter notebook by convention, even if you aren&#x27;t using the imported code until much later. See the later subsection <a href="./python-packages.html#good-practices"><em>Good Practices</em></a></p><p>Once imported, you can use functions from that module by prefixing them with the module name and a dot:</p>
+        <p>This <em>import</em> statement will always go at the top of your <code>.py</code> file or your Jupyter notebook, by convention, even if you aren&#x27;t using the imported code until much later.<br><br>See the later subsection <a href="./python-packages.html#good-practices"><em>Good Practices</em></a></p><p>Once imported, you can use functions from that module by prefixing them with the module name and a dot:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
                 <textarea id="code-cell-32">import math
@@ -241,7 +241,7 @@ print(result)</textarea>
             </div>
             <div id="code-cell-32-output" class="output"></div>
         </div>
-        <p>This dot notation makes it clear which module each function comes from, helping avoid confusion when different modules might have functions with the same name.</p>
+        <p>This dot notation makes it clear which module each function comes from, helping to avoid confusion when different modules might have functions with the same name.</p>
         <div class="code-area">
             <div class="code-container code-editor">
                 <textarea id="code-cell-33"># Trying to import a module that doesn&#x27;t exist will throw an error:  
@@ -252,9 +252,9 @@ import genomics_toolkit   # not a real or installed module</textarea>
             <button id="run-code-cell-33" class="run-button">Run Code</button>
             <div id="code-cell-33-output" class="output"></div>
         </div>
-        <h4>Importing local modules</h4><p>The above example module <code>math</code> is one of the built-in modules in Python. If you want to import one of your own modules, it is done in the same way. All you need to do is make sure the <code>.py</code> file is saved in the same directory you&#x27;re working in.</p><p><pre class="markdown-code-block"><code>working_folder/
+        <h4>Importing local modules</h4><p>The above example module <code>math</code> is one of the built-in modules in Python. If you want to import one of your own modules, it is done in the same way. All you need to do is make sure the <code>.py</code> file is saved in the same directory you&#x27;re working in (termed the <strong>working directory</strong>).</p><p><pre class="markdown-code-block"><code>working_folder/
     my_module.py
-    my_notebook.ipynb</code></pre></p><p>When you write an <code>import</code> statement, Python searches in this order:<ul class="nested-list"><li>Current directory</li><br><li>Standard library directory (built-in modules)</li><br><li>Site-packages directory (third-party modules)</li></ul></p><p>You can therefore have a local file called <code>math.py</code> in your current directory, and it will be imported instead of the built-in <code>math</code> module.</p>
+    my_notebook.ipynb</code></pre></p><p>When you write an <code>import</code> statement, Python searches the following, in this order:<br><ul class="nested-list"><li>Current directory</li><br><li>Standard library directory (built-in modules)</li><br><li>Site-packages directory (third-party modules)</li></ul></p><p>You can therefore have a local file called <code>math.py</code> in your current directory, and it will be imported instead of the built-in <code>math</code> module.</p>
                     </div>
                 </div>
             </div>
@@ -262,8 +262,8 @@ import genomics_toolkit   # not a real or installed module</textarea>
             <div class="module-card" id="different-ways-to-import">
                 <div class="module-body">
                     <div class="module-section">
-                        <h3>Different ways to Import</h3>
-                        <p>We can also add in some operational words that indicate specific rules for the import, such as importing only one module or function.</p><p>Python offers several ways to import code, each with different use cases:</p><h4>1. Basic Import</h4>
+                        <h3>Different ways to import</h3>
+                        <p>We can also add in some operational words that indicate specific rules for the import (such as importing only one module or function).</p><p>Python offers several ways to import code, each with different use cases:</p><h4>1. Basic import</h4>
         <div class="code-area">
             <div class="code-container code-fixed">
                 <textarea id="code-cell-34">import math
@@ -274,7 +274,7 @@ math.pi</textarea>
             </div>
             <div id="code-cell-34-output" class="output"></div>
         </div>
-        <h4>2. Import with Alias</h4><p>You can change the name given to your import with <code>as</code>.</p>
+        <h4>2. Import with alias</h4><p>You can change the name given to your import to that of an alias, using the keyword <code>as</code>.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
                 <textarea id="code-cell-35">import math as m
@@ -285,7 +285,7 @@ m.pi</textarea>
             </div>
             <div id="code-cell-35-output" class="output"></div>
         </div>
-        <p>Typically, the above is used when the package or module has a long name. A common example is <code>matplotlib</code>, a plotting package we will be using frequently in Data Handling and beyond, which is imported as so:</p>
+        <p>Typically, the above is used when the package or module has a long name. A common example is <code>matplotlib</code> - a plotting package that we will be using frequently in the Data Handling module of our course, and beyond. It is conventionally imported, as follows:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
                 <textarea id="code-cell-36">import matplotlib.pyplot as plt
@@ -296,7 +296,7 @@ plt.show()</textarea>
             </div>
             <div id="code-cell-36-output" class="output"></div>
         </div>
-        <h4>3. Import Specific Functions</h4><p>When you only need a few functions, it can be cleaner to only import them.</p>
+        <h4>3. Import specific functions</h4><p>When you only need a few functions, it can sometimes be cleaner to only import these, as opposed to importing an entire package. This can be done, as follows:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
                 <textarea id="code-cell-37">from math import sqrt, pi
@@ -308,7 +308,7 @@ print(result)</textarea>
             </div>
             <div id="code-cell-37-output" class="output"></div>
         </div>
-        <h4>4. Import All (Not Recommended)</h4><p>Using an <code>*</code> afterwards imports all the functions without needing to use the module name. This is not recommended as it can cause naming conflicts, overwriting existing functions, causing errors or just making the code harder to read.</p>
+        <h4>4. Import all (not recommended)</h4><p>Using an asterisk <code>*</code> after a package or module name in an import statement, imports all the functions within it, without needing to use the module name. This is not recommended as it can cause naming conflicts, often overwriting existing functions, which will produce errors or just making the code harder to read.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
                 <textarea id="code-cell-38">from math import *
@@ -320,7 +320,7 @@ print(result)</textarea>
             </div>
             <div id="code-cell-38-output" class="output"></div>
         </div>
-        <h4>5. Import from Packages</h4><p>Packages have sub-modules, and sometimes you just need a function from one or just the module itself. For this we use the <code>.</code> notation after the package name, followed by the module name.</p>
+        <h4>5. Import from packages</h4><p>Packages have sub-modules, and sometimes you just need a function from one or just the module itself. For this we use the <code>.</code> notation after the package name, followed by the module name.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
                 <textarea id="code-cell-39"># Importing a specific function from a sub-module
@@ -340,8 +340,8 @@ import xml.etree as ET</textarea>
             <div class="module-card" id="common-built-in-packages">
                 <div class="module-body">
                     <div class="module-section">
-                        <h3>Common built-in Packages</h3>
-                        <p>Python&#x27;s standard library includes over 200 modules covering common programming tasks. Here are some you&#x27;ll encounter frequently:</p><h4>File and System Operations</h4><p><ul class="nested-list"><li><strong><code>os</code></strong> - Operating system interface (file paths, directories)</li><br><li><strong><code>sys</code></strong> - System-specific parameters and functions</li><br><li><strong><code>pathlib</code></strong> - Modern path handling (preferred over os.path)</li></ul></p><h4>Date and Time</h4><p><ul class="nested-list"><li><strong><code>datetime</code></strong> - Working with dates and times</li><br><li><strong><code>time</code></strong> - Time-related functions and formatting</li></ul></p><h4>Mathematics</h4><p><ul class="nested-list"><li><strong><code>math</code></strong> - Mathematical functions (sqrt, sin, cos, etc.)</li><br><li><strong><code>random</code></strong> - Generate random numbers and make random selections</li><br><li><strong><code>statistics</code></strong> - Statistical functions (mean, median, mode)</li></ul></p><h4>Data Processing</h4><p><ul class="nested-list"><li><strong><code>json</code></strong> - Reading and writing JSON data</li><br><li><strong><code>csv</code></strong> - Reading and writing CSV files</li><br><li><strong><code>re</code></strong> - Regular expressions for pattern matching</li></ul></p>
+                        <h3>Common built-in packages</h3>
+                        <p>Python&#x27;s standard library includes over 200 modules covering common programming tasks. Here are some you&#x27;ll encounter frequently:</p><h4>File and system operations</h4><p><ul class="nested-list"><li><strong><code>os</code></strong> - Operating system interface (file paths, directories)</li><br><li><strong><code>sys</code></strong> - System-specific parameters and functions</li><br><li><strong><code>pathlib</code></strong> - Modern path handling (preferred over os.path)</li></ul></p><h4>Date and time</h4><p><ul class="nested-list"><li><strong><code>datetime</code></strong> - Working with dates and times</li><br><li><strong><code>time</code></strong> - Time-related functions and formatting</li></ul></p><h4>Mathematics</h4><p><ul class="nested-list"><li><strong><code>math</code></strong> - Mathematical functions (sqrt, sin, cos, etc.)</li><br><li><strong><code>random</code></strong> - Generate random numbers and make random selections</li><br><li><strong><code>statistics</code></strong> - Statistical functions (mean, median, mode)</li></ul></p><h4>Data processing</h4><p><ul class="nested-list"><li><strong><code>json</code></strong> - Reading and writing JSON data</li><br><li><strong><code>csv</code></strong> - Reading and writing CSV files</li><br><li><strong><code>re</code></strong> - Regular expressions for pattern matching</li></ul></p>
                     </div>
                 </div>
             </div>
@@ -349,8 +349,8 @@ import xml.etree as ET</textarea>
             <div class="module-card" id="common-third-party-packages">
                 <div class="module-body">
                     <div class="module-section">
-                        <h3>Common Third-Party Packages</h3>
-                        <p>Beyond the standard library, Python has an enormous ecosystem of third-party packages.</p><p>Here are a few we will be using in later lesson modules:</p><h4>Data Science and Analysis</h4><p><ul class="nested-list"><li><strong><code>pandas</code></strong> - Data manipulation and analysis (think Excel but more powerful)</li><br><li><strong><code>numpy</code></strong> - Numerical computing with arrays and matrices</li><br><li><strong><code>matplotlib</code></strong> - Creating plots and visualisations</li><br><li><strong><code>seaborn</code></strong> - Statistical data visualisation (built on matplotlib)</li><br><li><strong><code>scipy</code></strong> - Scientific computing and statistics</li></ul></p><h4>Machine Learning</h4><p><ul class="nested-list"><li><strong><code>scikit-learn</code></strong> - Machine learning algorithms</li><br><li><strong><code>tensorflow</code></strong> - Deep learning framework</li><br><li><strong><code>pytorch</code></strong> - Deep learning framework</li></ul></p>
+                        <h3>Common third-party packages</h3>
+                        <p>Beyond the standard library, Python has an enormous ecosystem of third-party packages.</p><p>Here are a few we will be using in later lesson modules:</p><h4>Data science and analysis</h4><p><ul class="nested-list"><li><strong><code>pandas</code></strong> - Data manipulation and analysis (think Excel but more powerful)</li><br><li><strong><code>numpy</code></strong> - Numerical computing with arrays and matrices</li><br><li><strong><code>matplotlib</code></strong> - Creating plots and visualisations</li><br><li><strong><code>seaborn</code></strong> - Statistical data visualisation (built on matplotlib)</li><br><li><strong><code>scipy</code></strong> - Scientific computing and statistics</li></ul></p><h4>Machine learning</h4><p><ul class="nested-list"><li><strong><code>scikit-learn</code></strong> - Machine learning algorithms</li><br><li><strong><code>tensorflow</code></strong> - Deep learning framework</li><br><li><strong><code>pytorch</code></strong> - Deep learning framework</li></ul></p>
                     </div>
                 </div>
             </div>
@@ -359,7 +359,7 @@ import xml.etree as ET</textarea>
                 <div class="module-body">
                     <div class="module-section">
                         <h3>Pip installing</h3>
-                        <p>The package manager <a href="https://pypi.org/project/pip/"><code>pip</code></a> is the standard way to install new packages via the internet. To find out the right way to install them you will need to head to their documentation site or <a href="https://pypi.org/">PyPI</a> (the Python Package Index) to find out the right nomenclature for the install name.</p><p>Packages are typically installed into your environment through the terminal, which changes depending on your OS. See <a href="../PF0/essential-tools.html#using-python-in-the-terminal"><strong>PF0</strong></a> for more details.</p><p>You can install a package one at a time:</p><p><pre class="markdown-code-block"><code>pip install matplotlib</code></pre></p><p>Or install multiple in sequence:</p><p><pre class="markdown-code-block"><code>pip install pandas numpy scipy</code></pre></p><p>It is recommended to make a new environment (an isolated installation of Python) before installing packages to keep things tidy. Many packages require specific versions of others, and so installing something new may override the needs of an earlier install. If you were to run the above in your terminal these packages would be installed to your system wide version of Python. In comparison, a new environment will be contained and usually limited to one project.</p><p>For this reason many use more intelligent package managers, such as Anaconda or UV. We cover these also in <a href="../PF0/installing-python.html#anaconda"><strong>PF0</strong></a> and will go into them in more detail in a developers best practices resource.</p>
+                        <p>The package manager <a href="https://pypi.org/project/pip/"><code>pip</code></a> is the standard way to install new packages <em>via</em> the internet. To find out the right way to install them you will need to head to their documentation site or <a href="https://pypi.org/">PyPI</a> (the Python Package Index) to find out the right nomenclature for the install name.</p><p>Packages are typically installed into your environment through the terminal, which changes depending on your OS. See <a href="../PF0/essential-tools.html#using-python-in-the-terminal"><strong>PF0</strong></a> for more details.</p><p>You can install a package one at a time:</p><p><pre class="markdown-code-block"><code>pip install matplotlib</code></pre></p><p>Or install multiple in sequence:</p><p><pre class="markdown-code-block"><code>pip install pandas numpy scipy</code></pre></p><p>It is recommended to make a new environment (an isolated installation of Python) before installing packages to keep things tidy. Many packages require specific versions of others, and so installing something new may override the needs of an earlier install. If you were to run the above in your terminal these packages would be installed to your system-wide version of Python. In comparison, a new environment will be contained and usually limited to one project.</p><p>For this reason many use more intelligent package managers, such as Anaconda or UV. We cover these also in the course&#x27;s <a href="../PF0/installing-python.html#anaconda"><strong>Python Orientation materials</strong></a> and will go into them in more detail in a dedicated &#x27;Developers&#x27; Best Practices&#x27; resource.</p>
                     </div>
                 </div>
             </div>
@@ -367,8 +367,8 @@ import xml.etree as ET</textarea>
             <div class="module-card" id="good-practices">
                 <div class="module-body">
                     <div class="module-section">
-                        <h3>Good Practices</h3>
-                        <p>It doesn&#x27;t matter where you write your import statements, as long as they are before the use of the imported function. That being said, there are some good practices.</p><h4>Import location</h4><p>Firstly, all imports should be at the top of a file or the first cell in a notebook. This is the most important one for readability. Secondly, many group their imports by import type: first being built-in packages, second being third-party packages, and lastly local imports.</p>
+                        <h3>Good practices</h3>
+                        <p>It doesn&#x27;t matter where you write your import statements, as long as they are before the use of the imported function. That being said, there are some good practices to bear in mind.</p><h4>Import location</h4><p>Firstly, all imports should be at the top of a file or the first cell in a notebook. This is the most important one for legibility. Secondly, many group their imports by import type: the first being built-in packages, the second being third-party packages, and lastly, local imports.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
                 <textarea id="code-cell-40"># Standard library
@@ -384,7 +384,7 @@ import requests
 from my_project import helper_functions</textarea>
             </div>
         </div>
-        <h4>Use Standard Aliases</h4><p>Many packages have conventional abbreviations for their alias. Use them so that your code is readable to others and easier to compare when fixing bugs.</p><p>Common aliases:</p>
+        <h4>Use standard aliases</h4><p>Many packages have conventional abbreviations for their alias. Use them so that your code is readable to others and easier to compare when fixing bugs.</p><p>Common aliases:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
                 <textarea id="code-cell-41">import pandas as pd
@@ -392,7 +392,7 @@ import numpy as np
 import matplotlib.pyplot as plt</textarea>
             </div>
         </div>
-        <h4>Be Specific with Imports</h4><p>If you are only using a handful (1-5) functions from a package, consider only importing them specifically, rather than the whole module. The exception here is when an imported function&#x27;s name would overwrite a standard function.</p>
+        <h4>Be specific with imports</h4><p>If you are only using a handful (1-5) functions from a package, consider only importing them specifically, rather than the whole module. The exception here is when an imported function&#x27;s name would overwrite a standard function.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
                 <textarea id="code-cell-42"># Good
@@ -409,10 +409,20 @@ import math</textarea>
                 FACT
             </div>
             <div class="box-content">
-                <p>Whilst it is good practice to only import the functions you need, it does not save you any memory or time. This is because Python loads the entire module into memory regardless of which parts you import. When you write <code>from math import sqrt</code>, Python still loads the complete math module behind the scenes—you&#x27;re just choosing which names to make directly accessible in your namespace.</p>
+                <p>Whilst it is good practice to only import the functions you need, it does not save you any memory or time. This is because Python loads the entire module into memory regardless of which parts you import. When you write <code>from math import sqrt</code>, Python still loads the complete <code>math</code> module behind the scenes - you&#x27;re just choosing which names to make directly accessible in your namespace.</p>
             </div>
         </div>
-        <h4>Be safe</h4><p>Use well-established packages from <a href="https://pypi.org/">PyPI</a> (the Python Package Index) rather than unknown sources. Popular packages with thousands of downloads and active maintenance are generally safer choices.</p><p>PyPI scans packages for known malware and has implemented security measures like requiring two-factor authentication for popular packages. Installing directly from GitHub or other sources bypasses these protections and increases your risk of downloading malicious code.</p><p>Also watch your spelling carefully—malicious actors often create packages with names similar to popular ones (called &quot;typosquatting&quot;).</p>
+        <h4>Be safe</h4><p>Use well-established packages from <a href="https://pypi.org/">PyPI</a> (the Python Package Index) rather than unknown sources. Popular packages with thousands of downloads and active maintenance are generally safer choices.</p><p>PyPI scans packages for known malware and has implemented security measures like requiring two-factor authentication for popular packages. Installing directly from GitHub or other sources bypasses these protections and increases your risk of downloading malicious code.</p>
+        <div class="info-box tip-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                TIP
+            </div>
+            <div class="box-content">
+                <p>Also watch your spelling carefully: malicious actors often create packages with names similar to popular ones (called &quot;typosquatting&quot;).</p>
+            </div>
+        </div>
+        
                     </div>
                 </div>
             </div>
