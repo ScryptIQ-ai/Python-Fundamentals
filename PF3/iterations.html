@@ -50,7 +50,7 @@
                     Iterations
                     <span class="toggle-icon">▼</span>
                 </div>
-                <ul class="nested-nav expanded" id="expandable-section-4"><li><a href="#introduction">Introduction</a></li><li><a href="#for-loops">for loops</a></li><li><a href="#iterating-over-lists">Iterating over lists</a></li><li><a href="#iterating-over-dictionaries">Iterating over dictionaries</a></li><li><a href="#the-range---function">The range() function</a></li><li><a href="#continue-and-break">continue and break</a></li><li><a href="#while-loops">while loops</a></li><li><a href="#the-enumerate---function">The enumerate() function</a></li><li><a href="#list-comprehensions">List Comprehensions</a></li><li><a href="#summary">Summary</a></li>
+                <ul class="nested-nav expanded" id="expandable-section-4"><li><a href="#introduction">Introduction</a></li><li><a href="#for-loops">for loops</a></li><li><a href="#iterating-over-lists">Iterating over lists</a></li><li><a href="#iterating-over-dictionaries">Iterating over dictionaries</a></li><li><a href="#the-range---function">The range() function</a></li><li><a href="#continue-and-break">continue and break</a></li><li><a href="#while-loops">while loops</a></li><li><a href="#the-enumerate---function">The enumerate() function</a></li><li><a href="#nested-iterations">Nested iterations</a></li><li><a href="#list-comprehensions">List Comprehensions</a></li><li><a href="#summary">Summary</a></li>
                 </ul>
             </li><li><a href="./assignment.html">Assignment</a></li><li><a href="./feedback.html">Feedback</a></li>
         </ul>
@@ -179,7 +179,7 @@ print(f&quot;There are {count} adenine residues in this sequence.&quot;)</textar
             </div>
             <div class="box-content">
                 <p><strong>1.</strong></p>
-                <p>Extending on what you&#x27;ve seen above, create a <code>for</code> loop with conditional statements that counts the number of each nucleotide base (A, T, C, G) in a DNA sequence.<ul class="nested-list"><li>Add to the loop the counting of T, C, and G</li><br><li>There are also both <code>_</code> and <code>N</code> in the sequence, have them both count towards <code>missing_count</code></li><ul class="nested-list"><li>Achieve the above with a single conditional statement using a logical operator</li></ul></li><br><li>Print all 5 counts after the loop</li><br><li><strong>Do not</strong> use the string method <code>.count()</code></li></ul></p>
+                <p>Extending on what you&#x27;ve seen above, create a <code>for</code> loop with conditional statements that counts the number of each nucleotide base (A, T, C, G) in a DNA sequence.<ul class="nested-list"><li>Add to the loop the counting of T, C, and G</li><br><li>There are also both <code>_</code> and <code>N</code> in the sequence, have them both count towards <code>count_missing</code></li><ul class="nested-list"><li>Achieve the above with a single conditional statement using a logical operator</li></ul></li><br><li>Print all 5 counts after the loop</li><br><li><strong>Do not</strong> use the string method <code>.count()</code></li></ul></p>
             </div>
         </div>
         
@@ -515,6 +515,83 @@ for i, gene in enumerate(genes):
                 </div>
             </div>
             
+            <div class="module-card" id="nested-iterations">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Nested iterations</h3>
+                        <p>The concept of &#x27;nesting&#x27; in Python, is one which you will be familiar with from data structures such as lists and dictionaries. Up to this point, we have used <code>for</code> loops to iterate through a single sequence at a time. In many real-world scenarios, however, you may need to repeat an action <strong>within</strong> another repeated action. Python allows you to achieve this through the use of <strong>nested <code>for</code> loops</strong>, where one loop runs inside another. The inner loop will complete all of its iterations for <em>each</em> step of the outer loop, creating a structured pattern of repetition. As you&#x27;ll be familiar with, by now, the syntactical separation of outer and inner loops is by means of a tab (or 4-space) indentation level, on which the inner <code>for</code> loop must reside, in order for the loop to run with each individual iteration of the outer loop.<br><br>Nested loops like this can be especially useful in situations where you want to compare pairs of values, work through two related sequences at once or build combinations of items, for example. In the next examples, we will explore how nested loops work, how the flow of execution moves between the outer and inner loops, and how you can use this structure to solve problems that require layered or multidimensional iteration.</p><h4>Nested for looops, in practice</h4><p>To illustrate the concept of nested <code>for</code> loops, let&#x27;s use a more realistic ecological example. Imagine we are monitoring sea turtle populations across several coastal sites, and at each site <strong>data are collected seasonally</strong> (spring, summer, autumn, winter). For every season, researchers record three values:<br><ol class="nested-list"><li>Total number of turtles sighted</li><br><li>Number of breeding-age females</li><br><li>Number of juvenile turtles</li></ol>We have written these data values, and stored them into a <strong>dictionary</strong>, where each <strong>key</strong> is the <em>site name</em>, and each <strong>value</strong> is <em>another dictionary</em> mapping seasons to lists of population counts. This creates a <strong>nested data structure</strong>, where each site contains multiple seasons, and each season contains three biological measurements.<br><br>The dictionary structure will look like this:</p><p>```text<br>turtle_data<br>│<br>├── &quot;Cove Bay&quot;<br>│   ├── &quot;spring&quot;  : [total, breeding_females, juveniles]<br>│   ├── &quot;summer&quot;  : [total, breeding_females, juveniles]<br>│   ├── &quot;autumn&quot;  : [total, breeding_females, juveniles]<br>│   └── &quot;winter&quot;  : [total, breeding_females, juveniles]<br>│<br>├── &quot;Driftwood Point&quot;<br>│   ├── &quot;spring&quot;  : [ ... ]<br>│   ├── &quot;summer&quot;  : [ ... ]<br>│   ├── &quot;autumn&quot;  : [ ... ]<br>│   └── &quot;winter&quot;  : [ ... ]<br>│<br>├── &quot;Coral Beach&quot;<br>│   ├── &quot;spring&quot;  : [ ... ]<br>│   ├── &quot;summer&quot;  : [ ... ]<br>│   ├── &quot;autumn&quot;  : [ ... ]<br>│   └── &quot;winter&quot;  : [ ... ]<br>│<br>└── &quot;Silver Shoal&quot;<br>├── &quot;spring&quot;  : [ ... ]<br>├── &quot;summer&quot;  : [ ... ]<br>├── &quot;autumn&quot;  : [ ... ]<br>└── &quot;winter&quot;  : [ ... ]</p><p>In order to identify which sites may require conservation attention, we can use a <strong>nested <code>for</code> loop</strong> to check the <em>breeding-age female</em> count for <strong>every season at every site</strong>. If <em>any</em> season at a given site records fewer than <strong>five</strong> breeding females, that site may be considered at risk. We can then add such sites into a list called <code>at_risk</code> using the <code>.apend()</code> method.<br><br>A nested loop is ideal here because it requires:<br><ul class="nested-list"><li>Firstly, iterating over each site</li><br><li>Then, iterating over the seasons <em>within</em> each site</li></ul>Which allows us to inspect each seasonal dataset in turn.<br><br>In the code cell below, let&#x27;s instantiate our <code>turtle_data</code> dictionary, with its correct structure and all recorded observations.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-55">turtle_data = {
+    &quot;Cove Bay&quot;: {
+        &quot;spring&quot;: [38, 6, 12],
+        &quot;summer&quot;: [42, 7, 15],
+        &quot;autumn&quot;: [29, 5, 10],
+        &quot;winter&quot;: [21, 4, 7]
+    },
+    &quot;Driftwood Point&quot;: {
+        &quot;spring&quot;: [12, 2, 4],
+        &quot;summer&quot;: [18, 3, 6],
+        &quot;autumn&quot;: [14, 1, 5],
+        &quot;winter&quot;: [10, 2, 3]
+    },
+    &quot;Coral Beach&quot;: {
+        &quot;spring&quot;: [51, 11, 19],
+        &quot;summer&quot;: [55, 12, 20],
+        &quot;autumn&quot;: [48, 10, 18],
+        &quot;winter&quot;: [36, 8, 14]
+    },
+    &quot;Silver Shoal&quot;: {
+        &quot;spring&quot;: [20, 3, 7],
+        &quot;summer&quot;: [23, 2, 8],
+        &quot;autumn&quot;: [19, 4, 6],
+        &quot;winter&quot;: [15, 3, 5]
+    },
+    &quot;Turtle Sands&quot;: {
+        &quot;spring&quot;: [27, 8, 9],
+        &quot;summer&quot;: [31, 9, 10],
+        &quot;autumn&quot;: [25, 7, 8],
+        &quot;winter&quot;: [18, 6, 6]
+    }
+}</textarea>
+            </div>
+            <div id="code-cell-55-output" class="output"></div>
+        </div>
+        <p>And let&#x27;s now run a nested <code>for</code> loop to perform the following operations:<br><ol class="nested-list"><li>Iterate over the sites, capturing the site name into variable <code>site</code>, and the seasons into variable <code>seasons</code>.</li><br><li>At the site level, a second <strong>nested for loop</strong> then iterates through each season, and retrieves the list of data.</li><br><li>The second item in each list corresponds to the number of sighted breeding-age females, retrieved using element access, and stored into a variable called <code>breeding_females</code></li><br><li>If the number of <code>breeding_females</code> is found to be below 5 in a given season, the site name is appended to the <code>at_risk</code> list.</li><br><li>We use the <code>break</code> keyword here, because we deem that if <em>even one of the four</em> seasonal counts shows too few females recorded, then the whole site is categorised as being &#x27;at risk&#x27;.</li></ol></p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-56">at_risk = []
+
+for site, seasons in turtle_data.items():
+
+    for season, counts in seasons.items():
+        
+        breeding_females = counts[1]
+
+        if breeding_females &lt; 5:
+            at_risk.append(site)
+            
+            break    # No need to evaluate other seasons once flagged
+
+at_risk</textarea>
+            </div>
+            <div id="code-cell-56-output" class="output"></div>
+        </div>
+        
+        <div class="info-box remember-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                REMEMBER
+            </div>
+            <div class="box-content">
+                <p><strong>Indentations</strong> are <em>crucial</em>. As you can see from this example, the nested <code>for</code> loop is indented one tab inwards, so that it is the first piece of functional code that is run on <em>each</em> iteration of the outer <code>for</code> loop. And the conditional statement is one tab in, meaning that it is restrained to the scope of the inner or nested <code>for</code> loop, only. Theses indentations are able to modularise the code, and keep it consise and functionally efficient.</p>
+            </div>
+        </div>
+        <p>The application of nested <code>for</code> loops becomes immediately apparent when you have nested data structures, such as our <code>turtle_data</code> dictionary, in this example. Even though there are several operations happening in the block of code above, you can see clearly how concise and minimal the code appears: and yet what it is doing iteratively, is more complext than it might appear.</p>
+                    </div>
+                </div>
+            </div>
+            
             <div class="module-card" id="list-comprehensions">
                 <div class="module-body">
                     <div class="module-section">
@@ -522,7 +599,7 @@ for i, gene in enumerate(genes):
                         <p>So far, we have seen how to use <code>for</code> loops to build up lists by appending values one by one. Python provides a more compact and often more readable way to achieve the same result, called a <strong>list comprehension</strong>. A list comprehension lets you create a new list by writing the expression and the loop in a <strong>single line</strong>.<br><br>They have very specific syntactical rules, whereby everything is contained within a single pair of square brackets <code>[]</code>. The format they follow is:<br><br><pre class="markdown-code-block"><code>[expression for item in iterable if condition]</code></pre><br><br>The three staple keywords in a list comprehension (in order) are <code>for</code>, <code>in</code> and <code>if</code>. The first two are mandatory, with <code>if</code> being an optional addition, should you wish to include a condition.</p><p>Building on the aforementioned structure, these are the three main components of a list comprehension:<br><ul class="nested-list"><li><strong><code>expression</code></strong></li></ul>This is the value or calculation that you want to appear in the new list. Each time the loop runs, Python evaluates the given expression, appending its result onto the list. This expression can be as simple as the item itself (for instnance, <code>gene</code>), or something more complex such as <code>x**2</code> or even a conditional transformation: such as this <code>&quot;U&quot; if base == &quot;T&quot; else base</code> (which transcribes each encountered thymine into a uracil residue).<br><ul class="nested-list"><li><strong><code>item in iterable</code></strong></li></ul>This part looks very similar to the <code>for</code> loop construct that we have introduced in this lesson. It defines the loop variable (<code>item</code>) and the sequence you are looping over (<code>iterable</code>). Just like in a <code>for</code> loop, Python goes through each element of the iterable one by one, assigning this item to a variable with the arbitrary name given by the user. This value stored in this variable can then be used in the expression.<br><ul class="nested-list"><li><strong><code>if</code> (optional)</strong></li></ul>At each iteration, this is an optional <strong>conditional statement</strong> that allows you to decide whether or not to include the current item in the new list. If the condition is <code>True</code>, the expression is evaluated and the value is appended to the list. If it is <code>False</code>, the item is skipped. For example, <code>[x for x in range(10) if x % 2 == 0]</code> creates a list of only even numbers from 0 to 9. Adding this conditional makes list comprehensions powerful for selecting subsets of data while building the new list.</p><p>To help us understand that list comprehensions are merely a single-line, shorthand way of writing a <code>for</code> loop for creating a new list, let&#x27;s demonstrate both.<br><br>Let&#x27;s remind ourselves a familiar <code>for</code> loop, combined with a conditional statement, that we can use to isolate tumour suppressor genes in a list of genes:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-55">genes = [&quot;BRCA1&quot;, &quot;TP53&quot;, &quot;EGFR&quot;, &quot;MYC&quot;, &quot;KRAS&quot;, &quot;PTEN&quot;]
+                <textarea id="code-cell-57">genes = [&quot;BRCA1&quot;, &quot;TP53&quot;, &quot;EGFR&quot;, &quot;MYC&quot;, &quot;KRAS&quot;, &quot;PTEN&quot;]
 
 tumour_suppressors = []
 
@@ -534,18 +611,18 @@ for gene in genes:                      # This is the item in iterable component
 
 print(tumour_suppressors)</textarea>
             </div>
-            <div id="code-cell-55-output" class="output"></div>
+            <div id="code-cell-57-output" class="output"></div>
         </div>
         <p>And now let&#x27;s generate the exact same output, using a list comprehension:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-56">genes = [&quot;BRCA1&quot;, &quot;TP53&quot;, &quot;EGFR&quot;, &quot;MYC&quot;, &quot;KRAS&quot;, &quot;PTEN&quot;]
+                <textarea id="code-cell-58">genes = [&quot;BRCA1&quot;, &quot;TP53&quot;, &quot;EGFR&quot;, &quot;MYC&quot;, &quot;KRAS&quot;, &quot;PTEN&quot;]
 
 tumour_suppressors = [gene for gene in genes if gene in [&quot;BRCA1&quot;, &quot;TP53&quot;, &quot;PTEN&quot;]] # This is the list comprehension.
 
 print(tumour_suppressors)</textarea>
             </div>
-            <div id="code-cell-56-output" class="output"></div>
+            <div id="code-cell-58-output" class="output"></div>
         </div>
         <p>Each code block does exactly the same thing. Except the list comprehension performs, in a single line of code, the same operations as four separate lines of code when explicitly using a <code>for</code> loop.<br><br>Aside from their obvious economy and neat appearance, list comprehensions can also offer a very slight computational advantage, in that they perform list-building operations <em>marginally</em> faster than doing so with a long-handed <code>for</code> loop. But this speed advantage is largely trivial - even with larger lists and loops.</p>
                     </div>
