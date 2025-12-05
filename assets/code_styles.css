@@ -73,14 +73,14 @@ Additional styles for enhanced pyodide functionality
     background-color: rgba(58, 191, 240, 0.1);
     padding: 20px;
     border-radius: 8px;
-    border-left: 4px solid var(--l2d-three);
+    border-left: 4px solid var(--tip);
     display: flex;
     justify-content: centre;
     align-items: centre;
 }
 
 .loading-message {
-    color: var(--l2d-three);
+    color: var(--tip);
     font-style: italic;
 }
 

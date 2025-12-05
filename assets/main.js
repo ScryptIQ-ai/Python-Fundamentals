@@ -1,26 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-
-    
-    // Sidebar header HTML
-    const sidebarHeaderHTML = `
-        <div class="sidebar-header">
-            <a href="../homepage.html" style="text-decoration: none; display: inline-block;">
-                <img src="../assets/scryptIQ_logo_dark.png" alt="scryptIQ Logo" class="sidebar-logo">
-            </a>
-        </div>
-    `;
-    
-    // Nav actions HTML
-    const navActionsHTML = `
-        <div class="nav-actions">
-            <a href="../homepage.html" class="text-button" title="Materials homepage">
-                Homepage
-            </a>
-            <a href="https://learntodiscover.ai/my-cohorts/" class="text-button" title="Find out more about us">
-                Learn to Discover
-            </a>
-        </div>
-    `;
     
     // Footer HTML (your existing code)
     const footerHTML = `

@@ -28,7 +28,7 @@
             min-height: 100vh;
             display: block;
             position: relative;
-            background-color: var(--background);
+            background-color: var(--main-background);
         }
 
         /* Navigation */
@@ -80,7 +80,7 @@
             align-items: center;
             padding: 4px 8px;
             background-color: transparent;
-            color: var(--background);
+            color: var(--main-text);
             border: none;
             cursor: pointer;
             transition: color 0.2s, transform 0.1s;
@@ -91,7 +91,7 @@
         }
 
         .nav-links a:hover {
-            color: var(--third);
+            color: var(--module-cards);
             transform: translateY(-1px);
             text-decoration: none;
         }
@@ -157,7 +157,7 @@
         }
 
         .main-title {
-            color: var(--background);
+            color: var(--main-text);
             font-size: 72px;
             font-weight: 700;
             margin: 0 0 40px 0;
@@ -178,7 +178,7 @@
         }
 
         .modules-title {
-            color: var(--background);
+            color: var(--main-text);
             font-size: 48px;
             font-weight: 700;
             margin: 0 0 10px 0;
@@ -186,7 +186,7 @@
         }
 
         .modules-subtitle {
-            color: var(--background);
+            color: var(--main-text);
             font-size: 20px;
             margin: 0 0 20px 0;
             text-align: center;
@@ -200,7 +200,7 @@
         }
 
         .hero-module-card {
-            background-color: var(--third);
+            background-color: var(--module-cards);
             backdrop-filter: blur(10px);
             border-radius: 16px;
             padding: 10px 25px;
@@ -210,15 +210,15 @@
             align-items: center;
             gap: 20px;
             transition: all 0.3s ease;
-            border: 2px solid var(--third-dark);
+            border: 2px solid var(--module-cards-dark);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
         }
 
         .hero-module-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
-            border-color: var(--third-dark);
-            background-color: var(--background);
+            border-color: var(--module-cards-dark);
+            background-color: var(--main-text);
         }
 
         .hero-module-icon {
@@ -237,25 +237,14 @@
         }
 
         .hero-module-card h3 {
-            color: var(--background);
+            color: var(--main-text);
             font-size: 22px;
             font-weight: 600;
             margin: 0;
         }
 
-        .hero-module-code {
-            display: inline-block;
-            background-color: var(--secondary);
-            color: var(--background);
-            padding: 6px 20px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            margin-left: 8px;
-        }
-
         .hero-arrow {
-            color: var(--background);
+            color: var(--main-text);
             font-size: 32px;
             transition: transform 0.3s ease;
             font-weight: bold;
@@ -263,11 +252,11 @@
 
         .hero-module-card:hover .hero-arrow {
             transform: translateX(6px);
-            color: var(--third);
+            color: var(--module-cards);
         }
 
         .hero-module-card:hover h3 {
-            color: var(--third);
+            color: var(--module-cards);
         }
 
         /* Support Submenu Styles */
@@ -347,7 +336,7 @@
         }
 
         .support-submenu-button h4 {
-            color: var(--background);
+            color: var(--main-text);
             font-size: 18px;
             font-weight: 600;
             margin: 0;
@@ -393,7 +382,7 @@
 
         /* About Us Section */
         .about-us-section {
-            background-color: var(--background);
+            background-color: var(--main-text);
             padding: 80px 60px;
             text-align: center;
         }
@@ -406,12 +395,12 @@
         .about-us-section h2 {
             font-size: 36px;
             margin-bottom: 30px;
-            color: var(--third);
+            color: var(--about-us-text);
         }
 
         .about-us-section p {
             font-size: 18px;
-            color: var(--third);
+            color: var(--about-us-text);
             margin-bottom: 25px;
             line-height: 1.6;
         }
@@ -486,7 +475,7 @@
     <!-- Navigation -->
     <nav class="navigation">
         <a href="./homepage.html" class="logo">
-            <div class="logo-icon"><img src="./assets/scryptIQ_logo_light.png" alt="scryptIQ Logo"></div>
+            <div class="logo-icon"><img src="./assets/scryptIQ_logo_light.png" alt="Logo"></div>
         </a>
         <ul class="nav-links">
             <li><a href="./about-us.html">About Us</a></li>
@@ -502,8 +491,8 @@
             <svg class="hero-shape-svg hero-shape-1" viewBox="1 317 1440 800" preserveAspectRatio="none" fill="rgba(255, 255, 255)">
                 <defs>
                     <linearGradient id="myGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" style="stop-color:#e07a5f;stop-opacity:1" />
-                      <stop offset="100%" style="stop-color:#f02698;stop-opacity:1" />
+                      <stop offset="0%" style="stop-color:var(--start-gradient);stop-opacity:1" />
+                      <stop offset="100%" style="stop-color:var(--end-gradient);stop-opacity:1" />
                     </linearGradient>
                   </defs>
                 <path fill="url(#myGradient)" d="M 0,0

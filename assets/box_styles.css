@@ -1,4 +1,4 @@
-/* L2D Information Callout Boxes */
+/* Information Callout Boxes */
 
 /* Base Box Styling */
 .info-box {
@@ -41,12 +41,12 @@
 
 /* KEY TERMS BOX - Purple theme */
 .key-terms-box {
-    border-left-color: var(--l2d-one);
+    border-left-color: var(--key-terms);
     background: linear-gradient(135deg, #f8f7ff 0%, #ffffff 100%);
 }
 
 .key-terms-box .box-title {
-    color: var(--l2d-one);
+    color: var(--key-terms);
 }
 
 .key-terms-box .box-icon {
@@ -71,12 +71,12 @@
 
 /* REMEMBER BOX - Pink theme */
 .remember-box {
-    border-left-color: var(--l2d-two);
+    border-left-color: var(--remember);
     background: linear-gradient(135deg, #fef7fb 0%, #ffffff 100%);
 }
 
 .remember-box .box-title {
-    color: var(--l2d-two);
+    color: var(--remember);
 }
 
 .remember-box .box-icon {
@@ -116,12 +116,12 @@
 
 /* TIP BOX - Light blue theme */
 .tip-box {
-    border-left-color: var(--l2d-three);
+    border-left-color: var(--tip);
     background: linear-gradient(135deg, #f0fcff 0%, #ffffff 100%);
 }
 
 .tip-box .box-title {
-    color: var(--l2d-three);
+    color: var(--tip);
 }
 
 .tip-box .box-icon {
