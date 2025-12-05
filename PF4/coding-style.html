@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Pyodide and CodeMirror -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/pastel-on-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/python/python.min.js"></script>
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="../assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../assets/android-chrome-512x512.png">
+    
+    <!-- Core Stylesheets -->
+    <link rel="stylesheet" href=../assets/colours.css>
+    <link rel="stylesheet" href="../assets/shared-styles.css">
+    <link rel="stylesheet" href="../assets/nav-bar.css">
+    <link rel="stylesheet" href="../assets/module_card.css">
+    <link rel="stylesheet" href="../assets/learning_outcomes.css">
+    <link rel="stylesheet" href="../assets/learning_lists.css">
+    <link rel="stylesheet" href="../assets/box_styles.css">
+    <link rel="stylesheet" href="../assets/code_styles.css">
+
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L2D - PF4 - Good Coding Practices</title>
+    
+    <!-- File URLs for this lesson -->
+    <script>window.LESSON_FILES = []; window.LESSON_PACKAGES = [];</script>
+        
+</head>
+<body>
+    
+    <!-- Sidebar Navigation -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <a href="../homepage.html" style="text-decoration: none; display: inline-block;">
+                <img src="../assets/scryptIQ_logo_dark.png" alt="scryptIQ Logo" class="sidebar-logo">
+            </a>
+        </div>
+
+        <h3>Content</h3>
+        <ul>
+            <li><a href="./introduction.html" class="">Introduction</a></li><li><a href="./functions.html">Functions</a></li><li><a href="./file-operations.html">File Operations</a></li>
+            <li>
+                <div class="nav-toggle active" data-target="expandable-section-3">
+                    Good Coding Practices
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <ul class="nested-nav expanded" id="expandable-section-3"><li><a href="#introduction">Introduction</a></li><li><a href="#readable-code">Readable code</a></li><li><a href="#indentation">Indentation</a></li><li><a href="#maximum-line-length">Maximum line length</a></li><li><a href="#good-variable-naming">Good variable naming</a></li><li><a href="#whitespace-use">Whitespace use</a></li><li><a href="#organising-code-into-blocks">Organising code into blocks</a></li><li><a href="#writing-effective-comments">Writing effective comments</a></li><li><a href="#avoiding-long--chained-operations">Avoiding long, chained operations</a></li><li><a href="#avoiding-deeply-nested-loops">Avoiding deeply nested loops</a></li><li><a href="#summary">Summary</a></li>
+                </ul>
+            </li><li><a href="./assignment.html">Assignment</a></li><li><a href="./feedback.html">Feedback</a></li>
+        </ul>
+
+        <h3 class="collapsible-header collapsed">
+            Resources
+            <span class="collapse-icon">►</span>
+        </h3>
+        <div class="collapsible-content collapsed">
+            <ul>
+                <li><a href="./glossary.html">Glossary</a></li><li><a href="./downloads.html">Downloads</a></li><li><a href="../HB/introduction.html">Handbook</a></li>
+            </ul>
+        </div>
+
+        <h3 class="collapsible-header collapsed">
+            Previous Modules
+            <span class="collapse-icon">►</span>
+        </h3>
+        <div class="collapsible-content collapsed">
+            <ul>
+            <li><a href="../PF0/introduction.html">PF0</a></li>
+            <li><a href="../PF1/introduction.html">PF1</a></li>
+            <li><a href="../PF2/introduction.html">PF2</a></li>
+            <li><a href="../PF3/introduction.html">PF3</a></li>
+        </ul>
+        </div>
+
+        <h3>
+            <li><a href="./report-issue.html">Report an Issue</a></li>
+        </h3>
+    </div>
+    
+    <!-- Sidebar Toggle Button -->
+    <button id="sidebar-toggle" class="sidebar-toggle">❮</button>
+    
+    <!-- Main Content Area -->
+    <div id="main-content" class="main-content">
+        <!-- Top Navigation Bar -->
+        <div class="top-navbar">
+            <h1 class="page-title">Python Fundamentals 4</h1>
+            <div class="nav-actions">
+                <a href="../homepage.html" class="text-button" title="Materials homepage">
+                    Homepage
+                </a>
+                <a href="https://learntodiscover.ai/my-cohorts/" class="text-button" title="Find out more about us">
+                    Learn to Discover
+                </a>
+            </div>
+        </div>
+
+        
+            <div class="module-card" id="introduction">
+                <div class="module-header">
+                    Good Coding Practices <span class="module-tag">PF4</span>
+                </div>
+                <div class="module-body">
+                    <h3>Learning Objectives</h3>
+                    <div class="learning-outcomes">
+                        <div class="outcome-item">
+                    <span class="outcome-number">1</span>
+                    <span class="outcome-text">Understand why readable code matters and how it benefits you and your collaborators</span>
+                </div>
+<div class="outcome-item">
+                    <span class="outcome-number">2</span>
+                    <span class="outcome-text">Apply consistent indentation to create vertical, readable code structures</span>
+                </div>
+<div class="outcome-item">
+                    <span class="outcome-number">3</span>
+                    <span class="outcome-text">Choose clear, descriptive variable and function names following Python conventions</span>
+                </div>
+<div class="outcome-item">
+                    <span class="outcome-number">4</span>
+                    <span class="outcome-text">Organise code into logical blocks with meaningful comments</span>
+                </div>
+                    </div>
+                    <h3>Introduction</h3>
+                    <p>Throughout <strong>Python Fundamentals</strong>, we have consistently sprinkled in good coding practices, with each explored topic. As part of the last lesson in Python Fundamentals, these materials aim to build upon and reinforce those practices, more actively.</p><p>As you progress in your Python journey, you will inevitably start sharing code with collaborators, supervisors or the wider scientific community. You may also return to your own code weeks or months later and wonder what on earth you were thinking when you wrote it. This is where <strong>coding style</strong> becomes critically important.<br><br>Good coding style is not about making code look pretty for the sake of it. It is about making code <strong>readable</strong>, <strong>maintainable</strong> and <strong>less prone to bugs</strong>. In scientific programming, where code often underpins published research, readable code also contributes to <strong>reproducibility</strong> — allowing others to understand, verify, and build upon your work.<br><br>In this lesson, we will explore the key principles of Python coding <em>style</em>, drawing primarily from <strong>PEP8</strong> - the official Python style guide. By the end of the lesson, you will have walked through practical guidelines for writing code that is not only functional, but also a pleasure to read and work with.</p>
+        <div class="info-box key-terms-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                KEY TERMS
+            </div>
+            <div class="box-content">
+                <p><strong>PEP8</strong>: The official style guide for Python code, maintained as Python Enhancement Proposal 8. It provides conventions for formatting, naming, and structuring Python code to maximise readability. While not enforced by the Python interpreter, following PEP8 is considered best practice in the Python community, and is widely adopted in scientific computing.</p>
+            </div>
+        </div>
+        
+                </div>
+            </div>
+            
+            <div class="module-card" id="readable-code">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Readable code</h3>
+                        <p>One of the most quoted insights from Guido van Rossum, Python&#x27;s creator and one of the PEP8 authors, is that <strong>code is read much more often than it is written</strong>. This simple observation should help form your habits early on. You will, at some point in the future, read some poorly annotated code, cursing the author for their laziness, so it is good to stop yourself early from becoming that type of coder.<br><br>When you write a line of code, you write it once (although its likely it is re-written a few times...). But that same line may be read dozens or hundreds of times by others and yourself. Investing a small amount of extra effort in making your code readable pays dividends many times over.</p>
+        <div class="info-box history-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                HISTORY
+            </div>
+            <div class="box-content">
+                <p>&quot;Any fool can write code that a computer can understand. Good programmers write code that humans can understand.&quot; — Martin Fowler, software engineer and author.</p>
+            </div>
+        </div>
+        <p>Consider the following two versions of the same function that calculates the GC content of a DNA sequence. Both produce identical results, but one is far easier to understand:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-49"># Hard to read version
+def gc(s):
+    return (s.count(&#x27;G&#x27;)+s.count(&#x27;C&#x27;))/len(s)*100
+
+print(gc(&quot;ATGCGATCGATCG&quot;))</textarea>
+            </div>
+            <div id="code-cell-49-output" class="output"></div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-50"># Readable version
+def calculate_gc_content(sequence):
+    &quot;&quot;&quot;Calculate the GC content of a DNA sequence as a percentage.&quot;&quot;&quot;
+    guanine_count = sequence.count(&#x27;G&#x27;)
+    cytosine_count = sequence.count(&#x27;C&#x27;)
+    
+    gc_content = (guanine_count + cytosine_count) / len(sequence) * 100
+    
+    return gc_content
+
+print(calculate_gc_content(&quot;ATGCGATCGATCG&quot;))</textarea>
+            </div>
+            <div id="code-cell-50-output" class="output"></div>
+        </div>
+        <p>The second version takes a few more lines, but it is immediately clear what the function does, what the variable names represent, and how the calculation proceeds. If you needed to modify this code six months from now, which version would you prefer to work with?</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="indentation">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Indentation</h3>
+                        <p>Python is unique among popular programming languages in that it uses <strong>indentation</strong> to define code blocks. While other languages use braces <code>{}</code> or keywords, Python relies on consistent indentation to show which lines of code belong together. This makes proper indentation not just a stylistic choice, but a syntactical requirement.</p><h4>Vertical code flow</h4><p>Good indentation creates a <strong>vertical flow</strong> to your code, where the logical structure is visible, at a glance. Each level of indentation represents a level of nesting — a block of code that belongs to the structure above it. This vertical organisation is much easier to scan than horizontally sprawling code.</p><p>When defining functions, lists or dictionaries that span multiple lines, you have several options for indentation. The key is consistency:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-51"># Option 1: Align with opening delimiter
+amino_acid_weights = {&quot;Alanine&quot;: 89.1, &quot;Glycine&quot;: 75.1,
+                      &quot;Valine&quot;: 117.1, &quot;Leucine&quot;: 131.2}
+
+# Option 2: Hanging indent with closing bracket aligned
+amino_acid_weights = {
+    &quot;Alanine&quot;: 89.1,
+    &quot;Glycine&quot;: 75.1,
+    &quot;Valine&quot;: 117.1,
+    &quot;Leucine&quot;: 131.2,
+}</textarea>
+            </div>
+        </div>
+        <p>The hanging indent style (<strong>Option 2</strong>) is often preferred for longer structures as it keeps each item on its own line, making it easier to add, remove or reorder items.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="maximum-line-length">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Maximum line length</h3>
+                        <p>PEP8 recommends limiting lines to a maximum of <strong>79 characters</strong> for code and <strong>72 characters</strong> for comments and docstrings. These numbers may seem arbitrary, but they have practical origins: they allow two files to be viewed side-by-side on a standard monitor, and they prevent horizontal scrolling in most editors and terminals.<br><br>Some teams prefer a slightly longer limit of 100 characters, which is also widely accepted. The important thing is to choose a limit and stick to it consistently throughout your project.</p><p>When a line exceeds the limit, you can break it in several ways:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-52"># Poor: Line is too long and requires horizontal scrolling
+protein_molecular_weight = calculate_weight(alanine_count, glycine_count, valine_count, leucine_count, isoleucine_count, proline_count)
+
+# Good: Use implicit line continuation inside parentheses
+protein_molecular_weight = calculate_weight(
+    alanine_count,
+    glycine_count,
+    valine_count,
+    leucine_count,
+    isoleucine_count,
+    proline_count
+)</textarea>
+            </div>
+        </div>
+        <p>For long expressions, break the line <strong>before</strong> binary operators. This keeps operators aligned at the start of each line, making it easier to see the structure of the expression:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-53"># Break before operators for better readability
+total_expression_level = (baseline_expression
+                          + induced_expression
+                          - background_noise
+                          * correction_factor)</textarea>
+            </div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="good-variable-naming">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Good variable naming</h3>
+                        <p>Choosing good names for your variables, functions and other identifiers is one of the most impactful things you can do for code readability. <strong>A well-chosen name acts as documentation</strong>, immediately telling the reader what a piece of data represents or what a function does.</p><h4>Python naming conventions</h4><p>PEP8 establishes clear conventions for different types of identifiers:<br><ul class="nested-list"><li><strong>Variables and functions</strong>: Use <code>lowercase_with_underscores</code></li><br><li><strong>Constants</strong>: Use <code>UPPERCASE_WITH_UNDERSCORES</code></li><br><li><strong>Classes</strong>: Use <code>CapitalisedWords</code></li><br><li><strong>Modules</strong>: Use short, <code>lowercase</code> names</li></ul></p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-54"># Good naming examples
+sequence_length = 150  # Variable: lowercase with underscores
+MAX_SEQUENCE_LENGTH = 10000  # Constant: uppercase with underscores
+
+def calculate_molecular_weight(sequence):  # Function: lowercase with underscores
+    pass
+
+class ProteinAnalyser:  # Class: capitalised words
+    pass</textarea>
+            </div>
+        </div>
+        <h4>Descriptive names</h4><p>In the era of auto-complete we no longer have to be sparing with the length of our variables, so don&#x27;t be afraid to name it something longer than one word as your names should be <strong>descriptive</strong>. A variable called <code>x</code> tells the reader nothing, while <code>gc_content</code> immediately communicates its purpose. The slight extra typing is negligible compared to the clarity gained.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-55"># Poor naming - what do these variables represent?
+a = &quot;ATGCGATCG&quot;
+b = len(a)
+c = a.count(&#x27;G&#x27;) + a.count(&#x27;C&#x27;)
+d = c / b * 100
+print(d)</textarea>
+            </div>
+            <div id="code-cell-55-output" class="output"></div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-56"># Good naming - immediately clear what each variable represents
+dna_sequence = &quot;ATGCGATCG&quot;
+sequence_length = len(dna_sequence)
+gc_base_count = dna_sequence.count(&#x27;G&#x27;) + dna_sequence.count(&#x27;C&#x27;)
+gc_percentage = gc_base_count / sequence_length * 100
+print(gc_percentage)</textarea>
+            </div>
+            <div id="code-cell-56-output" class="output"></div>
+        </div>
+        
+        <div class="info-box warning-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                WARNING
+            </div>
+            <div class="box-content">
+                <p>Avoid using the characters <code>l</code> (lowercase L), <code>O</code> (uppercase o), or <code>I</code> (uppercase i) as single-character variable names. In many fonts, these are nearly indistinguishable from the numerals <code>1</code> and <code>0</code>, leading to confusion and potential bugs, as users may find distinguishing the correct character, a little harder.</p>
+            </div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="whitespace-use">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Whitespace use</h3>
+                        <p>Whitespace, <em>spaces and blank lines</em>, plays a crucial role in making code readable. PEP8 provides detailed guidelines on where to use whitespace and where to avoid it.</p><h4>Spaces around operators</h4><p>Use a <strong>single space</strong> on either side of binary operators, including assignment (<code>=</code>), comparison (<code>==</code>, <code>&lt;</code>, <code>&gt;</code>, <code>!=</code>), and arithmetic operators when clarity is needed:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-57"># Good: spaces around operators
+gc_content = (guanine + cytosine) / total_bases * 100
+is_valid = sequence_length &gt; 0 and sequence_length &lt; 10000
+
+# Poor: no spaces, harder to read
+# gc_content=(guanine+cytosine)/total_bases*100
+# is_valid=sequence_length&gt;0 and sequence_length&lt;10000</textarea>
+            </div>
+        </div>
+        <h4>Spaces after commas</h4><p>Always use a space <strong>after</strong> commas, but not before them:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-58"># Good: space after commas
+nucleotides = [&#x27;A&#x27;, &#x27;T&#x27;, &#x27;G&#x27;, &#x27;C&#x27;]
+calculate_weight(mass, volume, concentration)
+
+# Poor: no space after commas, or space before
+nucleotides = [&#x27;A&#x27;,&#x27;T&#x27;,&#x27;G&#x27;,&#x27;C&#x27;]
+calculate_weight(mass , volume , concentration)</textarea>
+            </div>
+        </div>
+        <h4>Avoiding extraneous whitespace</h4><p>Do <strong>not</strong> add spaces immediately inside parentheses, brackets or braces, or immediately before a comma or colon:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-59"># Good: no extraneous spaces
+my_list = [1, 2, 3]
+my_dict = {&#x27;key&#x27;: &#x27;value&#x27;}
+my_function(argument)
+
+# Poor: unnecessary spaces inside delimiters
+my_list = [ 1, 2, 3 ]
+my_dict = { &#x27;key&#x27; : &#x27;value&#x27; }
+my_function( argument )</textarea>
+            </div>
+        </div>
+        <h4>Keyword arguments</h4><p>When using <strong>keyword arguments</strong> in function calls or default parameter values, do <strong>not</strong> use spaces around the <code>=</code> sign:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-60"># Good: no spaces around = for keyword arguments
+def plot_expression(data, xlabel=&#x27;Time&#x27;, ylabel=&#x27;Expression&#x27;):
+    pass
+
+plot_expression(my_data, xlabel=&#x27;Hours&#x27;, ylabel=&#x27;Fluorescence&#x27;)
+
+# Bad: spaces around = for keyword arguments
+def plot_expression(data, xlabel = &#x27;Time&#x27;, ylabel = &#x27;Expression&#x27;):
+    pass</textarea>
+            </div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="organising-code-into-blocks">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Organising code into blocks</h3>
+                        <p>Well-organised code groups related statements together into logical <strong>blocks</strong>, separated by blank lines. This visual structure helps readers understand the flow of your program without needing to read every line in detail.</p><h4>Blank lines for separation</h4><p>PEP8 recommends:<br><ul class="nested-list"><li><strong>Two blank lines</strong> before and after top-level function and class definitions</li><br><li><strong>Blank lines within functions</strong> to separate logical sections (used sparingly)</li></ul></p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-61"># Blank space
+# Blank space
+def parse_fasta(filepath):
+    &quot;&quot;&quot;Parse a FASTA file and return sequences.&quot;&quot;&quot;
+
+    # Initialisation block
+    sequences = {}
+    current_header = None
+    current_sequence = []
+    
+    # File reading block
+    with open(filepath, &#x27;r&#x27;) as file:
+        for line in file:
+            line = line.strip()
+            
+            if line.startswith(&#x27;&gt;&#x27;):
+                # Save previous sequence if exists
+                if current_header:
+                    sequences[current_header] = &#x27;&#x27;.join(current_sequence)
+                
+                # Start new sequence
+                current_header = line[1:]
+                current_sequence = []
+            else:
+                current_sequence.append(line)
+    
+    # Handle the last sequence
+    if current_header:
+        sequences[current_header] = &#x27;&#x27;.join(current_sequence)
+    
+    return sequences
+# Blank space
+# Blank space</textarea>
+            </div>
+        </div>
+        <p>Notice how blank lines and comments work together to create clear sections within the function: initialisation, file reading, and final processing.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="writing-effective-comments">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Writing effective comments</h3>
+                        <p>Comments are essential for explaining <strong>why</strong> your code does what it does, not just a description of the mechanics of the visible code. If your code is well written, as shown, then the mechanics will be obvious.</p><h4>Comments should explain &quot;Why&quot; not &quot;What&quot;</h4><p>The best comments explain the aims, assumptions and reasoning behind decisions. A comment that simply restates what the code does is redundant and adds noise rather than value:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-62"># Poor comment - just restates the code
+# Increment counter by 1
+counter = counter + 1
+
+# Good comment - explains why
+# Account for the header row which is not a data point
+data_rows = total_rows - 1</textarea>
+            </div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-63"># Poor comment - obvious from the code
+# Check if sequence length is greater than zero
+if len(sequence) &gt; 0:
+    pass
+
+# Good comment - explains the biological reasoning
+# Empty sequences can occur from failed PCR reactions; skip these
+if len(sequence) &gt; 0:
+    pass</textarea>
+            </div>
+        </div>
+        <h4>Block and inline comments</h4><p><strong>Block comments</strong> apply to the code that follows them and should be indented to the same level as that code. <strong>Inline comments</strong> appear on the same line as a statement and should be separated by at least two spaces. Use inline comments sparingly — they can make lines too long and cluttered.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-64">def calculate_tm(sequence):
+    &quot;&quot;&quot;Calculate melting temperature using the Wallace rule.&quot;&quot;&quot;
+
+    # **Block comment**
+    # The Wallace rule is a simple approximation suitable for 
+    # short oligonucleotides (&lt; 14 bases)
+    adenine = sequence.count(&#x27;A&#x27;)
+    thymine = sequence.count(&#x27;T&#x27;)
+    guanine = sequence.count(&#x27;G&#x27;)
+    cytosine = sequence.count(&#x27;C&#x27;)
+                                                             # **Inline comment**
+    tm = 2 * (adenine + thymine) + 4 * (guanine + cytosine)  # Wallace formula
+    
+    return tm</textarea>
+            </div>
+        </div>
+        
+        <div class="info-box tip-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                TIP
+            </div>
+            <div class="box-content">
+                <p>A useful rule of thumb: if you find yourself writing a long comment to explain what a piece of code does, consider whether the code itself could be made clearer through better naming or restructuring.</p>
+            </div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="avoiding-long--chained-operations">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Avoiding long, chained operations</h3>
+                        <p>Python allows you to chain multiple operations together on a single line, and method chaining can sometimes produce elegant, concise code. However, cramming too many operations into one line makes code difficult to read, debug, and modify.</p><h4>The problem with dense one-liners</h4><p>Consider this example that reads a FASTA file, extracts sequences, and calculates their GC content in a single list comprehension:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-65"># Hard to read as too much is happening in one line
+gc_values = [(s.count(&#x27;G&#x27;)+s.count(&#x27;C&#x27;))/len(s)*100 for s in [l.strip() for l in open(&#x27;seqs.txt&#x27;) if not l.startswith(&#x27;&gt;&#x27;)]]</textarea>
+            </div>
+        </div>
+        <p>Whilst this may feel good to write in the moment, to anyone reading this code will need to carefully unpick each operation. This goes back to the vertical coding rather than horizontal. We have a much easier time reading things that are broken down.</p><h4>Breaking down complex operations</h4><p>Breaking the same logic into separate, named steps makes each operation clear and the overall flow easy to follow:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-66"># Much clearer: each step is visible and named
+def calculate_gc(sequence):
+    &quot;&quot;&quot;Calculate GC content as a percentage.&quot;&quot;&quot;
+    gc_count = sequence.count(&#x27;G&#x27;) + sequence.count(&#x27;C&#x27;)
+    return gc_count / len(sequence) * 100
+
+
+# Read and filter sequences
+with open(&#x27;sequences.txt&#x27;, &#x27;r&#x27;) as file:
+    lines = file.readlines()
+
+sequences = [line.strip() for line in lines if not line.startswith(&#x27;&gt;&#x27;)]
+
+# Calculate GC content for each sequence
+gc_values = [calculate_gc(seq) for seq in sequences]</textarea>
+            </div>
+        </div>
+        
+        <div class="info-box note-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                NOTE
+            </div>
+            <div class="box-content">
+                <p>A good rule of thumb is that if a line requires more than a few seconds to understand, it should probably be broken into multiple lines.</p>
+            </div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="avoiding-deeply-nested-loops">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Avoiding deeply nested loops</h3>
+                        <p>Nested loops are sometimes necessary, but deeply nested structures quickly become difficult to read and reason about. Each level of nesting adds complexity, and by the time you reach three or four levels, even simple logic becomes confusing.</p><h4>The problem with deep nesting</h4>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-67"># Hard to follow: deeply nested structure
+def find_common_motifs(sequences, motifs):
+    results = []
+    for sequence in sequences:
+        for motif in motifs:
+            for i in range(len(sequence) - len(motif) + 1):
+                if sequence[i:i+len(motif)] == motif:
+                    if motif not in results:
+                        results.append(motif)
+    return results</textarea>
+            </div>
+        </div>
+        <h4>Strategies for reducing nesting</h4><p>There are several strategies for reducing nesting:<br><ol class="nested-list"><li><strong>Extract inner loops into separate functions</strong> with descriptive names</li><br><li><strong>Use early returns or <code>continue</code></strong> to handle edge cases and reduce indentation</li><br><li><strong>Use built-in functions or comprehensions</strong> where appropriate</li></ol></p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-68"># Clearer: logic separated into a helper function
+def motif_in_sequence(motif, sequence):
+    &quot;&quot;&quot;Check if a motif appears in a sequence.&quot;&quot;&quot;
+    return motif in sequence
+
+
+def find_common_motifs(sequences, motifs):
+    &quot;&quot;&quot;Find motifs that appear in any of the sequences.&quot;&quot;&quot;
+    common_motifs = []
+    
+    for motif in motifs:
+        for sequence in sequences:
+            if motif_in_sequence(motif, sequence):
+                common_motifs.append(motif)
+                break  # Found in one sequence, no need to check others
+    
+    return common_motifs</textarea>
+            </div>
+        </div>
+        <p>Using Python&#x27;s <code>in</code> operator and a helper function has reduced the nesting depth and made the logic much clearer. The <code>break</code> statement allows us to exit the inner loop early once we have found a match, further simplifying the flow.</p>
+        <div class="info-box tip-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                TIP
+            </div>
+            <div class="box-content">
+                <p>If you find yourself writing code with more than two or three levels of nesting, step back and consider whether the logic can be restructured. Often, extracting a helper function or using early exits can dramatically improve readability.</p>
+            </div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="avoiding-deeply-nested-loops">
+                <div class="module-body">
+                    <div class="module-section">
+                        
+        <div class="info-box practice-exercise-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                PRACTICE EXERCISE
+            </div>
+            <div class="box-content">
+                <p><strong>1.</strong></p>
+                <p>The code below calculates the average molecular weight of amino acids in a protein sequence, but frankly it is a mess and violates many of the points we&#x27;ve covered today. Rewrite it to follow PEP8 conventions, using:<ul class="nested-list"><li>Descriptive variable names</li><br><li>Proper whitespace</li><br><li>Logical code blocks</li><br><li>Helpful comments</li><br><li>Reducing line length</li></ul><em>A model answer has been provided below</em></p>
+            </div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-69"># Awful code here:
+def f(s):
+    w={&#x27;A&#x27;:89,&#x27;R&#x27;:174,&#x27;N&#x27;:132,&#x27;D&#x27;:133,&#x27;C&#x27;:121,&#x27;E&#x27;:147,&#x27;Q&#x27;:146,&#x27;G&#x27;:75,&#x27;H&#x27;:155,&#x27;I&#x27;:131,&#x27;L&#x27;:131,&#x27;K&#x27;:146,&#x27;M&#x27;:149,&#x27;F&#x27;:165,&#x27;P&#x27;:115,&#x27;S&#x27;:105,&#x27;T&#x27;:119,&#x27;W&#x27;:204,&#x27;Y&#x27;:181,&#x27;V&#x27;:117}
+    t=0
+    for x in s:
+        if x in w:t+=w[x]
+    return t/len(s)</textarea>
+            </div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-70"># Rewrite the function here with proper coding style:
+</textarea>
+            </div>
+            <button id="run-code-cell-70" class="run-button">Run Code</button>
+            <div id="code-cell-70-output" class="output"></div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-collapse-header" onclick="toggleCodeCollapse('code-cell-71')">
+                <span class="code-collapse-icon">▶</span>
+                <span class="code-collapse-label">Show code</span>
+            </div>
+            <div class="code-container code-fixed code-collapsed" id="code-cell-71-container">
+                <textarea id="code-cell-71">def calculate_average_aa_weight(sequence):
+    &quot;&quot;&quot;
+    Calculate the average molecular weight of amino acids in a protein sequence.
+    
+    :param sequence: A string of single-letter amino acid codes.
+    :type sequence: str
+    :return: Average molecular weight in Daltons.
+    :rtype: float
+    &quot;&quot;&quot;
+    # Molecular weights in Daltons for each amino acid
+    amino_acid_weights_dict = {
+        &#x27;A&#x27;: 89, &#x27;R&#x27;: 174, &#x27;N&#x27;: 132, &#x27;D&#x27;: 133, &#x27;C&#x27;: 121,
+        &#x27;E&#x27;: 147, &#x27;Q&#x27;: 146, &#x27;G&#x27;: 75, &#x27;H&#x27;: 155, &#x27;I&#x27;: 131,
+        &#x27;L&#x27;: 131, &#x27;K&#x27;: 146, &#x27;M&#x27;: 149, &#x27;F&#x27;: 165, &#x27;P&#x27;: 115,
+        &#x27;S&#x27;: 105, &#x27;T&#x27;: 119, &#x27;W&#x27;: 204, &#x27;Y&#x27;: 181, &#x27;V&#x27;: 117,
+    }
+    
+    total_weight = 0
+    
+    # Sum weights for each amino acid in the sequence
+    for amino_acid in sequence:
+        if amino_acid in amino_acid_weights_dict:
+            total_weight += amino_acid_weights_dict[amino_acid]
+    
+    average_weight = total_weight / len(sequence)
+    
+    return average_weight</textarea>
+            </div>
+            <div id="code-cell-71-output" class="output" style="display: none;"></div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="summary">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Summary</h3>
+                        <p>Good coding comes from consistency, even when you are rushed for time or energy. Try to write clean code from the very beginning, such as using proper variable names, spacing, indentation <em>etc.</em>; leaving out commenting and docstrings for until you are happy with your first draft of the code. Once your code is semi-solidified, make sure to write proper comments and docstrings, as well as giving your code a general tidy-up from a styling perspective. Proofreading applies to writing in <em>any</em> language - including Python!<br><br>By following the conventions we have covered in this lesson, you should be able to produce code that the biology community can be proud of, rather than hiding it away in the dark from the prying eyes of discerning computer scientists!</p>
+                    </div>
+                </div>
+            </div>
+            
+        
+        <div class="page-navigation">
+            <a href="./file-operations.html" class="nav-button prev">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
+                Previous
+            </a>
+            <a href="./assignment.html" class="nav-button next">
+                Next
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                </svg>
+            </a></div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div>© All materials are copyright scryptIQ 2025</div>
+            <div>Powered by Pyodide</div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../assets/main.js"></script>
+    
+    <!-- Pyodide Initialisation Script -->
+    <script>
+
+// Generalisable Pyodide Initialisation Script
+// Variables and state build up naturally as code blocks execute in order
+
+async function main() {
+    // Show loading message for all output elements
+    document.querySelectorAll(".output").forEach(el => {
+        el.textContent = "Loading Pyodide...";
+        el.classList.add("loading-message");
+    });
+    
+    try {
+        // Load Pyodide
+        console.log("Loading Pyodide...");
+        const pyodideStartTime = performance.now();
+        let pyodide = await loadPyodide();
+        const pyodideLoadTime = performance.now() - pyodideStartTime;
+        console.log(`Pyodide loaded in ${pyodideLoadTime.toFixed(2)}ms`);
+        
+        // Load required packages only if specified
+        const lessonPackages = window.LESSON_PACKAGES || [];
+        
+        if (lessonPackages.length > 0) {
+            console.log("Loading required Python packages...");
+            const packagesStartTime = performance.now();
+            
+            // Separate built-in packages from PyPI packages
+            const builtInPackages = lessonPackages.filter(pkg => 
+                ['numpy', 'scipy', 'matplotlib', 'pandas', 'scikit-learn', 'pillow', 'regex'].includes(pkg)
+            );
+            
+            const micropipPackages = lessonPackages.filter(pkg => !builtInPackages.includes(pkg));
+            
+            // Load built-in packages (fast)
+            if (builtInPackages.length > 0) {
+                await pyodide.loadPackage(builtInPackages);
+                console.log(`Loaded built-in packages: ${builtInPackages.join(', ')}`);
+            }
+            
+            // Install PyPI packages (slower)
+            if (micropipPackages.length > 0) {
+                await pyodide.loadPackage(['micropip']);
+                const micropip = pyodide.pyimport('micropip');
+                await micropip.install(micropipPackages);
+                console.log(`Installed PyPI packages: ${micropipPackages.join(', ')}`);
+            }
+            
+            const packagesLoadTime = performance.now() - packagesStartTime;
+            console.log(`Packages loaded in ${packagesLoadTime.toFixed(2)}ms`);
+            console.log(`Total initialisation time: ${(pyodideLoadTime + packagesLoadTime).toFixed(2)}ms`);
+        } else {
+            console.log("No packages to load for this lesson");
+            console.log(`Total initialisation time: ${pyodideLoadTime.toFixed(2)}ms`);
+        }
+
+        // Only set up basic Python environment - no pre-loaded variables
+        await pyodide.runPythonAsync(`
+            import sys
+            from io import StringIO
+        `);
+
+        // Only set up matplotlib if it's in the loaded packages
+        if (lessonPackages.includes('matplotlib')) {
+            await pyodide.runPythonAsync(`
+                # Set up matplotlib for web rendering
+                import matplotlib
+                matplotlib.use('AGG')
+                import matplotlib.pyplot as plt
+                import io
+                import base64
+                
+                def capture_matplotlib():
+                    """Capture current matplotlib figure as HTML img tag"""
+                    buf = io.BytesIO()
+                    plt.savefig(buf, format='png', bbox_inches='tight', dpi=100)
+                    buf.seek(0)
+                    img_base64 = base64.b64encode(buf.read()).decode('utf-8')
+                    plt.close()
+                    return f'<img src="data:image/png;base64,{img_base64}" style="max-width: 100%; height: auto;" />'
+            `);
+            console.log('Matplotlib capture function set up');
+        }
+        
+        console.log("Pyodide loaded successfully");
+        
+        // Load remote files if URLs are specified
+        const lessonFiles = window.LESSON_FILES || [];
+        
+        if (lessonFiles.length > 0) {
+            try {
+                console.log(`Checking for ${lessonFiles.length} remote file(s) to load...`);
+                
+                // Build Python code to load all files dynamically
+                let pythonCode = `
+from pyodide.http import pyfetch
+import os
+
+# Create data directory if it doesn't exist
+os.makedirs('./data', exist_ok=True)
+`;
+                
+                // Add loading code for each file
+                for (const file of lessonFiles) {
+                    pythonCode += `
+# Load ${file.filename}
+try:
+    response = await pyfetch("${file.url}")
+    content = await response.string()
+    with open('./data/${file.filename}', 'w') as f:
+        f.write(content)
+    print("Loaded: ${file.filename}")
+except Exception as e:
+    print(f"Could not load ${file.filename}: {e}")
+`;
+                }
+                
+                await pyodide.runPythonAsync(pythonCode);
+                console.log("Remote files loaded successfully");
+            } catch (error) {
+                console.warn("Error loading remote files (continuing anyway):", error);
+            }
+        } else {
+            console.log("No remote files to load for this lesson");
+        }
+        
+        // Function to execute Python code and capture output
+        async function executePythonCode(code) {
+            try {
+                // Redirect Python stdout to capture print statements
+                await pyodide.runPythonAsync(`
+                    old_stdout = sys.stdout
+                    sys.stdout = mystdout = StringIO()
+                `);
+                
+                // Run the user code
+                const result = await pyodide.runPythonAsync(code);
+                
+                // Get the captured stdout
+                let stdout = await pyodide.runPythonAsync(`
+                    sys.stdout = old_stdout
+                    mystdout.getvalue()
+                `);
+                
+                // Check for matplotlib figures only if matplotlib was loaded
+                const lessonPackages = window.LESSON_PACKAGES || [];
+                if (lessonPackages.includes('matplotlib')) {
+                    const hasFigures = await pyodide.runPythonAsync(`
+                        import matplotlib.pyplot as plt
+                        len(plt.get_fignums()) > 0
+                    `);
+                    
+                    if (hasFigures) {
+                        const figureHtml = await pyodide.runPythonAsync(`capture_matplotlib()`);
+                        if (stdout) stdout += "\n";
+                        stdout += figureHtml;
+                    }
+                }
+                
+                // Combine stdout and result
+                let output = stdout;
+                if (result !== undefined && result !== null && String(result).trim() !== '') {
+                    if (output) output += "\n";
+                    output += String(result);
+                }
+                
+                return { success: true, output: output || "Code executed successfully (no output)" };
+                
+            } catch (error) {
+                return { success: false, output: "Error: " + error.message };
+            }
+        }
+        
+        // Execute all hidden code blocks first (for setup code like imports)
+        const hiddenCodeBlocks = Array.from(document.querySelectorAll('.hidden-code textarea'));
+        console.log(`Found ${hiddenCodeBlocks.length} hidden code blocks`);
+
+        for (const textarea of hiddenCodeBlocks) {
+            const code = textarea.value.trim();
+            if (!code) continue;
+            
+            console.log(`Executing hidden code block: ${textarea.id}`);
+            const result = await executePythonCode(code);
+            
+            if (!result.success) {
+                console.error(`Error in hidden code block ${textarea.id}:`, result.output);
+            } else {
+                console.log(`Hidden code block ${textarea.id} executed successfully`);
+            }
+        }
+
+        console.log("All hidden code blocks executed");
+        
+        // Get all fixed code blocks in document order
+        const fixedCodeBlocks = Array.from(document.querySelectorAll('.code-fixed textarea'));
+        
+        // Setup and execute fixed code blocks sequentially
+        for (const textarea of fixedCodeBlocks) {
+            const code = textarea.value.trim();
+            if (!code) continue;
+            
+            // Set up CodeMirror editor (read-only)
+            const editor = CodeMirror.fromTextArea(textarea, {
+                mode: "python",
+                theme: "pastel-on-dark",
+                lineNumbers: true,
+                readOnly: true,
+                viewportMargin: Infinity
+            });
+            
+            // Find corresponding output element
+            const outputId = textarea.id + '-output';
+            const outputElement = document.getElementById(outputId);
+            
+            if (outputElement) {
+                outputElement.textContent = "Running code...";
+                outputElement.classList.add("loading-message");
+                
+                // Execute the code (this maintains state for subsequent blocks)
+                const result = await executePythonCode(code);
+                
+                // Display the output - check if it's HTML
+                const trimmedOutput = result.output.trim();
+                console.log('Output length:', trimmedOutput.length);
+                console.log('Output starts with:', trimmedOutput.substring(0, 100));
+                
+                if (trimmedOutput.includes('<script') && trimmedOutput.includes('Plotly')) {
+                    // It's Plotly HTML output - extract just the body content
+                    console.log('Rendering as Plotly HTML');
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(result.output, 'text/html');
+                    // Clear the output element and append the body content
+                    outputElement.innerHTML = '';
+                    
+                    // Find and load external scripts first (like Plotly CDN)
+                    const externalScripts = Array.from(doc.querySelectorAll('script[src]'));
+                    const inlineScripts = Array.from(doc.querySelectorAll('script:not([src])'));
+                    
+                    // Append non-script content first
+                    Array.from(doc.body.children).forEach(child => {
+                        if (child.tagName !== 'SCRIPT') {
+                            outputElement.appendChild(child.cloneNode(true));
+                        }
+                    });
+                    
+                    // Load external scripts sequentially
+                    const loadScript = (src) => {
+                        return new Promise((resolve, reject) => {
+                            const script = document.createElement('script');
+                            script.src = src;
+                            script.onload = resolve;
+                            script.onerror = reject;
+                            document.head.appendChild(script);
+                        });
+                    };
+                    
+                    // Load all external scripts first
+                    Promise.all(externalScripts.map(s => loadScript(s.src)))
+                        .then(() => {
+                            console.log('External scripts loaded, executing inline scripts');
+                            // Now execute inline scripts
+                            inlineScripts.forEach(oldScript => {
+                                const newScript = document.createElement('script');
+                                newScript.textContent = oldScript.textContent;
+                                outputElement.appendChild(newScript);
+                            });
+                            console.log('Output element after processing:', outputElement.children.length, 'children');
+                        })
+                        .catch(err => {
+                            console.error('Failed to load external scripts:', err);
+                            outputElement.textContent = 'Error loading Plotly: ' + err.message;
+                        });
+                } else if (trimmedOutput.startsWith('<!DOCTYPE') || 
+                           trimmedOutput.startsWith('<html') ||
+                            trimmedOutput.startsWith('<div') ||
+                            trimmedOutput.startsWith('<img')) {
+                    console.log('Rendering as generic HTML');
+                    outputElement.innerHTML = result.output;
+                    console.log('Output element after innerHTML:', outputElement.children.length, 'children');
+                } else {
+                    console.log('Rendering as plain text');
+                    outputElement.textContent = result.output;
+                }
+                outputElement.classList.remove("loading-message");
+                if (result.success) {
+                    outputElement.classList.add("success-message");
+                    outputElement.classList.remove("error-message");
+                } else {
+                    outputElement.classList.add("error-message");
+                    outputElement.classList.remove("success-message");
+                }
+            }
+            
+            // Small delay to show progression
+            await new Promise(resolve => setTimeout(resolve, 100));
+        }
+        
+        // Setup all editable code blocks (but don't execute them)
+        document.querySelectorAll('.code-editor textarea').forEach((textarea) => {
+            // Set up CodeMirror editor (editable)
+            const editor = CodeMirror.fromTextArea(textarea, {
+                mode: "python",
+                theme: "pastel-on-dark",
+                lineNumbers: true,
+                viewportMargin: Infinity
+            });
+            
+            // Find corresponding run button and output element
+            const baseId = textarea.id;
+            const runButtonId = 'run-' + baseId;
+            const outputId = baseId + '-output';
+            
+            const runButton = document.getElementById(runButtonId);
+            const outputElement = document.getElementById(outputId);
+            
+            if (runButton && outputElement) {
+                // Set initial state
+                outputElement.textContent = "Ready to run code!";
+                outputElement.classList.remove("loading-message");
+                
+                runButton.addEventListener("click", async () => {
+                    const code = editor.getValue().trim();
+                    if (!code) {
+                        outputElement.textContent = "No code to run";
+                        return;
+                    }
+                    
+                    outputElement.textContent = "Running...";
+                    outputElement.classList.remove("error-message", "success-message");
+                    outputElement.classList.add("loading-message");
+                    
+                    // Execute the code (this also maintains state for future blocks)
+                    const result = await executePythonCode(code);
+                    
+                    // Display the output - check if it's HTML
+                    const trimmedOutput = result.output.trim();
+                    console.log('Output length:', trimmedOutput.length);
+                    console.log('Output starts with:', trimmedOutput.substring(0, 100));
+                    
+                    if (trimmedOutput.includes('<script') && trimmedOutput.includes('Plotly')) {
+                        // It's Plotly HTML output - extract just the body content
+                        console.log('Rendering as Plotly HTML');
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(result.output, 'text/html');
+                        // Clear the output element and append the body content
+                        outputElement.innerHTML = '';
+                        
+                        // Find and load external scripts first (like Plotly CDN)
+                        const externalScripts = Array.from(doc.querySelectorAll('script[src]'));
+                        const inlineScripts = Array.from(doc.querySelectorAll('script:not([src])'));
+                        
+                        // Append non-script content first
+                        Array.from(doc.body.children).forEach(child => {
+                            if (child.tagName !== 'SCRIPT') {
+                                outputElement.appendChild(child.cloneNode(true));
+                            }
+                        });
+                        
+                        // Load external scripts sequentially
+                        const loadScript = (src) => {
+                            return new Promise((resolve, reject) => {
+                                const script = document.createElement('script');
+                                script.src = src;
+                                script.onload = resolve;
+                                script.onerror = reject;
+                                document.head.appendChild(script);
+                            });
+                        };
+                        
+                        // Load all external scripts first
+                        Promise.all(externalScripts.map(s => loadScript(s.src)))
+                            .then(() => {
+                                console.log('External scripts loaded, executing inline scripts');
+                                // Now execute inline scripts
+                                inlineScripts.forEach(oldScript => {
+                                    const newScript = document.createElement('script');
+                                    newScript.textContent = oldScript.textContent;
+                                    outputElement.appendChild(newScript);
+                                });
+                                console.log('Output element after processing:', outputElement.children.length, 'children');
+                            })
+                            .catch(err => {
+                                console.error('Failed to load external scripts:', err);
+                                outputElement.textContent = 'Error loading Plotly: ' + err.message;
+                            });
+                    } else if (trimmedOutput.startsWith('<!DOCTYPE') || 
+                               trimmedOutput.startsWith('<html') ||
+                               trimmedOutput.startsWith('<div')) {
+                        outputElement.innerHTML = result.output;
+                    } else {
+                        outputElement.textContent = result.output;
+                    }
+                    outputElement.classList.remove("loading-message");
+                    if (result.success) {
+                        outputElement.classList.add("success-message");
+                        outputElement.classList.remove("error-message");
+                    } else {
+                        outputElement.classList.add("error-message");
+                        outputElement.classList.remove("success-message");
+                    }
+                });
+            }
+        });
+        
+        console.log("All code blocks initialised successfully");
+
+        // Set flag to indicate Pyodide is fully ready
+        window.pyodideReady = true;
+        console.log("Pyodide fully ready");
+        
+    } catch (error) {
+        console.error("Failed to initialise Pyodide:", error);
+        document.querySelectorAll(".output").forEach(el => {
+            el.textContent = "Error loading Pyodide: " + error.message;
+            el.classList.remove("loading-message");
+            el.classList.add("error-message");
+        });
+    }
+}
+
+// Start the application when DOM is loaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', main);
+} else {
+    main();
+}
+    </script>
+</body>
+</html>
+    

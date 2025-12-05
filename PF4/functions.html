@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Pyodide and CodeMirror -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/pastel-on-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/python/python.min.js"></script>
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="../assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../assets/android-chrome-512x512.png">
+    
+    <!-- Core Stylesheets -->
+    <link rel="stylesheet" href=../assets/colours.css>
+    <link rel="stylesheet" href="../assets/shared-styles.css">
+    <link rel="stylesheet" href="../assets/nav-bar.css">
+    <link rel="stylesheet" href="../assets/module_card.css">
+    <link rel="stylesheet" href="../assets/learning_outcomes.css">
+    <link rel="stylesheet" href="../assets/learning_lists.css">
+    <link rel="stylesheet" href="../assets/box_styles.css">
+    <link rel="stylesheet" href="../assets/code_styles.css">
+
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L2D - PF4 - Functions</title>
+    
+    <!-- File URLs for this lesson -->
+    <script>window.LESSON_FILES = []; window.LESSON_PACKAGES = [];</script>
+        
+</head>
+<body>
+    
+    <!-- Sidebar Navigation -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <a href="../homepage.html" style="text-decoration: none; display: inline-block;">
+                <img src="../assets/scryptIQ_logo_dark.png" alt="scryptIQ Logo" class="sidebar-logo">
+            </a>
+        </div>
+
+        <h3>Content</h3>
+        <ul>
+            <li><a href="./introduction.html" class="">Introduction</a></li>
+            <li>
+                <div class="nav-toggle active" data-target="expandable-section-1">
+                    Functions
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <ul class="nested-nav expanded" id="expandable-section-1"><li><a href="#introduction">Introduction</a></li><li><a href="#defining-functions">Defining functions</a></li><li><a href="#returning-an-output">Returning an output</a></li><li><a href="#docstrings">Docstrings</a></li><li><a href="#type-hints">Type hints</a></li><li><a href="#docstring-conventions">Docstring conventions</a></li><li><a href="#function-scope">Function scope</a></li><li><a href="#modifying-global-variables">Modifying global variables</a></li><li><a href="#example--tying-it-together">Example: tying it together</a></li><li><a href="#summary">Summary</a></li>
+                </ul>
+            </li><li><a href="./file-operations.html">File Operations</a></li><li><a href="./coding-style.html">Good Coding Practices</a></li><li><a href="./assignment.html">Assignment</a></li><li><a href="./feedback.html">Feedback</a></li>
+        </ul>
+
+        <h3 class="collapsible-header collapsed">
+            Resources
+            <span class="collapse-icon">►</span>
+        </h3>
+        <div class="collapsible-content collapsed">
+            <ul>
+                <li><a href="./glossary.html">Glossary</a></li><li><a href="./downloads.html">Downloads</a></li><li><a href="../HB/introduction.html">Handbook</a></li>
+            </ul>
+        </div>
+
+        <h3 class="collapsible-header collapsed">
+            Previous Modules
+            <span class="collapse-icon">►</span>
+        </h3>
+        <div class="collapsible-content collapsed">
+            <ul>
+            <li><a href="../PF0/introduction.html">PF0</a></li>
+            <li><a href="../PF1/introduction.html">PF1</a></li>
+            <li><a href="../PF2/introduction.html">PF2</a></li>
+            <li><a href="../PF3/introduction.html">PF3</a></li>
+        </ul>
+        </div>
+
+        <h3>
+            <li><a href="./report-issue.html">Report an Issue</a></li>
+        </h3>
+    </div>
+    
+    <!-- Sidebar Toggle Button -->
+    <button id="sidebar-toggle" class="sidebar-toggle">❮</button>
+    
+    <!-- Main Content Area -->
+    <div id="main-content" class="main-content">
+        <!-- Top Navigation Bar -->
+        <div class="top-navbar">
+            <h1 class="page-title">Python Fundamentals 4</h1>
+            <div class="nav-actions">
+                <a href="../homepage.html" class="text-button" title="Materials homepage">
+                    Homepage
+                </a>
+                <a href="https://learntodiscover.ai/my-cohorts/" class="text-button" title="Find out more about us">
+                    Learn to Discover
+                </a>
+            </div>
+        </div>
+
+        
+            <div class="module-card" id="introduction">
+                <div class="module-header">
+                    Functions <span class="module-tag">PF4</span>
+                </div>
+                <div class="module-body">
+                    <h3>Learning Objectives</h3>
+                    <div class="learning-outcomes">
+                        <div class="outcome-item">
+                    <span class="outcome-number">1</span>
+                    <span class="outcome-text">Understand what functions are and how to define them</span>
+                </div>
+<div class="outcome-item">
+                    <span class="outcome-number">2</span>
+                    <span class="outcome-text">Write clear and descriptive function names and docstrings that follow Python conventions</span>
+                </div>
+<div class="outcome-item">
+                    <span class="outcome-number">3</span>
+                    <span class="outcome-text">Use parameters to pass information into a function  return values from functions using the return keyword</span>
+                </div>
+<div class="outcome-item">
+                    <span class="outcome-number">4</span>
+                    <span class="outcome-text">Call functions and understand the difference between defining and using them</span>
+                </div>
+<div class="outcome-item">
+                    <span class="outcome-number">5</span>
+                    <span class="outcome-text">Understand variable scope inside and outside functions (local versus global variables)</span>
+                </div>
+                    </div>
+                    <h3>Introduction</h3>
+                    <p><strong>What are functions in Python?</strong><br><br>One of the most powerful constructs in Python, a <strong>function</strong> is a <em>reusable block of code</em> that performs a <em>specific task</em>. Instead of writing the same code multiple times, we can place it inside a function and call it using its <strong>function name</strong>, whenever we need to run it. This makes programs shorter, easier to read, and much less error-prone.<br><br>Functions also allow us to organise our code into meaningful chunks, so that each part of a program does one clear job. In fact, it is considered bad practice to write functions that cater to more than one task at a time.<br><br>In scientific programming, this is organisational, compartmentalising aspect of function-writing is particularly useful. For example, you might write one function to calculate body mass index (BMI), another to convert DNA sequences into RNA, and another to analyse a set of results. Once defined, packaging these operations into functions allows you to reuse them across many datasets and experiments without rewriting the logic each time.</p>
+        <div class="info-box key-terms-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                KEY TERMS
+            </div>
+            <div class="box-content">
+                <p><strong>Function</strong>: A reusable block of code that performs a specific task. Once defined, it can be called easily using its <strong>function name</strong>, which is a <em>user-defined identifier</em>. Syntactically, a function name is <em>followed by round parentheses</em>, which may contain <strong>input arguments</strong> (called <strong>parameters</strong>). By grouping logic inside a function, you avoid repeating code, make your programs easier to read, and keep related operations organised in one place.</p>
+            </div>
+        </div>
+        
+                </div>
+            </div>
+            
+            <div class="module-card" id="defining-functions">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Defining functions</h3>
+                        <p>In order to use a function, it must first be defined or instantiated. In Python, this is done using the keyword <code>def</code>. The syntactical ruling here is that<code>def</code> is followed by a user-defined function name, and round parentheses, that contain the input arguments that the function should expect, followed by a colon.</p><p><img src="./images/define-function.png" alt="Defining a Function" class="notebook-image"></p><p>In the simple example shown below, let&#x27;s define a simple function that prints your name as &#x27;first name&#x27; and &#x27;surname&#x27;. It will expect:<br><ul class="nested-list"><li>A single input argument, in the form of a string of someone&#x27;s first and last name</li></ul></p><p>It will process:<br><ul class="nested-list"><li>The single argument by using the <code>.split()</code> string method and a multiple assignment, to split the first and surname into appropriately named variables</li><br><li>Output: this will be handled by two print statements with f-strings, printing the name in the desired format.</li></ul></p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-1">def name_printer(name):
+
+    firstname, surname = name.split()
+
+    print(f&quot;First name: {firstname}&quot;)
+    print(f&quot;Surname: {surname}&quot;)</textarea>
+            </div>
+            <div id="code-cell-1-output" class="output"></div>
+        </div>
+        <p>As you can see the cell runs, successfully, with no output and no error raised. However, this is because you have instantiated and defined the function in memory, but have not yet used the function.<br><br>To do so, you must call it - as we have done previously with some of Python&#x27;s built-in functions such as <code>print()</code> or <code>input()</code>.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-2">name = &quot;John Smith&quot; # Give an example full name
+
+name_printer(name) #Call the function - as you would with `print()`, for example.</textarea>
+            </div>
+            <div id="code-cell-2-output" class="output"></div>
+        </div>
+        
+        <div class="info-box tip-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                TIP
+            </div>
+            <div class="box-content">
+                <p>Your IDE will often apply a default colouring scheme to the code you write. A good way to know that a function has been instantiated, and is available for use, is that - when typed - it will colour as per the colour scheme your IDE is actively using. For instance, in Microsoft Visual Studio Code (which is also used in GitHub&#x27;s Codespaces) - by default - functions are coloured in pale yellow.</p>
+            </div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="returning-an-output">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Returning an output</h3>
+                        <p>In an IDE such as Microsoft&#x27;s Visual Studio Code (or your GitHub Codespace), mousing over a function&#x27;s name will reveal a glance some information about the function.</p><p><img src="./images/mouseover.png" alt="IDE Mouseover" class="notebook-image"></p><p>If you look at the image above, you&#x27;ll notice the line above the docstring which indicates <code>-&gt; None</code>. This means that the function is <em>returning nothing</em>. In Python, if a function does not explicitly use a <code>return</code> statement, it automatically returns the special value <code>None</code>. Functions that only <code>print()</code> something fall into this category. After all, <code>print()</code> is considered an <em>output operation</em>, where it takes information from inside the program, outside of it (i.e. to display it on your console). In the case of our example <code>name_printer()</code> function, we merely displayed output on the console; but the function did not return any data back to the rest of the program for subsequent, downstream use.</p>
+        <div class="info-box fact-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                FACT
+            </div>
+            <div class="box-content">
+                <p>As we touched on briefly during Python Fundamentals 1, in the section on types, <code>None</code> is a special built-in value that represents the <strong>absence of a value</strong>, and it has its own data type called <code>NoneType</code>. It is used to indicate that something has <em>no meaningful result</em>. When a function does not explicitly return anything, Python automatically returns <code>None</code> by default. <code>None</code> is equivalent to <code>False</code> and can be used to dictate conditional statements.</p>
+            </div>
+        </div>
+        <p>This is where the keyword <code>return</code> is immediately useful. It allows our function to <em>produce</em> a value that can be stored, manipulated or passed into another function, further downstream in our Python program.<br><br>A <code>return</code> statement terminates the function immediately, and sends a value <em>back to the place where the function was called</em>. That value can then be used in a multitude of ways: it can be assigned to a variable, printed, used in a calculation, or combined with other returned values, for instance.<br><br>Using <code>return</code> makes a function much more powerful and reusable. Instead of simply performing an action, a function that returns output will <em>provide</em> information to the rest of your code — for example: returning a calculated chemical concentration, the number of codons in a nucleic acid sequence or the fitness of a gene.</p><p>Lets extend our previous example to return the <em>first name</em> and <em>surname</em>, rather than print them.<br><br>To do so we call the keyword <code>return</code> on a newline inside the function coding block, directly after we place the variables we wish to return. If there is more than one they are separated by commas:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-3"># Redefining our function here will overwrite the one above
+
+def name_printer(name):
+
+    firstname, surname = name.split()
+
+    return firstname, surname # our variables to return separated by commas</textarea>
+            </div>
+            <div id="code-cell-3-output" class="output" style="display: none;"></div>
+        </div>
+        <p>Calling our function now will <strong>return</strong> the given variables which we can store inside a variable:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-4">name = &quot;John Smith&quot;
+
+# Calling the function returns our variables into a Tuple
+
+returned_variables = name_printer(name) 
+print(f&quot;Variables returned from function: {returned_variables}&quot;)</textarea>
+            </div>
+            <div id="code-cell-4-output" class="output"></div>
+        </div>
+        <p>If there is more than one variable returned they will be <em>packed</em> into a Tuple. If you cast our minds back to <strong>PF2</strong> we are reminded that to unpack a tuple you assign it to variables, that number the same in length of the tuple, separated by a comma:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-5">name = &quot;John Smith&quot;
+
+# Unpacking the returned tuple:
+firstname, surname = name_printer(name) </textarea>
+            </div>
+            <div id="code-cell-5-output" class="output" style="display: none;"></div>
+        </div>
+        <p>These variables are now free to be used in subsequent code:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-6">print(f&quot;&quot;&quot;
+Dear Professor {surname},
+
+Can I call you {firstname}?
+
+I&#x27;m writing to you to discuss with you an exciting course called L2D!
+
+..........
+
+&quot;&quot;&quot;)</textarea>
+            </div>
+            <div id="code-cell-6-output" class="output"></div>
+        </div>
+        <h4>Return terminates the function when called</h4><p>The <code>return</code> statement at the end of a function terminates it, at that point, returning the specified information back to the program.If no return statement is provided, the function returns <code>None</code>, by default. If you were to place a <code>return</code> or any other code after a previous one, this will not be executed. However, this does not mean you will only ever have one <code>return</code> keyword in a function, often you can have many as different variables are returned depending on what the function does with different inputs.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-7">def name_printer(name):
+
+    firstname, surname = name.split()
+
+    return firstname
+    
+    return surname # Only the first return will activate as it terminates the function if called</textarea>
+            </div>
+            <div id="code-cell-7-output" class="output" style="display: none;"></div>
+        </div>
+        <p>Calling the new function will now only give us the variable from the the first <code>return</code> statement:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-8">name = &quot;John Smith&quot;
+
+# Only firstname is returned
+returned_variable = name_printer(name) 
+print(returned_variable)</textarea>
+            </div>
+            <div id="code-cell-8-output" class="output"></div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="returning-an-output">
+                <div class="module-body">
+                    <div class="module-section">
+                        
+        <div class="info-box practice-exercise-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                PRACTICE EXERCISE
+            </div>
+            <div class="box-content">
+                <p><strong>1.</strong></p>
+                <p>For this exercise, you have been given a list of random numbers. In the code cell below, write a simple function of your own that performs the following:<ul class="nested-list"><li><strong>Iterates</strong> (using a <strong><code>for</code> loop</strong>) through the list of numbers, and creates two new, <em>internal</em> lists: <code>even_numbers</code> and <code>odd_numbers</code>. <em>HINT: Use the modulus operator <code>%</code> (which returns the remainder after a division) and conditional statements to determine if a number is odd or even. You can also use the <code>.append()</code> list method, to add values to a list.</em></li><br><li>Creates a <strong>dictionary</strong> called <code>odd_even_dict</code> that contains two keys: <code>&quot;Even numbers&quot;</code> and <code>&quot;Odd numbers&quot;</code>, with the lists <code>even_numbers</code> and <code>odd_numbers</code> provided as values for the two keys, respectively.</li><br><li>Using <code>return</code>, have the funciton return the dictionary as its only output.</li><br><li>Finally, <em>call</em> the function and <strong>print</strong> its result.</li></ul></p>
+            </div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-9"># Define and call your function here:
+
+numbers = [1, 45, 22, 66, 33, 989, 120, 125, 352, 64646, 77, 88, 12, 15, 775, 334]
+
+def odd_even(numbers):
+
+    even_numbers = []
+    odd_numbers = []
+
+    for number in numbers:
+
+        if number % 2 == 0:
+
+            even_numbers.append(number)
+        
+        else:
+
+            odd_numbers.append(number)
+    
+    odd_even_dict = {&quot;Even numbers&quot; : even_numbers, &quot;Odd numbers&quot; : odd_numbers}
+
+    return odd_even_dict
+</textarea>
+            </div>
+            <button id="run-code-cell-9" class="run-button">Run Code</button>
+            <div id="code-cell-9-output" class="output"></div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-10">dictionary = odd_even(numbers)
+
+dictionary</textarea>
+            </div>
+            <button id="run-code-cell-10" class="run-button">Run Code</button>
+            <div id="code-cell-10-output" class="output"></div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="docstrings">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Docstrings</h3>
+                        <p>Above, we briefly referred to constraining a function broadly to handling <em>one</em> task or process; this constitutes good function-writing practice. In line with this, and similar to how commenting is encouraged to annotate your code as you write it, another nearly-essential good habit to get into when writing functions, is to <em>document what your function does</em>. This is helpful both for your own future reference, but also for sharing a function with another user, and having the function&#x27;s operation be succinctly, but fully, explained.<br><br>Always making this easy for the user, Python has a built-in feature for explaining your functions in a clear, systematic way, called a <strong>docstring</strong>. The syntax for this is to open two sets of triple quotes: either <code>&#x27;&#x27;&#x27;</code> or <code>&quot;&quot;&quot;</code>, and have them on their own lines, fencing (from above and below) the contents of the docstring, itself. In the lines between these triple quotes, you can write in a textual explanation for what your function does. The correct term for the structure containing the docstring is a <strong>triple-quoted string literal</strong> or a <strong>multi-line string literal</strong>.</p><p>As a rule of thumb, a good docstring should include:<br><ul class="nested-list"><li>A brief summary of <strong>what the function does</strong></li><br><li>A description of the <strong>input arguments</strong> (and their expected types, if relevant)</li><br><li>An explanation of <strong>what the function returns</strong></li><br><li>Any <strong>important notes</strong> about <em>assumptions</em>, <em>restrictions</em> or special <em>behaviours</em></li></ul></p>
+        <div class="info-box key-terms-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                KEY TERMS
+            </div>
+            <div class="box-content">
+                <p><strong>Docstring</strong>: A short descriptive string written immediately below a function’s <code>def</code> line. It explains the <em>purpose</em> of the function, its <strong>input arguments</strong>, and its <strong>output</strong> so that users can understand how to use it.</p>
+            </div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-11">name = &quot;John Smith&quot;
+
+def name_printer(name):
+    &quot;&quot;&quot;
+    This function splits a full name into first and surnames, and prints these separated by a newline character.
+    It expects a two-word, full name as an input argument, given as a string.
+    It returns the split name, printed over two lines.
+    &quot;&quot;&quot;
+    firstname, surname = name.split()
+
+    return firstname, surname
+
+
+
+firstname, surname = name_printer(name)
+
+print(f&quot;First name: {firstname}&quot;)
+print(f&quot;Surname: {surname}&quot;)</textarea>
+            </div>
+            <div id="code-cell-11-output" class="output"></div>
+        </div>
+        <h4>Viewing docstrings with help()</h4><p>A programmatic approach to reveal a docstring is to use Python’s built-in <code>help()</code> function. This function, in general, is intended to display detailed information about an object, including its docstring, signature and where it is defined.<br><br>To view the documentation for a function you have written, simply pass the function’s name (without its parentheses) into <code>help()</code>. This is especially useful when working in larger projects or when revisiting code after some time, as it allows you to quickly remind yourself what a function does and how to use it.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-12">help(name_printer)</textarea>
+            </div>
+            <div id="code-cell-12-output" class="output"></div>
+        </div>
+        
+        <div class="info-box remember-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                REMEMBER
+            </div>
+            <div class="box-content">
+                <p>To ensure that the docstring is correctly formatted, and read by functions such as <code>help()</code>, the triple quotes must be on the line directly beneath the definition line. If there is a line break, it will leave <code>help()</code> unable to read it.</p>
+            </div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="type-hints">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Type hints</h3>
+                        <p>For more informative docstrings, Python also provides an optional system for describing <em>the kinds of data</em> a function <em>expects</em> and <em>returns</em>. These are called <strong>type hints</strong> or <strong>annotations</strong>, and they sit directly in the function header, rather than inside the docstring. If we take another look at the image below, the first line clearly displays this header, underscoring it to separate it from the docstring directly beneath it.</p><p><img src="./images/mouseover.png" alt="Function Mouseover" class="notebook-image"></p><p>Type hints do not change how the code runs, but they make your functions clearer, easier to debug and more informative for anyone reading or using your code. They also allow development tools and code editors to warn you early if you pass the wrong type of value into a function, because the function already has (implicitly stored, from when it was defined) they type of values it expects to see.</p><h4>Type hints in a function header</h4><p>There are two structures within a function for which you can display type hints: <strong>input arguments</strong> and <strong>returned outputs</strong>. There are also different places in which you can leave these type hints: within the <em>function&#x27;s definition line</em>, and within the <em>docstring</em>.<br><br>Let&#x27;s start by looking at specifying a type hint to display in a function&#x27;s header. The syntax for this is:<br><ul class="nested-list"><li>Annotating each <strong>input argument</strong> by placing a <strong>colon</strong> <code>:</code> after its name, followed by the <strong>expected data type</strong>.</li><br><li>Annotating the <strong>return value</strong> using an <strong>arrow</strong> <code>-&gt;</code> after the parameter list.</li></ul></p><p>Let&#x27;s look at another simple function that we can use to determine the percentage of guanine and cytosine residues - <strong>percentage GC content</strong> - in a nucleic acid sequence. This example makes use of a simple mathematical operation in its <code>return</code> statement, and type hints in the function&#x27;s definition line:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-13">def calculate_gc(sequence: str) -&gt; float:
+    &quot;&quot;&quot;
+    A function to calculate the GC content of a DNA sequence, returning
+    the value as a percentage.
+    &quot;&quot;&quot;
+    g = sequence.count(&quot;G&quot;) # Using the .count() string method
+    c = sequence.count(&quot;C&quot;)
+
+    gc_content = (g + c) / len(sequence) * 100 # Calculate the percentage GC content.
+    
+    return round(gc_content, 2) # Rounds the float percentage gc, to 2 decimal places</textarea>
+            </div>
+            <div id="code-cell-13-output" class="output" style="display: none;"></div>
+        </div>
+        <p>In the first line, we specify that the input argument stored in <code>sequence</code> must be of type string, and that its output must be returned as a floating point value. Note that the value that is returned, is processed by the <code>round()</code> function, on its way out, rounding it to two decimal places.<br><br>Let&#x27;s call the function here:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-14">sequence = &quot;TAGATCGATCGGCGCGCATATCGTACG&quot;
+
+calculate_gc(sequence)</textarea>
+            </div>
+            <div id="code-cell-14-output" class="output"></div>
+        </div>
+        
+        <div class="info-box tip-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                TIP
+            </div>
+            <div class="box-content">
+                <p>With type hints, we must use Python&#x27;s shorthand, built-in types. For instance, strings are <code>str</code>, integers are <code>int</code> <em>etc</em>. The keywords for each type are listed in the section on types in the Python Fundamentals 1 lesson.</p>
+            </div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="docstring-conventions">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Docstring conventions</h3>
+                        <p>Python also allows us to specify type hints <em>inside</em> the function’s <strong>docstring</strong>. This can be an alternative, or an addition, to placing them in the function&#x27;s header.</p>
+        <div class="info-box fact-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                FACT
+            </div>
+            <div class="box-content">
+                <p>There are three broad, commonly-used conventions for writing function docstrings in Python:<br><ol class="nested-list"><li><a href="https://google.github.io/styleguide/pyguide.html">Google Style</a></li><br><li><a href="https://numpydoc.readthedocs.io/en/latest/format.html#docstring-standard">NumPy Style</a></li><br><li><a href="https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html">Sphinx / reStructuredText (reST) Style</a></li></ol>Each style is valid and widely used, and no single style is objectively better than another. For brevity, we will focus on the <strong>Sphinx/reST style</strong> in this lesson. You can explore the Google and NumPy styles further using the hyperlinked documentation for each style, above.</p>
+            </div>
+        </div>
+        <p>The approach to docstring writing that we will focus on in this lesson employs a style convention called <strong>Sphinx</strong> notation, which is especially common in scientific Python libraries. It allows you to describe each parameter, its expected type, the meaning of the returned value, and also the returned output type; displaying it all in a structured, easily-legible manner.<br><br>In this style, each input argument is documented using two lines:<br><ul class="nested-list"><li><code>:param argument_name:</code> — a short description of what the argument represents</li><br><li><code>:type argument_name:</code> — the expected data type</li></ul>Similarly, the output is documented using:<br><ul class="nested-list"><li><code>:return:</code> — a description of the value that the function returns</li><br><li><code>:rtype:</code> — the return type</li></ul>Here is the same GC-content function rewritten with Sphinx-style type hints included inside the docstring:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-15">def calculate_gc(sequence):
+    &quot;&quot;&quot;
+    A function to calculate the GC content of a DNA sequence, returning
+    the value as a percentage.
+
+    :param sequence: DNA sequence consisting of A, T, G and C.
+    :type sequence: str
+    :return: GC percentage of the sequence between 0 and 100, rounded to two decimal places.
+    :rtype: float
+    &quot;&quot;&quot;
+    g = sequence.count(&quot;G&quot;)
+    c = sequence.count(&quot;C&quot;)
+    gc_content = (g + c) / len(sequence) * 100
+    
+    return round(gc_content, 2)</textarea>
+            </div>
+            <div id="code-cell-15-output" class="output" style="display: none;"></div>
+        </div>
+        <p>If you then mouseover the function name in your IDE, you see that it has neatly formatted the docstring under explanatory headers for input paramters and returned outputs, clearly labelling the expected data types.</p><p><img src="./images/gc-sphinx.png" alt="Function with Sphinx styled Docstring" class="notebook-image"></p><p>This gives your docstrings a highly legible, professional appearance; of particular importance should you choose to publish or share your functions with other users.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="docstring-conventions">
+                <div class="module-body">
+                    <div class="module-section">
+                        
+        <div class="info-box practice-exercise-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                PRACTICE EXERCISE
+            </div>
+            <div class="box-content">
+                <p><strong>2.</strong></p>
+                <p>Below is a Python function. Look at the function, and try to ascertain how it works. Write a suitable <strong>docstring</strong> for this function, using the Sphinx convention, and be sure to highlight the following information:<ul class="nested-list"><li>What kind of data the input argument or &#x27;parameter&#x27; should be.</li><br><li>The data <code>type</code> of the input argument</li><br><li>The returned output of your function</li><br><li>The data <code>type</code> of your returned output.</li></ul>Lastly, use the <code>help()</code> function to display the docstring.</p>
+            </div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-16">DNA = &quot;GTCAGTGTCAGTGTCATGTACGTGTAGCTAGTCGTGACGTGTGTACGTCTTA&quot;
+
+def function(sequence):
+
+    codons = []
+    trinucleotide = []  # must be defined once *outside* the loop
+
+    for base in sequence:
+
+        trinucleotide.append(base)
+
+        if len(trinucleotide) == 3:
+            codons.append(&quot;&quot;.join(trinucleotide))  # store as string, cleaner
+            trinucleotide = []  # reset for the next codon
+
+    return codons
+
+codon_list = function(DNA)
+
+print(codon_list)</textarea>
+            </div>
+            <button id="run-code-cell-16" class="run-button">Run Code</button>
+            <div id="code-cell-16-output" class="output"></div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-17">sequence = DNA
+
+codons = []
+
+trinucleotide = &quot;&quot;
+
+for base in sequence:
+
+    # trinucleotide = []
+
+    trinucleotide.join(base)
+    print(trinucleotide)
+    if len(trinucleotide) == 3:
+        codons.join(trinucleotide)
+        trinucleotide = &quot;&quot;
+
+    else:
+        continue
+
+codons</textarea>
+            </div>
+            <button id="run-code-cell-17" class="run-button">Run Code</button>
+            <div id="code-cell-17-output" class="output"></div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="tutorial-video-given-below--walks-you-through-the-concepts-we-have-learned-about-function-writing-so-far--applied-to-a-simple-transcription-function">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>tutorial video given below, walks you through the concepts we have learned about function-writing so far, applied to a simple transcription function.</h3>
+                        
+        <div class="video-container">
+            <iframe 
+                src="https://www.youtube.com/embed/3jFrC83drU0"
+                width="560"
+                height="315"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="function-scope">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Function scope</h3>
+                        <p>When we write functions, we also create a new, contained compartment within the function, in which variables can exist and operate. This compartment is called the <strong>function scope</strong>. In Python, <strong>scope</strong> determines which parts of a program can access or modify particular variables or data structures. Its containment to operating within the function alone, prevents different pieces of code from accidentally interfering with one another.<br><br>For instance, if you have multiple functions, each with internal variables called <code>data</code>in their code blocks then - were the variables <em>not</em> constrained to operating only within each function - you would have the <code>data</code> variable being overwritten and affected by the other function or code block. This <strong>local scope</strong> is, therefore, a behaviour implicit to all functions in Python - whether built-in, or user-defined.<br><br>When a function is called, Python automatically creates a <strong>local scope</strong> for it. Any variables defined <em>inside</em> the function — including its input arguments — belong to this local scope. They exist <em>only while the function is running</em>, and disappear <em>as soon as the function terminates</em>. This means that variables inside a function <em>cannot be accessed from outside it</em>, even if they share the same name as a variable elsewhere in the program.<br><br>To help solidify this understanding, note that any variables defined <em>outside</em> a function belong to the <strong>global scope</strong>. That is - they can be accessed by functions anywhere in your coding environment. But functions will not change global variables unless they are explicitly instructed to do so. This separation is a key reason why functions are so powerful: they allow us to write clean, predictable code where each function handles its own task without unintended side effects.<br><br>Having this localised function scope also helps to prevent bugs, and makes debugging easier, encouraging good programming practice by ensuring that <em>functions rely only on the data passed into them</em>, returning their outputs, cleanly.</p><p>Run the cell below, to show how the variable named <code>variant</code> outside the function (in the global scope) is <strong>not</strong> overwritten, after the function with a variable of the same name, is called:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-18">variant = &quot;Omicron&quot; # Global variable - scope is anywhere outside the function.
+
+def classify_variant():
+    &quot;&quot;&quot;
+    Function demonstrating the concept of variable scope by defining a local variable
+    with the same name as a global one. This function creates its own `variant` variable 
+    within the local scope and prints it, showing that the global &#x27;variant&#x27; is unaffected.
+    &quot;&quot;&quot;
+    # A local, intra-function variable with the SAME name as the global one:
+    variant = &quot;Delta&quot;   # Exists only inside this function
+    print(f&quot;Inside the function, the variant is:        {variant}&quot;)
+
+classify_variant() # Function call
+
+# Check the variable outside the function
+print(f&quot;Outside the function, the variant remains:  {variant}&quot;)</textarea>
+            </div>
+            <div id="code-cell-18-output" class="output"></div>
+        </div>
+        
+        <div class="info-box note-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                NOTE
+            </div>
+            <div class="box-content">
+                <p>It is considered good programming practice to design functions that <strong>return values</strong> <em>rather than altering global variables</em> directly. This produces code that is predictable, easier to test, and easier to debug. Modifying these global variables (often shortened to <em>globals</em>) should generally be avoided except, perhaps, in cases where your script has constants.</p>
+            </div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="modifying-global-variables">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Modifying global variables</h3>
+                        <p>While it is often discouraged, if you absolutely must write a function to modify a global variable, then you have to declare it to overwrite Python&#x27;s default behaviour. This can be done using the <code>global</code> keyword, inside the function:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-19"># Global variable
+variant = &quot;Omicron&quot;   # Scope is anywhere outside the function.
+
+def update_variant_globally():
+    &quot;&quot;&quot;
+    Demonstrate how the `global` keyword allows a function to modify a
+    variable from the global scope. Without the `global` declaration,
+    the assignment would create a new local variable instead.
+    &quot;&quot;&quot;
+    global variant         # Declare that we want to modify the global variable
+    variant = &quot;Delta&quot;      # This now updates the global variable directly
+    print(f&quot;Inside the function, the variant is:        {variant}&quot;)
+
+update_variant_globally()  # Function call
+
+# Check the variable outside the function
+print(f&quot;Outside the function, the variant now is:   {variant}&quot;)</textarea>
+            </div>
+            <div id="code-cell-19-output" class="output"></div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="example--tying-it-together">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Example: tying it together</h3>
+                        <p>Now that we have covered all the basics of defining a function, let&#x27;s tie it all together in the context of solving a common biological task: working with DNA fragments. We will be drawing from concepts and techniques taught across the previous three Python Fundamentals less, with a particular focus on <strong>list comprehensions</strong>.<br><br>In the cell below, we aim to write a function that wraps together three small tasks, into a small processing pipeline. This aims to make a single function that can be called repeatedly on new data. The function should:<br><ol class="nested-list"><li><strong>Join</strong> all our DNA fragments (a list of strings) together</li><br><li><strong>Split</strong> the new sequence into <em>codons</em></li><br><li><strong>Count</strong> complete codons</li><br><li><strong>Calculate</strong> the <em>GC content</em>.</li></ol>Let&#x27;s start by defining our list:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-20">dna_fragments = [&quot;ATGGC&quot;, &quot;TAACTG&quot;, &quot;G&quot;, &quot;GTGTACTGT&quot;, &quot;AAAGCT&quot;, &quot;AA&quot;, &quot;GTACG&quot;]
+
+print(f&quot;{dna_fragments}\n\n {type(dna_fragments)}&quot;)</textarea>
+            </div>
+            <div id="code-cell-20-output" class="output"></div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-21">def analyse_sequence(fragments):
+    &quot;&quot;&quot;
+    Join DNA fragments into one continuous sequence, split into codons,
+    and return the number of complete codons and the GC content.
+
+    :param fragments: (list of str): Individual DNA sequence fragments.
+    :type fragments: list(str)
+    :returns: tuple: (codon_count, gc_percentage)
+    &quot;&quot;&quot;
+
+    # Join fragments into one continuous sequence
+    sequence = &quot;&quot;.join(fragments)
+
+    # Split sequence into codons (groups of three)
+    codons = [sequence[i:i+3] for i in range(0, len(sequence), 3)]
+
+    # Count only complete codons (length of 3)
+    complete_codons = [c for c in codons if len(c) == 3]
+    codon_count = len(complete_codons)
+
+    # Calculate GC content (G or C as percentage of total bases)
+    gc_bases = sum(1 for base in sequence if base in &quot;GC&quot;)
+    gc_percentage = (gc_bases / len(sequence)) * 100
+
+    return codon_count, gc_percentage</textarea>
+            </div>
+            <div id="code-cell-21-output" class="output"></div>
+        </div>
+        <p>Once defined, we can call this function to produce two outputs, as specified: <code>codon_count</code> and <code>gc_percentage</code>. We can then unpack this into two variables, and print these in our print statement.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-22">dna_fragments = [&quot;ATGGC&quot;, &quot;TAACTG&quot;, &quot;G&quot;, &quot;GTGTACTGT&quot;, &quot;AAAGCT&quot;, &quot;AA&quot;, &quot;GTACG&quot;]
+codons, gc = analyse_sequence(dna_fragments)
+
+print(f&quot;Complete codons: {codons}.\nGC content: {gc:.2f}%&quot;)</textarea>
+            </div>
+            <div id="code-cell-22-output" class="output"></div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="summary">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Summary</h3>
+                        <p>In this section, we covered how to write and use <strong>functions</strong> in Python, allowing you to organise your code into clear, reusable blocks that each perform a single well defined task. The lesson explored how to define functions using the keyword <code>def</code>, how to pass <strong>input arguments</strong> and how to <strong>return outputs</strong> from a function, using <code>return</code>.<br><br>We covered <strong>docstrings</strong> as a structured way of documenting what your functions do, along with <strong>type hints</strong> and <strong>paramter</strong> annotations that help make your code more readable and easier to maintain. We also explored <strong>function scope</strong>, understanding the distinction between <strong>local</strong> and <strong>global variables</strong>, and how functions are able to operate independently of the wider program, unless explicitly instructed otherwise.</p>
+                    </div>
+                </div>
+            </div>
+            
+        
+        <div class="page-navigation">
+            <a href="./introduction.html" class="nav-button prev">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
+                Previous
+            </a>
+            <a href="./file-operations.html" class="nav-button next">
+                Next
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                </svg>
+            </a></div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div>© All materials are copyright scryptIQ 2025</div>
+            <div>Powered by Pyodide</div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../assets/main.js"></script>
+    
+    <!-- Pyodide Initialisation Script -->
+    <script>
+
+// Generalisable Pyodide Initialisation Script
+// Variables and state build up naturally as code blocks execute in order
+
+async function main() {
+    // Show loading message for all output elements
+    document.querySelectorAll(".output").forEach(el => {
+        el.textContent = "Loading Pyodide...";
+        el.classList.add("loading-message");
+    });
+    
+    try {
+        // Load Pyodide
+        console.log("Loading Pyodide...");
+        const pyodideStartTime = performance.now();
+        let pyodide = await loadPyodide();
+        const pyodideLoadTime = performance.now() - pyodideStartTime;
+        console.log(`Pyodide loaded in ${pyodideLoadTime.toFixed(2)}ms`);
+        
+        // Load required packages only if specified
+        const lessonPackages = window.LESSON_PACKAGES || [];
+        
+        if (lessonPackages.length > 0) {
+            console.log("Loading required Python packages...");
+            const packagesStartTime = performance.now();
+            
+            // Separate built-in packages from PyPI packages
+            const builtInPackages = lessonPackages.filter(pkg => 
+                ['numpy', 'scipy', 'matplotlib', 'pandas', 'scikit-learn', 'pillow', 'regex'].includes(pkg)
+            );
+            
+            const micropipPackages = lessonPackages.filter(pkg => !builtInPackages.includes(pkg));
+            
+            // Load built-in packages (fast)
+            if (builtInPackages.length > 0) {
+                await pyodide.loadPackage(builtInPackages);
+                console.log(`Loaded built-in packages: ${builtInPackages.join(', ')}`);
+            }
+            
+            // Install PyPI packages (slower)
+            if (micropipPackages.length > 0) {
+                await pyodide.loadPackage(['micropip']);
+                const micropip = pyodide.pyimport('micropip');
+                await micropip.install(micropipPackages);
+                console.log(`Installed PyPI packages: ${micropipPackages.join(', ')}`);
+            }
+            
+            const packagesLoadTime = performance.now() - packagesStartTime;
+            console.log(`Packages loaded in ${packagesLoadTime.toFixed(2)}ms`);
+            console.log(`Total initialisation time: ${(pyodideLoadTime + packagesLoadTime).toFixed(2)}ms`);
+        } else {
+            console.log("No packages to load for this lesson");
+            console.log(`Total initialisation time: ${pyodideLoadTime.toFixed(2)}ms`);
+        }
+
+        // Only set up basic Python environment - no pre-loaded variables
+        await pyodide.runPythonAsync(`
+            import sys
+            from io import StringIO
+        `);
+
+        // Only set up matplotlib if it's in the loaded packages
+        if (lessonPackages.includes('matplotlib')) {
+            await pyodide.runPythonAsync(`
+                # Set up matplotlib for web rendering
+                import matplotlib
+                matplotlib.use('AGG')
+                import matplotlib.pyplot as plt
+                import io
+                import base64
+                
+                def capture_matplotlib():
+                    """Capture current matplotlib figure as HTML img tag"""
+                    buf = io.BytesIO()
+                    plt.savefig(buf, format='png', bbox_inches='tight', dpi=100)
+                    buf.seek(0)
+                    img_base64 = base64.b64encode(buf.read()).decode('utf-8')
+                    plt.close()
+                    return f'<img src="data:image/png;base64,{img_base64}" style="max-width: 100%; height: auto;" />'
+            `);
+            console.log('Matplotlib capture function set up');
+        }
+        
+        console.log("Pyodide loaded successfully");
+        
+        // Load remote files if URLs are specified
+        const lessonFiles = window.LESSON_FILES || [];
+        
+        if (lessonFiles.length > 0) {
+            try {
+                console.log(`Checking for ${lessonFiles.length} remote file(s) to load...`);
+                
+                // Build Python code to load all files dynamically
+                let pythonCode = `
+from pyodide.http import pyfetch
+import os
+
+# Create data directory if it doesn't exist
+os.makedirs('./data', exist_ok=True)
+`;
+                
+                // Add loading code for each file
+                for (const file of lessonFiles) {
+                    pythonCode += `
+# Load ${file.filename}
+try:
+    response = await pyfetch("${file.url}")
+    content = await response.string()
+    with open('./data/${file.filename}', 'w') as f:
+        f.write(content)
+    print("Loaded: ${file.filename}")
+except Exception as e:
+    print(f"Could not load ${file.filename}: {e}")
+`;
+                }
+                
+                await pyodide.runPythonAsync(pythonCode);
+                console.log("Remote files loaded successfully");
+            } catch (error) {
+                console.warn("Error loading remote files (continuing anyway):", error);
+            }
+        } else {
+            console.log("No remote files to load for this lesson");
+        }
+        
+        // Function to execute Python code and capture output
+        async function executePythonCode(code) {
+            try {
+                // Redirect Python stdout to capture print statements
+                await pyodide.runPythonAsync(`
+                    old_stdout = sys.stdout
+                    sys.stdout = mystdout = StringIO()
+                `);
+                
+                // Run the user code
+                const result = await pyodide.runPythonAsync(code);
+                
+                // Get the captured stdout
+                let stdout = await pyodide.runPythonAsync(`
+                    sys.stdout = old_stdout
+                    mystdout.getvalue()
+                `);
+                
+                // Check for matplotlib figures only if matplotlib was loaded
+                const lessonPackages = window.LESSON_PACKAGES || [];
+                if (lessonPackages.includes('matplotlib')) {
+                    const hasFigures = await pyodide.runPythonAsync(`
+                        import matplotlib.pyplot as plt
+                        len(plt.get_fignums()) > 0
+                    `);
+                    
+                    if (hasFigures) {
+                        const figureHtml = await pyodide.runPythonAsync(`capture_matplotlib()`);
+                        if (stdout) stdout += "\n";
+                        stdout += figureHtml;
+                    }
+                }
+                
+                // Combine stdout and result
+                let output = stdout;
+                if (result !== undefined && result !== null && String(result).trim() !== '') {
+                    if (output) output += "\n";
+                    output += String(result);
+                }
+                
+                return { success: true, output: output || "Code executed successfully (no output)" };
+                
+            } catch (error) {
+                return { success: false, output: "Error: " + error.message };
+            }
+        }
+        
+        // Execute all hidden code blocks first (for setup code like imports)
+        const hiddenCodeBlocks = Array.from(document.querySelectorAll('.hidden-code textarea'));
+        console.log(`Found ${hiddenCodeBlocks.length} hidden code blocks`);
+
+        for (const textarea of hiddenCodeBlocks) {
+            const code = textarea.value.trim();
+            if (!code) continue;
+            
+            console.log(`Executing hidden code block: ${textarea.id}`);
+            const result = await executePythonCode(code);
+            
+            if (!result.success) {
+                console.error(`Error in hidden code block ${textarea.id}:`, result.output);
+            } else {
+                console.log(`Hidden code block ${textarea.id} executed successfully`);
+            }
+        }
+
+        console.log("All hidden code blocks executed");
+        
+        // Get all fixed code blocks in document order
+        const fixedCodeBlocks = Array.from(document.querySelectorAll('.code-fixed textarea'));
+        
+        // Setup and execute fixed code blocks sequentially
+        for (const textarea of fixedCodeBlocks) {
+            const code = textarea.value.trim();
+            if (!code) continue;
+            
+            // Set up CodeMirror editor (read-only)
+            const editor = CodeMirror.fromTextArea(textarea, {
+                mode: "python",
+                theme: "pastel-on-dark",
+                lineNumbers: true,
+                readOnly: true,
+                viewportMargin: Infinity
+            });
+            
+            // Find corresponding output element
+            const outputId = textarea.id + '-output';
+            const outputElement = document.getElementById(outputId);
+            
+            if (outputElement) {
+                outputElement.textContent = "Running code...";
+                outputElement.classList.add("loading-message");
+                
+                // Execute the code (this maintains state for subsequent blocks)
+                const result = await executePythonCode(code);
+                
+                // Display the output - check if it's HTML
+                const trimmedOutput = result.output.trim();
+                console.log('Output length:', trimmedOutput.length);
+                console.log('Output starts with:', trimmedOutput.substring(0, 100));
+                
+                if (trimmedOutput.includes('<script') && trimmedOutput.includes('Plotly')) {
+                    // It's Plotly HTML output - extract just the body content
+                    console.log('Rendering as Plotly HTML');
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(result.output, 'text/html');
+                    // Clear the output element and append the body content
+                    outputElement.innerHTML = '';
+                    
+                    // Find and load external scripts first (like Plotly CDN)
+                    const externalScripts = Array.from(doc.querySelectorAll('script[src]'));
+                    const inlineScripts = Array.from(doc.querySelectorAll('script:not([src])'));
+                    
+                    // Append non-script content first
+                    Array.from(doc.body.children).forEach(child => {
+                        if (child.tagName !== 'SCRIPT') {
+                            outputElement.appendChild(child.cloneNode(true));
+                        }
+                    });
+                    
+                    // Load external scripts sequentially
+                    const loadScript = (src) => {
+                        return new Promise((resolve, reject) => {
+                            const script = document.createElement('script');
+                            script.src = src;
+                            script.onload = resolve;
+                            script.onerror = reject;
+                            document.head.appendChild(script);
+                        });
+                    };
+                    
+                    // Load all external scripts first
+                    Promise.all(externalScripts.map(s => loadScript(s.src)))
+                        .then(() => {
+                            console.log('External scripts loaded, executing inline scripts');
+                            // Now execute inline scripts
+                            inlineScripts.forEach(oldScript => {
+                                const newScript = document.createElement('script');
+                                newScript.textContent = oldScript.textContent;
+                                outputElement.appendChild(newScript);
+                            });
+                            console.log('Output element after processing:', outputElement.children.length, 'children');
+                        })
+                        .catch(err => {
+                            console.error('Failed to load external scripts:', err);
+                            outputElement.textContent = 'Error loading Plotly: ' + err.message;
+                        });
+                } else if (trimmedOutput.startsWith('<!DOCTYPE') || 
+                           trimmedOutput.startsWith('<html') ||
+                            trimmedOutput.startsWith('<div') ||
+                            trimmedOutput.startsWith('<img')) {
+                    console.log('Rendering as generic HTML');
+                    outputElement.innerHTML = result.output;
+                    console.log('Output element after innerHTML:', outputElement.children.length, 'children');
+                } else {
+                    console.log('Rendering as plain text');
+                    outputElement.textContent = result.output;
+                }
+                outputElement.classList.remove("loading-message");
+                if (result.success) {
+                    outputElement.classList.add("success-message");
+                    outputElement.classList.remove("error-message");
+                } else {
+                    outputElement.classList.add("error-message");
+                    outputElement.classList.remove("success-message");
+                }
+            }
+            
+            // Small delay to show progression
+            await new Promise(resolve => setTimeout(resolve, 100));
+        }
+        
+        // Setup all editable code blocks (but don't execute them)
+        document.querySelectorAll('.code-editor textarea').forEach((textarea) => {
+            // Set up CodeMirror editor (editable)
+            const editor = CodeMirror.fromTextArea(textarea, {
+                mode: "python",
+                theme: "pastel-on-dark",
+                lineNumbers: true,
+                viewportMargin: Infinity
+            });
+            
+            // Find corresponding run button and output element
+            const baseId = textarea.id;
+            const runButtonId = 'run-' + baseId;
+            const outputId = baseId + '-output';
+            
+            const runButton = document.getElementById(runButtonId);
+            const outputElement = document.getElementById(outputId);
+            
+            if (runButton && outputElement) {
+                // Set initial state
+                outputElement.textContent = "Ready to run code!";
+                outputElement.classList.remove("loading-message");
+                
+                runButton.addEventListener("click", async () => {
+                    const code = editor.getValue().trim();
+                    if (!code) {
+                        outputElement.textContent = "No code to run";
+                        return;
+                    }
+                    
+                    outputElement.textContent = "Running...";
+                    outputElement.classList.remove("error-message", "success-message");
+                    outputElement.classList.add("loading-message");
+                    
+                    // Execute the code (this also maintains state for future blocks)
+                    const result = await executePythonCode(code);
+                    
+                    // Display the output - check if it's HTML
+                    const trimmedOutput = result.output.trim();
+                    console.log('Output length:', trimmedOutput.length);
+                    console.log('Output starts with:', trimmedOutput.substring(0, 100));
+                    
+                    if (trimmedOutput.includes('<script') && trimmedOutput.includes('Plotly')) {
+                        // It's Plotly HTML output - extract just the body content
+                        console.log('Rendering as Plotly HTML');
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(result.output, 'text/html');
+                        // Clear the output element and append the body content
+                        outputElement.innerHTML = '';
+                        
+                        // Find and load external scripts first (like Plotly CDN)
+                        const externalScripts = Array.from(doc.querySelectorAll('script[src]'));
+                        const inlineScripts = Array.from(doc.querySelectorAll('script:not([src])'));
+                        
+                        // Append non-script content first
+                        Array.from(doc.body.children).forEach(child => {
+                            if (child.tagName !== 'SCRIPT') {
+                                outputElement.appendChild(child.cloneNode(true));
+                            }
+                        });
+                        
+                        // Load external scripts sequentially
+                        const loadScript = (src) => {
+                            return new Promise((resolve, reject) => {
+                                const script = document.createElement('script');
+                                script.src = src;
+                                script.onload = resolve;
+                                script.onerror = reject;
+                                document.head.appendChild(script);
+                            });
+                        };
+                        
+                        // Load all external scripts first
+                        Promise.all(externalScripts.map(s => loadScript(s.src)))
+                            .then(() => {
+                                console.log('External scripts loaded, executing inline scripts');
+                                // Now execute inline scripts
+                                inlineScripts.forEach(oldScript => {
+                                    const newScript = document.createElement('script');
+                                    newScript.textContent = oldScript.textContent;
+                                    outputElement.appendChild(newScript);
+                                });
+                                console.log('Output element after processing:', outputElement.children.length, 'children');
+                            })
+                            .catch(err => {
+                                console.error('Failed to load external scripts:', err);
+                                outputElement.textContent = 'Error loading Plotly: ' + err.message;
+                            });
+                    } else if (trimmedOutput.startsWith('<!DOCTYPE') || 
+                               trimmedOutput.startsWith('<html') ||
+                               trimmedOutput.startsWith('<div')) {
+                        outputElement.innerHTML = result.output;
+                    } else {
+                        outputElement.textContent = result.output;
+                    }
+                    outputElement.classList.remove("loading-message");
+                    if (result.success) {
+                        outputElement.classList.add("success-message");
+                        outputElement.classList.remove("error-message");
+                    } else {
+                        outputElement.classList.add("error-message");
+                        outputElement.classList.remove("success-message");
+                    }
+                });
+            }
+        });
+        
+        console.log("All code blocks initialised successfully");
+
+        // Set flag to indicate Pyodide is fully ready
+        window.pyodideReady = true;
+        console.log("Pyodide fully ready");
+        
+    } catch (error) {
+        console.error("Failed to initialise Pyodide:", error);
+        document.querySelectorAll(".output").forEach(el => {
+            el.textContent = "Error loading Pyodide: " + error.message;
+            el.classList.remove("loading-message");
+            el.classList.add("error-message");
+        });
+    }
+}
+
+// Start the application when DOM is loaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', main);
+} else {
+    main();
+}
+    </script>
+</body>
+</html>
+    

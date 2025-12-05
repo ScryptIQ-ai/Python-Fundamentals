@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Pyodide and CodeMirror -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/pastel-on-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/python/python.min.js"></script>
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="../assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../assets/android-chrome-512x512.png">
+    
+    <!-- Core Stylesheets -->
+    <link rel="stylesheet" href=../assets/colours.css>
+    <link rel="stylesheet" href="../assets/shared-styles.css">
+    <link rel="stylesheet" href="../assets/nav-bar.css">
+    <link rel="stylesheet" href="../assets/module_card.css">
+    <link rel="stylesheet" href="../assets/learning_outcomes.css">
+    <link rel="stylesheet" href="../assets/learning_lists.css">
+    <link rel="stylesheet" href="../assets/box_styles.css">
+    <link rel="stylesheet" href="../assets/code_styles.css">
+
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L2D - PF4 - File Operations</title>
+    
+    <!-- File URLs for this lesson -->
+    <script>
+        window.LESSON_FILES = [
+            {url: "https://raw.githubusercontent.com/ScryptIQ-ai/lesson-data/refs/heads/main/pf4/demo_text.txt", filename: "demo_text.txt"},
+            {url: "https://raw.githubusercontent.com/ScryptIQ-ai/lesson-data/refs/heads/main/pf4/example.fastq", filename: "example.fastq"}
+        ];
+        window.LESSON_PACKAGES = [];
+    </script>
+        
+</head>
+<body>
+    
+    <!-- Sidebar Navigation -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <a href="../homepage.html" style="text-decoration: none; display: inline-block;">
+                <img src="../assets/scryptIQ_logo_dark.png" alt="scryptIQ Logo" class="sidebar-logo">
+            </a>
+        </div>
+
+        <h3>Content</h3>
+        <ul>
+            <li><a href="./introduction.html" class="">Introduction</a></li><li><a href="./functions.html">Functions</a></li>
+            <li>
+                <div class="nav-toggle active" data-target="expandable-section-2">
+                    File Operations
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <ul class="nested-nav expanded" id="expandable-section-2"><li><a href="#introduction">Introduction</a></li><li><a href="#reading-text-files">Reading text files</a></li><li><a href="#reading-by-line">Reading by line</a></li><li><a href="#text-file-demonstration">Text file demonstration</a></li><li><a href="#writing-files">Writing files</a></li><li><a href="#fasta---fastq-files">FASTA & FASTQ files</a></li><li><a href="#opening-csvs">Opening CSVs</a></li><li><a href="#alternatives-for-csvs">Alternatives for CSVs</a></li><li><a href="#summary">Summary</a></li>
+                </ul>
+            </li><li><a href="./coding-style.html">Good Coding Practices</a></li><li><a href="./assignment.html">Assignment</a></li><li><a href="./feedback.html">Feedback</a></li>
+        </ul>
+
+        <h3 class="collapsible-header collapsed">
+            Resources
+            <span class="collapse-icon">►</span>
+        </h3>
+        <div class="collapsible-content collapsed">
+            <ul>
+                <li><a href="./glossary.html">Glossary</a></li><li><a href="./downloads.html">Downloads</a></li><li><a href="../HB/introduction.html">Handbook</a></li>
+            </ul>
+        </div>
+
+        <h3 class="collapsible-header collapsed">
+            Previous Modules
+            <span class="collapse-icon">►</span>
+        </h3>
+        <div class="collapsible-content collapsed">
+            <ul>
+            <li><a href="../PF0/introduction.html">PF0</a></li>
+            <li><a href="../PF1/introduction.html">PF1</a></li>
+            <li><a href="../PF2/introduction.html">PF2</a></li>
+            <li><a href="../PF3/introduction.html">PF3</a></li>
+        </ul>
+        </div>
+
+        <h3>
+            <li><a href="./report-issue.html">Report an Issue</a></li>
+        </h3>
+    </div>
+    
+    <!-- Sidebar Toggle Button -->
+    <button id="sidebar-toggle" class="sidebar-toggle">❮</button>
+    
+    <!-- Main Content Area -->
+    <div id="main-content" class="main-content">
+        <!-- Top Navigation Bar -->
+        <div class="top-navbar">
+            <h1 class="page-title">Python Fundamentals 4</h1>
+            <div class="nav-actions">
+                <a href="../homepage.html" class="text-button" title="Materials homepage">
+                    Homepage
+                </a>
+                <a href="https://learntodiscover.ai/my-cohorts/" class="text-button" title="Find out more about us">
+                    Learn to Discover
+                </a>
+            </div>
+        </div>
+
+        
+            <div class="module-card" id="introduction">
+                <div class="module-header">
+                    File Operations <span class="module-tag">PF4</span>
+                </div>
+                <div class="module-body">
+                    <h3>Learning Objectives</h3>
+                    <div class="learning-outcomes">
+                        <div class="outcome-item">
+                    <span class="outcome-number">1</span>
+                    <span class="outcome-text">Understand **good practices** when opening a file</span>
+                </div>
+<div class="outcome-item">
+                    <span class="outcome-number">2</span>
+                    <span class="outcome-text">How to **iterate over data** from a file</span>
+                </div>
+<div class="outcome-item">
+                    <span class="outcome-number">3</span>
+                    <span class="outcome-text">How to **write data** to a new file</span>
+                </div>
+<div class="outcome-item">
+                    <span class="outcome-number">4</span>
+                    <span class="outcome-text">Reading **text** and **CSV** files</span>
+                </div>
+                    </div>
+                    <h3>Introduction</h3>
+                    <p>Within base Python there are functions to load in and augment files, including reading in information and creating and writing to new files. The two types of files that can be read are text-based files, typically ending in <code>.txt</code>, and binary files that contain machine code (we won&#x27;t be working with these).<br><br>There are also built-in modules that can be imported to work with Comma-Separated Values (<strong>CSV</strong>) files: a simple, plain-text file format used to store tabular data, such as you would find in a spreadsheet or database. Their lightweight and simple structure makes them the go-to format for storing tabular data. Branded spreadsheet applications such as Microsoft Excel, Google Sheets and Apple Numbers, can all save files as <code>.csv</code> instead of their proprietary formats.</p><p>In this section we will focus on <code>.txt</code> files first as a way to explore the syntax for opening, creating, and writing to any file. We&#x27;ll apply this methodology to two common bioinformatics formats - <strong>.FASTA</strong> and <strong>.FASTQ</strong> — to demonstrate its flexibility in data format transformation. Lastly, we&#x27;ll work with the <code>CSV</code> module to open its namesake file type, as well as an alternative third-party method to achieve the same.</p>
+        <div class="info-box key-terms-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                KEY TERMS
+            </div>
+            <div class="box-content">
+                <p><strong>Text file</strong>: A file format that stores data as human-readable characters, typically using <em>plain text</em> encoding such as <strong>UTF-8</strong> or <strong>ASCII</strong>. Text files can be opened and edited in any <em>text editor</em>.<br><br><strong>CSV file</strong>: Short for <em>Comma-Separated Values</em>, CSV comprises a plain-text format for storing tabular data where each line represents a row and values within each row are separated by commas.</p>
+            </div>
+        </div>
+        
+                </div>
+            </div>
+            
+            <div class="module-card" id="reading-text-files">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Reading text files</h3>
+                        <h4>The basics</h4><p>To read a file into Python we need to have a system in place to first <strong>open</strong> the file and then finally to <strong>close</strong> it <em>securely</em>: the same workflow as if we were to manually open a file to read.<br><br>It&#x27;s important to close a file formally rather than just exiting the script or notebook, much like it is correct to close documents before you turn off your computer. Failing to do so may corrupt the file or cause memory leakage.</p><p>The tools for this are the <a href="https://docs.python.org/3/library/functions.html#open"><code>open()</code></a> function, which creates a file object that can be read into the working memory using the <code>.read()</code> method. Once we have finished, we use <code>.close()</code> to terminate the connection, properly.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-23"># We are working with the demo_text.txt file
+# The &quot;r&quot; argument dictates that open should only allow the file to be read
+file = open(&quot;./data/demo_text.txt&quot;, &quot;r&quot;)</textarea>
+            </div>
+            <div id="code-cell-23-output" class="output" style="display: none;"></div>
+        </div>
+        
+        <div class="info-box key-terms-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                KEY TERMS
+            </div>
+            <div class="box-content">
+                <p><ul class="nested-list"><li><strong>Relative path</strong>: In the cell above, we used a <strong>relative path</strong> through the use of a <code>.</code>. Relative paths are specified relative to the current working directory (folder) that a document or terminal is operating in. For example, if you were working out of a Jupyter Notebook, the location of the notebook would be considered the root. To point to an image on the same level as the Jupyter Notebook, the filepath would need only be <code>./image.jpeg</code>. These dots <code>.</code> are useful when you want to access something in the same or nearby folder, as you don&#x27;t need to type out the whole path of the file. Aside from brevity, relative paths have the advantage that they will remain in tact, so long as the files in question are on the same storage level as they were when the path was written. So if you had your Jupyter Notebook and image file together in a folder, the relative path will remain the same, even if you move that folder to a completely different location on your hard drive; or even someone else&#x27;s harddrive. This is why relative paths are particularly handy for data that is shared between users.</li><br><li><strong>Absolute path</strong>: Conversely, an absoltue path points to a file&#x27;s exact location. So long as it doesn&#x27;t move, this type of file path is always precise and accurate. But it is harder to share, as it will be different each time the files are moved from one location to another. An example of the absolute path for the above: <code>&quot;C:/Projects/L2D/data/demo_text.txt&quot;</code></li></ul></p>
+            </div>
+        </div>
+        <p>Once we have opened a connection to the file, we can call the <code>.read()</code> method to load its contents. As the file is quite long, we can pass it an integer argument to limit the number of characters that are read in from the beginning. If nothing were given inside the method, then the whole file would be read into memory.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-24"># Read in the first 20 characters
+content = file.read(20)
+
+print(content)
+# Remember to always call close after opening a file
+file.close()</textarea>
+            </div>
+            <div id="code-cell-24-output" class="output"></div>
+        </div>
+        <p>When calling <code>.open()</code>, we should always specify the mode argument explicitly. This is the second argument, <code>&quot;r&quot;</code>, that can be seen in the example above. Even though <code>&quot;r&quot;</code> is the default, it is good practice to state it. The mode dictates whether the file is for reading, writing, appending, etc. Setting a file to <em>read only</em> will protect it from accidentally being overwritten.</p><p>See below for a table of some of the mode characters and their meaning:</p><table class="markdown-table">
+<thead>
+<tr>
+<th>Character</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>'r'</code></td>
+<td>open for reading (default)</td>
+</tr>
+<tr>
+<td><code>'w'</code></td>
+<td>open for writing, truncating the file first</td>
+</tr>
+<tr>
+<td><code>'x'</code></td>
+<td>open for exclusive creation, failing if the file already exists</td>
+</tr>
+<tr>
+<td><code>'a'</code></td>
+<td>open for writing, appending to the end of file if it exists</td>
+</tr>
+<tr>
+<td><code>'+'</code></td>
+<td>open for updating (reading and writing)</td>
+</tr>
+</tbody>
+</table><p>Different modes can be chained together with a <code>+</code> notation. For example, <code>&quot;r+w&quot;</code> would allow reading and writing of the file.</p><h4>Opening a file with a handle</h4>
+        <div class="video-container">
+            <iframe 
+                src="https://www.youtube.com/embed/eV5Tv3Q51PU"
+                width="560"
+                height="315"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+        <p>The above methodology of opening a file demonstrates the correct steps: <em>open</em>, <em>read</em>, <em>close</em>. However, there is a tidier way to handle closing files. One where you open a temporary connection to the file that automatically closes it once your operations are finished. This uses the <code>with</code> statement and is the standard approach.</p><p>Repeating what we did above using <code>with</code>, we call the <code>open()</code> function after <code>with</code> and designate a temporary file handle name with <code>as</code>, followed by a colon. Whenever a colon is used in Python, the next line must be indented.</p><p>Within the indented section of the code, we can write all of the actions we want to perform. When the script is being executed, the interpreter will run all these actions.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-25"># Using `with` creates tidier, cleaner code
+
+with open(&quot;./data/demo_text.txt&quot;, &quot;r&quot;) as file:
+    content = file.read(20)
+    print(content)</textarea>
+            </div>
+            <div id="code-cell-25-output" class="output"></div>
+        </div>
+        <p>Once finished, the <code>with</code> block is exited and the connection is closed automatically.</p><p>To be even more safe, users will often place the <code>with open()</code> statement within a <code>try</code> <code>except</code> block, to ensure that errors reading a file are handled graciously.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-26"># Add our with open() statement to the try section
+try:
+    with open(&#x27;./data/demo_text_fake.txt&quot;&#x27;, &#x27;r&#x27;) as file:
+        content = file.read()
+        print(content)
+# We can chain together multiple error exceptions with custom messages
+except FileNotFoundError:
+    print(&quot;Error: The file was not found.&quot;)
+except PermissionError:
+    print(&quot;Error: Permission denied to access the file.&quot;)
+# Using &#x27;Exception as e&#x27; lets us create a custom message that retains the error message
+except Exception as e:
+    print(f&quot;An unexpected error occurred: {e}&quot;)</textarea>
+            </div>
+            <div id="code-cell-26-output" class="output"></div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="reading-by-line">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Reading by line</h3>
+                        <p>In text files you will often find that a new line indicates a separate bit of data; an obvious example would be a script. Using the <code>.readlines()</code> method on our file object will read all the data into a <strong>list</strong>, where each item is a new line from the file.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-27"># We use .readlines() to import all lines in our file into a list
+with open(&quot;./data/demo_text.txt&quot;, &quot;r&quot;) as file:
+    content = file.readlines()
+    print(content[0])
+    print(content[1])</textarea>
+            </div>
+            <div id="code-cell-27-output" class="output"></div>
+        </div>
+        <p>You may have noticed that there is a blank line between the two printed lines. This is because there is a <code>\n</code> at the end of each item in the list, which tells the computer there is a new line. This is how <code>readlines()</code> knows how to split the text file into lines; they are part of the text file, we just don&#x27;t see them in our editors.</p><p>We can see them using the <code>repr()</code> function:</p>
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-28"># Play around with the output of content
+
+print(repr(content[0]))</textarea>
+            </div>
+            <button id="run-code-cell-28" class="run-button">Run Code</button>
+            <div id="code-cell-28-output" class="output"></div>
+        </div>
+        <p>Whilst <code>\n</code> is good for <code>print()</code> it will corrupt any data that you wish to extract from a text file. An easy method to get rid of <code>\n</code> or trailing whitespaces (another common annoyance) is to use strings built-in <code>.strip()</code> method.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-29">print(repr(content[0].strip()))</textarea>
+            </div>
+            <div id="code-cell-29-output" class="output"></div>
+        </div>
+        
+        <div class="info-box key-terms-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                KEY TERMS
+            </div>
+            <div class="box-content">
+                <p><strong>\n (newline character)</strong>: As we learned in Python Fundamentals 1, this is an example of an <strong>escape sequence</strong>. <code>\n</code> in particular, is a newline character that represents the end of a line of text, telling Python&#x27;s interpreter to move to a new line.</p>
+            </div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="text-file-demonstration">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Text file demonstration</h3>
+                        <p>Let&#x27;s put together what we have demonstrated here some concepts that we learned earlier in the Python Fundamentals module. After the first two lines, there is an AI-generated conversation between two scryptIQ course instructors about opening files. The content is formatted with the speaker&#x27;s name in capital letters, followed by a colon, and their lines. We want to count how many characters each speaker uses.</p><h4>Building our code</h4><p>First we open our file and assign the list of lines to the variable <code>content</code>. Assigning it to the variable <code>content</code> will retain the data into memory, even after the file is closed.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-30">with open(&quot;./data/demo_text.txt&quot;, &quot;r&quot;) as file:
+    content = file.readlines()</textarea>
+            </div>
+            <div id="code-cell-30-output" class="output" style="display: none;"></div>
+        </div>
+        <p>As the lines are stored as a list, we can iterate over the contents, accessing each line, in turn. Using the <code>.split()</code> method we can separate each line into its constituent words, as follows:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-31"># Loop over the content (a list of lines)
+for c, line in enumerate(content):
+    
+    print(line)
+    words = line.strip()
+    words = words.split()
+
+    # Skip lines with no words
+    if len(words) == 0:
+        continue
+    
+    # Print the first line to show how it is split into a new list
+    if c == 0:
+        print(&quot;Post split&quot;, words, &quot;\n&quot;)
+
+    # break stops the loop when executed
+    if c == 3:
+        break</textarea>
+            </div>
+            <div id="code-cell-31-output" class="output"></div>
+        </div>
+        <p>From printing the first few lines we can confirm that the speakers&#x27; lines are formatted so that the first word corresponds to their names in capital letters, followed by a colon. We can use this to dictate when we want to record the characters in a line and who to assign the count to.</p><p>To capture this information, we will firstly define a block of code that checks for two things:<br><ol class="nested-list"><li>Is the first word capitalised?</li><br><li>Is this word followed by a colon?</li></ol></p><p>Only when these two conditions are met do we want an action to occur.</p>
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-32"># Run this cell with different strings to see if the logic works
+
+first_word = &#x27;ADAM:&#x27;
+
+# Check if word is in all caps by equating it to .upper()
+bool_capital = first_word == first_word.upper()
+
+# Check if the last character of the word is a :
+bool_colon = first_word[-1] == &quot;:&quot;
+
+# Will only be True if both are True
+process_line = bool_capital and bool_colon
+
+process_line</textarea>
+            </div>
+            <button id="run-code-cell-32" class="run-button">Run Code</button>
+            <div id="code-cell-32-output" class="output"></div>
+        </div>
+        <p>Now that we have our function to check words, we can build out the rest of the script:<br><ol class="nested-list"><li>Create a <em>data structure</em> to store our count.</li><br><li>Give the first word of a list to the function, per loop.</li><br><li><strong>Strip</strong> the speaker&#x27;s name from the line</li><br><li><strong>Count</strong> the characters in the remaining words and add them to our <em>data structure</em></li></ol></p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-33"># Create a dictionary with values at 0 -  no characters
+speaker_dict = {&#x27;adam&#x27; : 0, &#x27;laurence&#x27; : 0}
+
+for line in content:
+    
+    words = line.split()
+
+    if len(words) == 0:
+        continue
+    
+    # Isolate the first word with index 0
+    first_word = words[0]
+
+    # Check if word is in all caps by equating it to .upper()
+    bool_capital = first_word == first_word.upper()
+    bool_colon = first_word[-1] == &quot;:&quot;
+    process_line = bool_capital and bool_colon
+
+    # If process_line is True, then execute the indented code
+    if process_line:
+
+        # Strip the : from the speakers name and make it lower to match the dictionary
+        speaker = words[0][:-1]
+        speaker = speaker.lower()
+
+        # Iterate over all the words in the list
+        for c, word in enumerate(words):
+            
+            # Skip the speakers name
+            if c == 0:
+                continue
+            # Count the characters in the word and update the dictionary
+            else:
+                characters = len(word)
+                speaker_dict[speaker] += characters
+</textarea>
+            </div>
+            <div id="code-cell-33-output" class="output" style="display: none;"></div>
+        </div>
+        <p>Now our dictionary is updated we can see who had the most characters said. We could just do this by printing the dictionary, however, this is a Python course so we can to automate the analysis.<br><br>Can you complete the <code>else</code> statement in the cell below to compare the second items values to the first</p><p>Try to <strong>complete the code cell</strong> below. The aim is to loop through the dictionary, store the characters and speaker name from the first loop and compare it the characters and speaker in the next loop.<br><br><em>Hint: use an <code>if</code>/<code>else</code> statement</em></p>
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-34"># As .items() returns two variables we must put them in () when combined
+# with enumerate()
+for c, (key, value) in enumerate(speaker_dict.items()):
+
+    print(f&quot;{key}: {value}&quot;)
+ 
+print(&quot;\n&quot;, f&quot;The speaker with the most characters is {max_speaker.capitalize()} with {max_characters} characters&quot;)</textarea>
+            </div>
+            <button id="run-code-cell-34" class="run-button">Run Code</button>
+            <div id="code-cell-34-output" class="output"></div>
+        </div>
+        <p>See the solution below if you are struggling:</p>
+        <div class="code-area">
+            <div class="code-collapse-header" onclick="toggleCodeCollapse('code-cell-35')">
+                <span class="code-collapse-icon">▶</span>
+                <span class="code-collapse-label">Show code</span>
+            </div>
+            <div class="code-container code-fixed code-collapsed" id="code-cell-35-container">
+                <textarea id="code-cell-35">for c, (key, value) in enumerate(speaker_dict.items()):
+
+    print(f&quot;{key}: {value}&quot;)
+
+    if c == 0:
+        max_characters = value 
+        max_speaker = key
+
+    else:
+        if value &gt; max_characters:
+            max_characters = value
+            max_speaker = key
+    
+print(&quot;\n&quot;, f&quot;The speaker with the most characters is {max_speaker.capitalize()} with {max_characters} characters&quot;)</textarea>
+            </div>
+            <div id="code-cell-35-output" class="output" style="display: none;"></div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="text-file-demonstration">
+                <div class="module-body">
+                    <div class="module-section">
+                        
+        <div class="info-box practice-exercise-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                PRACTICE EXERCISE
+            </div>
+            <div class="box-content">
+                <p><strong>1.</strong></p>
+                <p>Using the code above, alter it so that rather than counting the number of characters, it counts the number of words.</p>
+            </div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-36"># Write your code here</textarea>
+            </div>
+            <button id="run-code-cell-36" class="run-button">Run Code</button>
+            <div id="code-cell-36-output" class="output"></div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="writing-files">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Writing files</h3>
+                        <p>We can write a file in exactly the same way, except this time we change the mode to <code>&quot;w&quot;</code>. Now that the file is primed to be written to, we can use the <code>.write()</code> method to add new text to the file. Remember, if you want the new text to be on a new line, include <code>\n</code>.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-37">with open(&#x27;new_text.txt&#x27;, &#x27;w&#x27;) as file:
+    # Let&#x27;s write it out a few times
+    file.write(&quot;Hello, world! \n&quot;)
+    file.write(&quot;This is L2D&quot;)</textarea>
+            </div>
+            <div id="code-cell-37-output" class="output" style="display: none;"></div>
+        </div>
+        <p>We can now open our saved file and read its content.</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-38">with open(&#x27;new_text.txt&#x27;, &#x27;r&#x27;) as file:
+    print(file.read())</textarea>
+            </div>
+            <div id="code-cell-38-output" class="output"></div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="writing-files">
+                <div class="module-body">
+                    <div class="module-section">
+                        
+        <div class="info-box practice-exercise-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                PRACTICE EXERCISE
+            </div>
+            <div class="box-content">
+                <p><strong>2.</strong></p>
+                <p>Try writing and reading your own text file in the cell below.<br><em>Warning: These files are stored in your web browsers memory, so don&#x27;t overdo it (although text files are typically very small).</em></p>
+            </div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-39"># Write your code here</textarea>
+            </div>
+            <button id="run-code-cell-39" class="run-button">Run Code</button>
+            <div id="code-cell-39-output" class="output"></div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="fasta---fastq-files">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>FASTA & FASTQ files</h3>
+                        <p>A typical workflow for many bioscientists does not involve creating a new file out of nothing, but instead reading in some data, transforming it, and writing its output into a new file.<br><br>We&#x27;ll demonstrate this workflow using FASTQ files, transforming them into the more common FASTA file type.</p><p>For those unacquainted with FASTA/FASTQ files, they are standard text formats for storing biological sequence data. FASTA files contain sequence headers (lines beginning with <code>&gt;</code>) and sequences, whilst FASTQ files additionally include quality scores for each base. A common bioinformatic tool, the Basic Local Alignment Search Tool (BLAST) is often used to search for nucleic acid subsequences, within larger records, giving detailed alignment information, and finding matches between query and target sequences. BLAST requires FASTA format input and doesn&#x27;t use quality information in its search, and so we often need to convert our FASTQ sequencing data by extracting just the identifiers and sequences, and discarding all extraneous information and metadata.</p><p>First we will open our example <code>.fastq</code> file to observe its structure:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-40">with open(&#x27;./data/example.fastq&#x27;, &#x27;r&#x27;) as file:
+    data = file.readlines()
+
+print(&quot;The identifier line, indicated by @&quot;)
+print(&quot;-&quot; * 40)
+print(data[0])
+print(&quot;The sequence itself&quot;)
+print(&quot;-&quot; * 40)
+print(data[1])
+print(&quot;A separator line&quot;)
+print(&quot;-&quot; * 40)
+print(data[2])
+print(&quot;The quality score line&quot;)
+print(&quot;-&quot; * 40)
+print(data[3])</textarea>
+            </div>
+            <div id="code-cell-40-output" class="output"></div>
+        </div>
+        <p>From the above, we can see that FASTQ files have a repeating 4-line structure for each sequence, so we need a way to identify which of the four lines we&#x27;re currently processing, using this information to extract the first and second lines.<br><br>Capturing the first two lines in the file is easy: they are index <code>0</code> and <code>1</code> in the loop. However subsequent repetitions are harder - i.e. <code>4</code>, <code>8</code>, <code>12</code> for the first line. Since they are all mutltiples of 4, we can use the modulus operator:  <code>%</code>.</p>
+        <div class="info-box remember-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                REMEMBER
+            </div>
+            <div class="box-content">
+                <p>If you cast your memory back to our <strong>Python Fundamentals 1</strong> lesson, you can see that modulus <code>%</code> is used to find the <strong>remainder</strong> after a division. We can use this with 4 to indicate which line of the four we are on in the loop, as follows:</p>
+            </div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-41">print(f&quot;Is 4 % 4 == 0: {4 % 4 == 0}&quot;)
+
+print(f&quot;Is 5 % 4 == 1: {5 % 4 == 1}&quot;)
+
+print(f&quot;Is 6 % 4 == 2: {6 % 4 == 2}&quot;)
+
+print(f&quot;Is 7 % 4 == 3: {7 % 4 == 3}&quot;)
+
+print(f&quot;Is 4 % 4 == 0: {8 % 4 == 0}&quot;)</textarea>
+            </div>
+            <div id="code-cell-41-output" class="output"></div>
+        </div>
+        <p>Every time the loop comes to a clean multiple of 4, the modulus resets to 0.</p><p>In this way, modulus is the perfect tool for iterating over an object that has repetitive motifs, where each might require the application of differing operations.</p><p>Given this, let&#x27;s build some code to write a new FASTA file:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-42"># open a new file with &quot;w&quot;
+with open(&quot;./data/example-converted.fasta&quot;, &quot;w&quot;) as file:
+
+    # iterate through our data from above
+    for c, line in enumerate(data):
+
+        # if the first line in the list....
+        if c % 4 == 0:
+
+            # replace @ with &gt; and write to file
+            file.write(line.replace(&quot;@&quot;, &quot;&gt;&quot;))
+            
+        # if the second line also write it to the file
+        if c % 4 == 1:
+            file.write(line)
+</textarea>
+            </div>
+            <div id="code-cell-42-output" class="output" style="display: none;"></div>
+        </div>
+        <p>We can now read our file to check that it works in the way we expect:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-43">with open(&#x27;./data/example-converted.fasta&#x27;, &#x27;r&#x27;) as file:
+    data = file.readlines()
+
+print(&quot;Identifier line&quot;)
+print(&quot;-&quot; * 40)
+print(data[0])
+print(&quot;The sequence&quot;)
+print(&quot;-&quot; * 40)
+print(data[1])
+print(&quot;Second identifier&quot;)
+print(&quot;-&quot; * 40)
+print(data[2])
+print(&quot;Second sequence&quot;)
+print(&quot;-&quot; * 40)
+print(data[3])</textarea>
+            </div>
+            <div id="code-cell-43-output" class="output"></div>
+        </div>
+        <p>Whilst this demonstration may not be useful to all bioscientists, it is a nice example of a typical script that you can make for everyday tasks.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="opening-csvs">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Opening CSVs</h3>
+                        <p>Many datasets available online or generated by analytical machines will produce a comma-separated value (CSV) file, a lightweight tabular text file. Typically within a CSV file, the first line (row) contains the headers of each column; every new line (row) below contains the data points per heading, per sample. The headers and data points are separated by commas (<code>,</code>), hence the name, although they can be separated by other separators, which can be accounted for, as well.</p><p>Whilst you can read a CSV file using the same syntax as we have for text files, it has one flaw that can crop up intermittently: that is, commas <em>inside</em> data points. We can demonstrate this with the example below:</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-44"># We can create a dummy set of data and save it to a CSV
+
+csv_data = &quot;&quot;&quot;Patient,Location,Age,Sex
+Helena,&quot;Den Haag, the Netherlands&quot;,34,F
+Bob,&quot;Little Rock, Arkansas, USA&quot;,67,M
+Jane,&quot;London, UK&quot;,42,F
+Marcus,&quot;Toronto, Canada&quot;,28,M
+Priya,&quot;Mumbai, India&quot;,55,F&quot;&quot;&quot;
+
+with open(&#x27;./data/patients.csv&#x27;, &#x27;w&#x27;) as file:
+    file.write(csv_data)</textarea>
+            </div>
+            <div id="code-cell-44-output" class="output" style="display: none;"></div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-45"># Using just .split() and not the csv module doesn&#x27;t work
+
+with open(&#x27;./data/patients.csv&#x27;, &#x27;r&#x27;) as file:
+    data = file.readlines()
+    
+    for line in data:
+        print(line.split(&quot;,&quot;))</textarea>
+            </div>
+            <div id="code-cell-45-output" class="output"></div>
+        </div>
+        <p>The <code>csv</code> object from the module can handle these exceptions, giving you greater control over parsing the incoming data. To do this, rather than call <code>.read()</code> on the file, we use the <code>csv</code> class with the method <code>.reader()</code>. This can then accept the file as an argument, alongside kyeword arguments that indicate the separator (<code>delimiter</code>) and the character that indicates a quote or single unit of data (<code>quotechar</code>).</p>
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-46"># First we need to import the module
+import csv</textarea>
+            </div>
+            <div id="code-cell-46-output" class="output" style="display: none;"></div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-fixed">
+                <textarea id="code-cell-47"># Both a , and &quot; are the default values for delimiter and quotechar respectively
+
+with open(&#x27;./data/patients.csv&#x27;, &#x27;r&#x27;) as file:
+
+    csv_reader = csv.reader(file, delimiter=&quot;,&quot;, quotechar=&#x27;&quot;&#x27;)
+    
+    for row in csv_reader:
+        print(row)</textarea>
+            </div>
+            <div id="code-cell-47-output" class="output"></div>
+        </div>
+        
+        <div class="code-area">
+            <div class="code-container code-editor">
+                <textarea id="code-cell-48"># Have a play with the arguments of .reader() to see their effect
+
+with open(&#x27;./data/patients.csv&#x27;, &#x27;r&#x27;) as file:
+
+    csv_reader = csv.reader(file, delimiter=&quot;,&quot;, quotechar=&#x27;&quot;&#x27;)
+    
+    for row in csv_reader:
+        print(row)</textarea>
+            </div>
+            <button id="run-code-cell-48" class="run-button">Run Code</button>
+            <div id="code-cell-48-output" class="output"></div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="opening-csvs">
+                <div class="module-body">
+                    <div class="module-section">
+                        
+        <div class="info-box practice-exercise-box">
+            <div class="box-title">
+                <span class="box-icon"></span>
+                PRACTICE EXERCISE
+            </div>
+            <div class="box-content">
+                <p><strong>3.</strong></p>
+                <p>Open and read the patients CSV file that we just created.<ol class="nested-list"><li>Append the sample <strong>rows</strong> (<em>excluding the headers</em>) to an empty <strong>list</strong> called <code>data</code></li><br><li>Extract the <strong>ages</strong> of <em>each patient</em> into a single <strong>list</strong> and <strong>print</strong> the maximum (<em>Hint: use the max() function on the list</em>)</li><br><li>Extract the <strong>sex</strong> of each patient into a list and count how many <strong>Females</strong> are in the dataset</li></ol></p>
+            </div>
+        </div>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="alternatives-for-csvs">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Alternatives for CSVs</h3>
+                        <p>There are also a few third-party packages that handle tabular data, including reading it into the workspace. One of them is <a href="https://pandas.pydata.org"><code>pandas</code></a>, which we will be expanding upon in the <strong>Data Handling</strong> module of this course. Like <code>csv</code>, <code>pandas</code> can read in CSV files given differing arguments, but will also contain it in a data structure called a <strong>Pandas DataFrame</strong>, which is much like an interactive spreadsheet, that will allow you to <em>manipulate</em> columns and rows of data in a much simpler way. It is a go-to package for data scientists with lots of extensions to it for analytics and visualisations.</p><p>For the everyday researcher, <code>pandas</code> will fit the bill; however, it does have limitations, where choosing <code>csv</code> over it may be preferable:<br><ul class="nested-list"><li><strong>Memory constraints</strong> - <code>csv.reader()</code> processes the file line by line, allowing you to save only the data you want. <code>Pandas</code> loads everything by default.</li><br><li><strong>Non-tabular</strong> - Sometimes data isn&#x27;t in the perfect format and you will need to clean it first before <code>pandas</code>.</li><br><li><strong>Pipeline processing</strong> - Due to being lightweight, processing data live for use elsewhere is much cleaner with <code>csv</code>.</li><br><li><strong>Simple</strong> - If you just need to extract or clean a few values, then <code>csv</code> will do the job.</li></ul></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-card" id="summary">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Summary</h3>
+                        <p>Python has many robust, built-in functions for handling a wide range of data types, including text and CSV files. In this section of this Python Fundamentals lesson, we learned the correct methods to <strong>open</strong> and <strong>close</strong> files, as well as demonstrating how to access <strong>sequential lines</strong> within these files. Using these skills, we can now <strong>parse</strong>, <strong>clean</strong>, and <strong>save</strong> data from one file to another.</p>
+                    </div>
+                </div>
+            </div>
+            
+        
+        <div class="page-navigation">
+            <a href="./functions.html" class="nav-button prev">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
+                Previous
+            </a>
+            <a href="./coding-style.html" class="nav-button next">
+                Next
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                </svg>
+            </a></div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div>© All materials are copyright scryptIQ 2025</div>
+            <div>Powered by Pyodide</div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../assets/main.js"></script>
+    
+    <!-- Pyodide Initialisation Script -->
+    <script>
+
+// Generalisable Pyodide Initialisation Script
+// Variables and state build up naturally as code blocks execute in order
+
+async function main() {
+    // Show loading message for all output elements
+    document.querySelectorAll(".output").forEach(el => {
+        el.textContent = "Loading Pyodide...";
+        el.classList.add("loading-message");
+    });
+    
+    try {
+        // Load Pyodide
+        console.log("Loading Pyodide...");
+        const pyodideStartTime = performance.now();
+        let pyodide = await loadPyodide();
+        const pyodideLoadTime = performance.now() - pyodideStartTime;
+        console.log(`Pyodide loaded in ${pyodideLoadTime.toFixed(2)}ms`);
+        
+        // Load required packages only if specified
+        const lessonPackages = window.LESSON_PACKAGES || [];
+        
+        if (lessonPackages.length > 0) {
+            console.log("Loading required Python packages...");
+            const packagesStartTime = performance.now();
+            
+            // Separate built-in packages from PyPI packages
+            const builtInPackages = lessonPackages.filter(pkg => 
+                ['numpy', 'scipy', 'matplotlib', 'pandas', 'scikit-learn', 'pillow', 'regex'].includes(pkg)
+            );
+            
+            const micropipPackages = lessonPackages.filter(pkg => !builtInPackages.includes(pkg));
+            
+            // Load built-in packages (fast)
+            if (builtInPackages.length > 0) {
+                await pyodide.loadPackage(builtInPackages);
+                console.log(`Loaded built-in packages: ${builtInPackages.join(', ')}`);
+            }
+            
+            // Install PyPI packages (slower)
+            if (micropipPackages.length > 0) {
+                await pyodide.loadPackage(['micropip']);
+                const micropip = pyodide.pyimport('micropip');
+                await micropip.install(micropipPackages);
+                console.log(`Installed PyPI packages: ${micropipPackages.join(', ')}`);
+            }
+            
+            const packagesLoadTime = performance.now() - packagesStartTime;
+            console.log(`Packages loaded in ${packagesLoadTime.toFixed(2)}ms`);
+            console.log(`Total initialisation time: ${(pyodideLoadTime + packagesLoadTime).toFixed(2)}ms`);
+        } else {
+            console.log("No packages to load for this lesson");
+            console.log(`Total initialisation time: ${pyodideLoadTime.toFixed(2)}ms`);
+        }
+
+        // Only set up basic Python environment - no pre-loaded variables
+        await pyodide.runPythonAsync(`
+            import sys
+            from io import StringIO
+        `);
+
+        // Only set up matplotlib if it's in the loaded packages
+        if (lessonPackages.includes('matplotlib')) {
+            await pyodide.runPythonAsync(`
+                # Set up matplotlib for web rendering
+                import matplotlib
+                matplotlib.use('AGG')
+                import matplotlib.pyplot as plt
+                import io
+                import base64
+                
+                def capture_matplotlib():
+                    """Capture current matplotlib figure as HTML img tag"""
+                    buf = io.BytesIO()
+                    plt.savefig(buf, format='png', bbox_inches='tight', dpi=100)
+                    buf.seek(0)
+                    img_base64 = base64.b64encode(buf.read()).decode('utf-8')
+                    plt.close()
+                    return f'<img src="data:image/png;base64,{img_base64}" style="max-width: 100%; height: auto;" />'
+            `);
+            console.log('Matplotlib capture function set up');
+        }
+        
+        console.log("Pyodide loaded successfully");
+        
+        // Load remote files if URLs are specified
+        const lessonFiles = window.LESSON_FILES || [];
+        
+        if (lessonFiles.length > 0) {
+            try {
+                console.log(`Checking for ${lessonFiles.length} remote file(s) to load...`);
+                
+                // Build Python code to load all files dynamically
+                let pythonCode = `
+from pyodide.http import pyfetch
+import os
+
+# Create data directory if it doesn't exist
+os.makedirs('./data', exist_ok=True)
+`;
+                
+                // Add loading code for each file
+                for (const file of lessonFiles) {
+                    pythonCode += `
+# Load ${file.filename}
+try:
+    response = await pyfetch("${file.url}")
+    content = await response.string()
+    with open('./data/${file.filename}', 'w') as f:
+        f.write(content)
+    print("Loaded: ${file.filename}")
+except Exception as e:
+    print(f"Could not load ${file.filename}: {e}")
+`;
+                }
+                
+                await pyodide.runPythonAsync(pythonCode);
+                console.log("Remote files loaded successfully");
+            } catch (error) {
+                console.warn("Error loading remote files (continuing anyway):", error);
+            }
+        } else {
+            console.log("No remote files to load for this lesson");
+        }
+        
+        // Function to execute Python code and capture output
+        async function executePythonCode(code) {
+            try {
+                // Redirect Python stdout to capture print statements
+                await pyodide.runPythonAsync(`
+                    old_stdout = sys.stdout
+                    sys.stdout = mystdout = StringIO()
+                `);
+                
+                // Run the user code
+                const result = await pyodide.runPythonAsync(code);
+                
+                // Get the captured stdout
+                let stdout = await pyodide.runPythonAsync(`
+                    sys.stdout = old_stdout
+                    mystdout.getvalue()
+                `);
+                
+                // Check for matplotlib figures only if matplotlib was loaded
+                const lessonPackages = window.LESSON_PACKAGES || [];
+                if (lessonPackages.includes('matplotlib')) {
+                    const hasFigures = await pyodide.runPythonAsync(`
+                        import matplotlib.pyplot as plt
+                        len(plt.get_fignums()) > 0
+                    `);
+                    
+                    if (hasFigures) {
+                        const figureHtml = await pyodide.runPythonAsync(`capture_matplotlib()`);
+                        if (stdout) stdout += "\n";
+                        stdout += figureHtml;
+                    }
+                }
+                
+                // Combine stdout and result
+                let output = stdout;
+                if (result !== undefined && result !== null && String(result).trim() !== '') {
+                    if (output) output += "\n";
+                    output += String(result);
+                }
+                
+                return { success: true, output: output || "Code executed successfully (no output)" };
+                
+            } catch (error) {
+                return { success: false, output: "Error: " + error.message };
+            }
+        }
+        
+        // Execute all hidden code blocks first (for setup code like imports)
+        const hiddenCodeBlocks = Array.from(document.querySelectorAll('.hidden-code textarea'));
+        console.log(`Found ${hiddenCodeBlocks.length} hidden code blocks`);
+
+        for (const textarea of hiddenCodeBlocks) {
+            const code = textarea.value.trim();
+            if (!code) continue;
+            
+            console.log(`Executing hidden code block: ${textarea.id}`);
+            const result = await executePythonCode(code);
+            
+            if (!result.success) {
+                console.error(`Error in hidden code block ${textarea.id}:`, result.output);
+            } else {
+                console.log(`Hidden code block ${textarea.id} executed successfully`);
+            }
+        }
+
+        console.log("All hidden code blocks executed");
+        
+        // Get all fixed code blocks in document order
+        const fixedCodeBlocks = Array.from(document.querySelectorAll('.code-fixed textarea'));
+        
+        // Setup and execute fixed code blocks sequentially
+        for (const textarea of fixedCodeBlocks) {
+            const code = textarea.value.trim();
+            if (!code) continue;
+            
+            // Set up CodeMirror editor (read-only)
+            const editor = CodeMirror.fromTextArea(textarea, {
+                mode: "python",
+                theme: "pastel-on-dark",
+                lineNumbers: true,
+                readOnly: true,
+                viewportMargin: Infinity
+            });
+            
+            // Find corresponding output element
+            const outputId = textarea.id + '-output';
+            const outputElement = document.getElementById(outputId);
+            
+            if (outputElement) {
+                outputElement.textContent = "Running code...";
+                outputElement.classList.add("loading-message");
+                
+                // Execute the code (this maintains state for subsequent blocks)
+                const result = await executePythonCode(code);
+                
+                // Display the output - check if it's HTML
+                const trimmedOutput = result.output.trim();
+                console.log('Output length:', trimmedOutput.length);
+                console.log('Output starts with:', trimmedOutput.substring(0, 100));
+                
+                if (trimmedOutput.includes('<script') && trimmedOutput.includes('Plotly')) {
+                    // It's Plotly HTML output - extract just the body content
+                    console.log('Rendering as Plotly HTML');
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(result.output, 'text/html');
+                    // Clear the output element and append the body content
+                    outputElement.innerHTML = '';
+                    
+                    // Find and load external scripts first (like Plotly CDN)
+                    const externalScripts = Array.from(doc.querySelectorAll('script[src]'));
+                    const inlineScripts = Array.from(doc.querySelectorAll('script:not([src])'));
+                    
+                    // Append non-script content first
+                    Array.from(doc.body.children).forEach(child => {
+                        if (child.tagName !== 'SCRIPT') {
+                            outputElement.appendChild(child.cloneNode(true));
+                        }
+                    });
+                    
+                    // Load external scripts sequentially
+                    const loadScript = (src) => {
+                        return new Promise((resolve, reject) => {
+                            const script = document.createElement('script');
+                            script.src = src;
+                            script.onload = resolve;
+                            script.onerror = reject;
+                            document.head.appendChild(script);
+                        });
+                    };
+                    
+                    // Load all external scripts first
+                    Promise.all(externalScripts.map(s => loadScript(s.src)))
+                        .then(() => {
+                            console.log('External scripts loaded, executing inline scripts');
+                            // Now execute inline scripts
+                            inlineScripts.forEach(oldScript => {
+                                const newScript = document.createElement('script');
+                                newScript.textContent = oldScript.textContent;
+                                outputElement.appendChild(newScript);
+                            });
+                            console.log('Output element after processing:', outputElement.children.length, 'children');
+                        })
+                        .catch(err => {
+                            console.error('Failed to load external scripts:', err);
+                            outputElement.textContent = 'Error loading Plotly: ' + err.message;
+                        });
+                } else if (trimmedOutput.startsWith('<!DOCTYPE') || 
+                           trimmedOutput.startsWith('<html') ||
+                            trimmedOutput.startsWith('<div') ||
+                            trimmedOutput.startsWith('<img')) {
+                    console.log('Rendering as generic HTML');
+                    outputElement.innerHTML = result.output;
+                    console.log('Output element after innerHTML:', outputElement.children.length, 'children');
+                } else {
+                    console.log('Rendering as plain text');
+                    outputElement.textContent = result.output;
+                }
+                outputElement.classList.remove("loading-message");
+                if (result.success) {
+                    outputElement.classList.add("success-message");
+                    outputElement.classList.remove("error-message");
+                } else {
+                    outputElement.classList.add("error-message");
+                    outputElement.classList.remove("success-message");
+                }
+            }
+            
+            // Small delay to show progression
+            await new Promise(resolve => setTimeout(resolve, 100));
+        }
+        
+        // Setup all editable code blocks (but don't execute them)
+        document.querySelectorAll('.code-editor textarea').forEach((textarea) => {
+            // Set up CodeMirror editor (editable)
+            const editor = CodeMirror.fromTextArea(textarea, {
+                mode: "python",
+                theme: "pastel-on-dark",
+                lineNumbers: true,
+                viewportMargin: Infinity
+            });
+            
+            // Find corresponding run button and output element
+            const baseId = textarea.id;
+            const runButtonId = 'run-' + baseId;
+            const outputId = baseId + '-output';
+            
+            const runButton = document.getElementById(runButtonId);
+            const outputElement = document.getElementById(outputId);
+            
+            if (runButton && outputElement) {
+                // Set initial state
+                outputElement.textContent = "Ready to run code!";
+                outputElement.classList.remove("loading-message");
+                
+                runButton.addEventListener("click", async () => {
+                    const code = editor.getValue().trim();
+                    if (!code) {
+                        outputElement.textContent = "No code to run";
+                        return;
+                    }
+                    
+                    outputElement.textContent = "Running...";
+                    outputElement.classList.remove("error-message", "success-message");
+                    outputElement.classList.add("loading-message");
+                    
+                    // Execute the code (this also maintains state for future blocks)
+                    const result = await executePythonCode(code);
+                    
+                    // Display the output - check if it's HTML
+                    const trimmedOutput = result.output.trim();
+                    console.log('Output length:', trimmedOutput.length);
+                    console.log('Output starts with:', trimmedOutput.substring(0, 100));
+                    
+                    if (trimmedOutput.includes('<script') && trimmedOutput.includes('Plotly')) {
+                        // It's Plotly HTML output - extract just the body content
+                        console.log('Rendering as Plotly HTML');
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(result.output, 'text/html');
+                        // Clear the output element and append the body content
+                        outputElement.innerHTML = '';
+                        
+                        // Find and load external scripts first (like Plotly CDN)
+                        const externalScripts = Array.from(doc.querySelectorAll('script[src]'));
+                        const inlineScripts = Array.from(doc.querySelectorAll('script:not([src])'));
+                        
+                        // Append non-script content first
+                        Array.from(doc.body.children).forEach(child => {
+                            if (child.tagName !== 'SCRIPT') {
+                                outputElement.appendChild(child.cloneNode(true));
+                            }
+                        });
+                        
+                        // Load external scripts sequentially
+                        const loadScript = (src) => {
+                            return new Promise((resolve, reject) => {
+                                const script = document.createElement('script');
+                                script.src = src;
+                                script.onload = resolve;
+                                script.onerror = reject;
+                                document.head.appendChild(script);
+                            });
+                        };
+                        
+                        // Load all external scripts first
+                        Promise.all(externalScripts.map(s => loadScript(s.src)))
+                            .then(() => {
+                                console.log('External scripts loaded, executing inline scripts');
+                                // Now execute inline scripts
+                                inlineScripts.forEach(oldScript => {
+                                    const newScript = document.createElement('script');
+                                    newScript.textContent = oldScript.textContent;
+                                    outputElement.appendChild(newScript);
+                                });
+                                console.log('Output element after processing:', outputElement.children.length, 'children');
+                            })
+                            .catch(err => {
+                                console.error('Failed to load external scripts:', err);
+                                outputElement.textContent = 'Error loading Plotly: ' + err.message;
+                            });
+                    } else if (trimmedOutput.startsWith('<!DOCTYPE') || 
+                               trimmedOutput.startsWith('<html') ||
+                               trimmedOutput.startsWith('<div')) {
+                        outputElement.innerHTML = result.output;
+                    } else {
+                        outputElement.textContent = result.output;
+                    }
+                    outputElement.classList.remove("loading-message");
+                    if (result.success) {
+                        outputElement.classList.add("success-message");
+                        outputElement.classList.remove("error-message");
+                    } else {
+                        outputElement.classList.add("error-message");
+                        outputElement.classList.remove("success-message");
+                    }
+                });
+            }
+        });
+        
+        console.log("All code blocks initialised successfully");
+
+        // Set flag to indicate Pyodide is fully ready
+        window.pyodideReady = true;
+        console.log("Pyodide fully ready");
+        
+    } catch (error) {
+        console.error("Failed to initialise Pyodide:", error);
+        document.querySelectorAll(".output").forEach(el => {
+            el.textContent = "Error loading Pyodide: " + error.message;
+            el.classList.remove("loading-message");
+            el.classList.add("error-message");
+        });
+    }
+}
+
+// Start the application when DOM is loaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', main);
+} else {
+    main();
+}
+    </script>
+</body>
+</html>
+    
