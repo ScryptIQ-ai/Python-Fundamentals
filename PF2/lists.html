@@ -17,7 +17,7 @@
     <link rel="icon" type="image/png" sizes="512x512" href="../assets/android-chrome-512x512.png">
     
     <!-- Core Stylesheets -->
-    <link rel="stylesheet" href="../assets/colours.css">
+    <link rel="stylesheet" href=../assets/colours.css>
     <link rel="stylesheet" href="../assets/shared-styles.css">
     <link rel="stylesheet" href="../assets/nav-bar.css">
     <link rel="stylesheet" href="../assets/module_card.css">
@@ -40,8 +40,11 @@
     <!-- Sidebar Navigation -->
     <div id="sidebar" class="sidebar">
         <div class="sidebar-header">
+            <a href="../homepage.html" style="text-decoration: none; display: inline-block;">
+                <img src="../assets/scryptIQ_logo_dark.png" alt="scryptIQ Logo" class="sidebar-logo">
+            </a>
         </div>
-        
+
         <h3>Content</h3>
         <ul>
             <li><a href="./introduction.html" class="">Introduction</a></li>
@@ -50,7 +53,7 @@
                     Lists
                     <span class="toggle-icon">▼</span>
                 </div>
-                <ul class="nested-nav expanded" id="expandable-section-1"><li><a href="#introduction">Introduction</a></li><li><a href="#what-are-lists">What are lists?</a></li><li><a href="#creating-lists">Creating Lists</a></li><li><a href="#list-characteristics">List characteristics</a></li><li><a href="#indexing--accessing-specific-elements">Indexing: accessing specific elements</a></li><li><a href="#slicing--accessing-multiple-specific-elements">Slicing: accessing multiple specific elements</a></li><li><a href="#mutability">Mutability</a></li><li><a href="#methods">Methods</a></li><li><a href="#membership-testing">Membership testing</a></li><li><a href="#references-and-copies">References and copies</a></li><li><a href="#nested-lists">Nested Lists</a></li><li><a href="#nested-lists-as-matrices">Nested lists as matrices</a></li><li><a href="#summary">Summary</a></li>
+                <ul class="nested-nav expanded" id="expandable-section-1"><li><a href="#introduction">Introduction</a></li><li><a href="#what-are-lists">What are lists?</a></li><li><a href="#creating-lists">Creating Lists</a></li><li><a href="#list-characteristics">List characteristics</a></li><li><a href="#indexing--accessing-specific-items">Indexing: accessing specific items</a></li><li><a href="#slicing--accessing-multiple-specific-items">Slicing: accessing multiple specific items</a></li><li><a href="#mutability">Mutability</a></li><li><a href="#methods">Methods</a></li><li><a href="#membership-testing">Membership testing</a></li><li><a href="#references-and-copies">References and copies</a></li><li><a href="#nested-lists">Nested Lists</a></li><li><a href="#nested-lists-as-matrices">Nested lists as matrices</a></li><li><a href="#summary">Summary</a></li>
                 </ul>
             </li><li><a href="./tuples.html">Tuples</a></li><li><a href="./sets.html">Sets</a></li><li><a href="./strings.html">Strings</a></li><li><a href="./comparison.html">Comparison</a></li><li><a href="./assignment.html">Assignment</a></li><li><a href="./feedback.html">Feedback</a></li>
         </ul>
@@ -90,6 +93,12 @@
         <div class="top-navbar">
             <h1 class="page-title">Python Fundamentals 2</h1>
             <div class="nav-actions">
+                <a href="../homepage.html" class="text-button" title="Materials homepage">
+                    Homepage
+                </a>
+                <a href="https://learntodiscover.ai/my-cohorts/" class="text-button" title="Find out more about us">
+                    Learn to Discover
+                </a>
             </div>
         </div>
 
@@ -144,7 +153,7 @@
                 KEY TERMS
             </div>
             <div class="box-content">
-                <p><strong>Lists</strong>: One of the most common data structures in Python, providing a flexible structure that can hold mixed data types in square brackets <code>[]</code>, separated by commas.<br><br><strong>Item / Element</strong>: An individual value stored within a data structure such as a list. Also referred to as an element.</p>
+                <p><strong>Lists</strong>: One of the most common data structures in Python, providing a flexible structure that can hold mixed data types in square brackets <code>[]</code>, separated by commas.<br><br><strong>Item / Element</strong>: An individual value stored within a data structure such as a list. Also referred to as an item.</p>
             </div>
         </div>
         
@@ -164,18 +173,19 @@
                 NOTE
             </div>
             <div class="box-content">
-                <p>In additition to lists, the Python ecosystem includes external packages, and one such popular package that we will use throughout our course, is <strong>NumPy</strong>. NumPy provides its own data structure type known as the <strong>NumPy array</strong>. NumPy arrays are especially useful for mathematical operations, as they support fast, element-wise computations and are optimised for performance. Unlike regular Python lists, NumPy arrays store data more efficiently and in a fixed type, making them well suited to numerical applications. However, a lot of the concepts behind lists are applicable to NumPy arrays. We will explore the differences between NumPy arrays and lists later in the Data Handling module of the course, but they are worth mentioning at this stage, due to their importance in mathematical and scientific computing.</p>
+                <p>In additition to lists, the Python ecosystem includes external packages, and one such popular package that we will use throughout our course, is <strong>NumPy</strong>. NumPy provides its own data structure type known as the <strong>NumPy array</strong>. NumPy arrays are especially useful for mathematical operations, as they support fast, item-wise computations and are optimised for performance. Unlike regular Python lists, NumPy arrays store data more efficiently and in a fixed type, making them well suited to numerical applications. However, a lot of the concepts behind lists are applicable to NumPy arrays. We will explore the differences between NumPy arrays and lists later in the Data Handling module of the course, but they are worth mentioning at this stage, due to their importance in mathematical and scientific computing.</p>
             </div>
         </div>
         
-        <div class="image-placeholder">
-            <div class="placeholder-content">
-                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polygon points="5,3 19,12 5,21"/>
-                </svg>
-                <p><strong>Video unavailable:</strong></p>
-                <p><small>No URL provided</small></p>
-            </div>
+        <div class="video-container">
+            <iframe 
+                src="https://www.youtube.com/embed/4D1pUO5A4HY"
+                width="560"
+                height="315"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
         </div>
         
                     </div>
@@ -366,10 +376,10 @@ else:
                 </div>
             </div>
             
-            <div class="module-card" id="indexing--accessing-specific-elements">
+            <div class="module-card" id="indexing--accessing-specific-items">
                 <div class="module-body">
                     <div class="module-section">
-                        <h3>Indexing: accessing specific elements</h3>
+                        <h3>Indexing: accessing specific items</h3>
                         <h4>The fundamentals</h4><p>Now that we have our data inside a list, we might want to access individual or multiple items within our list.<br><br>Each item inside a list has a specific position, termed its <strong>index</strong>, which is a whole number or <strong>integer</strong>, starting with <code>0</code> which references the first position. Each subsequent character index then increases by a value of 1. We can visualise this as follows:</p><p><img src="./images/list-1.png" alt="indexing a list" class="notebook-image"></p>
         <div class="info-box key-terms-box">
             <div class="box-title">
@@ -377,7 +387,7 @@ else:
                 KEY TERMS
             </div>
             <div class="box-content">
-                <p><strong>Index</strong>: The position of an element in a list. In Python, indexes are numbered starting from 0 for the first element.</p>
+                <p><strong>Index</strong>: The position of an item in a list. In Python, indexes are numbered starting from 0 for the first item.</p>
             </div>
         </div>
         
@@ -387,7 +397,7 @@ else:
                 FACT
             </div>
             <div class="box-content">
-                <p>Why <code>0</code> and not <code>1</code> for indexing?<br><br>This is because Python, as a coding language, uses <strong>zero-based indexing</strong> as the method for finding the first element. This was chosen due to its memory efficiency and continuation from other coding languages like <strong>C</strong>.</p>
+                <p>Why <code>0</code> and not <code>1</code> for indexing?<br><br>This is because Python, as a coding language, uses <strong>zero-based indexing</strong> as the method for finding the first item. This was chosen due to its memory efficiency and continuation from other coding languages like <strong>C</strong>.</p>
             </div>
         </div>
         <p>Now that we know the positional value (index) of each item, we can use that index to retrieve it from a list.<br><br>Given a list stored in the variable <code>my_list</code>, we can access an item by writing the variable name, followed by the index value, inside a pair of square brackets <code>[]</code>.</p>
@@ -437,12 +447,12 @@ my_list[4]</textarea>
             <button id="run-code-cell-14" class="run-button">Run Code</button>
             <div id="code-cell-14-output" class="output"></div>
         </div>
-        <h4>Negative indexing</h4><p>In scenarios where you might have a long list and wish to access elements at, or near to, the end of that list, it is sometimes more convenient to index an array, backwards — that is, to reference the members from the end of the list, first. This is termed <strong>negative indexing</strong>.<br><br>For example, we could have automated sampling of data from an experiment, and it may be that you are only interested in the most recent recording to check that everything is running correctly. If your list is, say, 124 items in length, it might be cumbersome to access the list using <code>exp_data[123]</code>. In such example, using negative indexing provides a cleaner and easier way to access the last value: <code>exp_data[-1]</code>. It&#x27;s easier to write than other alternatives such as <code>exp_data[len(exp_data) - 1]</code>, which relies on the <code>len()</code> function in order to retrieve the last item in the list.<br><br>The following diagram displays a list with numbers in it, and shows both the positive and negative index of each item.</p><p><img src="./images/list-2.png" alt="negative indexing a list" class="notebook-image"></p>
+        <h4>Negative indexing</h4><p>In scenarios where you might have a long list and wish to access items at, or near to, the end of that list, it is sometimes more convenient to index an array, backwards — that is, to reference the members from the end of the list, first. This is termed <strong>negative indexing</strong>.<br><br>For example, we could have automated sampling of data from an experiment, and it may be that you are only interested in the most recent recording to check that everything is running correctly. If your list is, say, 124 items in length, it might be cumbersome to access the list using <code>exp_data[123]</code>. In such example, using negative indexing provides a cleaner and easier way to access the last value: <code>exp_data[-1]</code>. It&#x27;s easier to write than other alternatives such as <code>exp_data[len(exp_data) - 1]</code>, which relies on the <code>len()</code> function in order to retrieve the last item in the list.<br><br>The following diagram displays a list with numbers in it, and shows both the positive and negative index of each item.</p><p><img src="./images/list-2.png" alt="negative indexing a list" class="notebook-image"></p>
         <div class="code-area">
             <div class="code-container code-fixed">
                 <textarea id="code-cell-15">codons = [&#x27;ATG&#x27;, &#x27;GCA&#x27;, &#x27;TTC&#x27;, &#x27;TAG&#x27;]  # Start, Ala, Phe, Stop
 
-print(f&quot;Last codon: {codons[-1]}&quot;)      # -1 = last element
+print(f&quot;Last codon: {codons[-1]}&quot;)      # -1 = last item
 print(f&quot;Second to last: {codons[-2]}&quot;)  # -2 = second from end</textarea>
             </div>
             <div id="code-cell-15-output" class="output"></div>
@@ -461,7 +471,7 @@ print(f&quot;Second to last: {codons[-2]}&quot;)  # -2 = second from end</textar
                 </div>
             </div>
             
-            <div class="module-card" id="indexing--accessing-specific-elements">
+            <div class="module-card" id="indexing--accessing-specific-items">
                 <div class="module-body">
                     <div class="module-section">
                         
@@ -530,7 +540,7 @@ print(amino_acids.index(&#x27;Pro&#x27;))</textarea>
             </div>
             <div id="code-cell-19-output" class="output"></div>
         </div>
-        <p>A handy feature of the <code>.index()</code> method is that it will raise a <code>ValueError</code> when the value does not exist in the <code>list</code>. You can use this as a method to query large lists for wanted information. These errors were also introduced in the <a href="./PF1/errors-in-python.html"><strong>PF1</strong></a> lesson.</p>
+        <p>A handy feature of the <code>.index()</code> method is that it will raise a <code>ValueError</code> when the value does not exist in the <code>list</code>. You can use this as a method to query large lists for wanted information. These errors were also introduced in the <a href="../PF1/errors-in-python.html"><strong>PF1</strong></a> lesson.</p>
         <div class="code-area">
             <div class="code-container code-editor">
                 <textarea id="code-cell-20"># Run this cell to see the error message
@@ -545,10 +555,10 @@ print(amino_acids.index(&#x27;Cys&#x27;))</textarea>
                 </div>
             </div>
             
-            <div class="module-card" id="slicing--accessing-multiple-specific-elements">
+            <div class="module-card" id="slicing--accessing-multiple-specific-items">
                 <div class="module-body">
                     <div class="module-section">
-                        <h3>Slicing: accessing multiple specific elements</h3>
+                        <h3>Slicing: accessing multiple specific items</h3>
                         <p>You can also retrieve more than one value from a <code>list</code> at a time, using a mechanism called <strong>slicing</strong>. To slice a list you use square brackets <code>[]</code> directly after the variable storing your list: <code>my_list[]</code>. Slicing extracts portions of lists using a <code>[start:end]</code> notation, where start and end are integers, separated by a colon.</p>
         <div class="info-box remember-box">
             <div class="box-title">
@@ -570,7 +580,7 @@ print(my_slice)</textarea>
             </div>
             <div id="code-cell-21-output" class="output"></div>
         </div>
-        <p>If we want to retrieve all the values <em>from</em> the first index, it can be written in either of two ways: <code>my_list[0:3]</code> or <code>my_list[:3]</code> with the latter being more commonly used. The start index (<code>0</code>, in this case) is done away with entirely, with Python&#x27;s interpreter implicitly treating this as meaning &#x27;all elements up to&#x27; to the stop index.</p>
+        <p>If we want to retrieve all the values <em>from</em> the first index, it can be written in either of two ways: <code>my_list[0:3]</code> or <code>my_list[:3]</code> with the latter being more commonly used. The start index (<code>0</code>, in this case) is done away with entirely, with Python&#x27;s interpreter implicitly treating this as meaning &#x27;all items up to&#x27; to the stop index.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
                 <textarea id="code-cell-22"># Including the zero when slicing from the first index is not necessary
@@ -639,7 +649,7 @@ my_2nd_list[slice(0, 6)]</textarea>
             <button id="run-code-cell-27" class="run-button">Run Code</button>
             <div id="code-cell-27-output" class="output"></div>
         </div>
-        <p>And now run the cell below, which operates over the same 6 elements, but skips every second item from its returned output, by the provision of <code>2</code> as the <strong>step</strong> argument:</p>
+        <p>And now run the cell below, which operates over the same 6 items, but skips every second item from its returned output, by the provision of <code>2</code> as the <strong>step</strong> argument:</p>
         <div class="code-area">
             <div class="code-container code-editor">
                 <textarea id="code-cell-28">my_2nd_list[slice(0, 6, 2)]</textarea>
@@ -652,7 +662,7 @@ my_2nd_list[slice(0, 6)]</textarea>
                 </div>
             </div>
             
-            <div class="module-card" id="slicing--accessing-multiple-specific-elements">
+            <div class="module-card" id="slicing--accessing-multiple-specific-items">
                 <div class="module-body">
                     <div class="module-section">
                         
@@ -742,14 +752,14 @@ print(amino_acids)</textarea>
                 <p>The key difference when comparing methods to functions is that <code>methods</code> are <em>dependent on their object</em>; they <strong>cannot be called independently</strong>. To call a method, we use dot notation <code>.</code> in Python, appending the method to the object using its name. I.e. <code>my_list.append(5)</code>, <code>my_list.index(3)</code>.</p>
             </div>
         </div>
-        <h4>Types of methods</h4><p>Methods can be separated into two general categories:<br><ol class="nested-list"><li>Operations that <em>return</em> a result <strong>without</strong> modifying the original object.</li><br><li>Operations that <strong>modify</strong> the original object, but <em>do not return</em> anything.</li></ol></p><h4>Adding to (and combining) lists</h4><p>One useful feature of <strong>lists</strong> is the ability to add new items to them. There are two common built-in Python methods for this <code>.append()</code> and <code>.insert()</code>. Both of these methods operate <em>in situ</em>, modifying the original <em>list</em>.<br><br>As with two strings, the <code>+</code> operator can also be used to add one list to another <em>via</em> a process called <strong>concatenation</strong>.</p><h4>.append()</h4><p>The Python method <code>.append()</code> can be used to add items to the <em>end</em> of a <code>list</code>. If that item is a collection like another <code>list</code>, the entire collection is added as a <em>single element</em>, rather than merging its contents.</p>
+        <h4>Types of methods</h4><p>Methods can be separated into two general categories:<br><ol class="nested-list"><li>Operations that <em>return</em> a result <strong>without</strong> modifying the original object.</li><br><li>Operations that <strong>modify</strong> the original object, but <em>do not return</em> anything.</li></ol></p><h4>Adding to (and combining) lists</h4><p>One useful feature of <strong>lists</strong> is the ability to add new items to them. There are two common built-in Python methods for this <code>.append()</code> and <code>.insert()</code>. Both of these methods operate <em>in situ</em>, modifying the original <em>list</em>.<br><br>As with two strings, the <code>+</code> operator can also be used to add one list to another <em>via</em> a process called <strong>concatenation</strong>.</p><h4>.append()</h4><p>The Python method <code>.append()</code> can be used to add items to the <em>end</em> of a <code>list</code>. If that item is a collection like another <code>list</code>, the entire collection is added as a <em>single item</em>, rather than merging its contents.</p>
         <div class="info-box note-box">
             <div class="box-title">
                 <span class="box-icon"></span>
                 NOTE
             </div>
             <div class="box-content">
-                <p>When you have a list stored within another list as an item or element, we call the outer list a <strong>nested list</strong>. The inner list is referred to as a <strong>sublist</strong>, and will appear as a comma-separated element inside the outer list, and will be wrapped in square brackets <code>[]</code>.</p>
+                <p>When you have a list stored within another list as an item or item, we call the outer list a <strong>nested list</strong>. The inner list is referred to as a <strong>sublist</strong>, and will appear as a comma-separated item inside the outer list, and will be wrapped in square brackets <code>[]</code>.</p>
             </div>
         </div>
         
@@ -910,7 +920,7 @@ print(f&#x27;Negative results: {negative_count}&#x27;)</textarea>
             </div>
             <div id="code-cell-40-output" class="output"></div>
         </div>
-        <p><strong>Extending lists:</strong> The <code>.extend()</code> method adds all items from one list to another, and retains the item designation in the destination list. For instance, unlike <code>.append()</code> which adds the entire list as a single element, using <code>.extend()</code> adds all items to the list <em>as individual items</em>. And unlike using the <code>+</code> operator, <code>.extend()</code>, modifies the original list <em>in situ</em>.</p>
+        <p><strong>Extending lists:</strong> The <code>.extend()</code> method adds all items from one list to another, and retains the item designation in the destination list. For instance, unlike <code>.append()</code> which adds the entire list as a single item, using <code>.extend()</code> adds all items to the list <em>as individual items</em>. And unlike using the <code>+</code> operator, <code>.extend()</code>, modifies the original list <em>in situ</em>.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
                 <textarea id="code-cell-41">morning_samples = [&#x27;A1&#x27;, &#x27;A2&#x27;, &#x27;A3&#x27;]
@@ -1157,7 +1167,7 @@ print(&#x27;Modified treatment:&#x27;, treatment_data)</textarea>
                 KEY TERMS
             </div>
             <div class="box-content">
-                <p><strong>Nested</strong>: A data structure that contains other data structures of the same type within it. In the context of lists, a nested list is a list that contains other lists as its elements, creating a multi-dimensional structure similar to a table with rows and columns. The diagram below helps to visualise this concept.</p>
+                <p><strong>Nested</strong>: A data structure that contains other data structures of the same type within it. In the context of lists, a nested list is a list that contains other lists as its items, creating a multi-dimensional structure similar to a table with rows and columns. The diagram below helps to visualise this concept.</p>
             </div>
         </div>
         <p><img src="./images/list-4.png" alt="Nested List" class="notebook-image"></p><h4>Creating nested lists</h4><p>Think of nested lists as being like a table with rows and columns, where each row is a separate list:</p>
@@ -1174,10 +1184,10 @@ print(experiment_data)</textarea>
             </div>
             <div id="code-cell-54-output" class="output"></div>
         </div>
-        <h4>Accessing elements in a nested list</h4><p>To access elements in nested lists, use multiple square brackets <code>[]</code>. The first index selects the row, the second selects the column:</p>
+        <h4>Accessing items in a nested list</h4><p>To access items in nested lists, use multiple square brackets <code>[]</code>. The first index selects the row, the second selects the column:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-55"># Access specific elements
+                <textarea id="code-cell-55"># Access specific items
 print(&#x27;First sample data:&#x27;, experiment_data[0])  # First row
 print(&#x27;First sample ID:&#x27;, experiment_data[0][0])  # First row, first column
 print(&#x27;Second sample temperature:&#x27;, experiment_data[1][2])  # Second row, third column
@@ -1185,7 +1195,7 @@ print(&#x27;All growth rates:&#x27;, [row[3] for row in experiment_data])  # All
             </div>
             <div id="code-cell-55-output" class="output"></div>
         </div>
-        <h4>Modifying nested lists</h4><p>You can modify elements in nested lists just like regular lists:</p>
+        <h4>Modifying nested lists</h4><p>You can modify items in nested lists just like regular lists:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
                 <textarea id="code-cell-56"># Update a specific measurement
@@ -1241,7 +1251,7 @@ gene_expression = [
                 <div class="module-body">
                     <div class="module-section">
                         <h3>Nested lists as matrices</h3>
-                        <p>A list where at least one of the items is not a list, is considered a one-dimensional (1-D) list. A list can be considered two-dimensional (2-D) when all of its items are lists of another data collection type, themselves. If the internal data lists are all of different sizes, it is called a <strong>jagged list</strong>. The opposite, where all lists are of the same size, would be called a <strong>matrix</strong>.<br><br>Matrices are important structures in mathematics and machine learning, as they provide a standardised way to represent and manipulate data in tabular form. Their rectangular structure allows for efficient mathematical operations such as matrix multiplication, transposition, and element-wise calculations. It is therefore important that we introduce them, early on.</p><p>The implementation of a matrix is identical to other nested arrays. However, there is a visually appealing way to do so by offsetting the outer brackets of the list:</p>
+                        <p>A list where at least one of the items is not a list, is considered a one-dimensional (1-D) list. A list can be considered two-dimensional (2-D) when all of its items are lists of another data collection type, themselves. If the internal data lists are all of different sizes, it is called a <strong>jagged list</strong>. The opposite, where all lists are of the same size, would be called a <strong>matrix</strong>.<br><br>Matrices are important structures in mathematics and machine learning, as they provide a standardised way to represent and manipulate data in tabular form. Their rectangular structure allows for efficient mathematical operations such as matrix multiplication, transposition, and item-wise calculations. It is therefore important that we introduce them, early on.</p><p>The implementation of a matrix is identical to other nested arrays. However, there is a visually appealing way to do so by offsetting the outer brackets of the list:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
                 <textarea id="code-cell-58">matrix = [
@@ -1364,6 +1374,28 @@ async function main() {
             import sys
             from io import StringIO
         `);
+
+        // Only set up matplotlib if it's in the loaded packages
+        if (lessonPackages.includes('matplotlib')) {
+            await pyodide.runPythonAsync(`
+                # Set up matplotlib for web rendering
+                import matplotlib
+                matplotlib.use('AGG')
+                import matplotlib.pyplot as plt
+                import io
+                import base64
+                
+                def capture_matplotlib():
+                    """Capture current matplotlib figure as HTML img tag"""
+                    buf = io.BytesIO()
+                    plt.savefig(buf, format='png', bbox_inches='tight', dpi=100)
+                    buf.seek(0)
+                    img_base64 = base64.b64encode(buf.read()).decode('utf-8')
+                    plt.close()
+                    return f'<img src="data:image/png;base64,{img_base64}" style="max-width: 100%; height: auto;" />'
+            `);
+            console.log('Matplotlib capture function set up');
+        }
         
         console.log("Pyodide loaded successfully");
         
@@ -1420,10 +1452,25 @@ except Exception as e:
                 const result = await pyodide.runPythonAsync(code);
                 
                 // Get the captured stdout
-                const stdout = await pyodide.runPythonAsync(`
+                let stdout = await pyodide.runPythonAsync(`
                     sys.stdout = old_stdout
                     mystdout.getvalue()
                 `);
+                
+                // Check for matplotlib figures only if matplotlib was loaded
+                const lessonPackages = window.LESSON_PACKAGES || [];
+                if (lessonPackages.includes('matplotlib')) {
+                    const hasFigures = await pyodide.runPythonAsync(`
+                        import matplotlib.pyplot as plt
+                        len(plt.get_fignums()) > 0
+                    `);
+                    
+                    if (hasFigures) {
+                        const figureHtml = await pyodide.runPythonAsync(`capture_matplotlib()`);
+                        if (stdout) stdout += "\n";
+                        stdout += figureHtml;
+                    }
+                }
                 
                 // Combine stdout and result
                 let output = stdout;
@@ -1540,7 +1587,8 @@ except Exception as e:
                         });
                 } else if (trimmedOutput.startsWith('<!DOCTYPE') || 
                            trimmedOutput.startsWith('<html') ||
-                           trimmedOutput.startsWith('<div')) {
+                            trimmedOutput.startsWith('<div') ||
+                            trimmedOutput.startsWith('<img')) {
                     console.log('Rendering as generic HTML');
                     outputElement.innerHTML = result.output;
                     console.log('Output element after innerHTML:', outputElement.children.length, 'children');
