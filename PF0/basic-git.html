@@ -17,7 +17,7 @@
     <link rel="icon" type="image/png" sizes="512x512" href="../assets/android-chrome-512x512.png">
     
     <!-- Core Stylesheets -->
-    <link rel="stylesheet" href="../assets/colours.css">
+    <link rel="stylesheet" href=../assets/colours.css>
     <link rel="stylesheet" href="../assets/shared-styles.css">
     <link rel="stylesheet" href="../assets/nav-bar.css">
     <link rel="stylesheet" href="../assets/module_card.css">
@@ -40,8 +40,11 @@
     <!-- Sidebar Navigation -->
     <div id="sidebar" class="sidebar">
         <div class="sidebar-header">
+            <a href="../homepage.html" style="text-decoration: none; display: inline-block;">
+                <img src="../assets/scryptIQ_logo_dark.png" alt="scryptIQ Logo" class="sidebar-logo">
+            </a>
         </div>
-        
+
         <h3>Content</h3>
         <ul>
             <li><a href="./introduction.html" class="">Introduction</a></li><li><a href="./about-python.html">About Python</a></li><li><a href="./installing-python.html">Installing Python</a></li><li><a href="./essential-tools.html">Essential Tools</a></li>
@@ -50,7 +53,7 @@
                     Basic Git
                     <span class="toggle-icon">▼</span>
                 </div>
-                <ul class="nested-nav expanded" id="expandable-section-4"><li><a href="#introduction">Introduction</a></li><li><a href="#git-vs-github">Git vs GitHub</a></li><li><a href="#why-scientists-need-git">Why Scientists Need Git</a></li><li><a href="#installing-git">Installing Git</a></li><li><a href="#basics">Basics</a></li><li><a href="#common-errors">Common errors</a></li>
+                <ul class="nested-nav expanded" id="expandable-section-4"><li><a href="#introduction">Introduction</a></li><li><a href="#git-vs-github">Git vs GitHub</a></li><li><a href="#why-scientists-need-git">Why Scientists Need Git</a></li><li><a href="#installing-git">Installing Git</a></li><li><a href="#basics">Basics</a></li><li><a href="#collaboration-and-file-changes">Collaboration and File Changes</a></li><li><a href="#common-errors">Common errors</a></li>
                 </ul>
             </li><li><a href="./course-setup.html">Course setup</a></li><li><a href="./feedback.html">Feedback</a></li>
         </ul>
@@ -79,6 +82,12 @@
         <div class="top-navbar">
             <h1 class="page-title">Python Orientation</h1>
             <div class="nav-actions">
+                <a href="../homepage.html" class="text-button" title="Materials homepage">
+                    Homepage
+                </a>
+                <a href="https://learntodiscover.ai/my-cohorts/" class="text-button" title="Find out more about us">
+                    Learn to Discover
+                </a>
             </div>
         </div>
 
@@ -155,17 +164,21 @@ git config --global user.email &quot;your.email@example.com&quot;</code></pre><b
                 <div class="module-body">
                     <div class="module-section">
                         <h3>Basics</h3>
-                        <p>The Git workflow follows a common pattern that you&#x27;ll use repeatedly.</p><h4>1. Cloning</h4><p>Cloning is the process of downloading a complete copy of a Git repository from a remote location (like GitHub) to your local computer. This creates an identical copy of the project, including all files, folders, and the entire version history (the metadata).<br><br>All git commands are entered in the terminal and work in place, i.e., they will clone or look for information in the folder you are currently in.<br><br>The standard clone command is:<br><br><pre class="markdown-code-block"><code>git clone https://github.com/user/repository-name.git</code></pre><br><br>The web link or SSH link (see <a href="./course-setup.html"><strong>Course setup</strong></a>) can be found on the repository&#x27;s GitHub page, just click the <strong>green Code box</strong> for the dropdown:</p><p><img src="./images/git-link.png" alt="Web link in GitHub" class="notebook-image"></p><p>When you run the clone command, as well as downloading the files it will set up a connection to the remote repository called &quot;origin&quot; and configure the local repository to track changes.<br><br>Once cloning is complete, you&#x27;ll need to navigate into the newly created folder:<br><br><pre class="markdown-code-block"><code>cd repository-name</code></pre><br><br>You&#x27;re now inside your local copy of the repository and can begin working with the files.</p><h4>2. Pull</h4><p>When working with remotely stored files, it&#x27;s good practice to keep your local copy up to date with the centralised copy. We do this with the <code>git pull</code> command, which downloads the latest changes from the remote repository and incorporates them into your local copy.<br><br>The standard pull command is:<br><br><pre class="markdown-code-block"><code>git pull</code></pre></p><p>You will find yourself using <code>pull</code> every time you start work, to make sure you are up to date with any possible changes. It&#x27;s a good habit to get into. If you have any changes in your local version of the folder, Git will attempt to merge the two, unless there are conflicts (both you and the remote have changes to the same line of code).</p><h4>3. Add</h4><p>When we are happy with our changes to the code or just at the end of a working session, we will want to update the remote repository with the new code. For this we use the <code>git add</code> command to stage files for commit, which means you&#x27;re preparing specific changes to be saved to your project. Git has a two-step process: first you stage changes with <code>add</code>, then you save them with <code>commit</code>.<br><br>To stage all changes in your current directory, you add a <code>.</code> after <code>add</code>:<br><br><pre class="markdown-code-block"><code>git add .</code></pre><br><br>To stage a specific folder or file you add it explicitly:<br><br><pre class="markdown-code-block"><code>git add your_file.py</code></pre><br><br>This separation allows you to create focused commits where you have made several changes at once, but for differing reasons.</p><h4>4. Commit Message</h4><p>Every staged change, ready to be sent to the remote repository, must be accompanied by a commit message. This should be a description of what the changes were for and becomes part of the permanent record. Try not to be vague as you may regret this when something goes wrong.<br><br>The basic commit command with a message:<br><br><pre class="markdown-code-block"><code>git commit -m &quot;Your descriptive message&quot;</code></pre></p><h4>5. Push</h4><p>Now that the changes are staged and properly described, we can push them back to the remote repository. To do this, we use the <code>git push</code> command.<br><br>The standard push command:<br><br><pre class="markdown-code-block"><code>git push</code></pre><br><br>The flow of <code>add</code>, <code>commit</code>, and <code>push</code> are typically done at the same time, sequentially. You should find yourself doing this when:<br><ul class="nested-list"><li>Completing a logical unit of work</li><br><li>At the end of working sessions</li><br><li>Before switching computers</li></ul></p>
-        <div class="image-placeholder">
-            <div class="placeholder-content">
-                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polygon points="5,3 19,12 5,21"/>
-                </svg>
-                <p><strong>Video unavailable:</strong></p>
-                <p><small>No URL provided</small></p>
+                        <p>The Git workflow follows a common pattern that you&#x27;ll use repeatedly.</p><h4>1. Cloning</h4><p>Cloning is the process of downloading a complete copy of a Git repository from a remote location (like GitHub) to your local computer. This creates an identical copy of the project, including all files, folders, and the entire version history (the metadata).<br><br>All git commands are entered in the terminal and work in place, i.e., they will clone or look for information in the folder you are currently in.<br><br>The standard clone command is:<br><br><pre class="markdown-code-block"><code>git clone https://github.com/user/repository-name.git</code></pre><br><br>The web link or SSH link (see <a href="./course-setup.html"><strong>Course setup</strong></a>) can be found on the repository&#x27;s GitHub page, just click the <strong>green Code box</strong> for the dropdown:</p><p><img src="./images/git-link.png" alt="Web link in GitHub" class="notebook-image"></p><p>When you run the clone command, as well as downloading the files it will set up a connection to the remote repository called &quot;origin&quot; and configure the local repository to track changes.<br><br>Once cloning is complete, you&#x27;ll need to navigate into the newly created folder:<br><br><pre class="markdown-code-block"><code>cd repository-name</code></pre><br><br>You&#x27;re now inside your local copy of the repository and can begin working with the files.</p><h4>2. Pull</h4><p>When working with remotely stored files, it&#x27;s good practice to keep your local copy up to date with the centralised copy. We do this with the <code>git pull</code> command, which downloads the latest changes from the remote repository and incorporates them into your local copy.<br><br>The standard pull command is:<br><br><pre class="markdown-code-block"><code>git pull origin main</code></pre><br><br>which is often shorten to:<br><br><pre class="markdown-code-block"><code>git pull</code></pre><br><br>As Git assumes you want to pull from the tracked remote branch (typically <code>origin/main</code> for newer repositories or <code>origin/master</code> for older ones).<br><br>You will find yourself using <code>pull</code> every time you start work, to make sure you are up to date with any possible changes. It&#x27;s a good habit to get into.</p><p><strong>What happens during a pull?</strong><br><br>When you run <code>git pull</code>, Git attempts to automatically merge the remote changes with your local work. If you have uncommitted local changes that don&#x27;t conflict with the incoming changes, Git will usually merge them successfully. However, if both you and someone else have modified the same lines of code, you&#x27;ll encounter a merge conflict that requires manual resolution.</p><h4>3. Add</h4><p>When we are happy with our changes to the code or just at the end of a working session, we will want to update the remote repository with the new code. For this we use the <code>git add</code> command to stage files for commit, which means you&#x27;re preparing specific changes to be saved to your project. Git has a two-step process: first you stage changes with <code>add</code>, then you save them with <code>commit</code>.<br><br>To stage all changes in your current directory, you add a <code>.</code> after <code>add</code>:<br><br><pre class="markdown-code-block"><code>git add .</code></pre><br><br>To stage a specific folder or file you add it explicitly:<br><br><pre class="markdown-code-block"><code>git add your_file.py</code></pre></p><p><strong>Why use selective staging?</strong><br><br>The difference between these approaches becomes important when creating focused commits. Imagine you&#x27;re working on a data analysis project and you&#x27;ve modified three files:<ul class="nested-list"><li><code>data_cleaning.py</code> (fixed a bug in data preprocessing)</li><br><li><code>visualisation.py</code> (added new plotting functions)</li><br><li><code>analysis.py</code> (started experimenting with a new statistical method)</li></ul>Rather than committing all changes together with <code>git add .</code>, you might want to:<ol class="nested-list"><li><code>git add data_cleaning.py</code> and commit with message &quot;Fix bug in data preprocessing&quot;</li><br><li><code>git add visualisation.py</code> and commit with message &quot;Add new plotting functions for correlation analysis&quot;</li><br><li>Leave <code>analysis.py</code> unstaged until the experimental work is complete</li></ol>This approach creates a cleaner project history where each commit represents one logical change, making it easier to:<ul class="nested-list"><li>Track down when specific features were added</li><br><li>Revert individual changes without affecting other work</li><br><li>Understand what each collaborator contributed</li><br><li>Write meaningful commit messages that accurately describe the changes</li></ul></p><h4>4. Commit Message</h4><p>Every staged change, ready to be sent to the remote repository, must be accompanied by a commit message. This should be a description of what the changes were for and becomes part of the permanent record. Try not to be vague as you may regret this when something goes wrong.<br><br>The basic commit command with a message:<br><br><pre class="markdown-code-block"><code>git commit -m &quot;Your descriptive message&quot;</code></pre></p><h4>5. Push</h4><p>Now that the changes are staged and properly described, we can push them back to the remote repository. To do this, we use the <code>git push</code> command.<br><br>The standard push command:<br><br><pre class="markdown-code-block"><code>git push</code></pre><br><br>The flow of <code>add</code>, <code>commit</code>, and <code>push</code> are typically done at the same time, sequentially. You should find yourself doing this when:<br><ul class="nested-list"><li>Completing a logical unit of work</li><br><li>At the end of working sessions</li><br><li>Before switching computers</li></ul></p>
+                    </div>
+                </div>
             </div>
-        </div>
-        
+            
+            <div class="module-card" id="collaboration-and-file-changes">
+                <div class="module-body">
+                    <div class="module-section">
+                        <h3>Collaboration and File Changes</h3>
+                        <p>One of Git&#x27;s most powerful features is enabling multiple people to work on the same files whilst preserving everyone&#x27;s contributions and maintaining a clear record of who changed what.</p><h4>How multiple people can modify the same file</h4><p>When multiple researchers work on the same project, they each have their own local copy of the repository. Here&#x27;s how Git handles collaborative changes:<br><ol class="nested-list"><li><strong>Each person clones the repository</strong> to their local machine</li><br><li><strong>They work independently</strong> on their local copies, making changes to files</li><br><li><strong>They commit and push their changes</strong> to the shared remote repository</li><br><li><strong>Others pull these changes</strong> to stay up to date</li></ol>Git tracks every change with metadata including who made the change, when it was made, and what was modified. You can view this history using:<br><br><pre class="markdown-code-block"><code>git log --oneline</code></pre><br><br>This shows a chronological list of commits with their messages and authors.</p><h4>Branching</h4><p>For more complex collaboration, Git uses <strong>branches</strong> - parallel versions of your project where different features can be developed independently. This is particularly useful for allowing team members to work on separate features simultaneously, without worrying about constant merge conflicts.<br><br>Another common workflow involves keeping the main branch as the <em>stable version</em>, the one that changes least frequently and contains only tested, working code. Researchers then create branches off the main branch, where they can experiment and improve the code before merging their changes back into the main branch once the work is complete and tested.<br><br>For example, you have a set of scripts that researchers in a lab use for their everyday analysis. One researcher may want to expand the analysis toolbox by adding a protein structure analysis suite. To do so, they would create a branch called <code>protein-analysis</code> that branches off from the main branch. They would then add the new code and test that it all works before merging it back into the main branch for the rest of the lab to use.<br><br>Basic branch command workflow:<br><pre class="markdown-code-block"><code>git branch branch-name          # Create a new branch
+git checkout branch-name        # Switch to that branch
+
+# Many edits, pushes and pulls...
+
+git merge branch-name           # Merge branch back to main</code></pre></p>
                     </div>
                 </div>
             </div>
@@ -174,7 +187,11 @@ git config --global user.email &quot;your.email@example.com&quot;</code></pre><b
                 <div class="module-body">
                     <div class="module-section">
                         <h3>Common errors</h3>
-                        <h4>Authentication issues</h4><p>As mentioned, Git is now often connected to a remote online web service, GitHub. To do so you must authenticate your Git with your GitHub account. Head to section the next section on how to setup a secure connection to your account.</p><h4>Merge conflicts</h4><p>Merge conflicts occur when the same lines in a file have been changed differently in your local copy and the remote repository. Git cannot automatically determine which version to keep. This error can sometimes occur when you will <code>push</code> back your completed assignments from <strong>codespaces</strong>. The next section will contain a quick fix to this.</p>
+                        <h4>Authentication issues</h4><p>As mentioned, Git is now often connected to a remote online web service, GitHub. To do so you must authenticate your Git with your GitHub account. Head to <a href="./course-setup.html"><strong>Course setup</strong></a>, the next section, to see how to do this. If you are working with CodeSpaces, this is not needed as your are already within the GitHub ecosystem.</p><h4>Merge conflicts</h4><p>Merge conflicts occur when the same lines in a file have been changed differently in your local copy and the remote repository. Git cannot automatically determine which version to keep.</p><p><strong>Understanding what <code>git pull</code> does during conflicts</strong><br><br>When you encounter a merge conflict and run <code>git pull origin main</code>, this command does <strong>not</strong> automatically overwrite your local changes. Instead, it:<br><ol class="nested-list"><li>Downloads the latest changes from the remote repository</li><br><li>Attempts to merge them with your local changes</li><br><li>If conflicts exist, it marks the conflicted sections in your files</li><br><li>Leaves both versions in the file for you to manually resolve</li></ol><strong>Preserving both sets of changes</strong><br><br>When Git encounters conflicts, it modifies your files to show both versions:<br><br><pre class="markdown-code-block"><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+Your local changes here
+=======
+Remote repository changes here
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; origin/main</code></pre><br><br>You must manually edit the file to choose which changes to keep (or combine them), remove the conflict markers (<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>), then stage and commit the resolved file.<br><br>See <a href="./course-setup.html"><strong>Course setup</strong></a> for what to when a merge conflict occurs during submission of your assignment.</p>
                     </div>
                 </div>
             </div>
@@ -266,6 +283,28 @@ async function main() {
             import sys
             from io import StringIO
         `);
+
+        // Only set up matplotlib if it's in the loaded packages
+        if (lessonPackages.includes('matplotlib')) {
+            await pyodide.runPythonAsync(`
+                # Set up matplotlib for web rendering
+                import matplotlib
+                matplotlib.use('AGG')
+                import matplotlib.pyplot as plt
+                import io
+                import base64
+                
+                def capture_matplotlib():
+                    """Capture current matplotlib figure as HTML img tag"""
+                    buf = io.BytesIO()
+                    plt.savefig(buf, format='png', bbox_inches='tight', dpi=100)
+                    buf.seek(0)
+                    img_base64 = base64.b64encode(buf.read()).decode('utf-8')
+                    plt.close()
+                    return f'<img src="data:image/png;base64,{img_base64}" style="max-width: 100%; height: auto;" />'
+            `);
+            console.log('Matplotlib capture function set up');
+        }
         
         console.log("Pyodide loaded successfully");
         
@@ -322,10 +361,25 @@ except Exception as e:
                 const result = await pyodide.runPythonAsync(code);
                 
                 // Get the captured stdout
-                const stdout = await pyodide.runPythonAsync(`
+                let stdout = await pyodide.runPythonAsync(`
                     sys.stdout = old_stdout
                     mystdout.getvalue()
                 `);
+                
+                // Check for matplotlib figures only if matplotlib was loaded
+                const lessonPackages = window.LESSON_PACKAGES || [];
+                if (lessonPackages.includes('matplotlib')) {
+                    const hasFigures = await pyodide.runPythonAsync(`
+                        import matplotlib.pyplot as plt
+                        len(plt.get_fignums()) > 0
+                    `);
+                    
+                    if (hasFigures) {
+                        const figureHtml = await pyodide.runPythonAsync(`capture_matplotlib()`);
+                        if (stdout) stdout += "\n";
+                        stdout += figureHtml;
+                    }
+                }
                 
                 // Combine stdout and result
                 let output = stdout;
@@ -442,7 +496,8 @@ except Exception as e:
                         });
                 } else if (trimmedOutput.startsWith('<!DOCTYPE') || 
                            trimmedOutput.startsWith('<html') ||
-                           trimmedOutput.startsWith('<div')) {
+                            trimmedOutput.startsWith('<div') ||
+                            trimmedOutput.startsWith('<img')) {
                     console.log('Rendering as generic HTML');
                     outputElement.innerHTML = result.output;
                     console.log('Output element after innerHTML:', outputElement.children.length, 'children');
@@ -572,6 +627,10 @@ except Exception as e:
         });
         
         console.log("All code blocks initialised successfully");
+
+        // Set flag to indicate Pyodide is fully ready
+        window.pyodideReady = true;
+        console.log("Pyodide fully ready");
         
     } catch (error) {
         console.error("Failed to initialise Pyodide:", error);
