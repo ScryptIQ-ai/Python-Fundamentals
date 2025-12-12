@@ -9,89 +9,12 @@ permissions:
   pages: write
   id-token: write
 
-env:
-  PARCHMENT_TOKEN: ${{ github.actor == 'DrAdamLee' && secrets.PARCHMENTIQ_PAT_AL || secrets.PARCHMENTIQ_PAT }}
-
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
-  create-homepage:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Python-Fundamentals
-        uses: actions/checkout@v4
-      
-      - name: Checkout parchmentIQ repository  
-        uses: actions/checkout@v4
-        with:
-          repository: ScryptIQ-ai/parchmentIQ
-          ref: main
-          path: parchmentiq-repo
-          token: ${{ env.PARCHMENT_TOKEN }}
-      
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-      
-      - name: Copy files from parchmentIQ
-        run: |
-          # Copy assets folder
-          cp -r parchmentiq-repo/assets .
-          
-          # Copy homepage generator script (temporarily)
-          cp parchmentiq-repo/create_homepage.py .
-          
-          # List what we copied for debugging
-          echo "Copied files:"
-          ls -la create_homepage.py
-      
-      - name: Generate homepage
-        run: |
-          echo "Generating homepage..."
-          python3 create_homepage.py --organisation "${{ github.repository_owner }}" --repo-name ${{ github.event.repository.name }}
-          echo "Homepage generated successfully!"
-          ls -la homepage.html
-          
-          # Clean up - remove the generator script
-          rm create_homepage.py
-          echo "Cleaned up temporary files"
-      
-      - name: Commit updated files
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git config --local user.name "GitHub Action"
-          git add assets/ about-us.html homepage.html
-          if git diff --staged --quiet; then
-              echo "No changes to commit"
-            else
-              git commit -m "Update assets, and generate homepage from parchmentIQ [skip ci]"
-              git push origin main
-            fi
-
-  deploy:
-    needs: create-homepage
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          ref: main
-        
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-        
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: '.'
-          
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+  call-homepage-workflow:
+    uses: ScryptIQ-ai/parchmentIQ/.github/workflows/reusable-homepage-generation.yml@main
+    secrets:
+      PARCHMENT_TOKEN: ${{ github.actor == 'DrAdamLee' && secrets.PARCHMENTIQ_PAT_AL || secrets.PARCHMENTIQ_PAT }}
