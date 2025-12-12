@@ -20,7 +20,7 @@ jobs:
       - name: Checkout caller repository
         uses: actions/checkout@v4
       
-      - name: Checkout parchmentIQ repository  
+      - name: Checkout from parchmentIQ repository  
         uses: actions/checkout@v4
         with:
           repository: ScryptIQ-ai/parchmentIQ
