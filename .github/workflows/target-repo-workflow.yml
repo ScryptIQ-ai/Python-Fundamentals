@@ -24,7 +24,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: ScryptIQ-ai/parchmentIQ
-          ref: main
+          ref: experimental
           path: parchmentiq-repo
           token: ${{ github.actor == 'DrAdamLee' && secrets.PARCHMENTIQ_PAT_AL || secrets.PARCHMENTIQ_PAT }}
 
