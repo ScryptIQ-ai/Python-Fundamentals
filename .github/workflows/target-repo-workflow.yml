@@ -14,7 +14,30 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  call-homepage-workflow:
-    uses: ScryptIQ-ai/parchmentIQ/.github/workflows/reusable-homepage-generation.yml@experimental
-    secrets:
-      PARCHMENT_TOKEN: ${{ github.actor == 'DrAdamLee' && secrets.PARCHMENTIQ_PAT_AL || secrets.PARCHMENTIQ_PAT }}
+  run-composite-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout caller repository
+        uses: actions/checkout@v4
+      
+      - name: Checkout parchmentIQ repository  
+        uses: actions/checkout@v4
+        with:
+          repository: ScryptIQ-ai/parchmentIQ
+          ref: main
+          path: parchmentiq-repo
+          token: ${{ github.actor == 'DrAdamLee' && secrets.PARCHMENTIQ_PAT_AL || secrets.PARCHMENTIQ_PAT }}
+
+      - name: Run Homepage Generation
+        uses: ./parchmentiq-repo/actions/homepage-generation
+  
+  deploy:
+    needs: run-composite-action
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
