@@ -7,19 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div>© L2D is copyright UCL 2025</div>
         </div>
     `;
-    
-    // Replace sidebar header
-    const existingSidebarHeader = document.querySelector('.sidebar-header');
-    if (existingSidebarHeader) {
-        existingSidebarHeader.outerHTML = sidebarHeaderHTML;
-    }
-    
-    // Replace nav actions
-    const existingNavActions = document.querySelector('.nav-actions');
-    if (existingNavActions) {
-        existingNavActions.outerHTML = navActionsHTML;
-    }
-    
+
     // Replace footer (your existing code)
     const existingFooter = document.querySelector('.footer');
     if (existingFooter) {
