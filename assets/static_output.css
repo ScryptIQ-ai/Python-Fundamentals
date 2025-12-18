@@ -1,0 +1,95 @@
+/* Static output styles for pre-executed notebook cells */
+
+/* Output container */
+.output-container {
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+/* Stream output (stdout) */
+.output-stream {
+    white-space: pre-wrap;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    color: var(--text-primary);
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary);
+    background-color: var(--surface);
+    overflow-x: auto;
+    margin: 5px 0;
+}
+
+/* Stderr output */
+.output-stderr {
+    white-space: pre-wrap;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    color: #e74c3c;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #e74c3c;
+    background-color: rgba(231, 76, 60, 0.1);
+    overflow-x: auto;
+    margin: 5px 0;
+}
+
+/* Execute result */
+.output-result {
+    white-space: pre-wrap;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    color: var(--text-primary);
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid var(--success, #2ecc71);
+    background-color: var(--surface);
+    overflow-x: auto;
+    margin: 5px 0;
+}
+
+/* Error output */
+.output-error {
+    white-space: pre-wrap;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    color: #e74c3c;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #e74c3c;
+    background-color: rgba(231, 76, 60, 0.1);
+    overflow-x: auto;
+    margin: 5px 0;
+    font-size: 13px;
+}
+
+/* Image output */
+.output-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 10px 0;
+    display: block;
+}
+
+/* Static code blocks (using highlight.js instead of CodeMirror) */
+.code-fixed pre {
+    margin: 0;
+    padding: 0;
+}
+
+.code-fixed pre code {
+    display: block;
+    padding: 15px;
+    border-radius: 5px;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 14px;
+    overflow-x: auto;
+}
+
+/* Static edit indicator for cells that were originally interactive */
+.static-edit-indicator {
+    font-size: 12px;
+    color: var(--text-secondary, #666);
+    padding: 5px 10px;
+    margin-bottom: 5px;
+    border-left: 3px solid var(--primary, #ec619f);
+    background-color: rgba(236, 97, 159, 0.05);
+    border-radius: 0 4px 4px 0;
+}
