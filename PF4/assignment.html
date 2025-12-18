@@ -105,7 +105,7 @@
                 <div class="module-body">
                     <div class="module-section">
                         <h3>Assignment Background:</h3>
-                        <p>This short assignment contains three sections of questions that build upon and incorporate methods, techniques and concepts taught and demonstrated in the lesson materials. Each section will explore your understanding of strings, lists, tuples, and sets.<br><br>All questions aim to consider biological context. Timely submission will result in your assignment being returned within 14 days of the submission deadline. Marked Jupyter Notebook manuscripts will be returned with comments from your marker If you receive a pass or distinction, your marker will attach the model solutions for this assignment <em>via</em> the open pull request on your lesson&#x27;s GitHub repository.</p>
+                        <p>This short assignment contains three sections of questions that build upon and incorporate methods, techniques and concepts taught and demonstrated in the lesson materials.<br><br>All questions aim to consider biological context. Timely submission will result in your assignment being returned within 14 days of the submission deadline. Marked Jupyter Notebook manuscripts will be returned with comments from your marker If you receive a pass or distinction, your marker will attach the model solutions for this assignment <em>via</em> the open pull request on your lesson&#x27;s GitHub repository.</p>
                     </div>
                 </div>
             </div>
@@ -273,8 +273,23 @@ os.makedirs('./data', exist_ok=True)
                 
                 // Add loading code for each file
                 for (const file of lessonFiles) {
-                    pythonCode += `
-# Load ${file.filename}
+                    if (file.is_binary) {
+                        // Binary files (images, etc.) - use bytes
+                        pythonCode += `
+# Load ${file.filename} (binary)
+try:
+    response = await pyfetch("${file.url}")
+    content = await response.bytes()
+    with open('./data/${file.filename}', 'wb') as f:
+        f.write(bytes(content))
+    print("Loaded: ${file.filename}")
+except Exception as e:
+    print(f"Could not load ${file.filename}: {e}")
+`;
+                    } else {
+                        // Text files (CSV, etc.) - use string
+                        pythonCode += `
+# Load ${file.filename} (text)
 try:
     response = await pyfetch("${file.url}")
     content = await response.string()
@@ -284,6 +299,7 @@ try:
 except Exception as e:
     print(f"Could not load ${file.filename}: {e}")
 `;
+                    }
                 }
                 
                 await pyodide.runPythonAsync(pythonCode);
@@ -351,12 +367,14 @@ except Exception as e:
             if (!code) continue;
             
             console.log(`Executing hidden code block: ${textarea.id}`);
+            console.log(`Hidden code content: ${code.substring(0, 100)}...`);
             const result = await executePythonCode(code);
             
             if (!result.success) {
                 console.error(`Error in hidden code block ${textarea.id}:`, result.output);
             } else {
                 console.log(`Hidden code block ${textarea.id} executed successfully`);
+                console.log(`Result: ${result.output}`);
             }
         }
 
@@ -556,7 +574,8 @@ except Exception as e:
                             });
                     } else if (trimmedOutput.startsWith('<!DOCTYPE') || 
                                trimmedOutput.startsWith('<html') ||
-                               trimmedOutput.startsWith('<div')) {
+                               trimmedOutput.startsWith('<div') ||
+                               trimmedOutput.startsWith('<img')) {
                         outputElement.innerHTML = result.output;
                     } else {
                         outputElement.textContent = result.output;

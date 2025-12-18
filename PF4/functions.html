@@ -539,33 +539,6 @@ print(codon_list)</textarea>
             <div id="code-cell-16-output" class="output"></div>
         </div>
         
-        <div class="code-area">
-            <div class="code-container code-editor">
-                <textarea id="code-cell-17">sequence = DNA
-
-codons = []
-
-trinucleotide = &quot;&quot;
-
-for base in sequence:
-
-    # trinucleotide = []
-
-    trinucleotide.join(base)
-    print(trinucleotide)
-    if len(trinucleotide) == 3:
-        codons.join(trinucleotide)
-        trinucleotide = &quot;&quot;
-
-    else:
-        continue
-
-codons</textarea>
-            </div>
-            <button id="run-code-cell-17" class="run-button">Run Code</button>
-            <div id="code-cell-17-output" class="output"></div>
-        </div>
-        
                     </div>
                 </div>
             </div>
@@ -577,7 +550,7 @@ codons</textarea>
                         <p>When we write functions, we also create a new, contained compartment within the function, in which variables can exist and operate. This compartment is called the <strong>function scope</strong>. In Python, <strong>scope</strong> determines which parts of a program can access or modify particular variables or data structures. Its containment to operating within the function alone, prevents different pieces of code from accidentally interfering with one another.<br><br>For instance, if you have multiple functions, each with internal variables called <code>data</code>in their code blocks then - were the variables <em>not</em> constrained to operating only within each function - you would have the <code>data</code> variable being overwritten and affected by the other function or code block. This <strong>local scope</strong> is, therefore, a behaviour implicit to all functions in Python - whether built-in, or user-defined.<br><br>When a function is called, Python automatically creates a <strong>local scope</strong> for it. Any variables defined <em>inside</em> the function — including its input arguments — belong to this local scope. They exist <em>only while the function is running</em>, and disappear <em>as soon as the function terminates</em>. This means that variables inside a function <em>cannot be accessed from outside it</em>, even if they share the same name as a variable elsewhere in the program.<br><br>To help solidify this understanding, note that any variables defined <em>outside</em> a function belong to the <strong>global scope</strong>. That is - they can be accessed by functions anywhere in your coding environment. But functions will not change global variables unless they are explicitly instructed to do so. This separation is a key reason why functions are so powerful: they allow us to write clean, predictable code where each function handles its own task without unintended side effects.<br><br>Having this localised function scope also helps to prevent bugs, and makes debugging easier, encouraging good programming practice by ensuring that <em>functions rely only on the data passed into them</em>, returning their outputs, cleanly.</p><p>Run the cell below, to show how the variable named <code>variant</code> outside the function (in the global scope) is <strong>not</strong> overwritten, after the function with a variable of the same name, is called:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-18">variant = &quot;Omicron&quot; # Global variable - scope is anywhere outside the function.
+                <textarea id="code-cell-17">variant = &quot;Omicron&quot; # Global variable - scope is anywhere outside the function.
 
 def classify_variant():
     &quot;&quot;&quot;
@@ -594,7 +567,7 @@ classify_variant() # Function call
 # Check the variable outside the function
 print(f&quot;Outside the function, the variant remains:  {variant}&quot;)</textarea>
             </div>
-            <div id="code-cell-18-output" class="output"></div>
+            <div id="code-cell-17-output" class="output"></div>
         </div>
         
         <div class="info-box note-box">
@@ -618,7 +591,7 @@ print(f&quot;Outside the function, the variant remains:  {variant}&quot;)</texta
                         <p>While it is often discouraged, if you absolutely must write a function to modify a global variable, then you have to declare it to overwrite Python&#x27;s default behaviour. This can be done using the <code>global</code> keyword, inside the function:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-19"># Global variable
+                <textarea id="code-cell-18"># Global variable
 variant = &quot;Omicron&quot;   # Scope is anywhere outside the function.
 
 def update_variant_globally():
@@ -636,7 +609,7 @@ update_variant_globally()  # Function call
 # Check the variable outside the function
 print(f&quot;Outside the function, the variant now is:   {variant}&quot;)</textarea>
             </div>
-            <div id="code-cell-19-output" class="output"></div>
+            <div id="code-cell-18-output" class="output"></div>
         </div>
         
                     </div>
@@ -650,16 +623,16 @@ print(f&quot;Outside the function, the variant now is:   {variant}&quot;)</texta
                         <p>Now that we have covered all the basics of defining a function, let&#x27;s tie it all together in the context of solving a common biological task: working with DNA fragments. We will be drawing from concepts and techniques taught across the previous three Python Fundamentals less, with a particular focus on <strong>list comprehensions</strong>.<br><br>In the cell below, we aim to write a function that wraps together three small tasks, into a small processing pipeline. This aims to make a single function that can be called repeatedly on new data. The function should:<br><ol class="nested-list"><li><strong>Join</strong> all our DNA fragments (a list of strings) together</li><br><li><strong>Split</strong> the new sequence into <em>codons</em></li><br><li><strong>Count</strong> complete codons</li><br><li><strong>Calculate</strong> the <em>GC content</em>.</li></ol>Let&#x27;s start by defining our list:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-20">dna_fragments = [&quot;ATGGC&quot;, &quot;TAACTG&quot;, &quot;G&quot;, &quot;GTGTACTGT&quot;, &quot;AAAGCT&quot;, &quot;AA&quot;, &quot;GTACG&quot;]
+                <textarea id="code-cell-19">dna_fragments = [&quot;ATGGC&quot;, &quot;TAACTG&quot;, &quot;G&quot;, &quot;GTGTACTGT&quot;, &quot;AAAGCT&quot;, &quot;AA&quot;, &quot;GTACG&quot;]
 
 print(f&quot;{dna_fragments}\n\n {type(dna_fragments)}&quot;)</textarea>
             </div>
-            <div id="code-cell-20-output" class="output"></div>
+            <div id="code-cell-19-output" class="output"></div>
         </div>
         
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-21">def analyse_sequence(fragments):
+                <textarea id="code-cell-20">def analyse_sequence(fragments):
     &quot;&quot;&quot;
     Join DNA fragments into one continuous sequence, split into codons,
     and return the number of complete codons and the GC content.
@@ -685,17 +658,17 @@ print(f&quot;{dna_fragments}\n\n {type(dna_fragments)}&quot;)</textarea>
 
     return codon_count, gc_percentage</textarea>
             </div>
-            <div id="code-cell-21-output" class="output"></div>
+            <div id="code-cell-20-output" class="output"></div>
         </div>
         <p>Once defined, we can call this function to produce two outputs, as specified: <code>codon_count</code> and <code>gc_percentage</code>. We can then unpack this into two variables, and print these in our print statement.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-22">dna_fragments = [&quot;ATGGC&quot;, &quot;TAACTG&quot;, &quot;G&quot;, &quot;GTGTACTGT&quot;, &quot;AAAGCT&quot;, &quot;AA&quot;, &quot;GTACG&quot;]
+                <textarea id="code-cell-21">dna_fragments = [&quot;ATGGC&quot;, &quot;TAACTG&quot;, &quot;G&quot;, &quot;GTGTACTGT&quot;, &quot;AAAGCT&quot;, &quot;AA&quot;, &quot;GTACG&quot;]
 codons, gc = analyse_sequence(dna_fragments)
 
 print(f&quot;Complete codons: {codons}.\nGC content: {gc:.2f}%&quot;)</textarea>
             </div>
-            <div id="code-cell-22-output" class="output"></div>
+            <div id="code-cell-21-output" class="output"></div>
         </div>
         
                     </div>
@@ -841,8 +814,23 @@ os.makedirs('./data', exist_ok=True)
                 
                 // Add loading code for each file
                 for (const file of lessonFiles) {
-                    pythonCode += `
-# Load ${file.filename}
+                    if (file.is_binary) {
+                        // Binary files (images, etc.) - use bytes
+                        pythonCode += `
+# Load ${file.filename} (binary)
+try:
+    response = await pyfetch("${file.url}")
+    content = await response.bytes()
+    with open('./data/${file.filename}', 'wb') as f:
+        f.write(bytes(content))
+    print("Loaded: ${file.filename}")
+except Exception as e:
+    print(f"Could not load ${file.filename}: {e}")
+`;
+                    } else {
+                        // Text files (CSV, etc.) - use string
+                        pythonCode += `
+# Load ${file.filename} (text)
 try:
     response = await pyfetch("${file.url}")
     content = await response.string()
@@ -852,6 +840,7 @@ try:
 except Exception as e:
     print(f"Could not load ${file.filename}: {e}")
 `;
+                    }
                 }
                 
                 await pyodide.runPythonAsync(pythonCode);
@@ -919,12 +908,14 @@ except Exception as e:
             if (!code) continue;
             
             console.log(`Executing hidden code block: ${textarea.id}`);
+            console.log(`Hidden code content: ${code.substring(0, 100)}...`);
             const result = await executePythonCode(code);
             
             if (!result.success) {
                 console.error(`Error in hidden code block ${textarea.id}:`, result.output);
             } else {
                 console.log(`Hidden code block ${textarea.id} executed successfully`);
+                console.log(`Result: ${result.output}`);
             }
         }
 
@@ -1124,7 +1115,8 @@ except Exception as e:
                             });
                     } else if (trimmedOutput.startsWith('<!DOCTYPE') || 
                                trimmedOutput.startsWith('<html') ||
-                               trimmedOutput.startsWith('<div')) {
+                               trimmedOutput.startsWith('<div') ||
+                               trimmedOutput.startsWith('<img')) {
                         outputElement.innerHTML = result.output;
                     } else {
                         outputElement.textContent = result.output;

@@ -34,8 +34,8 @@
     <!-- File URLs for this lesson -->
     <script>
         window.LESSON_FILES = [
-            {url: "https://raw.githubusercontent.com/ScryptIQ-ai/lesson-data/refs/heads/main/pf4/demo_text.txt", filename: "demo_text.txt"},
-            {url: "https://raw.githubusercontent.com/ScryptIQ-ai/lesson-data/refs/heads/main/pf4/example.fastq", filename: "example.fastq"}
+            {url: "https://raw.githubusercontent.com/ScryptIQ-ai/lesson-data/refs/heads/main/pf4/demo_text.txt", filename: "demo_text.txt", is_binary: false},
+            {url: "https://raw.githubusercontent.com/ScryptIQ-ai/lesson-data/refs/heads/main/pf4/example.fastq", filename: "example.fastq", is_binary: false}
         ];
         window.LESSON_PACKAGES = [];
     </script>
@@ -157,11 +157,11 @@
                         <h4>The basics</h4><p>To read a file into Python we need to have a system in place to first <strong>open</strong> the file and then finally to <strong>close</strong> it <em>securely</em>: the same workflow as if we were to manually open a file to read.<br><br>It&#x27;s important to close a file formally rather than just exiting the script or notebook, much like it is correct to close documents before you turn off your computer. Failing to do so may corrupt the file or cause memory leakage.</p><p>The tools for this are the <a href="https://docs.python.org/3/library/functions.html#open"><code>open()</code></a> function, which creates a file object that can be read into the working memory using the <code>.read()</code> method. Once we have finished, we use <code>.close()</code> to terminate the connection, properly.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-23"># We are working with the demo_text.txt file
+                <textarea id="code-cell-22"># We are working with the demo_text.txt file
 # The &quot;r&quot; argument dictates that open should only allow the file to be read
 file = open(&quot;./data/demo_text.txt&quot;, &quot;r&quot;)</textarea>
             </div>
-            <div id="code-cell-23-output" class="output" style="display: none;"></div>
+            <div id="code-cell-22-output" class="output" style="display: none;"></div>
         </div>
         
         <div class="info-box key-terms-box">
@@ -176,14 +176,14 @@ file = open(&quot;./data/demo_text.txt&quot;, &quot;r&quot;)</textarea>
         <p>Once we have opened a connection to the file, we can call the <code>.read()</code> method to load its contents. As the file is quite long, we can pass it an integer argument to limit the number of characters that are read in from the beginning. If nothing were given inside the method, then the whole file would be read into memory.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-24"># Read in the first 20 characters
+                <textarea id="code-cell-23"># Read in the first 20 characters
 content = file.read(20)
 
 print(content)
 # Remember to always call close after opening a file
 file.close()</textarea>
             </div>
-            <div id="code-cell-24-output" class="output"></div>
+            <div id="code-cell-23-output" class="output"></div>
         </div>
         <p>When calling <code>.open()</code>, we should always specify the mode argument explicitly. This is the second argument, <code>&quot;r&quot;</code>, that can be seen in the example above. Even though <code>&quot;r&quot;</code> is the default, it is good practice to state it. The mode dictates whether the file is for reading, writing, appending, etc. Setting a file to <em>read only</em> will protect it from accidentally being overwritten.</p><p>See below for a table of some of the mode characters and their meaning:</p><table class="markdown-table">
 <thead>
@@ -228,18 +228,18 @@ file.close()</textarea>
         <p>The above methodology of opening a file demonstrates the correct steps: <em>open</em>, <em>read</em>, <em>close</em>. However, there is a tidier way to handle closing files. One where you open a temporary connection to the file that automatically closes it once your operations are finished. This uses the <code>with</code> statement and is the standard approach.</p><p>Repeating what we did above using <code>with</code>, we call the <code>open()</code> function after <code>with</code> and designate a temporary file handle name with <code>as</code>, followed by a colon. Whenever a colon is used in Python, the next line must be indented.</p><p>Within the indented section of the code, we can write all of the actions we want to perform. When the script is being executed, the interpreter will run all these actions.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-25"># Using `with` creates tidier, cleaner code
+                <textarea id="code-cell-24"># Using `with` creates tidier, cleaner code
 
 with open(&quot;./data/demo_text.txt&quot;, &quot;r&quot;) as file:
     content = file.read(20)
     print(content)</textarea>
             </div>
-            <div id="code-cell-25-output" class="output"></div>
+            <div id="code-cell-24-output" class="output"></div>
         </div>
         <p>Once finished, the <code>with</code> block is exited and the connection is closed automatically.</p><p>To be even more safe, users will often place the <code>with open()</code> statement within a <code>try</code> <code>except</code> block, to ensure that errors reading a file are handled graciously.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-26"># Add our with open() statement to the try section
+                <textarea id="code-cell-25"># Add our with open() statement to the try section
 try:
     with open(&#x27;./data/demo_text_fake.txt&quot;&#x27;, &#x27;r&#x27;) as file:
         content = file.read()
@@ -253,7 +253,7 @@ except PermissionError:
 except Exception as e:
     print(f&quot;An unexpected error occurred: {e}&quot;)</textarea>
             </div>
-            <div id="code-cell-26-output" class="output"></div>
+            <div id="code-cell-25-output" class="output"></div>
         </div>
         
                     </div>
@@ -267,30 +267,30 @@ except Exception as e:
                         <p>In text files you will often find that a new line indicates a separate bit of data; an obvious example would be a script. Using the <code>.readlines()</code> method on our file object will read all the data into a <strong>list</strong>, where each item is a new line from the file.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-27"># We use .readlines() to import all lines in our file into a list
+                <textarea id="code-cell-26"># We use .readlines() to import all lines in our file into a list
 with open(&quot;./data/demo_text.txt&quot;, &quot;r&quot;) as file:
     content = file.readlines()
     print(content[0])
     print(content[1])</textarea>
             </div>
-            <div id="code-cell-27-output" class="output"></div>
+            <div id="code-cell-26-output" class="output"></div>
         </div>
         <p>You may have noticed that there is a blank line between the two printed lines. This is because there is a <code>\n</code> at the end of each item in the list, which tells the computer there is a new line. This is how <code>readlines()</code> knows how to split the text file into lines; they are part of the text file, we just don&#x27;t see them in our editors.</p><p>We can see them using the <code>repr()</code> function:</p>
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-28"># Play around with the output of content
+                <textarea id="code-cell-27"># Play around with the output of content
 
 print(repr(content[0]))</textarea>
             </div>
-            <button id="run-code-cell-28" class="run-button">Run Code</button>
-            <div id="code-cell-28-output" class="output"></div>
+            <button id="run-code-cell-27" class="run-button">Run Code</button>
+            <div id="code-cell-27-output" class="output"></div>
         </div>
         <p>Whilst <code>\n</code> is good for <code>print()</code> it will corrupt any data that you wish to extract from a text file. An easy method to get rid of <code>\n</code> or trailing whitespaces (another common annoyance) is to use strings built-in <code>.strip()</code> method.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-29">print(repr(content[0].strip()))</textarea>
+                <textarea id="code-cell-28">print(repr(content[0].strip()))</textarea>
             </div>
-            <div id="code-cell-29-output" class="output"></div>
+            <div id="code-cell-28-output" class="output"></div>
         </div>
         
         <div class="info-box key-terms-box">
@@ -314,15 +314,15 @@ print(repr(content[0]))</textarea>
                         <p>Let&#x27;s put together what we have demonstrated here some concepts that we learned earlier in the Python Fundamentals module. After the first two lines, there is an AI-generated conversation between two scryptIQ course instructors about opening files. The content is formatted with the speaker&#x27;s name in capital letters, followed by a colon, and their lines. We want to count how many characters each speaker uses.</p><h4>Building our code</h4><p>First we open our file and assign the list of lines to the variable <code>content</code>. Assigning it to the variable <code>content</code> will retain the data into memory, even after the file is closed.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-30">with open(&quot;./data/demo_text.txt&quot;, &quot;r&quot;) as file:
+                <textarea id="code-cell-29">with open(&quot;./data/demo_text.txt&quot;, &quot;r&quot;) as file:
     content = file.readlines()</textarea>
             </div>
-            <div id="code-cell-30-output" class="output" style="display: none;"></div>
+            <div id="code-cell-29-output" class="output" style="display: none;"></div>
         </div>
         <p>As the lines are stored as a list, we can iterate over the contents, accessing each line, in turn. Using the <code>.split()</code> method we can separate each line into its constituent words, as follows:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-31"># Loop over the content (a list of lines)
+                <textarea id="code-cell-30"># Loop over the content (a list of lines)
 for c, line in enumerate(content):
     
     print(line)
@@ -341,12 +341,12 @@ for c, line in enumerate(content):
     if c == 3:
         break</textarea>
             </div>
-            <div id="code-cell-31-output" class="output"></div>
+            <div id="code-cell-30-output" class="output"></div>
         </div>
         <p>From printing the first few lines we can confirm that the speakers&#x27; lines are formatted so that the first word corresponds to their names in capital letters, followed by a colon. We can use this to dictate when we want to record the characters in a line and who to assign the count to.</p><p>To capture this information, we will firstly define a block of code that checks for two things:<br><ol class="nested-list"><li>Is the first word capitalised?</li><br><li>Is this word followed by a colon?</li></ol></p><p>Only when these two conditions are met do we want an action to occur.</p>
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-32"># Run this cell with different strings to see if the logic works
+                <textarea id="code-cell-31"># Run this cell with different strings to see if the logic works
 
 first_word = &#x27;ADAM:&#x27;
 
@@ -361,13 +361,13 @@ process_line = bool_capital and bool_colon
 
 process_line</textarea>
             </div>
-            <button id="run-code-cell-32" class="run-button">Run Code</button>
-            <div id="code-cell-32-output" class="output"></div>
+            <button id="run-code-cell-31" class="run-button">Run Code</button>
+            <div id="code-cell-31-output" class="output"></div>
         </div>
         <p>Now that we have our function to check words, we can build out the rest of the script:<br><ol class="nested-list"><li>Create a <em>data structure</em> to store our count.</li><br><li>Give the first word of a list to the function, per loop.</li><br><li><strong>Strip</strong> the speaker&#x27;s name from the line</li><br><li><strong>Count</strong> the characters in the remaining words and add them to our <em>data structure</em></li></ol></p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-33"># Create a dictionary with values at 0 -  no characters
+                <textarea id="code-cell-32"># Create a dictionary with values at 0 -  no characters
 speaker_dict = {&#x27;adam&#x27; : 0, &#x27;laurence&#x27; : 0}
 
 for line in content:
@@ -404,12 +404,12 @@ for line in content:
                 speaker_dict[speaker] += characters
 </textarea>
             </div>
-            <div id="code-cell-33-output" class="output" style="display: none;"></div>
+            <div id="code-cell-32-output" class="output" style="display: none;"></div>
         </div>
         <p>Now our dictionary is updated we can see who had the most characters said. We could just do this by printing the dictionary, however, this is a Python course so we can to automate the analysis.<br><br>Can you complete the <code>else</code> statement in the cell below to compare the second items values to the first</p><p>Try to <strong>complete the code cell</strong> below. The aim is to loop through the dictionary, store the characters and speaker name from the first loop and compare it the characters and speaker in the next loop.<br><br><em>Hint: use an <code>if</code>/<code>else</code> statement</em></p>
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-34"># As .items() returns two variables we must put them in () when combined
+                <textarea id="code-cell-33"># As .items() returns two variables we must put them in () when combined
 # with enumerate()
 for c, (key, value) in enumerate(speaker_dict.items()):
 
@@ -417,17 +417,17 @@ for c, (key, value) in enumerate(speaker_dict.items()):
  
 print(&quot;\n&quot;, f&quot;The speaker with the most characters is {max_speaker.capitalize()} with {max_characters} characters&quot;)</textarea>
             </div>
-            <button id="run-code-cell-34" class="run-button">Run Code</button>
-            <div id="code-cell-34-output" class="output"></div>
+            <button id="run-code-cell-33" class="run-button">Run Code</button>
+            <div id="code-cell-33-output" class="output"></div>
         </div>
         <p>See the solution below if you are struggling:</p>
         <div class="code-area">
-            <div class="code-collapse-header" onclick="toggleCodeCollapse('code-cell-35')">
+            <div class="code-collapse-header" onclick="toggleCodeCollapse('code-cell-34')">
                 <span class="code-collapse-icon">▶</span>
                 <span class="code-collapse-label">Show code</span>
             </div>
-            <div class="code-container code-fixed code-collapsed" id="code-cell-35-container">
-                <textarea id="code-cell-35">for c, (key, value) in enumerate(speaker_dict.items()):
+            <div class="code-container code-fixed code-collapsed" id="code-cell-34-container">
+                <textarea id="code-cell-34">for c, (key, value) in enumerate(speaker_dict.items()):
 
     print(f&quot;{key}: {value}&quot;)
 
@@ -442,7 +442,7 @@ print(&quot;\n&quot;, f&quot;The speaker with the most characters is {max_speake
     
 print(&quot;\n&quot;, f&quot;The speaker with the most characters is {max_speaker.capitalize()} with {max_characters} characters&quot;)</textarea>
             </div>
-            <div id="code-cell-35-output" class="output" style="display: none;"></div>
+            <div id="code-cell-34-output" class="output" style="display: none;"></div>
         </div>
         
                     </div>
@@ -466,10 +466,10 @@ print(&quot;\n&quot;, f&quot;The speaker with the most characters is {max_speake
         
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-36"># Write your code here</textarea>
+                <textarea id="code-cell-35"># Write your code here</textarea>
             </div>
-            <button id="run-code-cell-36" class="run-button">Run Code</button>
-            <div id="code-cell-36-output" class="output"></div>
+            <button id="run-code-cell-35" class="run-button">Run Code</button>
+            <div id="code-cell-35-output" class="output"></div>
         </div>
         
                     </div>
@@ -483,20 +483,20 @@ print(&quot;\n&quot;, f&quot;The speaker with the most characters is {max_speake
                         <p>We can write a file in exactly the same way, except this time we change the mode to <code>&quot;w&quot;</code>. Now that the file is primed to be written to, we can use the <code>.write()</code> method to add new text to the file. Remember, if you want the new text to be on a new line, include <code>\n</code>.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-37">with open(&#x27;new_text.txt&#x27;, &#x27;w&#x27;) as file:
+                <textarea id="code-cell-36">with open(&#x27;new_text.txt&#x27;, &#x27;w&#x27;) as file:
     # Let&#x27;s write it out a few times
     file.write(&quot;Hello, world! \n&quot;)
     file.write(&quot;This is L2D&quot;)</textarea>
             </div>
-            <div id="code-cell-37-output" class="output" style="display: none;"></div>
+            <div id="code-cell-36-output" class="output" style="display: none;"></div>
         </div>
         <p>We can now open our saved file and read its content.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-38">with open(&#x27;new_text.txt&#x27;, &#x27;r&#x27;) as file:
+                <textarea id="code-cell-37">with open(&#x27;new_text.txt&#x27;, &#x27;r&#x27;) as file:
     print(file.read())</textarea>
             </div>
-            <div id="code-cell-38-output" class="output"></div>
+            <div id="code-cell-37-output" class="output"></div>
         </div>
         
                     </div>
@@ -520,10 +520,10 @@ print(&quot;\n&quot;, f&quot;The speaker with the most characters is {max_speake
         
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-39"># Write your code here</textarea>
+                <textarea id="code-cell-38"># Write your code here</textarea>
             </div>
-            <button id="run-code-cell-39" class="run-button">Run Code</button>
-            <div id="code-cell-39-output" class="output"></div>
+            <button id="run-code-cell-38" class="run-button">Run Code</button>
+            <div id="code-cell-38-output" class="output"></div>
         </div>
         
                     </div>
@@ -537,7 +537,7 @@ print(&quot;\n&quot;, f&quot;The speaker with the most characters is {max_speake
                         <p>A typical workflow for many bioscientists does not involve creating a new file out of nothing, but instead reading in some data, transforming it, and writing its output into a new file.<br><br>We&#x27;ll demonstrate this workflow using FASTQ files, transforming them into the more common FASTA file type.</p><p>For those unacquainted with FASTA/FASTQ files, they are standard text formats for storing biological sequence data. FASTA files contain sequence headers (lines beginning with <code>&gt;</code>) and sequences, whilst FASTQ files additionally include quality scores for each base. A common bioinformatic tool, the Basic Local Alignment Search Tool (BLAST) is often used to search for nucleic acid subsequences, within larger records, giving detailed alignment information, and finding matches between query and target sequences. BLAST requires FASTA format input and doesn&#x27;t use quality information in its search, and so we often need to convert our FASTQ sequencing data by extracting just the identifiers and sequences, and discarding all extraneous information and metadata.</p><p>First we will open our example <code>.fastq</code> file to observe its structure:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-40">with open(&#x27;./data/example.fastq&#x27;, &#x27;r&#x27;) as file:
+                <textarea id="code-cell-39">with open(&#x27;./data/example.fastq&#x27;, &#x27;r&#x27;) as file:
     data = file.readlines()
 
 print(&quot;The identifier line, indicated by @&quot;)
@@ -553,7 +553,7 @@ print(&quot;The quality score line&quot;)
 print(&quot;-&quot; * 40)
 print(data[3])</textarea>
             </div>
-            <div id="code-cell-40-output" class="output"></div>
+            <div id="code-cell-39-output" class="output"></div>
         </div>
         <p>From the above, we can see that FASTQ files have a repeating 4-line structure for each sequence, so we need a way to identify which of the four lines we&#x27;re currently processing, using this information to extract the first and second lines.<br><br>Capturing the first two lines in the file is easy: they are index <code>0</code> and <code>1</code> in the loop. However subsequent repetitions are harder - i.e. <code>4</code>, <code>8</code>, <code>12</code> for the first line. Since they are all mutltiples of 4, we can use the modulus operator:  <code>%</code>.</p>
         <div class="info-box remember-box">
@@ -568,7 +568,7 @@ print(data[3])</textarea>
         
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-41">print(f&quot;Is 4 % 4 == 0: {4 % 4 == 0}&quot;)
+                <textarea id="code-cell-40">print(f&quot;Is 4 % 4 == 0: {4 % 4 == 0}&quot;)
 
 print(f&quot;Is 5 % 4 == 1: {5 % 4 == 1}&quot;)
 
@@ -578,12 +578,12 @@ print(f&quot;Is 7 % 4 == 3: {7 % 4 == 3}&quot;)
 
 print(f&quot;Is 4 % 4 == 0: {8 % 4 == 0}&quot;)</textarea>
             </div>
-            <div id="code-cell-41-output" class="output"></div>
+            <div id="code-cell-40-output" class="output"></div>
         </div>
         <p>Every time the loop comes to a clean multiple of 4, the modulus resets to 0.</p><p>In this way, modulus is the perfect tool for iterating over an object that has repetitive motifs, where each might require the application of differing operations.</p><p>Given this, let&#x27;s build some code to write a new FASTA file:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-42"># open a new file with &quot;w&quot;
+                <textarea id="code-cell-41"># open a new file with &quot;w&quot;
 with open(&quot;./data/example-converted.fasta&quot;, &quot;w&quot;) as file:
 
     # iterate through our data from above
@@ -600,12 +600,12 @@ with open(&quot;./data/example-converted.fasta&quot;, &quot;w&quot;) as file:
             file.write(line)
 </textarea>
             </div>
-            <div id="code-cell-42-output" class="output" style="display: none;"></div>
+            <div id="code-cell-41-output" class="output" style="display: none;"></div>
         </div>
         <p>We can now read our file to check that it works in the way we expect:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-43">with open(&#x27;./data/example-converted.fasta&#x27;, &#x27;r&#x27;) as file:
+                <textarea id="code-cell-42">with open(&#x27;./data/example-converted.fasta&#x27;, &#x27;r&#x27;) as file:
     data = file.readlines()
 
 print(&quot;Identifier line&quot;)
@@ -621,7 +621,7 @@ print(&quot;Second sequence&quot;)
 print(&quot;-&quot; * 40)
 print(data[3])</textarea>
             </div>
-            <div id="code-cell-43-output" class="output"></div>
+            <div id="code-cell-42-output" class="output"></div>
         </div>
         <p>Whilst this demonstration may not be useful to all bioscientists, it is a nice example of a typical script that you can make for everyday tasks.</p>
                     </div>
@@ -635,7 +635,7 @@ print(data[3])</textarea>
                         <p>Many datasets available online or generated by analytical machines will produce a comma-separated value (CSV) file, a lightweight tabular text file. Typically within a CSV file, the first line (row) contains the headers of each column; every new line (row) below contains the data points per heading, per sample. The headers and data points are separated by commas (<code>,</code>), hence the name, although they can be separated by other separators, which can be accounted for, as well.</p><p>Whilst you can read a CSV file using the same syntax as we have for text files, it has one flaw that can crop up intermittently: that is, commas <em>inside</em> data points. We can demonstrate this with the example below:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-44"># We can create a dummy set of data and save it to a CSV
+                <textarea id="code-cell-43"># We can create a dummy set of data and save it to a CSV
 
 csv_data = &quot;&quot;&quot;Patient,Location,Age,Sex
 Helena,&quot;Den Haag, the Netherlands&quot;,34,F
@@ -647,12 +647,12 @@ Priya,&quot;Mumbai, India&quot;,55,F&quot;&quot;&quot;
 with open(&#x27;./data/patients.csv&#x27;, &#x27;w&#x27;) as file:
     file.write(csv_data)</textarea>
             </div>
-            <div id="code-cell-44-output" class="output" style="display: none;"></div>
+            <div id="code-cell-43-output" class="output" style="display: none;"></div>
         </div>
         
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-45"># Using just .split() and not the csv module doesn&#x27;t work
+                <textarea id="code-cell-44"># Using just .split() and not the csv module doesn&#x27;t work
 
 with open(&#x27;./data/patients.csv&#x27;, &#x27;r&#x27;) as file:
     data = file.readlines()
@@ -660,20 +660,20 @@ with open(&#x27;./data/patients.csv&#x27;, &#x27;r&#x27;) as file:
     for line in data:
         print(line.split(&quot;,&quot;))</textarea>
             </div>
-            <div id="code-cell-45-output" class="output"></div>
+            <div id="code-cell-44-output" class="output"></div>
         </div>
         <p>The <code>csv</code> object from the module can handle these exceptions, giving you greater control over parsing the incoming data. To do this, rather than call <code>.read()</code> on the file, we use the <code>csv</code> class with the method <code>.reader()</code>. This can then accept the file as an argument, alongside kyeword arguments that indicate the separator (<code>delimiter</code>) and the character that indicates a quote or single unit of data (<code>quotechar</code>).</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-46"># First we need to import the module
+                <textarea id="code-cell-45"># First we need to import the module
 import csv</textarea>
             </div>
-            <div id="code-cell-46-output" class="output" style="display: none;"></div>
+            <div id="code-cell-45-output" class="output" style="display: none;"></div>
         </div>
         
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-47"># Both a , and &quot; are the default values for delimiter and quotechar respectively
+                <textarea id="code-cell-46"># Both a , and &quot; are the default values for delimiter and quotechar respectively
 
 with open(&#x27;./data/patients.csv&#x27;, &#x27;r&#x27;) as file:
 
@@ -682,12 +682,12 @@ with open(&#x27;./data/patients.csv&#x27;, &#x27;r&#x27;) as file:
     for row in csv_reader:
         print(row)</textarea>
             </div>
-            <div id="code-cell-47-output" class="output"></div>
+            <div id="code-cell-46-output" class="output"></div>
         </div>
         
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-48"># Have a play with the arguments of .reader() to see their effect
+                <textarea id="code-cell-47"># Have a play with the arguments of .reader() to see their effect
 
 with open(&#x27;./data/patients.csv&#x27;, &#x27;r&#x27;) as file:
 
@@ -696,8 +696,8 @@ with open(&#x27;./data/patients.csv&#x27;, &#x27;r&#x27;) as file:
     for row in csv_reader:
         print(row)</textarea>
             </div>
-            <button id="run-code-cell-48" class="run-button">Run Code</button>
-            <div id="code-cell-48-output" class="output"></div>
+            <button id="run-code-cell-47" class="run-button">Run Code</button>
+            <div id="code-cell-47-output" class="output"></div>
         </div>
         
                     </div>
@@ -871,8 +871,23 @@ os.makedirs('./data', exist_ok=True)
                 
                 // Add loading code for each file
                 for (const file of lessonFiles) {
-                    pythonCode += `
-# Load ${file.filename}
+                    if (file.is_binary) {
+                        // Binary files (images, etc.) - use bytes
+                        pythonCode += `
+# Load ${file.filename} (binary)
+try:
+    response = await pyfetch("${file.url}")
+    content = await response.bytes()
+    with open('./data/${file.filename}', 'wb') as f:
+        f.write(bytes(content))
+    print("Loaded: ${file.filename}")
+except Exception as e:
+    print(f"Could not load ${file.filename}: {e}")
+`;
+                    } else {
+                        // Text files (CSV, etc.) - use string
+                        pythonCode += `
+# Load ${file.filename} (text)
 try:
     response = await pyfetch("${file.url}")
     content = await response.string()
@@ -882,6 +897,7 @@ try:
 except Exception as e:
     print(f"Could not load ${file.filename}: {e}")
 `;
+                    }
                 }
                 
                 await pyodide.runPythonAsync(pythonCode);
@@ -949,12 +965,14 @@ except Exception as e:
             if (!code) continue;
             
             console.log(`Executing hidden code block: ${textarea.id}`);
+            console.log(`Hidden code content: ${code.substring(0, 100)}...`);
             const result = await executePythonCode(code);
             
             if (!result.success) {
                 console.error(`Error in hidden code block ${textarea.id}:`, result.output);
             } else {
                 console.log(`Hidden code block ${textarea.id} executed successfully`);
+                console.log(`Result: ${result.output}`);
             }
         }
 
@@ -1154,7 +1172,8 @@ except Exception as e:
                             });
                     } else if (trimmedOutput.startsWith('<!DOCTYPE') || 
                                trimmedOutput.startsWith('<html') ||
-                               trimmedOutput.startsWith('<div')) {
+                               trimmedOutput.startsWith('<div') ||
+                               trimmedOutput.startsWith('<img')) {
                         outputElement.innerHTML = result.output;
                     } else {
                         outputElement.textContent = result.output;
