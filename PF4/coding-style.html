@@ -161,18 +161,18 @@
         <p>Consider the following two versions of the same function that calculates the GC content of a DNA sequence. Both produce identical results, but one is far easier to understand:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-48"># Hard to read version
+                <textarea id="code-cell-49"># Hard to read version
 def gc(s):
     return (s.count(&#x27;G&#x27;)+s.count(&#x27;C&#x27;))/len(s)*100
 
 print(gc(&quot;ATGCGATCGATCG&quot;))</textarea>
             </div>
-            <div id="code-cell-48-output" class="output"></div>
+            <div id="code-cell-49-output" class="output"></div>
         </div>
         
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-49"># Readable version
+                <textarea id="code-cell-50"># Readable version
 def calculate_gc_content(sequence):
     &quot;&quot;&quot;Calculate the GC content of a DNA sequence as a percentage.&quot;&quot;&quot;
     guanine_count = sequence.count(&#x27;G&#x27;)
@@ -184,7 +184,7 @@ def calculate_gc_content(sequence):
 
 print(calculate_gc_content(&quot;ATGCGATCGATCG&quot;))</textarea>
             </div>
-            <div id="code-cell-49-output" class="output"></div>
+            <div id="code-cell-50-output" class="output"></div>
         </div>
         <p>The second version takes a few more lines, but it is immediately clear what the function does, what the variable names represent, and how the calculation proceeds. If you needed to modify this code six months from now, which version would you prefer to work with?</p>
                     </div>
@@ -198,7 +198,7 @@ print(calculate_gc_content(&quot;ATGCGATCGATCG&quot;))</textarea>
                         <p>Python is unique among popular programming languages in that it uses <strong>indentation</strong> to define code blocks. While other languages use braces <code>{}</code> or keywords, Python relies on consistent indentation to show which lines of code belong together. This makes proper indentation not just a stylistic choice, but a syntactical requirement.</p><h4>Vertical code flow</h4><p>Good indentation creates a <strong>vertical flow</strong> to your code, where the logical structure is visible, at a glance. Each level of indentation represents a level of nesting — a block of code that belongs to the structure above it. This vertical organisation is much easier to scan than horizontally sprawling code.</p><p>When defining functions, lists or dictionaries that span multiple lines, you have several options for indentation. The key is consistency:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-50"># Option 1: Align with opening delimiter
+                <textarea id="code-cell-51"># Option 1: Align with opening delimiter
 amino_acid_weights = {&quot;Alanine&quot;: 89.1, &quot;Glycine&quot;: 75.1,
                       &quot;Valine&quot;: 117.1, &quot;Leucine&quot;: 131.2}
 
@@ -223,7 +223,7 @@ amino_acid_weights = {
                         <p>PEP8 recommends limiting lines to a maximum of <strong>79 characters</strong> for code and <strong>72 characters</strong> for comments and docstrings. These numbers may seem arbitrary, but they have practical origins: they allow two files to be viewed side-by-side on a standard monitor, and they prevent horizontal scrolling in most editors and terminals.<br><br>Some teams prefer a slightly longer limit of 100 characters, which is also widely accepted. The important thing is to choose a limit and stick to it consistently throughout your project.</p><p>When a line exceeds the limit, you can break it in several ways:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-51"># Poor: Line is too long and requires horizontal scrolling
+                <textarea id="code-cell-52"># Poor: Line is too long and requires horizontal scrolling
 protein_molecular_weight = calculate_weight(alanine_count, glycine_count, valine_count, leucine_count, isoleucine_count, proline_count)
 
 # Good: Use implicit line continuation inside parentheses
@@ -240,7 +240,7 @@ protein_molecular_weight = calculate_weight(
         <p>For long expressions, break the line <strong>before</strong> binary operators. This keeps operators aligned at the start of each line, making it easier to see the structure of the expression:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-52"># Break before operators for better readability
+                <textarea id="code-cell-53"># Break before operators for better readability
 total_expression_level = (baseline_expression
                           + induced_expression
                           - background_noise
@@ -259,7 +259,7 @@ total_expression_level = (baseline_expression
                         <p>Choosing good names for your variables, functions and other identifiers is one of the most impactful things you can do for code readability. <strong>A well-chosen name acts as documentation</strong>, immediately telling the reader what a piece of data represents or what a function does.</p><h4>Python naming conventions</h4><p>PEP8 establishes clear conventions for different types of identifiers:<br><ul class="nested-list"><li><strong>Variables and functions</strong>: Use <code>lowercase_with_underscores</code></li><br><li><strong>Constants</strong>: Use <code>UPPERCASE_WITH_UNDERSCORES</code></li><br><li><strong>Classes</strong>: Use <code>CapitalisedWords</code></li><br><li><strong>Modules</strong>: Use short, <code>lowercase</code> names</li></ul></p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-53"># Good naming examples
+                <textarea id="code-cell-54"># Good naming examples
 sequence_length = 150  # Variable: lowercase with underscores
 MAX_SEQUENCE_LENGTH = 10000  # Constant: uppercase with underscores
 
@@ -273,26 +273,26 @@ class ProteinAnalyser:  # Class: capitalised words
         <h4>Descriptive names</h4><p>In the era of auto-complete we no longer have to be sparing with the length of our variables, so don&#x27;t be afraid to name it something longer than one word as your names should be <strong>descriptive</strong>. A variable called <code>x</code> tells the reader nothing, while <code>gc_content</code> immediately communicates its purpose. The slight extra typing is negligible compared to the clarity gained.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-54"># Poor naming - what do these variables represent?
+                <textarea id="code-cell-55"># Poor naming - what do these variables represent?
 a = &quot;ATGCGATCG&quot;
 b = len(a)
 c = a.count(&#x27;G&#x27;) + a.count(&#x27;C&#x27;)
 d = c / b * 100
 print(d)</textarea>
             </div>
-            <div id="code-cell-54-output" class="output"></div>
+            <div id="code-cell-55-output" class="output"></div>
         </div>
         
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-55"># Good naming - immediately clear what each variable represents
+                <textarea id="code-cell-56"># Good naming - immediately clear what each variable represents
 dna_sequence = &quot;ATGCGATCG&quot;
 sequence_length = len(dna_sequence)
 gc_base_count = dna_sequence.count(&#x27;G&#x27;) + dna_sequence.count(&#x27;C&#x27;)
 gc_percentage = gc_base_count / sequence_length * 100
 print(gc_percentage)</textarea>
             </div>
-            <div id="code-cell-55-output" class="output"></div>
+            <div id="code-cell-56-output" class="output"></div>
         </div>
         
         <div class="info-box warning-box">
@@ -316,7 +316,7 @@ print(gc_percentage)</textarea>
                         <p>Whitespace, <em>spaces and blank lines</em>, plays a crucial role in making code readable. PEP8 provides detailed guidelines on where to use whitespace and where to avoid it.</p><h4>Spaces around operators</h4><p>Use a <strong>single space</strong> on either side of binary operators, including assignment (<code>=</code>), comparison (<code>==</code>, <code>&lt;</code>, <code>&gt;</code>, <code>!=</code>), and arithmetic operators when clarity is needed:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-56"># Good: spaces around operators
+                <textarea id="code-cell-57"># Good: spaces around operators
 gc_content = (guanine + cytosine) / total_bases * 100
 is_valid = sequence_length &gt; 0 and sequence_length &lt; 10000
 
@@ -328,7 +328,7 @@ is_valid = sequence_length &gt; 0 and sequence_length &lt; 10000
         <h4>Spaces after commas</h4><p>Always use a space <strong>after</strong> commas, but not before them:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-57"># Good: space after commas
+                <textarea id="code-cell-58"># Good: space after commas
 nucleotides = [&#x27;A&#x27;, &#x27;T&#x27;, &#x27;G&#x27;, &#x27;C&#x27;]
 calculate_weight(mass, volume, concentration)
 
@@ -340,7 +340,7 @@ calculate_weight(mass , volume , concentration)</textarea>
         <h4>Avoiding extraneous whitespace</h4><p>Do <strong>not</strong> add spaces immediately inside parentheses, brackets or braces, or immediately before a comma or colon:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-58"># Good: no extraneous spaces
+                <textarea id="code-cell-59"># Good: no extraneous spaces
 my_list = [1, 2, 3]
 my_dict = {&#x27;key&#x27;: &#x27;value&#x27;}
 my_function(argument)
@@ -354,7 +354,7 @@ my_function( argument )</textarea>
         <h4>Keyword arguments</h4><p>When using <strong>keyword arguments</strong> in function calls or default parameter values, do <strong>not</strong> use spaces around the <code>=</code> sign:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-59"># Good: no spaces around = for keyword arguments
+                <textarea id="code-cell-60"># Good: no spaces around = for keyword arguments
 def plot_expression(data, xlabel=&#x27;Time&#x27;, ylabel=&#x27;Expression&#x27;):
     pass
 
@@ -377,7 +377,7 @@ def plot_expression(data, xlabel = &#x27;Time&#x27;, ylabel = &#x27;Expression&#
                         <p>Well-organised code groups related statements together into logical <strong>blocks</strong>, separated by blank lines. This visual structure helps readers understand the flow of your program without needing to read every line in detail.</p><h4>Blank lines for separation</h4><p>PEP8 recommends:<br><ul class="nested-list"><li><strong>Two blank lines</strong> before and after top-level function and class definitions</li><br><li><strong>Blank lines within functions</strong> to separate logical sections (used sparingly)</li></ul></p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-60"># Blank space
+                <textarea id="code-cell-61"># Blank space
 # Blank space
 def parse_fasta(filepath):
     &quot;&quot;&quot;Parse a FASTA file and return sequences.&quot;&quot;&quot;
@@ -424,7 +424,7 @@ def parse_fasta(filepath):
                         <p>Comments are essential for explaining <strong>why</strong> your code does what it does, not just a description of the mechanics of the visible code. If your code is well written, as shown, then the mechanics will be obvious.</p><h4>Comments should explain &quot;Why&quot; not &quot;What&quot;</h4><p>The best comments explain the aims, assumptions and reasoning behind decisions. A comment that simply restates what the code does is redundant and adds noise rather than value:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-61"># Poor comment - just restates the code
+                <textarea id="code-cell-62"># Poor comment - just restates the code
 # Increment counter by 1
 counter = counter + 1
 
@@ -436,7 +436,7 @@ data_rows = total_rows - 1</textarea>
         
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-62"># Poor comment - obvious from the code
+                <textarea id="code-cell-63"># Poor comment - obvious from the code
 # Check if sequence length is greater than zero
 if len(sequence) &gt; 0:
     pass
@@ -450,7 +450,7 @@ if len(sequence) &gt; 0:
         <h4>Block and inline comments</h4><p><strong>Block comments</strong> apply to the code that follows them and should be indented to the same level as that code. <strong>Inline comments</strong> appear on the same line as a statement and should be separated by at least two spaces. Use inline comments sparingly — they can make lines too long and cluttered.</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-63">def calculate_tm(sequence):
+                <textarea id="code-cell-64">def calculate_tm(sequence):
     &quot;&quot;&quot;Calculate melting temperature using the Wallace rule.&quot;&quot;&quot;
 
     # **Block comment**
@@ -488,14 +488,14 @@ if len(sequence) &gt; 0:
                         <p>Python allows you to chain multiple operations together on a single line, and method chaining can sometimes produce elegant, concise code. However, cramming too many operations into one line makes code difficult to read, debug, and modify.</p><h4>The problem with dense one-liners</h4><p>Consider this example that reads a FASTA file, extracts sequences, and calculates their GC content in a single list comprehension:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-64"># Hard to read as too much is happening in one line
+                <textarea id="code-cell-65"># Hard to read as too much is happening in one line
 gc_values = [(s.count(&#x27;G&#x27;)+s.count(&#x27;C&#x27;))/len(s)*100 for s in [l.strip() for l in open(&#x27;seqs.txt&#x27;) if not l.startswith(&#x27;&gt;&#x27;)]]</textarea>
             </div>
         </div>
         <p>Whilst this may feel good to write in the moment, to anyone reading this code will need to carefully unpick each operation. This goes back to the vertical coding rather than horizontal. We have a much easier time reading things that are broken down.</p><h4>Breaking down complex operations</h4><p>Breaking the same logic into separate, named steps makes each operation clear and the overall flow easy to follow:</p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-65"># Much clearer: each step is visible and named
+                <textarea id="code-cell-66"># Much clearer: each step is visible and named
 def calculate_gc(sequence):
     &quot;&quot;&quot;Calculate GC content as a percentage.&quot;&quot;&quot;
     gc_count = sequence.count(&#x27;G&#x27;) + sequence.count(&#x27;C&#x27;)
@@ -534,7 +534,7 @@ gc_values = [calculate_gc(seq) for seq in sequences]</textarea>
                         <p>Nested loops are sometimes necessary, but deeply nested structures quickly become difficult to read and reason about. Each level of nesting adds complexity, and by the time you reach three or four levels, even simple logic becomes confusing.</p><h4>The problem with deep nesting</h4>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-66"># Hard to follow: deeply nested structure
+                <textarea id="code-cell-67"># Hard to follow: deeply nested structure
 def find_common_motifs(sequences, motifs):
     results = []
     for sequence in sequences:
@@ -549,7 +549,7 @@ def find_common_motifs(sequences, motifs):
         <h4>Strategies for reducing nesting</h4><p>There are several strategies for reducing nesting:<br><ol class="nested-list"><li><strong>Extract inner loops into separate functions</strong> with descriptive names</li><br><li><strong>Use early returns or <code>continue</code></strong> to handle edge cases and reduce indentation</li><br><li><strong>Use built-in functions or comprehensions</strong> where appropriate</li></ol></p>
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-67"># Clearer: logic separated into a helper function
+                <textarea id="code-cell-68"># Clearer: logic separated into a helper function
 def motif_in_sequence(motif, sequence):
     &quot;&quot;&quot;Check if a motif appears in a sequence.&quot;&quot;&quot;
     return motif in sequence
@@ -600,7 +600,7 @@ def find_common_motifs(sequences, motifs):
         
         <div class="code-area">
             <div class="code-container code-fixed">
-                <textarea id="code-cell-68"># Awful code here:
+                <textarea id="code-cell-69"># Awful code here:
 def f(s):
     w={&#x27;A&#x27;:89,&#x27;R&#x27;:174,&#x27;N&#x27;:132,&#x27;D&#x27;:133,&#x27;C&#x27;:121,&#x27;E&#x27;:147,&#x27;Q&#x27;:146,&#x27;G&#x27;:75,&#x27;H&#x27;:155,&#x27;I&#x27;:131,&#x27;L&#x27;:131,&#x27;K&#x27;:146,&#x27;M&#x27;:149,&#x27;F&#x27;:165,&#x27;P&#x27;:115,&#x27;S&#x27;:105,&#x27;T&#x27;:119,&#x27;W&#x27;:204,&#x27;Y&#x27;:181,&#x27;V&#x27;:117}
     t=0
@@ -612,20 +612,20 @@ def f(s):
         
         <div class="code-area">
             <div class="code-container code-editor">
-                <textarea id="code-cell-69"># Rewrite the function here with proper coding style:
+                <textarea id="code-cell-70"># Rewrite the function here with proper coding style:
 </textarea>
             </div>
-            <button id="run-code-cell-69" class="run-button">Run Code</button>
-            <div id="code-cell-69-output" class="output"></div>
+            <button id="run-code-cell-70" class="run-button">Run Code</button>
+            <div id="code-cell-70-output" class="output"></div>
         </div>
         
         <div class="code-area">
-            <div class="code-collapse-header" onclick="toggleCodeCollapse('code-cell-70')">
+            <div class="code-collapse-header" onclick="toggleCodeCollapse('code-cell-71')">
                 <span class="code-collapse-icon">▶</span>
                 <span class="code-collapse-label">Show code</span>
             </div>
-            <div class="code-container code-fixed code-collapsed" id="code-cell-70-container">
-                <textarea id="code-cell-70">def calculate_average_aa_weight(sequence):
+            <div class="code-container code-fixed code-collapsed" id="code-cell-71-container">
+                <textarea id="code-cell-71">def calculate_average_aa_weight(sequence):
     &quot;&quot;&quot;
     Calculate the average molecular weight of amino acids in a protein sequence.
     
@@ -653,7 +653,7 @@ def f(s):
     
     return average_weight</textarea>
             </div>
-            <div id="code-cell-70-output" class="output" style="display: none;"></div>
+            <div id="code-cell-71-output" class="output" style="display: none;"></div>
         </div>
         
                     </div>
