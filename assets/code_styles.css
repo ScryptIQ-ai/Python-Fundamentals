@@ -151,3 +151,7 @@ Additional styles for enhanced pyodide functionality
 .code-container.code-collapsed {
     display: none !important;
 }
+/* Custom Syntax Highlighting Overrides */
+.hljs-string {
+    color: #e3116c !important; /* Custom string colour */
+}

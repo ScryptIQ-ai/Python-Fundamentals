@@ -4,6 +4,8 @@
 .output-container {
     margin-top: 10px;
     margin-bottom: 15px;
+    text-align: center;
+    /* Center inline-block images */
 }
 
 /* Stream output (stdout) */
@@ -62,10 +64,11 @@
 /* Image output */
 .output-image {
     max-width: 100%;
-    height: auto;
+    /* Prevent overflow on small screens */
     border-radius: 8px;
-    margin: 10px 0;
-    display: block;
+    margin: 10px auto;
+    display: inline-block;
+    /* Respect HTML width/height attributes */
 }
 
 /* Static code blocks (using highlight.js instead of CodeMirror) */

@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Footer HTML (your existing code)
     const footerHTML = `
         <div class="footer">
-            <div>© Built with parchmentIQ copyright of scryptIQ</div>
-            <div>© L2D is copyright UCL 2025</div>
+            <div>© Built with parchmentIQ copyright of scryptIQ 2026</div>
+            <div>© L2D is copyright UCL 2026</div>
         </div>
     `;
 

@@ -80,8 +80,17 @@ body {
     color: var(--main-text);
     font-size: 72px;
     font-weight: 700;
+    margin: 0 0 10px 0;
+    text-align: center;
+}
+
+.main-subtitle {
+    color: var(--main-text);
+    font-size: 68px;
+    font-weight: 400;
     margin: 0 0 40px 0;
     text-align: center;
+    opacity: 0.9;
 }
 
 /* Two Column Layout */
@@ -344,6 +353,10 @@ body {
 
     .main-title {
         font-size: 48px;
+    }
+
+    .main-subtitle {
+        font-size: 20px;
     }
 
     .modules-title {

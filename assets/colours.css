@@ -2,13 +2,13 @@
 :root {
     /* Primary Brand Colours */
     --primary: #f02698;
-    --primary-dark:  #4d0c2e;
+    --primary-dark: #4d0c2e;
     --secondary: #e07a5f;
-    --secondary-dark: #a85441;   
+    --secondary-dark: #a85441;
     --third-light: #7f84aa;
     --third: #3d405b;
-    --third-dark: #2a2d3f;  
-  
+    --third-dark: #2a2d3f;
+
     --accent: #00b7c3;
 
     /* Background Colours */
@@ -30,12 +30,13 @@
     --remember: #f02698;
     --key-terms: #6e6ca9;
     --tip: #3abff0;
+    --important: #e46816;
 
     /* Homepage Colours */
     --main-text: #f3f0ddff;
     --main-background: #f3f0ddff;
     --module-cards: #3d405b;
-    --module-cards-dark: #2a2d3f;  
+    --module-cards-dark: #2a2d3f;
     --about-us-text: #3d405b;
     --start-gradient: #e07a5f;
     --end-gradient: #f02698;
